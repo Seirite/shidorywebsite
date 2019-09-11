@@ -1,0 +1,131 @@
+import { Component, OnInit } from '@angular/core';
+import {AuthService} from '../../utility/auth-service';
+import {Router} from '@angular/router';
+import {MenuProvider} from './menu.provider';
+import {MatDialog} from '@angular/material';
+import {LoginComponent} from '../login/login.component';
+export interface Food {
+  value: string;
+  viewValue: string;
+}
+
+
+@Component({
+    selector: 'app-menu',
+    templateUrl: './menu.component.html',
+    styleUrls: ['./menu.component.scss']
+})
+export class MenuComponent implements OnInit {
+    haveVehicle: any;
+    loader: boolean = false;
+    userLocation: {lat: any; lng: any;};
+    component: any;
+    cartLength: string;
+    loginUserEmail: string;
+    loginUserImage: string;
+    loginUserName: string;
+    loginDone: string;
+    lat: number;
+    lng: number;
+    zoom: number = 17;
+    carrerModel: {mobileNo?: number, firstName?: string, middleName?: string, lastName?: string, emailId?: string, vehicalName?: string, vehicalNo?: number, licenceNo?: number, address?: string, education?: string, city?: string, state?: string, country?: string, pincode?: number, school?: string, college?: string, yfg?: string, uid?: string} = {};
+    foods: Food[] = [
+    {value: 'steak-0', viewValue: 'Steak'},
+    {value: 'pizza-1', viewValue: 'Pizza'},
+    {value: 'tacos-2', viewValue: 'Tacos'}
+  ];
+    constructor(public auth: AuthService, public router: Router, public provider: MenuProvider, public dialog: MatDialog) {}
+
+    ngOnInit() {
+        this.cartLength = localStorage.getItem("cartLength");
+        this.getLoginUserData();
+        this.getUserPosition();
+    }
+    
+    getLoginUserData()
+    {
+        this.loginDone = localStorage.getItem("isLoggedin");
+        if (this.loginDone != null)
+        {
+            this.loginUserName = this.auth.getSession().displayName;
+            this.loginUserImage = this.auth.getSession().photoURL;
+            this.loginUserEmail = this.auth.getSession().email;
+        }
+    }
+    
+    logOut()
+    {
+        localStorage.removeItem('isLoggedin');
+        localStorage.clear();
+        localStorage.clear();
+        this.router.navigate(['/home']);
+    }
+    
+    getUserPosition()
+    {
+        this.provider.getPosition().then(async location =>
+        {
+            var lat = localStorage.getItem("lat")
+            var lng = localStorage.getItem("lng")
+            if(lat == null && lng == null)
+            {
+                this.userLocation = {
+                    lat: location.lat,
+                    lng: location.lng
+                }
+                this.lat = this.userLocation.lat;
+                this.lng = this.userLocation.lng;
+            }
+            else
+            {
+                this.userLocation = {
+                    lat: parseFloat(lat),
+                    lng: parseFloat(lng)
+                }
+                this.lat = this.userLocation.lat;
+                this.lng = this.userLocation.lng;
+            }
+        })
+    }
+    
+    openLoginDialog()
+    {
+        let dialogBoxSettings = {
+            height: '500px',
+            width: '600px',
+            disableClose: true,
+            hasBackdrop: true,
+            margin: '0 auto',
+        };
+        this.component = LoginComponent;
+        const dialogRef = this.dialog.open(this.component, dialogBoxSettings);
+        dialogRef.afterClosed().subscribe(result =>
+        {
+            this.router.navigate(['/home']);
+        })
+    }
+    
+    selectVehical($event)
+    {
+        this.haveVehicle = $event.checked
+    }
+    
+    saveCarrerFormInfo(Obj)
+    {
+        this.loader = true;
+        setTimeout(() =>
+        {
+            this.loader = false;
+            this.router.navigate(['/home']);
+        }, 1000)
+//        this.provider.saveCarrerFormInfo(Obj).then(data =>
+//        {
+//            this.loader = false;
+//            this.router.navigate(['/home']);
+//        }).catch(error =>
+//        {
+//            this.loader = false;
+//            this.router.navigate(['/error']);
+//        })
+    }
+}

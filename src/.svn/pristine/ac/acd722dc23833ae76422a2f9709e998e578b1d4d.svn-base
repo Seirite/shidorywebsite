@@ -1,0 +1,338 @@
+<div class="wrapper">
+    <!--[if lt IE 8]>
+       <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+   <![endif]-->  
+
+    <!-- Loader Start -->
+    <div class="loader" *ngIf="loading==true">
+        <div class="loader-inner">
+            <h4>Cooking in progress..</h4>
+            <div id="cooking">
+                <div class="bubble"></div>
+                <div class="bubble"></div>
+                <div class="bubble"></div>
+                <div class="bubble"></div>
+                <div class="bubble"></div>
+                <div id="area">
+                    <div id="sides">
+                        <div id="pan"></div>
+                        <div id="handle"></div>
+                    </div>
+                    <div id="pancake">
+                        <div id="pastry"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Loader End -->
+
+    <!--  Header Start  -->
+    <header>
+        <!--Top Header Start -->
+        <div class="top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12 col-xs-12">
+                        <ul class="list-inline float-left icon">
+                            <!--<li class="list-inline-item"><a><i class="icofont icofont-phone"></i> Hotline : 123 456 7890</a></li>-->
+                        </ul>
+                        <!-- Header Social Start -->
+                        <ul class="list-inline float-right icon">
+                            <li class="list-inline-item"><a *ngIf="showTrackOrder" (click)="trackUserOrder()">Track Your Order</a></li>
+                            <li class="list-inline-item"><a href="cart"><i class="icofont icofont-cart-alt" style="font-size: larger"><span class="badge badge-info">{{cartLength}}</span></i>  Cart </a></li>
+                            <li class="list-inline-item dropdown" *ngIf="loginDone=='true';else login">
+                                <a class="dropdown-toggle" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="icofont icofont-ui-user"></i> {{loginUserName}}</a>
+                                <ul class="dropdown-menu dropdown-menu-right drophover" aria-labelledby="dropdownMenuLink">
+                                    <li class="dropdown-item"><a href="profile">{{loginUserEmail}}</a></li>
+                                    <li class="dropdown-item"><a (click)="logOut()">Sign out</a></li>
+                                </ul>
+                            </li>
+                            <ng-template #login>
+                                <li class="list-inline-item dropdown">
+                                    <a class="dropdown-toggle" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="icofont icofont-ui-user"></i> My Account</a>
+                                    <ul class="dropdown-menu dropdown-menu-right drophover" aria-labelledby="dropdownMenuLink">
+                                        <li class="dropdown-item"><a (click)="openLoginDialog()">Login</a></li>
+                                    </ul>
+                                </li>
+                            </ng-template>
+                            <li class="list-inline-item">
+                                <ul class="list-inline social">
+                                    <li class="list-inline-item"><a href="https://www.facebook.com/spheretheme/" target="_blank"><i class="icofont icofont-social-facebook"></i></a></li>
+                                    <li class="list-inline-item"><a href="https://twitter.com/spheretheme/" target="_blank"><i class="icofont icofont-social-twitter"></i></a></li>
+                                    <!---->
+                                    <li class="list-inline-item"><a href="https://www.instagram.com/" target="_blank"><i class="icofont icofont-social-instagram"></i></a></li>
+                                    <!---->
+<!--                                    <li class="list-inline-item"><a href="https://www.youtube.com/" target="_blank"><i class="icofont icofont-social-youtube-play"></i></a></li>-->
+                                </ul>
+                            </li>
+                        </ul>
+                        <!-- Header Social End -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--Top Header End -->
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <!-- Logo Start  -->
+                    <div id="logo">
+                        <a href="home"><img id="logo_img" class="img-fluid" src="assets/images/logo/logo.png" alt="logo" title="logo" /></a>
+                    </div>
+                    <!-- Logo End  -->
+                </div>
+
+                <div class="col-md-7 col-sm-6 col-xs-12 paddleft">
+                    <!-- Main Menu Start  -->
+                    <div id="menu">	
+                        <nav class="navbar navbar-expand-md">
+                            <div class="navbar-header">
+                                <span class="menutext d-block d-md-none">Menu</span>
+                                <button data-target=".navbar-ex1-collapse" data-toggle="collapse" class="btn btn-navbar navbar-toggler" type="button"><i class="icofont icofont-navigation-menu"></i></button>
+                            </div>
+                            <div class="collapse navbar-collapse navbar-ex1-collapse padd0">
+                                <ul class="nav navbar-nav">
+                                    <li class="nav-item"><a href="home">HOME</a></li>
+                                    <li class="nav-item"><a href="about">About us</a></li>
+                                    <li class="nav-item"><a href="career">Career</a></li>
+                                    <!--<li class="nav-item"><a href="blog">Our Blog</a></li>-->
+                                    <li class="nav-item"><a href="contact">contact us</a></li>
+                                    <!--<li class="nav-item"><a *ngIf="showTrackOrder" (click)="trackUserOrder()">Track Your Order</a></li>-->
+                                </ul>
+                            </div>
+                        </nav>
+                    </div>
+                    <!-- Main Menu End -->
+                </div>
+                <div class="col-md-2 col-sm-12 col-xs-12 button-top paddleft" id="menu">
+                    <nav class="navbar navbar-expand-md">
+                        <div class="collapse navbar-collapse navbar-ex1-collapse padd0">
+                            <ul class="nav navbar-nav">
+                                <li class="nav-item"><a href="reservation">Partner with Us</a></li>
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- Header End   -->
+
+    <!-- Banner Start -->
+    <div class="banner-bg"> 
+        <div data-property="{videoURL:'https://youtu.be/95SNbn340TE',containment:'.banner-bg',autoPlay:true, mute:true, startAt:0, opacity:1}"> </div>
+        <!-- Banner Detail Start  -->
+        <div class="banner-detail">
+            <div class="container">
+                <img src="assets/images/logo/logo-icon.png" alt="logo1" title="logo1" class="img-responsive" />
+                <div class="cd-headline clip">
+                    <h4>LOVES <span class="cd-words-wrapper">
+                            <b class="is-visible">HEALTHY</b>
+                            <b>QUALITY</b>
+                            <b>TESTY</b>
+                        </span>FOOD</h4>
+                </div>
+                <br>
+                <div class="sidebar-box" style="width: 70%; margin-left: 14%;">
+                    <!--  Search widget Start  -->
+                    <div class="search">
+                        <form class="form-horizontal">
+                            <fieldset>
+                                <div class="form-group">
+                                    <input class="form-control" placeholder="Enter Your Location" type="text" ngx-google-places-autocomplete  #placesRef="ngx-places" (onAddressChange)="handleAddressChange($event,target)" value="{{currentAddress}}">
+                                </div>
+                                <button type="submit" value="submit" class="btn"><i class="icofont icofont-social-google-map"></i></button>
+                            </fieldset>
+                        </form>
+                    </div>
+                    <!--  Search widget End  -->
+                </div>
+<!--                <i class="icofont icofont-social-google-map btn-theme input-field overlayButton"></i>
+                <input ngx-google-places-autocomplete class="input-field icofont icofont-search" style="width: 50%;" [options]='options' #placesRef="ngx-places" (onAddressChange)="handleAddressChange($event,target)" value="{{currentAddress}}"/>-->
+            </div>
+        </div>	
+        <!-- Banner Detail End  -->
+    </div>
+    <!-- Banner End  -->
+
+    <!-- Order Start  -->
+    <div style="background: whitesmoke;">
+        <div class="container">
+            <div class="row justify-content-center">
+                <!-- Title Content Start -->
+                <div class="col-sm-12 commontop text-center">
+                    <h4>Select Order Delivery</h4>
+                    <div class="divider style-1 center">
+                        <span class="hr-simple left"></span>
+                        <i class="icofont icofont-ui-press hr-icon"></i>
+                        <span class="hr-simple right"></span>
+                    </div>
+                </div>
+                <div class="col-sm-12 mainpage">
+                    <div class="row sort">
+                        <div class="col-md-6">
+
+                        </div>
+                    </div>
+
+                    <div class="menu" #target>
+                        <div class="menu-inner">
+                            <div class="container">
+                                <div [hidden]="!loader" align="center">
+                                                <img src="assets/images/loader.gif" />
+                                </div>
+                                <div [hidden]="showList" align="center">
+                                    <img style="width: 35%;height: 107px" src="assets/images/logo/logo-icon.png" alt="logo1" title="logo1" class="img-responsive" /><br>
+                                    <h2 style="font-weight: 700">Wish we were<br>here!</h2><br>
+                                    <p class="des">We don’t deliver here yet. Why don’t <br> you try a different location?</p>
+                                </div>
+                                <div class="sidebar-box" *ngIf="showList==true">
+                                    <div class="search">
+                                        <form class="form-horizontal" method="post">
+                                            <fieldset>
+                                                <div class="form-group">
+                                                    <input name="s" class="form-control" style="color: #000" placeholder="Search For Restaurants" type="text" (keyup)="applyFilter($event.target.value)">
+                                                </div>
+                                                <button type="submit" value="submit" class="btn"><i class="icofont icofont-search"></i></button>
+                                            </fieldset>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div  class="col-sm-4" *ngFor="let item of menuItemList">
+<!--                                        <div class="images" (click)="selectRestaurant(item)" *ngIf="item.restroStatus=='open'">
+                                            <img style="cursor: pointer;cursor: hand"  src="{{item.RESTRO_IMAGE || 'https://www.croatia-times.com/wp-content/uploads/2016/09/Aba.jpg'}}"  alt="image" title="image" style="height: 150px;width: 90%" />
+                                            <div  style="padding: 1%">
+                                                <h4 style="padding: 1%;font-family: cursive;color:#e54c2a;cursor: pointer;cursor: hand">{{item.RESTRO_NAME.substring(0,30)}}</h4>
+                                                <p class="text" style="padding: 1%;margin-bottom: 1%;margin-top: -4;cursor: pointer;cursor: hand" class="text">{{item.OPENING_TIME}} - {{item.CLOSING_TIME}} &nbsp;&nbsp;<span style="color:green;cursor: pointer;cursor: hand;font-weight: bold;">Open</span></p>
+                                                <p text-wrap class="des" style="padding: 1%;cursor: pointer;cursor: hand;margin-top: -3;">{{item.RESTRO_ADDRESS.substring(0,60)}}..</p>
+                                            </div>
+                                        </div>
+                                        <div class="images1" *ngIf="item.restroStatus=='closed'">
+                                            <img   src="{{item.RESTRO_IMAGE || 'https://www.croatia-times.com/wp-content/uploads/2016/09/Aba.jpg'}}"  alt="image" title="image" style="height: 150px;width: 90%" />
+                                            <div  style="padding: 1%">
+                                                <h4 style="padding: 1%;font-family: cursive;color:#e54c2a">{{item.RESTRO_NAME.substring(0,30)}}</h4>
+                                                <p class="text" style="padding: 1%;margin-bottom: 1%;margin-top: -4" class="text">{{item.OPENING_TIME}} - {{item.CLOSING_TIME}} &nbsp;&nbsp;<span style="color: red;cursor: pointer;cursor: hand;font-weight: bold">Closed</span></p>
+                                                <p text-wrap class="des" style="padding: 1%;margin-top: -3;">{{item.RESTRO_ADDRESS.substring(0,60)}}..</p>
+                                            </div>
+                                            <div class="middle">
+                                                <div class="text1">Closed</div>
+                                            </div>
+                                        </div>-->
+                                      <div class="images" (click)="selectRestaurant(item)" *ngIf="item.restroStatus=='open'">
+                                        <div>
+                                            <img src="{{item.RESTRO_IMAGE || 'https://www.croatia-times.com/wp-content/uploads/2016/09/Aba.jpg'}}" alt="image" title="image" style="height: 150px;width: 90%" />
+                                            <div class="caption">
+                                                <h4 style="padding: 1%;font-family: cursive;color:#e54c2a;cursor: pointer;cursor: hand">{{item.RESTRO_NAME.substring(0,30)}}</h4>
+                                                <p class="text" style="padding: 1%;margin-bottom: 1%;margin-top: -4;cursor: pointer;cursor: hand" class="text">{{item.OPENING_TIME}} - {{item.CLOSING_TIME}} &nbsp;&nbsp;<span style="color:green;cursor: pointer;cursor: hand;font-weight: bold;">Open</span></p>
+                                                <p text-wrap class="des" style="padding: 1%;cursor: pointer;cursor: hand;margin-top: -3;">{{item.RESTRO_ADDRESS.substring(0,60)}}..</p>
+                                            </div>
+                                            <div class="middle1">
+                                                <!--<div class="text2">Order now</div>-->
+                                                <button (click)="selectRestaurant(item)" class="btn1 success">Order now</button>
+                                            </div>
+                                        </div>
+                                        </div>
+                                      <div class="images1" (click)="selectRestaurant(item)" *ngIf="item.restroStatus=='closed'">
+                                        <div>
+                                            <img src="{{item.RESTRO_IMAGE || 'https://www.croatia-times.com/wp-content/uploads/2016/09/Aba.jpg'}}" alt="image" title="image" style="height: 150px;width: 90%" />
+                                            <div class="caption">
+                                                <h4 style="padding: 1%;font-family: cursive;color:#e54c2a">{{item.RESTRO_NAME.substring(0,30)}}</h4>
+                                                <p class="text" style="padding: 1%;margin-bottom: 1%;margin-top: -4" class="text">{{item.OPENING_TIME}} - {{item.CLOSING_TIME}} &nbsp;&nbsp;<span style="color: red;cursor: pointer;cursor: hand;font-weight: bold">Closed</span></p>
+                                                <p text-wrap class="des" style="padding: 1%;margin-top: -3;">{{item.RESTRO_ADDRESS.substring(0,60)}}..</p>
+                                            </div>
+                                            <div class="middle">
+                                                <div class="text1">Closed</div>
+                                            </div>
+                                        </div>
+                                        </div>
+                                            <br>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Order End  -->
+
+    <!-- Reservation Start -->
+<!--    <div class="reservation" style="background: #f3f3f3">
+        <div class="container">
+            <div [hidden]="!loader" align="center">
+                    <img src="assets/images/loader.gif" />
+            </div>
+            <div class="row ">
+                 Title Content Start 
+                <div class="col-sm-12 commontop black text-center">
+                    <h4>Countries</h4>
+                    <div class="divider style-1 center">
+                        <span class="hr-simple left"></span>
+                        <i class="icofont icofont-ui-press hr-icon"></i>
+                        <span class="hr-simple right"></span>
+                    </div>
+                </div>
+                 Title Content End 
+                <div [hidden]="!loader" align="center">
+                    <img src="assets/images/loader.gif" />
+                </div>
+                <div [hidden]="showCountryList" align="center">
+                    <img src="assets/images/NoRecordFound.png" />
+                </div>
+                <div class="col-lg-12">
+                    <div class="row">
+                        <div class="col-lg-3" *ngFor="let country of countryList">
+                            <div class="row" style="padding-left: 20px; padding-top: 10px;">
+                                    
+                                    <div class="col-md-3 col-lg-3">
+                                        <div class="col-md-3 col-lg-3">
+                                        <img [src]="country.flag" style="width: 80%">
+                                    </div>
+                                    </div>
+                                    <div class="col-md-9 col-lg-9">
+                                        <p style="font-family: cursive; font-weight: 600;">{{country.key}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>-->
+    <!-- Reservation End  -->
+
+
+    <!-- Footer Start -->
+    <footer>
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="row powered">
+                    <!--  Copyright Start -->
+                    <div class="col-md-3 col-sm-6 order-md-1">
+                        <img src="assets/images/logo/logo-white.png" class="img-fluid" title="logo" alt="logo">
+                    </div>
+                    <div class="col-md-3 col-sm-6 text-right order-md-3">
+                        <!--  Footer Social Start -->
+                        <ul class="list-inline social">
+                            <li class="list-inline-item"><a href="https://www.facebook.com/spheretheme/" target="_blank"><i class="icofont icofont-social-facebook"></i></a></li>
+                            <li class="list-inline-item"><a href="https://twitter.com/spheretheme/" target="_blank"><i class="icofont icofont-social-twitter"></i></a></li>
+                            <li class="list-inline-item"><a href="https://www.instagram.com/" target="_blank"><i class="icofont icofont-social-instagram"></i></a></li>
+<!--                            <li class="list-inline-item"><a href="https://www.youtube.com/" target="_blank"><i class="icofont icofont-social-youtube-play"></i></a></li>-->
+                        </ul>
+                        <!--  Footer Social End -->
+                    </div>
+                    <div class="col-md-6 col-sm-12 text-center order-md-2">
+                    </div>
+                    <!--  Copyright End -->
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer End  -->
+
+</div>

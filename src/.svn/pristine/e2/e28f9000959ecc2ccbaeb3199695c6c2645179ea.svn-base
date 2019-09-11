@@ -1,0 +1,9 @@
+<div align="center">
+    
+    <h3>Error</h3>
+
+    <p>{{errorMessage}}</p>
+
+    <button mat-button style="background: #3f51b5; color: #FFF;" (click)="dialogRef.close()">Ok</button>
+
+</div>

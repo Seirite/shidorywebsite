@@ -1,0 +1,590 @@
+        <div class="wrapper">
+            <!--[if lt IE 8]>
+               <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+           <![endif]-->  
+
+            <!-- Loader Start -->
+            <div class="loader">
+                <div class="loader-inner">
+                    <h4>Cooking in progress..</h4>
+                    <div id="cooking">
+                        <div class="bubble"></div>
+                        <div class="bubble"></div>
+                        <div class="bubble"></div>
+                        <div class="bubble"></div>
+                        <div class="bubble"></div>
+                        <div id="area">
+                            <div id="sides">
+                                <div id="pan"></div>
+                                <div id="handle"></div>
+                            </div>
+                            <div id="pancake">
+                                <div id="pastry"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Loader End -->
+
+            <!--  Header Start  -->
+            <header style="background: #171a29; position: absolute; left: 0; right: 0; z-index: 2; top: 0;">
+                <!--Top Header Start -->
+                <div class="top" style="background: #171a29; right: 0;">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-sm-12 col-xs-12">
+                                <ul class="list-inline float-left icon">
+<!--                                    <li class="list-inline-item"><a><i class="icofont icofont-phone"></i> Hotline : 123 456 7890</a></li>-->
+                                </ul>
+                                <!-- Header Social Start -->
+                                <ul class="list-inline float-right icon">
+                                    <li class="list-inline-item"><a href="cart"><i class="icofont icofont-cart-alt" style="font-size: larger"><span class="badge badge-info">{{cartLength}}</span></i>  Cart </a></li>
+                                    <li class="list-inline-item dropdown" *ngIf="loginDone=='true';else login">
+                                        <a class="dropdown-toggle" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="icofont icofont-ui-user"></i> {{loginUserName}}</a>
+                                        <ul class="dropdown-menu dropdown-menu-right drophover" aria-labelledby="dropdownMenuLink">
+                                            <li class="dropdown-item"><a href="profile">{{loginUserEmail}}</a></li>
+                                            <li class="dropdown-item"><a (click)="logOut()">Sign out</a></li>
+                                        </ul>
+                                    </li>
+                                    <ng-template #login>
+                                        <li class="list-inline-item dropdown">
+                                            <a class="dropdown-toggle" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="icofont icofont-ui-user"></i> My Account</a>
+                                            <ul class="dropdown-menu dropdown-menu-right drophover" aria-labelledby="dropdownMenuLink">
+                                                <li class="dropdown-item"><a (click)="openLoginDialog()">Login</a></li>
+                                            </ul>
+                                        </li>
+                                    </ng-template>
+                                    <li class="list-inline-item">
+                                        <ul class="list-inline social">
+                                            <li class="list-inline-item"><a href="https://www.facebook.com/spheretheme/" target="_blank"><i class="icofont icofont-social-facebook"></i></a></li>
+                                            <li class="list-inline-item"><a href="https://twitter.com/spheretheme/" target="_blank"><i class="icofont icofont-social-twitter"></i></a></li>
+                                            <li class="list-inline-item"><a href="https://www.instagram.com/" target="_blank"><i class="icofont icofont-social-instagram"></i></a></li>
+                                            <li class="list-inline-item"><a href="https://www.youtube.com/" target="_blank"><i class="icofont icofont-social-youtube-play"></i></a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                                <!-- Header Social End -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--Top Header End -->
+
+                <div class="container" style="background: #171a29; right: 0;">
+                    <div class="row">
+                        <div class="col-md-3 col-sm-6 col-xs-12">
+                            <!-- Logo Start  -->
+                            <div id="logo">
+                                <a href="home"><img id="logo_img" class="img-fluid" src="assets/images/logo/logo.png" alt="logo" title="logo" style="width: 75%" /></a>
+                            </div>
+                            <!-- Logo End  -->
+                        </div>
+
+                        <div class="col-md-7 col-sm-6 col-xs-12 paddleft">
+                            <!-- Main Menu Start  -->
+                            <div id="menu">	
+                                <nav class="navbar navbar-expand-md">
+                                    <div class="navbar-header">
+                                        <span class="menutext d-block d-md-none">Menu</span>
+                                        <button data-target=".navbar-ex1-collapse" data-toggle="collapse" class="btn btn-navbar navbar-toggler" type="button"><i class="icofont icofont-navigation-menu"></i></button>
+                                    </div>
+                                    <div class="collapse navbar-collapse navbar-ex1-collapse padd0">
+                                        <ul class="nav navbar-nav">
+                                            <li class="nav-item"><a href="home">HOME</a></li>
+                                            <li class="nav-item"><a href="about">about us</a></li>
+                                            <li class="nav-item"><a href="career">Career</a></li>
+                                            <!--<li class="nav-item"><a href="blog">Our Blog</a></li>-->
+                                            <li class="nav-item"><a href="contact">contact us</a></li>
+                                        </ul>
+                                    </div>
+                                </nav>
+                            </div>
+                            <!-- Main Menu End -->
+                        </div>
+                        <div class="col-md-2 col-sm-12 col-xs-12 button-top paddleft" id="menu">
+                            <nav class="navbar navbar-expand-md">
+                                <div class="collapse navbar-collapse navbar-ex1-collapse padd0">
+                                    <ul class="nav navbar-nav">
+                                    </ul>
+                                </div>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            <!-- Header End   -->
+
+            <!-- Breadcrumb Start -->
+            <div style="position:relative; min-height: 150px; margin-top: 8%; background: #171a29;">
+                <div style="position:absolute; bottom:20px; left:0; right:0; text-align:center; margin:0 auto; width:244px; background: rgba(0, 0, 0, 0.35); padding:15px 0;">
+                    <h2 style="font-family: 'Great Vibes',cursive; color:#fff; font-size:30px; font-weight:400; margin:0; text-transform:capitalize;">Reservation</h2>
+                    <ul class="list-inline">
+                        <li class="list-inline-item"><a href="home" style="color: #FFF;">HOME > </a></li>
+                        <li class="list-inline-item"><a style="color: #FFF;">Reservation</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Breadcrumb End -->
+
+            <!-- Reservation Start -->
+            
+            <div class="reservation no-bg">
+                <div class="container">
+                    <div class="row ">
+                        <!-- Title Content Start -->
+                        <div class="col-sm-12 commontop text-center">
+                            <h4>Add Restaurant</h4>
+                            <div class="divider style-1 center">
+                                <span class="hr-simple left"></span>
+                                <i class="icofont icofont-ui-press hr-icon"></i>
+                                <span class="hr-simple right"></span>
+                            </div>
+                        </div>
+                        <!-- Title Content End -->
+                        <form class="row reservation-form" [formGroup]="addRestroForm">
+                        <div class="col-md-6 col-xs-6" align="center">
+                            <!-- Reservation Form Start -->
+                            <div class="col-sm-12 col-md-12" style="background-color: white;" >
+                                
+                                
+
+                                    <mat-form-field class="example-full-width">
+                                        <mat-label>Restaurant name</mat-label>
+                                        <input matInput  
+                                               formControlName="NAME"
+                                               (blur)="checkRestroName($event)"
+                                               [(ngModel)]="entRestaurant.RESTRO_NAME" required/>
+                                        <mat-error *ngIf="addRestroForm.get('NAME').invalid && addRestroForm.get('NAME').touched">{{validName()}}</mat-error>
+                                    </mat-form-field>
+                                    
+                                    <mat-form-field class="example-full-width">
+                                        <mat-label>Owner name</mat-label>
+                                        <input matInput  
+                                               formControlName="RESTRO_OWNER_NAME"
+                                               (blur)="checkRestroOwnerName($event)"
+                                               [(ngModel)]="entRestaurant.RESTRO_OWNER_NAME" required/>
+                                        <mat-error *ngIf="addRestroForm.get('RESTRO_OWNER_NAME').invalid && addRestroForm.get('RESTRO_OWNER_NAME').touched">{{validOwnerName()}}</mat-error>
+                                    </mat-form-field>
+
+                                    <mat-form-field class="example-full-width">
+                                        <mat-label>Email</mat-label>
+                                        <input matInput 
+                                               formControlName="EMAIL_ID" 
+                                               (blur)="checkRestroEmail($event)"
+                                               [(ngModel)]="entRestaurant.RESTRO_EMAIL_ID" required/>
+                                        <mat-error *ngIf="addRestroForm.get('EMAIL_ID').invalid && addRestroForm.get('EMAIL_ID').touched">{{validEmail()}}</mat-error>
+                                    </mat-form-field>
+
+                                    <mat-form-field class="example-full-width">
+                                        <mat-label>Password</mat-label>
+                                        <input matInput  [type]="hide ? 'password' : 'text'"
+                                               formControlName="PASSWORD" 
+                                               [(ngModel)]="entRestaurant.RESTRO_PASSWORD" required/>
+                                        <i matSuffix class="fa fa-eye-slash" *ngIf="hide===true" (click)="hide = !hide"></i>
+                                        <i matSuffix class="fa fa-eye" *ngIf="hide===false" (click)="hide = !hide"></i>
+                                        <mat-error *ngIf="addRestroForm.get('PASSWORD').invalid && addRestroForm.get('PASSWORD').touched">{{validPassword()}}</mat-error>
+                                    </mat-form-field>
+                                    
+
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput ngx-google-places-autocomplete placeholder="Restaurant address"
+                                               formControlName="ADDRESS"
+                                               (blur)="checkAddress($event)"
+                                               #placesRef="ngx-places" (onAddressChange)="handleAddressChange($event)" 
+                                               [(ngModel)]="entRestaurant.RESTRO_ADDRESS" required/>
+                                        <mat-error *ngIf="addRestroForm.get('ADDRESS').invalid && addRestroForm.get('ADDRESS').touched">{{validAddress()}}</mat-error>
+                                    </mat-form-field>
+                                
+                                
+                                   <mat-form-field class="example-full-width" *ngIf="entRestaurant.RESTRO_ADDRESS">
+                                        <span matPrefix>{{entRestaurant.RESTRO_PHONE_CODE}}</span>
+                                        <input type="tel" matInput placeholder="Mobile number" maxlength="10" 
+                                               formControlName="MOBILE_NO"
+                                               (blur)="checkMobileNo($event)"
+                                               [(ngModel)]="RESTRO_MOBILE_NO" required/>
+                                        <mat-error *ngIf="addRestroForm.get('MOBILE_NO').invalid && addRestroForm.get('MOBILE_NO').touched">{{validMobile()}}</mat-error>
+                                    </mat-form-field>
+                                    
+                                    
+                                    
+                                    <br>
+                                    <br>
+                                
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-6 col-xs-6" style="margin-top: 1%">
+                            <p style="color: red;float: left;font-weight: 600;font-family: fantasy;" *ngIf="entRestaurant.RESTRO_ADDRESS">*Note: Please mark your restaurant exact location before registration </p>
+                                    
+                                    <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom" (mapClick)="clickMarker($event)">
+                                        <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+                                    </agm-map>
+                        </div>
+                            <!--<img src="assets/images/loading.gif" *ngIf="loader" />-->
+                                    
+                                    <div class="row form-group col-xs-12 col-md-12" align="center">
+                                        <div class="text-center col-12" *ngIf="addRestroStatus==false">
+                                            <button mat-raised-button color="warn" style="margin: auto; width: 50%;" [disabled]="showRegisterButton==false" (click)="addRestraunt(entRestaurant)">Register Now</button>
+                                        </div>
+                                         <div class="col-md-12" *ngIf="addRestroStatus==true">
+                                         <button  mat-raised-button  style="width: 50%;background-color: #4CAF50;color:white"><i  class="fa fa-circle-o-notch fa-spin"></i>&nbsp;Loading</button>
+                                        </div>
+                                    </div>
+                       </form>
+
+                    </div>
+                </div>
+            </div>
+            
+            
+            
+            
+            
+            
+            
+            <!--<div class="login">-->
+                <!--<div class="container">-->
+<!--            <div class="reservation text-center"> 
+                <div class="container">
+                    <div class="row ">
+                         Title Content Start 
+                        <div class="col-sm-6 commontop text-center">
+                            <h4>Add Restaurant</h4>
+                            <div class="divider style-1 center">
+                                <span class="hr-simple left"></span>
+                                <i class="icofont icofont-ui-press hr-icon"></i>
+                                <span class="hr-simple right"></span>
+                            </div>
+                        </div>
+                         Title Content End 
+                        
+                        <div class="col-md-12 col-xs-12">
+                            
+                             Reservation Form Start 
+                            <div class="col-sm-12 col-md-6">
+                                <div class="loginto loginnow hello" style="background-color:white" >
+                                    
+                                    <form class="row reservation-form">
+                                
+                                        <div class="form-group col-md-12 col-sm-12">
+                                            <input name="name" id="input-name" placeholder="Enter Restaurant Name" class="form-control" type="text" required [(ngModel)]="entRestaurant.RESTRO_NAME" required>
+                                        </div>
+                                        <div class="form-group col-md-12 col-sm-12">
+                                            <input name="email" id="input-email" placeholder="Enter Email Address" class="form-control" type="text" required [(ngModel)]="entRestaurant.RESTRO_EMAIL_ID" required>
+                                        </div>
+                                        <div class="form-group col-md-12 col-sm-12">
+                                            <input name="password" id="input-password" class="form-control"placeholder="Enter Password" type="password" required [(ngModel)]="entRestaurant.RESTRO_PASSWORD" required>
+                                        </div>
+                                        <div class="form-group col-md-12 col-sm-12">
+                                            <select class="icofont icofont-ui-user" class="form-control" name="country" placeholder="Select Your Country" [(ngModel)]="selectedCountry" (change)="selectState()" required>
+                                                <option *ngFor="let country of countryList" [value]="country.key"><img src="{{country.flag}}" />{{country.OPR_COUNTRY}}</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group col-md-12 col-sm-12">
+                                            <select class="icofont icofont-ui-user"  placeholder="Select Your State" class="form-control" name="state" [(ngModel)]="selectedState" (change)="selectCity()" required>
+                                                <option *ngFor="let state of stateList" [value]="state.id">{{state.name}}</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group col-md-12 col-sm-12">
+                                            <select class="icofont icofont-ui-user"  placeholder="Select Your City" class="form-control" name="city" [(ngModel)]="selectedCity" (change)="getCity()" required>
+                                                <option *ngFor="let city of cityList" [value]="city.id">{{city.name}}</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group col-md-12 col-sm-12">
+                                            <input ngx-google-places-autocomplete class="input-field icofont icofont-search" #placesRef="ngx-places" (onAddressChange)="handleAddressChange($event)" value="{{currentAddress}}"/>
+                                        </div>
+                                        <div class="form-group col-md-12 col-sm-12">
+                                            <div class="row">
+                                                <div class="col-md-2">
+                                                    <input name="phone" class="form-control" type="text" readonly required [(ngModel)]="entRestaurant.RESTRO_PHONE_CODE">
+                                                </div>
+                                                <div class="col-md-10">
+                                                    <input name="phonenumber" id="input-phone"  placeholder="Mobile Number 1" class="form-control" type="number" required [(ngModel)]="RESTRO_PHONE_NO" required>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-md-12 col-sm-12">
+                                            <div class="row">
+                                                <div class="col-md-2">
+                                                    <label>{{entRestaurant.RESTRO_PHONE_CODE}}</label>
+                                                </div>
+                                                <div class="col-md-10">
+                                                    <input name="mobile" id="input-mobile"  placeholder="Mobile Number 2" class="form-control" type="number" required [(ngModel)]="RESTRO_MOBILE_NO">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row form-group col-xs-12 col-md-12">
+                                            <div class="text-center col-6">
+                                                <button type="submit" class="btn btn-theme btn-wide" (click)="clear()">Reset</button>
+                                            </div>
+                                            <div class="text-center col-6">
+                                                <button type="submit" class="btn btn-theme btn-wide"  (click)="addRestraunt(entRestaurant)">Add now</button>
+                                                 <button type="submit" class="btn btn-theme btn-wide" disabled="true" *ngIf="loader==true">Add now</button> 
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>-->
+                        
+<!--                         <div class="col-md-12 col-xs-12" align="center">
+                            
+                            
+                            <form class="row reservation-form" novalidate="novalidate">
+                                
+                                <div class="form-group col-md-6 col-sm-6 text-center">
+                                    <label>Enter Restaurant Name</label>
+                                </div>
+                                <div class="form-group col-md-6 col-sm-6">
+                                    <i class="icofont icofont-ui-user"></i><input name="name" id="input-name" class="form-control" type="text" required [(ngModel)]="entRestaurant.RESTRO_NAME">
+                                </div>
+                                <div class="form-group col-md-6 col-sm-6 text-center">
+                                    <label>Enter Email Address</label>
+                                </div>
+                                <div class="form-group col-md-6 col-sm-6">
+                                    <i class="icofont icofont-ui-message"></i><input name="email" id="input-email" class="form-control" type="text" required [(ngModel)]="entRestaurant.RESTRO_EMAIL_ID">
+                                </div>
+                                <div class="form-group col-md-6 col-sm-6 text-center">
+                                    <label>Enter Password</label>
+                                </div>
+                                <div class="form-group col-md-6 col-sm-6">
+                                    <i class="icofont icofont-ui-message"></i><input name="password" id="input-password" class="form-control" type="password" required [(ngModel)]="entRestaurant.RESTRO_PASSWORD">
+                                </div>
+                                <div class="form-group col-md-6 col-sm-6 text-center">
+                                    <label>Select Your Country</label>
+                                </div>
+                                <div class="form-group col-md-6 col-sm-6">
+                                    <select class="icofont icofont-ui-user" class="form-control" name="country" [(ngModel)]="selectedCountry" (change)="selectState()">
+                                        <option *ngFor="let country of countryList" [value]="country.key"><img src="{{country.flag}}" />{{country.OPR_COUNTRY}}</option>
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-6 col-sm-6 text-center">
+                                    <label>Select Your State</label>
+                                </div>
+                                <div class="form-group col-md-6 col-sm-6">
+                                    <select class="icofont icofont-ui-user" class="form-control" name="state" [(ngModel)]="selectedState" (change)="selectCity()">
+                                        <option *ngFor="let state of stateList" [value]="state.id">{{state.name}}</option>
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-6 col-sm-6 text-center">
+                                    <label>Select Your City</label>
+                                </div>
+                                <div class="form-group col-md-6 col-sm-6">
+                                    <select class="icofont icofont-ui-user" class="form-control" name="city" [(ngModel)]="selectedCity" (change)="getCity()">
+                                        <option *ngFor="let city of cityList" [value]="city.id">{{city.name}}</option>
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-6 col-sm-6 text-center">
+                                    <label>Enter Mobile Number</label>
+                                </div>
+                                <div class="form-group col-md-6 col-sm-6">
+                                    <div class="row">
+                                        <div class="col-md-2">
+                                            <input name="phone" class="form-control" type="text" readonly required [(ngModel)]="entRestaurant.RESTRO_PHONE_CODE">
+                                        </div>
+                                        <div class="col-md-10">
+                                            <i class="icofont icofont-phone"></i><input name="phonenumber" id="input-phone" class="form-control" type="number" required [(ngModel)]="entRestaurant.RESTRO_PHONE_NO">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-6 col-sm-6 text-center">
+                                    <label>Enter Mobile Number</label>
+                                </div>
+                                <div class="form-group col-md-6 col-sm-6">
+                                    <div class="row">
+                                        <div class="col-md-2">
+                                            <input name="phone" class="form-control" type="text" readonly required [(ngModel)]="entRestaurant.RESTRO_PHONE_CODE">
+                                        </div>
+                                        <div class="col-md-10">
+                                            <i class="icofont icofont-phone"></i><input name="mobile" id="input-mobile" class="form-control" type="number" required [(ngModel)]="entRestaurant.RESTRO_MOBILE_NO">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row form-group col-xs-12 col-md-12">
+                                    <div class="text-center col-6">
+                                        <button type="submit" class="btn btn-theme btn-wide" (click)="clear()">Reset</button>
+                                    </div>
+                                    <div class="text-center col-6">
+                                        <button type="submit" class="btn btn-theme btn-wide" *ngIf="loader==false" (click)="addRestraunt(entRestaurant)">Add now</button>
+                                        <button type="submit" class="btn btn-theme btn-wide" disabled="true" *ngIf="loader==true">Add now</button>
+                                    </div>
+                                </div>
+                            </form>
+                            
+                        </div> -->
+<!--                    </div>
+                </div>
+            </div>
+                </div>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!-- Reservation End  -->
+
+            <!-- Fun-Factor Start -->
+            <div class="fun-factor">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-12 commontop text-center">
+                            <h4>Shidory Today</h4>
+                        </div>
+                    </div>
+                    <div class="row ">
+                        <div class="col-sm-3 col-6">
+                            <!-- Fun-Factor Box Start -->
+                            <div class="single-box">
+                                <span>
+                                    <i class="icofont icofont-spoon-and-fork"></i>
+                                </span>
+                                <h4 class="number" data-from="100" data-to="300" data-refresh-interval="10">{{numberOfRestaurant}}</h4>
+                                <h3>NUMBER OF RESTAURANT</h3>
+                            </div>
+                            <!-- Fun-Factor Box End -->
+                        </div>
+                        <div class="col-sm-3 col-6">
+                            <!-- Fun-Factor Box Start -->
+                            <div class="single-box">
+                                <span>
+                                    <i class="icofont icofont-waiter-alt"></i>
+                                </span>
+                                <h4 class="number" data-from="100" data-to="600" data-refresh-interval="10">{{numberOfVisitors}}</h4>
+                                <h3>NUMBER OF VISITORS</h3>
+                            </div>
+                            <!-- Fun-Factor Box End -->
+                        </div>
+                        <div class="col-sm-3 col-6">
+                            <!-- Fun-Factor Box Start -->
+                            <div class="single-box">
+                                <span>
+                                    <i class="icofont icofont-food-cart"></i>
+                                </span>
+                                <h4 class="number" data-from="100" data-to="400" data-refresh-interval="10">{{numberOfTotalOrders}}</h4>
+                                <h3>NUMBER OF ORDER</h3>
+                            </div>
+                            <!-- Fun-Factor Box End -->
+                        </div>
+                        <div class="col-sm-3 col-6">
+                            <!-- Fun-Factor Box Start -->
+                            <div class="single-box">
+                                <span>
+                                    <i class="icofont icofont-location-pin"></i>
+                                </span>
+                                <h4 class="number" data-from="10" data-to="100" data-refresh-interval="10">{{numberOfCity}}</h4>
+                                <h3>NUMBER OF CITY SERVING</h3>
+                            </div>
+                            <!-- Fun-Factor Box End -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Fun-Factor End -->
+
+            <!-- Newsletter Start -->
+<!--            <div id="newsletter">
+                <div class="container">
+                    <div id="subscribe">
+                         Subscribe Form 
+                        <form class="form-horizontal" name="subscribe">
+                            <div class="row">
+                                <div class="col-sm-6 col-md-7"> 
+                                    <div class="input-group">
+                                        <span class="news">Get your App</span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 col-md-5 form-group">
+                                    <div class="input-group">
+                                        <input  value="" name="subscribe_email" id="subscribe_email" placeholder="Email" type="text">
+                                        <button class="btn btn-news" type="submit" value="submit">Send</button>
+                                    </div>
+                                </div>
+                            </div> 
+                        </form>
+                         Subscribe Form 
+                    </div>
+                </div>
+            </div>-->
+            <!-- Newsletter End -->
+
+            <!-- Footer Start -->
+            <footer>
+<!--                <div class="container">
+                    <div class="row inner">
+                        <div class="col-sm-12 col-md-12 col-lg-6">
+                             
+                            <h5>Contact Us</h5>
+                            <ul>
+                                <li><a href="about">About Us</a></li>
+                                <li><a href="career">Careers</a></li>
+                                <li><a>How It Works</a></li>
+                                <li><a>Investors</a></li>
+                                <li><a>Term Of Use</a></li>
+                            </ul>
+                             
+                        </div>
+                        <div class="col-sm-12 col-md-12 col-lg-6">
+                             
+                            <h5></h5>
+                            <ul class="list-unstyled">
+                                <li><a href="contact">Contact us</a></li>
+                                <li><a href="#">Cities</a></li>
+                                <li><a href="reservation">Become a partner</a></li>
+                                <li><a href="#">Privacy Policy</a></li>
+                            </ul>
+                             
+                        </div>
+                        <div class="w-100 d-none d-xs-block"></div>
+                         <div class="col-sm-6 col-md-6 col-lg-3">
+                             
+                            <h5>Open Hours</h5>
+                            <ul class="list-unstyled">
+                                <li>Monday - Friday : 9 am to 12 am.</li>
+                                <li>Saturday - Sunday : 24 Hour Open</li>
+                                <li>Breakfast : 7 am to 12 pm</li>
+                                <li>Lunch : 12 pm to 7 pm</li>
+                                <li>Dinner : 7 am to 12 am</li>
+                            </ul>
+                             
+                        </div>
+                        <div class="col-sm-6 col-md-6 col-lg-3">
+                             
+                            <h5>Instagram</h5>
+                            <ul class="list-unstyled insta">
+                                <li><a href="#"><img src="assets/images/instagram/1.jpg" alt="image" /></a></li>
+                                <li><a href="#"><img src="assets/images/instagram/2.jpg" alt="image" /></a></li>
+                                <li><a href="#"><img src="assets/images/instagram/3.jpg" alt="image" /></a></li>
+                                <li><a href="#"><img src="assets/images/instagram/4.jpg" alt="image" /></a></li>
+                                <li><a href="#"><img src="assets/images/instagram/5.jpg" alt="image" /></a></li>
+                                <li><a href="#"><img src="assets/images/instagram/6.jpg" alt="image" /></a></li>
+                            </ul>
+                             
+                        </div> 
+                    </div>
+
+                </div>-->
+                <div class="footer-bottom">
+                    <div class="container">
+                        <div class="row powered">
+                            <!--  Copyright Start -->
+                            <div class="col-md-3 col-sm-6 order-md-1">
+                                <img src="assets/images/logo/logo-white.png" class="img-fluid" title="logo" alt="logo" style="width:100%">
+                            </div>
+                            <div class="col-md-3 col-sm-6 text-right order-md-3">
+                                <!--  Footer Social Start -->
+                                <ul class="list-inline social">
+                                    <li class="list-inline-item"><a href="https://www.facebook.com/spheretheme/" target="_blank"><i class="icofont icofont-social-facebook"></i></a></li>
+                                    <li class="list-inline-item"><a href="https://twitter.com/spheretheme/" target="_blank"><i class="icofont icofont-social-twitter"></i></a></li>
+                                    <li class="list-inline-item"><a href="https://www.instagram.com/" target="_blank"><i class="icofont icofont-social-instagram"></i></a></li>
+                                    <li class="list-inline-item"><a href="https://www.youtube.com/" target="_blank"><i class="icofont icofont-social-youtube-play"></i></a></li>
+                                </ul>
+                                <!--  Footer Social End -->
+                            </div>
+                            <div class="col-md-6 col-sm-12 text-center order-md-2">
+                            </div>
+                            <!--  Copyright End -->
+                        </div>
+                    </div>
+                </div>
+            </footer>
+            <!-- Footer End  -->
+
+        </div>

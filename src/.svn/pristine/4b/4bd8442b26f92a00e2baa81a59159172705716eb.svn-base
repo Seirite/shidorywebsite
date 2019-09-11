@@ -1,0 +1,16 @@
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import {ProfileRoutingModule} from './profile-routing.module';
+import {ProfileComponent} from './profile.component';
+import {AngularMaterialModule} from '../../app-module/angular-matrial.module';
+import {ProfileProvider} from './profile.provider';
+import {ViewDetailModule} from '../view-detail/view-detail.module';
+import {ConformationDialogComponent} from '../conformation-dialog/conformation-dialog.component';
+import {ConformationDialogProvider} from '../conformation-dialog/conformation-dialog.provider';
+@NgModule({
+    imports: [CommonModule, ProfileRoutingModule, AngularMaterialModule, ViewDetailModule],
+    declarations: [ProfileComponent, ConformationDialogComponent],
+    providers: [ProfileProvider, ConformationDialogProvider],
+    entryComponents: [ConformationDialogComponent]
+})
+export class ProfileModule {}

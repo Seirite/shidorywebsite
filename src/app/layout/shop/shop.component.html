@@ -1,0 +1,338 @@
+<div class="wrapper">
+    <!--[if lt IE 8]>
+       <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+   <![endif]-->  
+
+    <!-- Loader Start -->
+    <div class="loader" *ngIf="loading===true">
+        <div class="loader-inner">
+            <h4>Cooking in progress..</h4>
+            <div id="cooking">
+                <div class="bubble"></div>
+                <div class="bubble"></div>
+                <div class="bubble"></div>
+                <div class="bubble"></div>
+                <div class="bubble"></div>
+                <div id="area">
+                    <div id="sides">
+                        <div id="pan"></div>
+                        <div id="handle"></div>
+                    </div>
+                    <div id="pancake">
+                        <div id="pastry"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Loader End -->
+
+    <!--  Header Start  -->
+    <header style="background: #171a29; position: relative; left: 0; right: 0; top: 0;">
+        <!--Top Header Start -->
+        <div class="top" style="background: #171a29; right: 0;">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12 col-xs-12">
+                        <ul class="list-inline float-left icon">
+<!--                            <li class="list-inline-item"><a><i class="icofont icofont-phone"></i> Hotline : 123 456 7890</a></li>-->
+                        </ul>
+                        <!-- Header Social Start -->
+                        <ul class="list-inline float-right icon">
+                            <li class="list-inline-item"><a href="cart"><i class="icofont icofont-cart-alt" style="font-size: larger"><span class="badge badge-info">{{cartLength}}</span></i>  Cart </a></li>
+                            <li class="list-inline-item dropdown" *ngIf="loginDone=='true';else login">
+                                <a class="dropdown-toggle" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="icofont icofont-ui-user"></i> {{loginUserName}}</a>
+                                <ul class="dropdown-menu dropdown-menu-right drophover" aria-labelledby="dropdownMenuLink">
+                                    <li class="dropdown-item"><a href="profile">{{loginUserEmail}}</a></li>
+                                    <li class="dropdown-item"><a (click)="logOut()">Sign out</a></li>
+                                </ul>
+                            </li>
+                            <ng-template #login>
+                                <li class="list-inline-item dropdown">
+                                    <a class="dropdown-toggle" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="icofont icofont-ui-user"></i> My Account</a>
+                                    <ul class="dropdown-menu dropdown-menu-right drophover" aria-labelledby="dropdownMenuLink">
+                                        <li class="dropdown-item"><a (click)="openLoginDialog()">Login</a></li>
+                                    </ul>
+                                </li>
+                            </ng-template>
+                            <li class="list-inline-item">
+                                <ul class="list-inline social">
+                                    <li class="list-inline-item"><a href="https://www.facebook.com/spheretheme/" target="_blank"><i class="icofont icofont-social-facebook"></i></a></li>
+                                    <li class="list-inline-item"><a href="https://twitter.com/spheretheme/" target="_blank"><i class="icofont icofont-social-twitter"></i></a></li>
+                                    <!---->
+                                    <li class="list-inline-item"><a href="https://www.instagram.com/" target="_blank"><i class="icofont icofont-social-instagram"></i></a></li>
+                                    <!---->
+<!--                                    <li class="list-inline-item"><a href="https://www.youtube.com/" target="_blank"><i class="icofont icofont-social-youtube-play"></i></a></li>-->
+                                </ul>
+                            </li>
+                        </ul>
+                        <!-- Header Social End -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--Top Header End -->
+
+        <div class="container" style="background: #171a29; right: 0;">
+            <div class="row">
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <!-- Logo Start  -->
+                    <div id="logo">
+                        <a href="home"><img id="logo_img" class="img-fluid" src="assets/images/logo/logo.png" alt="logo" title="logo" /></a>
+                    </div>
+                    <!-- Logo End  -->
+                </div>
+
+                <div class="col-md-7 col-sm-6 col-xs-12 paddleft">
+                    <!-- Main Menu Start  -->
+                    <div id="menu">	
+                        <nav class="navbar navbar-expand-md">
+                            <div class="navbar-header">
+                                <span class="menutext d-block d-md-none">Menu</span>
+                                <button data-target=".navbar-ex1-collapse" data-toggle="collapse" class="btn btn-navbar navbar-toggler" type="button"><i class="icofont icofont-navigation-menu"></i></button>
+                            </div>
+                            <div class="collapse navbar-collapse navbar-ex1-collapse padd0">
+                                <ul class="nav navbar-nav">
+                                    <li class="nav-item"><a href="home">HOME</a></li>
+                                    <li class="nav-item"><a href="about">about us</a></li>
+                                    <li class="nav-item"><a href="career">CAREER</a></li>
+                                    <li class="nav-item"><a href="contact">contact us</a></li>
+                                </ul>
+                            </div>
+                        </nav>
+                    </div>
+                    <!-- Main Menu End -->
+                </div>
+                <div class="col-md-2 col-sm-12 col-xs-12 button-top paddleft" id="menu">
+                    <nav class="navbar navbar-expand-md">
+                        <div class="collapse navbar-collapse navbar-ex1-collapse padd0">
+                            <ul class="nav navbar-nav">
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- Header End   -->
+
+    
+    <div class="col-md-12 col-sm-12 col-xs-12 ">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12" style="background-color: #171a29;; color: #fff; transition: transform .2s ease-in-out,background-color .2s ease-in-out,color .2s ease-in-out; -ms-transform-origin: left top; transform-origin: left top; -ms-transform: scaleX(1); transform: scaleX(1); pointer-events: auto; ">
+                <div class="row">
+                 
+                    <div class="col-md-4 col-sm-6 col-xs-4" align="center">
+                        <img src="{{restroImage || 'assets/images/loader.gif'}}" align="center" width="50%" height="80%;" style="margin-top: 2%"/>
+                    </div>
+                    <div class="col-md-6 col-sm-6 col-xs-6" align="left">
+                        <h2 align="left">{{restroName}}</h2>
+                        <p style="color: #d4d5d9;">{{restroAreaName}}</p>
+                        <div class="row">
+                            <div class="col-md-2 col-sm-2 col-xs-1" align="left" style="border-right: 1px solid white;">
+                                <b><i class="icofont icofont-star"></i> {{restroRatingValue}}</b>
+                                <p style="color: #d4d5d9; font-size: x-small;">{{maxRatingValue}}+ Ratings</p>
+                            </div>
+                            <div class="col-md-2 col-sm-2 col-xs-1" align="left">
+                                <b>{{restroDeliveryTime}} mins</b>
+                                <p style="color: #d4d5d9; font-size: x-small;">Delivery Time</p>
+                            </div>
+                        </div>
+                    </div>
+<!--                       <div class="col-md-4 col-sm-4 col-xs-4">
+                        
+                    </div>-->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Shop Start -->
+    <div class="row" style="margin:20px 5px 0 0;">
+        <div class="col-12">
+            <div class="row">
+                <div class="col-lg-2">
+                    <div style="border:1px solid #e5e5e5; border-radius:4px; background: #fff;">
+                        <h4 style="background:#e54c2a; text-align:center; color:#fff; font-size:18px; font-weight:600; padding: 15px 10px; height: 45px;">FILTERS</h4>
+                        <h3 style="font-size: 16px; font-weight: 600; color: #e54c2a; margin: auto; text-transform: uppercase; text-align: center;" *ngIf="showMainFilter">Main Category</h3>
+                        <ul style="padding-left: 20px; list-style: none; padding-top: 4%;" *ngIf="showMainFilter">
+                            <li *ngFor="let mainCategory of mainCategoryList">
+                                <label class="check" (click)="selectMainCategory(mainCategory)">
+                                    <input type="radio" name="mainCategory" class="checkclass"/>
+                                    {{mainCategory}}
+                                </label>
+                            </li>
+                        </ul>
+                        <hr *ngIf="showMainFilter">
+                        <h3 style="font-size: 16px; font-weight: 600; color: #e54c2a; margin: auto; text-transform: uppercase; text-align: center;">Category For</h3>
+                        <ul style="padding-left: 10px; list-style: none;">
+                            <li>
+                                <label class="check-mark" (click)="selectAll()">
+                                    <input type="radio" name="payment" checked class="checkclass"/>
+                                    All
+                                </label>
+                            </li>
+                            <li *ngFor="let menu of menuCategoryList">
+                                <label class="check-mark" (click)="selectCategory(menu)" *ngIf="selectCategoryKey!=menu.id">
+                                    <input type="radio" name="payment" class="checkclass"/>
+                                    {{menu.name}}
+                                </label>
+                                <label class="check-mark" (click)="selectCategory(menu)" *ngIf="selectCategoryKey==menu.id">
+                                    <input type="radio" name="payment" checked class="checkclass"/>
+                                    {{menu.name}}
+                                </label>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="col-lg-12">
+                        <div class="sidebar-box">
+                            <!--  Search widget Start  -->
+                            <div class="search">
+                                <form class="form-horizontal" method="post">
+                                    <fieldset>
+                                        <div class="form-group">
+                                            <input name="s" class="form-control" style="color: #000" placeholder="Search for dishes..." type="text" (keyup)="applyFilter($event.target.value)">
+                                        </div>
+                                        <button type="submit" value="submit" class="btn"><i class="icofont icofont-search"></i></button>
+                                    </fieldset>
+                                </form>
+                            </div>
+                            <!--  Search widget End  -->
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <div style="overflow-y: auto; overflow-x: hidden; height: 100vh;">
+                            <div class="row">
+                                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12" style="position: relative; width: 100%; min-height: 1px; padding-right: 15px; padding-left: 15px; padding-bottom: 15px;" *ngFor="let menuItem of menuItemList">
+                                     <div class="row">
+                                        <div class="col">
+                                            <img src="{{menuItem.MENU_ITEM_IMAGE || 'assets/images/dishes/no-dish.jpg'}}" width="150" height="120" alt="image" />
+                                        </div>
+                                         <div class="col" style="text-transform: capitalize;">
+                                            <img src="assets/images/menu-type/non-vegetarian.png" *ngIf="menuItem.MENU_ITEM_CATEGORY=='NonVeg'" />
+                                            <img src="assets/images/menu-type/vegetarian.png" *ngIf="menuItem.MENU_ITEM_CATEGORY=='Veg'" />
+                                            <img src="assets/images/menu-type/egg-contain.png" *ngIf="menuItem.MENU_ITEM_CATEGORY=='Contains Egg'" />
+                                            &nbsp;
+                                            {{menuItem.MENU_ITEM_NAME}}
+                                            <p style="text-overflow: ellipsis;  overflow: hidden; white-space: nowrap; font-size: 13px; color: #7e808c; text-transform: capitalize;">{{menuItem.MENU_ITEM_TYPE}}</p>
+                                            <span style="color: #535665; font-size: 15px;">{{userCurrency}}{{menuItem.MENU_ITEM_PRICE}}</span>
+                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                            <button mat-stroked-button style="display: inline-block; height: 30px; width: 83px; border: 1px solid #d4d5d9; color: #e8854e; font-size: .9rem; font-weight: 600; line-height: 30px; position: relative; text-align: center; background-color: #fff;" (click)="addItemCart(menuItem)" *ngIf="restroStatus=='open'">ADD <span style="float: right; margin-right: -21%; margin-top: -12%;" *ngIf="menuItem.MENU_ITEM_HALF_PRICE">+</span> </button>
+                                            <span style="color: #7e808c; font-size: 10px; float: left; margin-left: 38%; font-weight: 900;" *ngIf="menuItem.MENU_ITEM_HALF_PRICE">Customisable</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div *ngIf="cartLength!=0">
+                        <div style="font-size: 32px; font-weight: bold; padding-bottom: 18px;">
+                            Cart
+                            <div style="font-weight: bold; font-size: 13px; color: #686b78; text-transform: uppercase; padding-top: 2px;">
+                                {{cartMenuItemList?.length}} items
+                            </div>
+                        </div>
+                        <div  style="width:430px; overflow-y: auto; overflow-x: hidden; height: 200px;">
+                        <div class="col-md-12">
+                            <div class="row" *ngFor="let cartItem of cartMenuItemList">
+                                 <div class="col-1" align="left">
+                                    <img src="assets/images/menu-type/non-vegetarian.png" *ngIf="cartItem.MENU_ITEM_CATEGORY=='NonVeg'" />
+                                    <img src="assets/images/menu-type/vegetarian.png" *ngIf="cartItem.MENU_ITEM_CATEGORY=='Veg'" />
+                                    <img src="assets/images/menu-type/egg-contain.png" *ngIf="cartItem.MENU_ITEM_CATEGORY=='Contains Egg'" />
+                                </div>
+                                <div class="col-3" align="start">
+                                    <p text-wrap style="font-size: small;font-weight: unset; text-transform: capitalize;">{{cartItem.MENU_ITEM_NAME}}</p>
+                                </div>
+                                <div class="col-3" align="start">
+                                    <div style="display: inline-block; height: 30px; width: 83px; border: 1px solid #d4d5d9; color: #e8854e; font-size: .9rem; font-weight: 600; line-height: 30px; position: relative; text-align: center; background-color: #fff;">
+                                        <div style="position: absolute; left: 0; top: 0; width: 33.33333%; display: inline-block; opacity: 1; transform: translateZ(0); cursor: pointer; font-weight: 600; font-size: 1.5rem;" (click)="removeQuantity(cartItem)" [hidden]="cartItem.MENU_ITEM_QUANTITY < 1">-</div>
+                                        <div style="position: absolute; right: 0; top: 0;  width: 33.33333%; display: inline-block; opacity: 1; transform: translateZ(0); cursor: pointer; font-size: 150%; font-weight: 600;" (click)="addQuantity(cartItem)">+</div>
+                                        <div style="position: absolute; left: 33.33333%; top: 0; width: 33.33333%; display: inline-block; opacity: 1; transform: translateZ(0); cursor: pointer;" align="center"><mat-form-field class="example-full-width" style="margin-top: -47%;"><input matInput value="{{cartItem.MENU_ITEM_QUANTITY}}" maxlength="3" style="text-align: center;" (blur)="checkUserCart(cartItem)" (keyup)="applyCalculation($event.target.value,cartItem)"></mat-form-field></div>
+                                    </div>
+                                </div>
+                                <div class="col-2" align="left">
+                                    <span *ngIf="!cartItem.MENU_ITEM_TOTAL" style="font-weight:unset;font-size: small">{{cartItem.MENU_ITEM_CURRENCY}}{{cartItem.MENU_ITEM_TOTAL}}</span>
+                                    <span *ngIf="cartItem.MENU_ITEM_TOTAL" style="font-weight: 500;font-weight:500;font-size: small">{{cartItem.MENU_ITEM_CURRENCY}}{{cartItem.MENU_ITEM_TOTAL}}</span>
+                                </div>
+                                <div class="col-1" align="end">
+                                    <span style="color: #e8854e;cursor: pointer;cursor: hand" (click)="removeItem(cartItem)">x</span>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                        <div style="margin-top: 17px; min-height: 115px;">
+                            <div style="color: #3d4152; font-size: 15px; font-weight: 600; display: -ms-flexbox;  display: flex;  -ms-flex-align: center; align-items: center;">
+                                <p style="font-size: 17px; -ms-flex: 1; flex: 1;">Subtotal</p>
+                                <div>
+                                    <p style="font-size: 17px; -ms-flex: 1; flex: 1; margin-left: -80%">{{cartPriceCurrency}}{{cartTotalPrice}}</p>
+                                </div>
+                            </div>
+                            <div style="font-size: 13px;  font-weight: 300; color: #7e808c; margin-top: 2px;">
+                                Extra charges may be applied
+                            </div>
+                            <div style="height: 50px; background-color: #e54c2a; outline: 0; cursor: pointer; border: 0; color: #fff; margin-top: 28px; text-transform: uppercase; display: -ms-flexbox;  display: flex;  -ms-flex-align: center;  align-items: center; -ms-flex-pack: center; justify-content: center; font-size: 16px; font-weight: 600;" (click)="checkout()">
+                                Checkout
+                            </div>
+                        </div>
+                    </div>
+
+                    <div *ngIf="cartLength==0">
+                        <div style="font-size: 32px; font-weight: bold; padding-bottom: 18px;" align="center">
+                            Cart Empty
+                        </div>
+                        <div class="row">
+                            <div class="col-12" align="center">
+                                <img src="../../../assets/images/empty_cart.webp" height="300px" width="300px" />
+                                <br>
+                                <br>
+                            </div>
+                            <div class="col-3"></div>
+                            <div class="col-6" align="center">
+                                <span style="color: #93959f; margin-top: 15px; font-size: 16px; font-weight: 300; max-width: 218px;">Good food is always cooking! Go ahead, order some yummy items from the menu.</span>
+                            </div>
+                            <div class="col-3"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Shop End -->
+    
+    <br>
+    <br>
+
+    <!-- Footer Start -->
+    <footer>
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="row powered">
+                    <!--  Copyright Start -->
+                    <div class="col-md-3 col-sm-6 order-md-1">
+                        <img src="assets/images/logo/logo-white.png" class="img-fluid" title="logo" alt="logo">
+                    </div>
+                    <div class="col-md-3 col-sm-6 text-right order-md-3">
+                        <!--  Footer Social Start -->
+                        <ul class="list-inline social">
+                            <li class="list-inline-item"><a href="https://www.facebook.com/spheretheme/" target="_blank"><i class="icofont icofont-social-facebook"></i></a></li>
+                            <li class="list-inline-item"><a href="https://twitter.com/spheretheme/" target="_blank"><i class="icofont icofont-social-twitter"></i></a></li>
+                            <li class="list-inline-item"><a href="https://www.instagram.com/" target="_blank"><i class="icofont icofont-social-instagram"></i></a></li>
+<!--                            <li class="list-inline-item"><a href="https://www.youtube.com/" target="_blank"><i class="icofont icofont-social-youtube-play"></i></a></li>-->
+                        </ul>
+                        <!--  Footer Social End -->
+                    </div>
+                    <div class="col-md-6 col-sm-12 text-center order-md-2">
+                    </div>
+                    <!--  Copyright End -->
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer End  -->
+
+</div>

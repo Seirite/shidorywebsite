@@ -1,45 +1,65 @@
-**Edit a file, create a new file, and clone from Bitbucket in under 2 minutes**
+# SB Admin rewritten in Angular6 and Bootstrap 4
 
-When you're done, you can delete the content in this README and update the file with details for others getting started with your repository.
+Simple Dashboard Admin App built using Angular 6 and Bootstrap 4
 
-*We recommend that you open this README in another tab as you perform the tasks below. You can [watch our video](https://youtu.be/0ocf7u76WSo) for a full demo of all the steps in this tutorial. Open the video in a new tab to avoid leaving Bitbucket.*
+This project is a port of the famous Free Admin Bootstrap Theme [SB Admin v6.0](http://startbootstrap.com/template-overviews/sb-admin-2/) to Angular5 Theme.
 
----
+Powered by [StartAngular](http://startangular.com/) & [StrapUI](http://strapui.com/)
 
-## Edit a file
+## [Demo](http://rawgit.com/start-angular/SB-Admin-BS4-Angular-6/master/dist/)
 
-You’ll start by editing this README file to learn how to edit a file in Bitbucket.
+## [SB Admin Material version](https://github.com/start-javascript/sb-admin-material)
 
-1. Click **Source** on the left side.
-2. Click the README.md link from the list of files.
-3. Click the **Edit** button.
-4. Delete the following text: *Delete this line to make a change to the README from Bitbucket.*
-5. After making your change, click **Commit** and then **Commit** again in the dialog. The commit page will open and you’ll see the change you just made.
-6. Go back to the **Source** page.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.0.
 
----
+### Introduction
 
-## Create a file
+Provides fast, reliable and extensible starter for the development of Angular projects.
 
-Next, you’ll add a new file to this repository.
+`sb-admin-bs4-angular5` provides the following features:
 
-1. Click the **New file** button at the top of the **Source** page.
-2. Give the file a filename of **contributors.txt**.
-3. Enter your name in the empty file space.
-4. Click **Commit** and then **Commit** again in the dialog.
-5. Go back to the **Source** page.
+*   Developed using boostrap-v4.0.0
+*   angular-v6.0.0
+*   angular/cli-v6.0.0
+*   [ng-bootstrap-v2.0.0](https://github.com/ng-bootstrap/)
+*   [ngx-translate-v10.0.0](https://github.com/ngx-translate)
+*   Following the best practices.
+*   Ahead-of-Time compilation support.
+*   Official Angular i18n support.
+*   Production and development builds.
+*   Tree-Shaking production builds.
 
-Before you move on, go ahead and explore the repository. You've already seen the **Source** page, but check out the **Commits**, **Branches**, and **Settings** pages.
+### How to start
 
----
+**Note** that this seed project requires **node >=v6.9.0 and npm >=3**.
 
-## Clone a repository
+In order to start the project use:
 
-Use these steps to clone from SourceTree, our client for using the repository command-line free. Cloning allows you to work on your files locally. If you don't yet have SourceTree, [download and install first](https://www.sourcetreeapp.com/). If you prefer to clone from the command line, see [Clone a repository](https://confluence.atlassian.com/x/4whODQ).
+```bash
+$ git clone https://github.com/start-angular/SB-Admin-BS4-Angular-5
+$ cd SB-Admin-BS4-Angular-5
+# install the project's dependencies
+$ npm install
+# watches your files and uses livereload by default run `npm start` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+$ npm start
+# prod build, will output the production application in `dist`
+# the produced code can be deployed (rsynced) to a remote server
+$ npm run build
+```
 
-1. You’ll see the clone button under the **Source** heading. Click that button.
-2. Now click **Check out in SourceTree**. You may need to create a SourceTree account or log in.
-3. When you see the **Clone New** dialog in SourceTree, update the destination path and name if you’d like to and then click **Clone**.
-4. Open the directory you just created to see your repository’s files.
+### Code scaffolding
 
-Now that you're more familiar with your Bitbucket repository, go ahead and add a new file locally. You can [push your change back to Bitbucket with SourceTree](https://confluence.atlassian.com/x/iqyBMg), or you can [add, commit,](https://confluence.atlassian.com/x/8QhODQ) and [push from the command line](https://confluence.atlassian.com/x/NQ0zDQ).
+Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive/pipe/service/class/module`.
+
+### Running unit tests
+
+Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+
+### Running end-to-end tests
+
+Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+Before running the tests make sure you are serving the app via `ng serve`.
+
+### Further help
+
+To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).

@@ -1,0 +1,70 @@
+<div>
+    <div class="row">
+        <div class="col" style="text-transform: capitalize;">
+            <div class="row">
+                <div class="col-1" align="end">
+                    <img src="assets/images/menu-type/non-vegetarian.png" *ngIf="menuItemCategory=='NonVeg'" />
+                    <img src="assets/images/menu-type/vegetarian.png" *ngIf="menuItemCategory=='Veg'" />
+                    <img src="assets/images/menu-type/egg-contain.png" *ngIf="menuItemCategory=='Contains Egg'" />
+                </div>
+                <div class="col-10" align="start">
+                    <h2 style="font-size: medium; font-weight: 700;">Customize "{{menuItemName}}"</h2>
+                    <p style="font-weight: 500;">{{userCurrency}}{{menuItemPrice}}</p>
+                </div>
+                <div class="col-1" align="center">
+                    <h2 style="font-size: x-large; font-weight: 100;"><i class="icofont icofont-close" (click)="dialogRef.close()"></i></h2>
+                </div>
+            </div>
+            <hr>
+            <h2 style="font: bolder; font-size: x-large; font-weight: 900;">Quantity</h2>
+            <div class="row">
+                <div class="col-12" align="start">
+                    <p style="font-weight: 500;">
+                        <span>
+                            <img src="assets/images/menu-type/non-vegetarian.png" *ngIf="menuItemCategory=='NonVeg'" />
+                            <img src="assets/images/menu-type/vegetarian.png" *ngIf="menuItemCategory=='Veg'" />
+                            <img src="assets/images/menu-type/egg-contain.png" *ngIf="menuItemCategory=='Contains Egg'" />
+                        </span>
+                        &nbsp;
+                        <span>
+                            <label class="check" (click)="selectMainCustomize('Full')">
+                                <input type="radio" checked="true" name="mainCustomize" class="checkclass"/>
+                                Full
+                            </label> 
+                        </span>
+                        &nbsp;
+                        <span>{{userCurrency}}{{menuItemPrice}}</span>
+                    </p>
+                    <p style="font-weight: 500;">
+                        <span>
+                            <img src="assets/images/menu-type/non-vegetarian.png" *ngIf="menuItemCategory=='NonVeg'" />
+                            <img src="assets/images/menu-type/vegetarian.png" *ngIf="menuItemCategory=='Veg'" />
+                            <img src="assets/images/menu-type/egg-contain.png" *ngIf="menuItemCategory=='Contains Egg'" />
+                        </span>
+                        &nbsp;
+                        <span>
+                            <label class="check" (click)="selectMainCustomize('Half')">
+                                <input type="radio" name="mainCustomize" class="checkclass"/>
+                                Half
+                            </label> 
+                        </span>
+                        &nbsp;
+                        <span>{{userCurrency}}{{menuItemHalfPrice}}</span>
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="row" (click)="addItem()">
+                        <div class="col-12">
+                            <div style="padding: 8px 16px; background-color: #e54c2a; color: #fff; position: relative; font-weight: 600; font-size: 15px; cursor: pointer;">
+                                <span> <span style="font-size: larger;">Total</span> &nbsp; <span>{{userCurrency}}{{menuItemTotalPrice}}</span></span>
+                                <span style="float: right;">ADD ITEM</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,14 @@
+<div>
+    <div class="heading">
+        Items already in cart
+    </div>
+    <p style="width: 460px;">Your cart contains items from other restaurant. Would you like to reset your cart for adding items from this restaurant?</p>
+    <div class="row">
+        <div class="col-6" align="center">
+            <button mat-stroked-button color="warn" style="width: 100%;" (click)="stayWithCart()">No</button>
+        </div>
+        <div class="col-6" align="center">
+            <button mat-stroked-button color="warn" style="width: 100%;" (click)="proccedToCart()">Yes</button>
+        </div>
+    </div>
+</div>

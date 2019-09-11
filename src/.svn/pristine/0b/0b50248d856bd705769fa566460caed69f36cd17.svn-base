@@ -1,0 +1,325 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<div class="wrapper" *ngIf="loginStatus==false&&signUpStatus==false">
+    <div class="login">
+        <div class="container">
+            <h2 align="left" style="font-size: large;font-weight: 800;">Sign up or log in to Shidory <span style="float: right;cursor: pointer;cursor: hand"> <i class="icofont icofont-close" (click)="dialogRef.close()"></i></span></h2>
+        </div>
+        <hr>
+
+        <div class="row">
+            <div class="col-md-12" style="height: 20%">
+                <button mat-raised-button color="warn" style="width: 100%; background: #4e71a7;height: 60px;" (click)="callFacebook()"><i class="icofont icofont-social-facebook" style="font-size: x-large;"></i> Continue with Facebook</button>
+            </div>
+        </div>
+
+        <br>
+
+        <div class="row">
+            <div class="col-md-12" style="height: 20%">
+                <button mat-raised-button style="width: 100%;height: 60px;" (click)="callGoogle()"><i class="icofont icofont-social-google-plus" style="font-size: x-large;color: red"></i> Continue with Google</button>
+            </div>
+        </div>
+        <br>
+        <p align="center">OR</p>
+        <h2 align="center" style="font-size: large;
+    font-weight: 600;">Or use your email address</h2>
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="row">
+                <div class="col-sm-6 col-md-6 col-xs-6">
+                    <button mat-raised-button style="width: 100%;height: 60px;background-color: #CB202D;color: white" (click)="Login()"> Log in</button>
+                </div>    
+                <div class="col-sm-6 col-md-6 col-xs-6">
+                    <button mat-raised-button style="width: 100%;height: 60px;" (click)="UserSignUp()"> Sign up</button>
+                </div>    
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+
+<div *ngIf="loginStatus==true">
+  <div class="login">
+        <div class="container">
+            <h2 align="left" style="font-size: large;font-weight: 800;">Log in<span style="float: right;cursor: pointer;cursor: hand"> <i class="icofont icofont-close" (click)="dialogRef.close()"></i></span></h2>
+        </div>
+        <hr>
+        <br>
+        <div *ngIf="verifyOtpStatus==false">
+        <form [formGroup]="firstFormGroup">
+            <div *ngIf="error==true">
+                <p style="color:red">{{message}}</p>
+            </div>
+        <mat-form-field appearance="outline" class="example-full-width">
+            <span matSuffix><i class="icofont icofont-envelope" style="margin-top: -36px;"></i></span>
+            <mat-label>Email address</mat-label>
+            <input [(ngModel)]="userEmail" matInput placeholder="Email address" name="email"  formControlName="email" required>
+        </mat-form-field>
+            <br>
+        <div class="row" *ngIf="hideRegisterButton==false">
+            <div class="col-md-12">
+                <button [disabled]="!firstFormGroup.valid" mat-raised-button  style="width: 100%; background: #CB202D;height: 50px;color:white" (click)="Loginuser()"> Log in</button>
+            </div>
+        </div>
+            <div class="row" *ngIf="hideRegisterButton==true">
+            <div class="col-md-12">
+            <button  style="width:100%;color: white;background-color: green;height: 50px;" mat-raised-button><i  class="fa fa-circle-o-notch fa-spin"></i>&nbsp;Please wait</button>
+            </div>
+        </div>
+            <br>
+            <br>
+            <p align="center" style="font-size:smaller;color: darkgray ">By logging in, you agree to Shidory's Terms of Service, Cookie Policy, Privacy Policy and Content Policies.</p>
+        </form>
+        </div>
+        <div *ngIf="verifyOtpStatus==true">
+            <div class="login">
+                <div class="container" *ngIf="ResendOtpSendStatus==false">
+                    <p align="center" style="font-size:smaller;color: darkgray">
+                        One Time Password has been sent to your email,<br>
+                        please enter the same here to login.
+                    </p>
+                </div>
+                <div class="container" *ngIf="ResendOtpSendStatus==true">
+                    <div style="border: 1px solid;color:green;margin-top: -6%">
+                        <p align="center" style="color:green">A new one time password has been sent to your email address. Please check your inbox</p>
+                    </div>
+                    <br>
+                    <p align="center" style="font-size:smaller;color: darkgray">
+                        Still didn't receive the email? Please refresh the page and try again.
+                        If the problem persists, get in touch with us at info.shidoryllc@gmail.com
+                    </p>
+                </div>
+                <!--<br>-->
+                <mat-form-field appearance="outline" class="example-full-width">
+                    <span matSuffix><i class="icofont icofont-envelope" style="margin-top: -36px;"></i></span>
+                    <!--<mat-label>Enter One Time Password</mat-label>-->
+                    <input [(ngModel)]="loginotpuser" matInput placeholder="Enter One Time Password" name="otp">
+                </mat-form-field>
+                
+                <div *ngIf="validOtpStatus==true">
+                    <p align="center" style="color:red">{{validError}}</p>
+                </div>
+                
+                <div class="row" *ngIf="otpStatusButton==false">
+                    <div class="col-md-12">
+                        <button  mat-raised-button  style="width: 100%; background: #CB202D;height: 40px;color:white" (click)="VerifyLoginUser()"> GO</button>
+                    </div>
+                </div>
+                <div class="row" *ngIf="otpStatusButton==true">
+                    <div class="col-md-12">
+                        <button  style="width:100%;color: white;background-color: green;height: 50px;" mat-raised-button><i  class="fa fa-circle-o-notch fa-spin"></i>&nbsp;Please wait</button>
+                    </div>
+                </div>
+                <br>
+                <p *ngIf="ResendOtpSendStatus==false" align="center" style="font-size:smaller;color: darkgray ">Didn't receive the email? Check your spam folder or<br><br>
+                    <a style='color:red;cursor: pointer;corsor:hand' (click)="ResendLoginOtp()">Resend verification email</a>
+                </p>
+                
+            </div>
+        </div>
+
+    </div>  
+</div>
+
+<div *ngIf="signUpStatus==true">
+    <div class="login">
+        <div class="container">
+            <h2 align="left" style="font-size: large;font-weight: 800;">Sign up<span style="float: right;cursor: pointer;cursor: hand"> <i class="icofont icofont-close" (click)="dialogRef.close()"></i></span></h2>
+        </div>
+        <hr>
+        <div *ngIf="verifySignUpOtpStatus==false">
+        <form [formGroup]="secondFormGroup">
+            <div *ngIf="error==true">
+                <p style="color:red">{{message}}</p>
+            </div>
+        <mat-form-field appearance="outline" class="example-full-width">
+            <span matSuffix><i class="icofont icofont-envelope" style="margin-top: -36px;"></i></span>
+            <mat-label>Full name</mat-label>
+            <input [(ngModel)]="Registerform.fullName" matInput placeholder="Full name" name="name"  formControlName="name" required>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="example-full-width">
+            <span matSuffix><i class="icofont icofont-envelope" style="margin-top: -36px;"></i></span>
+            <mat-label>Email address</mat-label>
+            <input [(ngModel)]="Registerform.emailId" matInput placeholder="Email address" name="email"  formControlName="email" required>
+        </mat-form-field>
+        <div class="row" *ngIf="hideRegisterButton==false">
+            <div class="col-md-12">
+                <button [disabled]="!secondFormGroup.valid" mat-raised-button  style="width: 100%; background: #CB202D;height: 50px;color:white" (click)="RegisterUser()"> Register</button>
+            </div>
+        </div>
+        <div class="row" *ngIf="hideRegisterButton==true">
+            <div class="col-md-12">
+            <button  style="width:100%;color: white;background-color: green;height: 50px;" mat-raised-button><i  class="fa fa-circle-o-notch fa-spin"></i>&nbsp;Please wait</button>
+            </div>
+        </div>
+            <br>
+            <p align="center" style="font-size:smaller;color: darkgray ">By creating an account, you agree to Shidory's Terms of Service, Cookie Policy, Privacy Policy and Content Policies.</p>
+        </form>
+        </div>
+        <div *ngIf="verifySignUpOtpStatus==true">
+            
+            <div class="login">
+                <div class="container" *ngIf="ResendOtpSendStatus==false">
+                    <p align="center" style="font-size:smaller;color: darkgray">
+                        One Time Password has been sent to your email,<br>
+                        please enter the same here to login.
+                    </p>
+                </div>
+                <div class="container" *ngIf="ResendOtpSendStatus==true">
+                    <div style="border: 1px solid;color:green;margin-top: 0%">
+                        <p align="center" style="color:green">A new one time password has been sent to your email address. Please check your inbox</p>
+                    </div>
+                    <br>
+                    <p align="center" style="font-size:smaller;color: darkgray">
+                        Still didn't receive the email? Please refresh the page and try again.
+                        If the problem persists, get in touch with us at info.shidoryllc@gmail.com
+                    </p>
+                </div>
+                <!--<br>-->
+                <mat-form-field appearance="outline" class="example-full-width">
+                    <span matSuffix><i class="icofont icofont-envelope" style="margin-top: -36px;"></i></span>
+                    <!--<mat-label>Enter One Time Password</mat-label>-->
+                    <input [(ngModel)]="otp" matInput placeholder="Enter One Time Password" name="otp">
+                </mat-form-field>
+                
+                <div *ngIf="validOtpStatus==true">
+                    <p align="center" style="color:red">{{validError}}</p>
+                </div>
+                
+                <div class="row" *ngIf="otpStatusButton==false">
+                    <div class="col-md-12">
+                        <button  mat-raised-button  style="width: 100%; background: #CB202D;height: 40px;color:white" (click)="VerifyRegisterUser()"> GO</button>
+                    </div>
+                </div>
+                <div class="row" *ngIf="otpStatusButton==true">
+                    <div class="col-md-12">
+                        <button  style="width:100%;color: white;background-color: green;height: 50px;" mat-raised-button><i  class="fa fa-circle-o-notch fa-spin"></i>&nbsp;Please wait</button>
+                    </div>
+                </div>
+                <br>
+                <p *ngIf="ResendOtpSendStatus==false" align="center" style="font-size:smaller;color: darkgray ">Didn't receive the email? Check your spam folder or<br><br>
+                    <a style='color:red;cursor: pointer;corsor:hand' (click)="ResendRegisterOtp()">Resend verification email</a>
+                </p>
+                
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <div class="wrapper">
+           
+            <div class="login">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-md-12">
+                            <div class="loginto ">
+                                <div align="end">
+                                    <i class="icofont icofont-close" (click)="dialogRef.close()"></i>
+                                </div>
+                                <h1 style="text-align: center; font-family: 'Great Vibes',cursive;">Login</h1>
+                                <mat-horizontal-stepper [linear]="isLinear" #stepper>
+                                    <mat-step [stepControl]="firstFormGroup">
+                                        <form [formGroup]="firstFormGroup">
+                                            <ng-template matStepLabel>Login</ng-template>
+                                            <mat-form-field style="width: 100%">
+                                                <input  matInput placeholder="Name" [(ngModel)]="userLoginForm.fullName" formControlName="name" required>
+                                            </mat-form-field>
+                                            <mat-form-field style="width: 100%">
+                                                <input  matInput placeholder="Email" [(ngModel)]="userLoginForm.emailId"  formControlName="email" required>
+                                            </mat-form-field>
+                                            <div class="row">
+                                                <div class="col-4">
+                                                    <mat-form-field style="width: 80%">
+                                                        <mat-label>Code</mat-label>
+                                                        <mat-select [(ngModel)]="userLoginForm.contryCode"  formControlName="code" required >
+                                                            <mat-option *ngFor="let country of countryList" [value]="country.OPR_PHONECODE">
+                                                                {{country.OPR_PHONECODE}}
+                                                        </mat-option>
+                                                    </mat-select>
+                                                </mat-form-field>
+                                            </div>
+                                            <div class="col-8">
+                                                <mat-form-field style="width: 100%">
+                                                    <input  matInput placeholder="Mobile" [(ngModel)]="userLoginForm.mobileNo" formControlName="mobile" required>
+                                                </mat-form-field>
+                                            </div>
+                                        </div>
+                                        <div id="recaptcha-container"></div>
+                                        <br>
+                                        <div *ngIf="verifyStatus==false">
+                                            <button [disabled]="!firstFormGroup.valid" color="warn" style="width:100%;color: white" mat-raised-button (click)="loginUser(stepper)">login</button>
+                                        </div>
+                                         <div *ngIf="verifyStatus==false">
+                                            <button  color="warn" style="width:100%;color: white" mat-raised-button (click)="sendEmail()">Send Mail</button>
+                                        </div>
+                                        <div *ngIf="verifyStatus==true">
+                                            <button   style="width:100%;color: white;background-color: green" mat-raised-button><i  class="fa fa-circle-o-notch fa-spin"></i>&nbsp;Please wait</button>
+                                        </div>
+                                        
+                                       
+                                    </form>
+                                </mat-step>
+                                <mat-step [stepControl]="secondFormGroup">
+                                    <form [formGroup]="secondFormGroup">
+                                        <ng-template matStepLabel>Verify</ng-template>
+                                        <div align="center">
+                                            <h2>Verify Phone Number</h2>
+                                            <p>Enter the 6-digit code we sent to </p>
+
+                                            <div class="divOuter marginTop">
+                                                <div class="divInner marginTop">
+                                                    <input formControlName="one" type="tel" class="inputBorder marginTop" #otp1 maxlength="1" [(ngModel)]="otpInput1" (keyup)="moveFocus(otp2)"/>
+                                                    <input formControlName="two" type="tel" class="inputBorder marginTop" #otp2 maxlength="1" [(ngModel)]="otpInput2" (keyup)="moveFocus(otp3)"/>
+                                                    <input formControlName="three" type="tel" class="inputBorder marginTop" #otp3 maxlength="1" [(ngModel)]="otpInput3" (keyup)="moveFocus(otp4)"/>
+                                                    <input formControlName="four"  type="tel" class="inputBorder marginTop" #otp4 maxlength="1" [(ngModel)]="otpInput4" (keyup)="moveFocus(otp5)" />
+                                                    <input formControlName="five"  type="tel" class="inputBorder marginTop" #otp5 maxlength="1" [(ngModel)]="otpInput5" (keyup)="moveFocus(otp6)"/>
+                                                    <input formControlName="six" type="tel" class="inputBorder marginTop" #otp6 maxlength="1" [(ngModel)]="otpInput6" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <p align="center" style="color: tomato;" *ngIf="showError">Enter valid OTP</p>
+                                        <br>
+                                        <div *ngIf="checkStatus==false" align="center">
+                                            <button color="warn" style="width:70%;color: white" mat-raised-button (click)="verifyLoginCode()">login</button>
+                                        </div>
+                                        <div *ngIf="checkStatus==true" align="center">
+                                            <button  style="width:70%;color: white;background-color: green" mat-raised-button><i  class="fa fa-circle-o-notch fa-spin"></i>&nbsp;Please wait</button>
+                                        </div>
+                                    </form>
+                                </mat-step>
+                            </mat-horizontal-stepper>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+</div>-->

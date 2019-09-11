@@ -1,0 +1,49 @@
+<div class="row" style="margin-left: 2%; margin-right: 2%;">
+    <div align="start" class="col-3">
+        <i class="icofont icofont-social-google-map" style="color: #e54c2a; font-size: x-large;"></i>
+    </div>
+    <div align="center" class="col-6">
+        <h6 class="text-muted">
+            <strong>Delivery Address</strong>
+        </h6>
+    </div>
+    <div align="right" class="col-3">
+        <i class="icofont icofont-close" (click)="dialogRef.close()"></i>
+    </div>
+</div>
+<div>
+    <form class="example-form">
+        <mat-form-field class="example-full-width">
+            <input matInput placeholder="Building Number/Plot Number"
+            [(ngModel)]="deliveryBuldingNo"
+            name="deliveryBuldingNo"
+            type="text">
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+            <input matInput placeholder="Street Name"
+                   name="deliveryStreetName"
+            [(ngModel)]="deliveryStreetName">
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+            <input matInput placeholder="Area Name"
+                   name="deliveryAreaName"
+            [(ngModel)]="deliveryAreaName">
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+            <input matInput placeholder="Neighborhood"
+                   name="deliveryNeighborhood"
+            [(ngModel)]="deliveryNeighborhood">
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+            <input matInput placeholder="Postal Code/Zip Code"
+                   name="deliveryZipcode"
+            [(ngModel)]="deliveryZipcode"
+            type="text"
+            maxlength="6">
+        </mat-form-field>
+
+    </form>
+    <div class="buttons" style="color: #FFF" align="center">
+        <a class="btn btn-theme btn-md btn-wide" (click)="addNewAddress()">Add Delivery Address</a>
+    </div>
+</div>

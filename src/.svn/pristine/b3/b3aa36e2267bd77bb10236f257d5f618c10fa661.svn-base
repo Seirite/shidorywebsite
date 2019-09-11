@@ -1,0 +1,399 @@
+
+        <div class="wrapper">
+            <!--[if lt IE 8]>
+               <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+           <![endif]-->  
+
+            <!-- Loader Start -->
+<!--            <div class="loader">
+                <div class="loader-inner">
+                    <h4>Cooking in progress..</h4>
+                    <div id="cooking">
+                        <div class="bubble"></div>
+                        <div class="bubble"></div>
+                        <div class="bubble"></div>
+                        <div class="bubble"></div>
+                        <div class="bubble"></div>
+                        <div id="area">
+                            <div id="sides">
+                                <div id="pan"></div>
+                                <div id="handle"></div>
+                            </div>
+                            <div id="pancake">
+                                <div id="pastry"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>-->
+            <!-- Loader End -->
+
+            <!--  Header Start  -->
+<!--            <header style="background: #171a29; position: absolute; left: 0; right: 0; z-index: 2; top: 0;">
+                Top Header Start 
+                <div style="background: #171a29; right: 0;">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-sm-12 col-xs-12">
+                                <ul class="list-inline float-left icon">
+                                    <li class="list-inline-item"><a><i class="icofont icofont-phone"></i> Hotline : 123 456 7890</a></li>
+                                </ul>
+                                 Header Social Start 
+                                <ul class="list-inline float-right icon">
+                                    <li class="list-inline-item"><a href="cart"><i class="icofont icofont-cart-alt"></i> Cart</a></li>
+                                    <li class="list-inline-item dropdown">
+                                        <a class="dropdown-toggle" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="icofont icofont-ui-user"></i> My Account</a>
+                                        <ul class="dropdown-menu dropdown-menu-right drophover" aria-labelledby="dropdownMenuLink">
+                                            <li class="dropdown-item"><a href="login">Login</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <ul class="list-inline social">
+                                            <li class="list-inline-item"><a href="https://www.facebook.com/spheretheme/" target="_blank"><i class="icofont icofont-social-facebook"></i></a></li>
+                                            <li class="list-inline-item"><a href="https://twitter.com/spheretheme/" target="_blank"><i class="icofont icofont-social-twitter"></i></a></li>
+                                            
+                                            <li class="list-inline-item"><a href="https://www.instagram.com/" target="_blank"><i class="icofont icofont-social-instagram"></i></a></li>
+                                            
+                                            <li class="list-inline-item"><a href="https://www.youtube.com/" target="_blank"><i class="icofont icofont-social-youtube-play"></i></a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                                 Header Social End 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                Top Header End 
+
+                <div class="container" style="background: #171a29; right: 0;">
+                    <div class="row">
+                        <div class="col-md-3 col-sm-6 col-xs-12">
+                             Logo Start  
+                            <div id="logo">
+                                <a href="home"><img id="logo_img" class="img-fluid" src="assets/images/logo/logo.png" alt="logo" title="logo" /></a>
+                            </div>
+                             Logo End  
+                        </div>
+
+                        <div class="col-md-7 col-sm-6 col-xs-12 paddleft">
+                             Main Menu Start  
+                            <div id="menu">	
+                                <nav class="navbar navbar-expand-md">
+                                    <div class="navbar-header">
+                                        <span class="menutext d-block d-md-none">Menu</span>
+                                        <button data-target=".navbar-ex1-collapse" data-toggle="collapse" class="btn btn-navbar navbar-toggler" type="button"><i class="icofont icofont-navigation-menu"></i></button>
+                                    </div>
+                                    <div class="collapse navbar-collapse navbar-ex1-collapse padd0">
+                                        <ul class="nav navbar-nav">
+                                            <li class="nav-item"><a href="home">HOME</a></li>
+                                            <li class="nav-item"><a href="about">about us</a></li>
+                                            <li class="nav-item"><a href="career">Our Menu</a></li>
+                                            <li class="nav-item"><a href="blog">Our Blog</a></li>
+                                            <li class="nav-item"><a href="contact">contact us</a></li>
+                                        </ul>
+                                    </div>
+                                </nav>
+                            </div>
+                             Main Menu End 
+                        </div>
+                        <div class="col-md-2 col-sm-12 col-xs-12 button-top paddleft">
+                        </div>
+                    </div>
+                </div>
+            </header>-->
+            <!-- Header End   -->
+
+            <!-- Breadcrumb Start -->
+<!--            <div style="position:relative; min-height: 150px; margin-top: 5%; background: #171a29;">
+                <div style="position:absolute; bottom:20px; left:0; right:0; text-align:center; margin:0 auto; width:244px; background: rgba(0, 0, 0, 0.35); padding:15px 0;">
+                    <h2 style="font-family: 'Great Vibes',cursive; color:#fff; font-size:30px; font-weight:400; margin:0; text-transform:capitalize;">Login</h2>
+                    <ul class="list-inline">
+                        <li class="list-inline-item"><a href="home" style="color: #FFF;">HOME > </a></li>
+                        <li class="list-inline-item"><a style="color: #FFF;">Login</a></li>
+                    </ul>
+                </div>
+            </div>-->
+<!--            <div class="bread-crumb">
+                <div class="container">
+                    <div class="matter">
+                        <h2>Login</h2>
+                        <ul class="list-inline">
+                            <li class="list-inline-item"><a href="home">HOME</a></li>
+                            <li class="list-inline-item"><a>Login</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>-->
+            <!-- Breadcrumb End -->
+
+            <!-- Login Start -->
+            <div class="login">
+                <div class="container">
+                    <div class="row justify-content-center">
+<!--                        <div class="col-sm-12 commontop text-center">
+                            <h4>Account</h4>
+                            <div class="divider style-1 center">
+                                <span class="hr-simple left"></span>
+                                <i class="icofont icofont-ui-press hr-icon"></i>
+                                <span class="hr-simple right"></span>
+                            </div>
+                        </div>-->
+                        <div class="col-md-12">
+                            <div class="loginto ">
+                                <div align="end">
+                                    <i class="icofont icofont-close" (click)="dialogRef.close()"></i>
+                                </div>
+                                <form class="example-container" [formGroup]="registrationForm" *ngIf="registerForm">
+                                    <h1 style="text-align: center; font-family: 'Great Vibes',cursive;">Registration</h1>
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput placeholder="Enter Name" 
+                                               formControlName="REGISTERATION_NAME"
+                                               [(ngModel)]="registrationModel.fullName" required/>
+                                        <mat-error *ngIf="registrationForm.get('REGISTERATION_NAME').invalid && registrationForm.get('REGISTERATION_NAME').touched">{{validName()}}</mat-error>
+                                    </mat-form-field>
+                                    
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput placeholder="Enter Email id"
+                                               formControlName="REGISTERATION_EMAIL_ID" 
+                                               (blur) = "checkEmailId(registrationModel.emailId)"
+                                               [(ngModel)]="registrationModel.emailId" required/>
+                                        <mat-error *ngIf="registrationForm.get('REGISTERATION_EMAIL_ID').invalid && registrationForm.get('REGISTERATION_EMAIL_ID').touched">{{validEmail()}}</mat-error>
+                                    </mat-form-field>
+
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput placeholder="Enter Password" [type]="hide ? 'password' : 'text'"
+                                               formControlName="REGISTERATION_PASSWORD" 
+                                               [(ngModel)]="registrationModel.password" required/>
+                                        <i matSuffix class="fa fa-eye-slash" *ngIf="hide===true" (click)="hide = !hide"></i>
+                                        <i matSuffix class="fa fa-eye" *ngIf="hide===false" (click)="hide = !hide"></i>
+                                        <mat-error *ngIf="registrationForm.get('REGISTERATION_PASSWORD').invalid && registrationForm.get('REGISTERATION_PASSWORD').touched">{{validPassword()}}</mat-error>
+                                    </mat-form-field>
+                                    
+                                    <mat-form-field class="example-full-width">
+                                        <span matPrefix>{{callingCode}}</span>
+                                        <input type="tel" matInput placeholder="Mobile Number" maxlength="10" 
+                                               formControlName="REGISTERATION_MOBILE_NO"
+                                               [(ngModel)]="registrationModel.mobileNo" required/>
+                                        <mat-error *ngIf="registrationForm.get('REGISTERATION_MOBILE_NO').invalid && registrationForm.get('REGISTERATION_MOBILE_NO').touched">{{validMobile()}}</mat-error>
+                                    </mat-form-field>
+                                    
+                                    <div class="text-center" *ngIf="loadingRegistration">
+                                        <img src="assets/images/loader.gif" width="30%" />
+                                    </div>
+                                    
+                                    <button mat-raised-button color="warn" [disabled]="registrationForm.invalid" (click)="registration(registrationModel)">Register</button>
+                                    
+                                    <p style="text-align: center; color: #e44120;" (click)="openLogin()">I have an account</p>
+                                    
+                                </form>
+                                <form class="example-container" [formGroup]="loginForm" *ngIf="!registerForm">
+                                    <h1 style="text-align: center; font-family: 'Great Vibes',cursive;">Login</h1>
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput placeholder="Enter Email id"
+                                               formControlName="LOGIN_EMAIL_ID" 
+                                               [(ngModel)]="loginModel.emailId" required/>
+                                        <mat-error *ngIf="loginForm.get('LOGIN_EMAIL_ID').invalid && loginForm.get('LOGIN_EMAIL_ID').touched">{{validLoginEmail()}}</mat-error>
+                                    </mat-form-field>
+
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput placeholder="Enter Password" [type]="hide ? 'password' : 'text'"
+                                               formControlName="LOGIN_PASSWORD" 
+                                               [(ngModel)]="loginModel.password" required/>
+                                        <i matSuffix class="fa fa-eye-slash" *ngIf="hide===true" (click)="hide = !hide"></i>
+                                        <i matSuffix class="fa fa-eye" *ngIf="hide===false" (click)="hide = !hide"></i>
+                                        <mat-error *ngIf="loginForm.get('LOGIN_PASSWORD').invalid && loginForm.get('LOGIN_PASSWORD').touched">{{validLoginPassword()}}</mat-error>
+                                    </mat-form-field>
+                                    
+                                    <div class="text-center" *ngIf="loadingLogin">
+                                        <img src="assets/images/loader.gif" width="30%" />
+                                    </div>
+                                    
+                                    <div class="row" align="center">
+<!--                                        <div class="col-md-6">
+                                            <button mat-raised-button color="warn" style="width: 100%;" (click)="openRegistration()">Register</button>
+                                        </div>-->
+                                        <div class="col-md-12">
+                                            <button mat-raised-button color="warn" style="width: 100%;" [disabled]="loginForm.invalid" (click)="login(loginModel)">Login</button>
+                                        </div>
+                                    </div>
+                                    
+                                    <br>
+                                    
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <button mat-raised-button color="warn" style="width: 100%; background: #4e71a7;" (click)="callFacebook()"><i class="icofont icofont-social-facebook"></i> Login with Facebook</button>
+                                        </div>
+                                    </div>
+                                    
+                                    <br>
+                                    
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <button mat-raised-button color="warn" style="width: 100%; background: #e44120;" (click)="callGoogle()"><i class="icofont icofont-social-google-plus"></i> Login with Google+</button>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="row" align="center">
+                                        <div class="col-md-12">
+                                            <p (click)="openRegistration()">New User? </p>
+                                            <!--<button mat-raised-button color="warn" style="width: 100%;" (click)="openRegistration()">Register</button>-->
+                                        </div>
+                                    </div>
+                                    
+                                    
+                                </form>
+                            </div>
+                        </div>
+                        <div class="col-lg-10 col-md-12">
+<!--                            <div class="row">
+                                <div class="col-sm-12 col-md-6">
+                                    <div class="loginnow">
+                                        <h5>Login</h5>
+                                        <form>
+                                            <div class="form-group">
+                                                <i class="icofont icofont-ui-message"></i><input type="text" name="email" value="" placeholder="EMAIL" id="email" class="form-control" />
+                                            </div>
+                                            <div class="form-group">
+                                                <i class="icofont icofont-lock"></i><input type="password" name="password" value="" placeholder="PASSWORD" id="input-password" class="form-control" />
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="links">
+                                                    <label><input type="checkbox" class="radio-inline"/>Remember Me</label> <a class="float-right sign" href="forgot-password.html">Forgot Password?</a>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <button mat-raised-button color="warn">Login</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-12 col-md-6">
+                                    <div class="loginto loginnow">
+                                        <h5>Login via social accounts</h5>
+                                        <ul class="list-unstyled text-center" style="color: #FFF">
+                                            <li><a target="_blank" (click)="facebookLogin()"><i class="icofont icofont-social-facebook"></i> Login with Facebook</a></li>
+                                            <li><a target="_blank" (click)="googleLogin()"><i class="icofont icofont-social-google-plus"></i> Login with Google+</a></li>
+                                            <li><a target="_blank" (click)="gmailLogin()"><i class="icofont icofont-social-twitter"></i> Login with Twitter</a></li>
+                                            
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Login End -->
+
+            <!-- Newsletter Start -->
+<!--            <div id="newsletter">
+                <div class="container">
+                    <div id="subscribe">
+                         Subscribe Form 
+                        <form class="form-horizontal" name="subscribe">
+                            <div class="row">
+                                <div class="col-sm-6 col-md-7"> 
+                                    <div class="input-group">
+                                        
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam iaculis lorem augue, at quam finibus eget.</p>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 col-md-5 form-group">
+                                    <div class="input-group">
+                                        <input  value="" name="subscribe_email" id="subscribe_email" placeholder="Email" type="text">
+                                        <button class="btn btn-news" type="submit" value="submit">Send</button>
+                                    </div>
+                                </div>
+                            </div> 
+                        </form>
+                         Subscribe Form 
+                    </div>
+                </div>
+            </div>
+             Newsletter End 
+
+             Footer Start 
+            <footer>
+                <div class="container">
+                    <div class="row inner">
+                        <div class="col-sm-12 col-md-12 col-lg-6">
+                             
+                            <h5>Contact Us</h5>
+                            <ul class="list-unstyled contact">
+                                <li><i class="icofont icofont-social-google-map"></i> 20, floor, Restaurant Food & Drinks, Nr, Queenslad Victoria Building, USA</li>
+                                <li><i class="icofont icofont-phone"></i> 1800 000 0000,<br>+88 123 1234 1234</li>
+                                <li><a href="#"><i class="icofont icofont-ui-message"></i>info@yourdomainname.com</a></li>
+                            </ul>
+                             
+                        </div>
+                        <div class="col-sm-12 col-md-12 col-lg-6">
+                             
+                            <h5>Information</h5>
+                            <ul class="list-unstyled">
+                                <li><a href="#">About us</a></li>
+                                <li><a href="#">Delivery Information</a></li>
+                                <li><a href="#">Contact us</a></li>
+                                <li><a href="#">Terms & Conditions</a></li>
+                                <li><a href="#">Sitemap</a></li>
+                            </ul>
+                             
+                        </div>
+                        <div class="w-100 d-none d-xs-block"></div>
+                         <div class="col-sm-6 col-md-6 col-lg-3">
+                             
+                            <h5>Open Hours</h5>
+                            <ul class="list-unstyled">
+                                <li>Monday - Friday : 9 am to 12 am.</li>
+                                <li>Saturday - Sunday : 24 Hour Open</li>
+                                <li>Breakfast : 7 am to 12 pm</li>
+                                <li>Lunch : 12 pm to 7 pm</li>
+                                <li>Dinner : 7 am to 12 am</li>
+                            </ul>
+                             
+                        </div>
+                        <div class="col-sm-6 col-md-6 col-lg-3">
+                             
+                            <h5>Instagram</h5>
+                            <ul class="list-unstyled insta">
+                                <li><a href="#"><img src="assets/images/instagram/1.jpg" alt="image" /></a></li>
+                                <li><a href="#"><img src="assets/images/instagram/2.jpg" alt="image" /></a></li>
+                                <li><a href="#"><img src="assets/images/instagram/3.jpg" alt="image" /></a></li>
+                                <li><a href="#"><img src="assets/images/instagram/4.jpg" alt="image" /></a></li>
+                                <li><a href="#"><img src="assets/images/instagram/5.jpg" alt="image" /></a></li>
+                                <li><a href="#"><img src="assets/images/instagram/6.jpg" alt="image" /></a></li>
+                            </ul>
+                             
+                        </div> 
+                    </div>
+
+                </div>
+                <div class="footer-bottom">
+                    <div class="container">
+                        <div class="row powered">
+                              Copyright Start 
+                            <div class="col-md-3 col-sm-6 order-md-1">
+                                <img src="assets/images/logo/logo-white.png" class="img-fluid" title="logo" alt="logo">
+                            </div>
+                            <div class="col-md-3 col-sm-6 text-right order-md-3">
+                                  Footer Social Start 
+                                <ul class="list-inline social">
+                                    <li class="list-inline-item"><a href="https://www.facebook.com/spheretheme/" target="_blank"><i class="icofont icofont-social-facebook"></i></a></li>
+                                    <li class="list-inline-item"><a href="https://twitter.com/spheretheme/" target="_blank"><i class="icofont icofont-social-twitter"></i></a></li>
+                                    
+                                    
+                                    <li class="list-inline-item"><a href="https://www.instagram.com/" target="_blank"><i class="icofont icofont-social-instagram"></i></a></li>
+                                    <li class="list-inline-item"><a href="https://www.youtube.com/" target="_blank"><i class="icofont icofont-social-youtube-play"></i></a></li>
+                                </ul>
+                                  Footer Social End 
+                            </div>
+                            <div class="col-md-6 col-sm-12 text-center order-md-2">
+                            </div>
+                              Copyright End 
+                        </div>
+                    </div>
+                </div>
+            </footer>-->
+            <!-- Footer End  -->
+           
+        </div>

@@ -1,0 +1,87 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <div class="wrapper">
+           
+            <div class="login">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-md-12">
+                            <div class="loginto ">
+                                <div align="end">
+                                    <i class="icofont icofont-close" (click)="dialogRef.close()"></i>
+                                </div>
+                                <h1 style="text-align: center; font-family: 'Great Vibes',cursive;">Login</h1>
+                                <mat-horizontal-stepper [linear]="isLinear" #stepper>
+                                    <mat-step [stepControl]="firstFormGroup">
+                                        <form [formGroup]="firstFormGroup">
+                                            <ng-template matStepLabel>Login</ng-template>
+                                            <mat-form-field style="width: 100%">
+                                                <input  matInput placeholder="Name" [(ngModel)]="userLoginForm.fullName" formControlName="name" required>
+                                            </mat-form-field>
+                                            <mat-form-field style="width: 100%">
+                                                <input  matInput placeholder="Email" [(ngModel)]="userLoginForm.emailId"  formControlName="email" required>
+                                            </mat-form-field>
+                                            <div class="row">
+                                                <div class="col-4">
+                                                    <mat-form-field style="width: 80%">
+                                                        <mat-label>Code</mat-label>
+                                                        <mat-select [(ngModel)]="userLoginForm.contryCode"  formControlName="code" required >
+                                                            <mat-option *ngFor="let country of countryList" [value]="country.OPR_PHONECODE">
+                                                                {{country.OPR_PHONECODE}}
+                                                        </mat-option>
+                                                    </mat-select>
+                                                </mat-form-field>
+                                            </div>
+                                            <div class="col-8">
+                                                <mat-form-field style="width: 100%">
+                                                    <input  matInput placeholder="Mobile" [(ngModel)]="userLoginForm.mobileNo" formControlName="mobile" required>
+                                                </mat-form-field>
+                                            </div>
+                                        </div>
+                                        <div id="recaptcha-container"></div>
+                                        <br>
+                                        <div *ngIf="verifyStatus==false">
+                                            <button [disabled]="!firstFormGroup.valid" color="warn" style="width:100%;color: white" mat-raised-button (click)="loginUser(stepper)">login</button>
+                                        </div>
+                                        <div *ngIf="verifyStatus==true">
+                                            <button   style="width:100%;color: white;background-color: green" mat-raised-button><i  class="fa fa-circle-o-notch fa-spin"></i>&nbsp;Please wait</button>
+                                        </div>
+                                    </form>
+                                </mat-step>
+                                <mat-step [stepControl]="secondFormGroup">
+                                    <form [formGroup]="secondFormGroup">
+                                        <ng-template matStepLabel>Verify</ng-template>
+                                        <div align="center">
+                                            <h2>Verify Phone Number</h2>
+                                            <p>Enter the 6-digit code we sent to </p>
+
+                                            <div class="divOuter marginTop">
+                                                <div class="divInner marginTop">
+                                                    <input formControlName="one" type="tel" class="inputBorder marginTop" #otp1 maxlength="1" [(ngModel)]="otpInput1" (keyup)="moveFocus(otp2)"/>
+                                                    <input formControlName="two" type="tel" class="inputBorder marginTop" #otp2 maxlength="1" [(ngModel)]="otpInput2" (keyup)="moveFocus(otp3)"/>
+                                                    <input formControlName="three" type="tel" class="inputBorder marginTop" #otp3 maxlength="1" [(ngModel)]="otpInput3" (keyup)="moveFocus(otp4)"/>
+                                                    <input formControlName="four"  type="tel" class="inputBorder marginTop" #otp4 maxlength="1" [(ngModel)]="otpInput4" (keyup)="moveFocus(otp5)" />
+                                                    <input formControlName="five"  type="tel" class="inputBorder marginTop" #otp5 maxlength="1" [(ngModel)]="otpInput5" (keyup)="moveFocus(otp6)"/>
+                                                    <input formControlName="six" type="tel" class="inputBorder marginTop" #otp6 maxlength="1" [(ngModel)]="otpInput6" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <p align="center" style="color: tomato;" *ngIf="showError">Enter valid OTP</p>
+                                        <br>
+                                        <div *ngIf="checkStatus==false">
+                                            <button color="warn" style="width:70%;color: white" mat-raised-button (click)="verifyLoginCode()">login</button>
+                                        </div>
+                                        <div *ngIf="checkStatus==true">
+                                            <button  style="width:70%;color: white;background-color: green" mat-raised-button><i  class="fa fa-circle-o-notch fa-spin"></i>&nbsp;Please wait</button>
+                                        </div>
+                                    </form>
+                                </mat-step>
+                            </mat-horizontal-stepper>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+</div>

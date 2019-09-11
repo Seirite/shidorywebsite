@@ -1,0 +1,23 @@
+.badge-info {
+    color: #fff;
+    background-color: #17a2b8;
+    border-radius: 50%;
+    color: #000;
+}
+
+.loading {
+    width: 300px;
+    height: 200px;
+    line-height: 200px;
+    position: fixed;
+    top: 50%; 
+    left: 50%;
+    margin-top: -100px;
+    margin-left: -150px;
+    background-color: #e54c2a;
+    border-radius: 5px;
+    text-align: center;
+    color: white;
+    font-size: x-large;
+    z-index: 11; /* 1px higher than the overlay layer */
+}
