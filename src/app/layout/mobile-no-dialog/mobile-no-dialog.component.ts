@@ -119,7 +119,7 @@ export class MobileNoDialogComponent implements OnInit {
     {
         this.mobileNumberOTP = Math.floor(Math.random() * 899999 + 100000);
         console.log(this.mobileNumberOTP);
-        let url = `https://us-central1-shidory-c2c4c.cloudfunctions.net/emailMessage`
+        let url = `https://us-central1-shidory-c2c4c.cloudfunctions.net/sendMessage`
         let httpOptions = {
             headers: new HttpHeaders({
                 'Content-Type': 'application/json',
@@ -128,12 +128,18 @@ export class MobileNoDialogComponent implements OnInit {
         let body = {
             "Info":
                 {
-                    "to": this.mobileNumber,
+                    "to": this.callingCode + "" + this.mobileNumber,
                     "otp": this.mobileNumberOTP,
                     "name": this.userName
                 }
         };
-        return this.http.post(url, body, httpOptions).toPromise()
+        return this.http.post(url, body, httpOptions).toPromise().then(data =>
+        {
+            console.log(data);
+        }).catch(error =>
+        {
+            console.log(error);
+        })
     }
     
     
