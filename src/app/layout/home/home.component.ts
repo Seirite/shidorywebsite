@@ -21,6 +21,8 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
     animations: [routerTransition()]
 })
 export class HomeComponent implements OnInit {
+    searchFail: boolean = false;
+    restaurantListLength: number = 0;
     showTrackOrder: boolean;
     showList: boolean = true;
     showCountryList: boolean = true;
@@ -172,6 +174,7 @@ export class HomeComponent implements OnInit {
                 })
                 this.menuItemList = list;
                 this.dataSource = new MatTableDataSource(this.menuItemList);
+                this.restaurantListLength = this.menuItemList.length;
                 if (this.menuItemList.length == 0) 
                 {
                     this.showList = false;
@@ -400,6 +403,14 @@ export class HomeComponent implements OnInit {
         if (this.fileterListBy == "A")
         {
             this.menuItemList = this.dataSource.filteredData;
+            if (this.menuItemList.length == 0)
+            {
+                this.searchFail = true;
+            }
+            else
+            {
+                this.searchFail = false;
+            }
         }
         if (this.fileterListBy == "R")
         {
@@ -513,7 +524,7 @@ export class HomeComponent implements OnInit {
     trackUserOrder()
     {
         let dialogBoxSettings = {
-            width : '60%',
+            width : '50%',
             height : '80%',
             disableClose: true,
             hasBackdrop: true,

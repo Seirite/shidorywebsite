@@ -62,4 +62,9 @@ export class DeliveryAddressComponent implements OnInit {
             console.log("error");
         })
     }
+    
+    handleEnterEvent(nextElement)
+    {
+        nextElement.focus();
+    }
 }

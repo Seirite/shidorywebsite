@@ -58,10 +58,10 @@
             <br>
         <div class="row" *ngIf="hideRegisterButton==false">
             <div class="col-md-12">
-                <button [disabled]="!firstFormGroup.valid" mat-raised-button  style="width: 100%; background: #CB202D;height: 50px;color:white" (click)="Loginuser()"> Log in</button>
+                <button [disabled]="!firstFormGroup.valid" mat-raised-button  style="width: 100%; background: #CB202D;height: 50px;color:white" (click)="loginAfterCheckEmail()"> Log in</button>
             </div>
         </div>
-            <div class="row" *ngIf="hideRegisterButton==true">
+        <div class="row" *ngIf="hideRegisterButton==true">
             <div class="col-md-12">
             <button  style="width:100%;color: white;background-color: green;height: 50px;" mat-raised-button><i  class="fa fa-circle-o-notch fa-spin"></i>&nbsp;Please wait</button>
             </div>
@@ -92,8 +92,7 @@
                 <!--<br>-->
                 <mat-form-field appearance="outline" class="example-full-width">
                     <span matSuffix><i class="icofont icofont-envelope" style="margin-top: -36px;"></i></span>
-                    <!--<mat-label>Enter One Time Password</mat-label>-->
-                    <input [(ngModel)]="loginotpuser" matInput placeholder="Enter One Time Password" name="otp">
+                    <input [(ngModel)]="loginotpuser" matInput placeholder="Enter One Time Password" name="otp" (keyup.enter)="verifyLoginUser()">
                 </mat-form-field>
                 
                 <div *ngIf="validOtpStatus==true">
@@ -102,7 +101,7 @@
                 
                 <div class="row" *ngIf="otpStatusButton==false">
                     <div class="col-md-12">
-                        <button  mat-raised-button  style="width: 100%; background: #CB202D;height: 40px;color:white" (click)="VerifyLoginUser()"> GO</button>
+                        <button  mat-raised-button  style="width: 100%; background: #CB202D;height: 40px;color:white" (click)="verifyLoginUser()"> GO</button>
                     </div>
                 </div>
                 <div class="row" *ngIf="otpStatusButton==true">
@@ -135,16 +134,16 @@
         <mat-form-field appearance="outline" class="example-full-width">
             <span matSuffix><i class="icofont icofont-envelope" style="margin-top: -36px;"></i></span>
             <mat-label>Full name</mat-label>
-            <input [(ngModel)]="Registerform.fullName" matInput placeholder="Full name" name="name"  formControlName="name" required>
+            <input [(ngModel)]="Registerform.fullName" matInput placeholder="Full name" name="name"  formControlName="name" required #Field1 (keyup.enter)="handleEnterEvent(Field3)">
         </mat-form-field>
         <mat-form-field appearance="outline" class="example-full-width">
             <span matSuffix><i class="icofont icofont-envelope" style="margin-top: -36px;"></i></span>
             <mat-label>Email address</mat-label>
-            <input [(ngModel)]="Registerform.emailId" matInput placeholder="Email address" name="email"  formControlName="email" required>
+            <input [(ngModel)]="Registerform.emailId" matInput placeholder="Email address" name="email"  formControlName="email" required #Field3 (keyup.enter)="registerAfterCheckEmail()">
         </mat-form-field>
         <div class="row" *ngIf="hideRegisterButton==false">
             <div class="col-md-12">
-                <button [disabled]="!secondFormGroup.valid" mat-raised-button  style="width: 100%; background: #CB202D;height: 50px;color:white" (click)="RegisterUser()"> Register</button>
+                <button [disabled]="!secondFormGroup.valid" mat-raised-button  style="width: 100%; background: #CB202D;height: 50px;color:white" (click)="registerAfterCheckEmail()"> Register</button>
             </div>
         </div>
         <div class="row" *ngIf="hideRegisterButton==true">
@@ -179,7 +178,7 @@
                 <mat-form-field appearance="outline" class="example-full-width">
                     <span matSuffix><i class="icofont icofont-envelope" style="margin-top: -36px;"></i></span>
                     <!--<mat-label>Enter One Time Password</mat-label>-->
-                    <input [(ngModel)]="otp" matInput placeholder="Enter One Time Password" name="otp">
+                    <input [(ngModel)]="otp" matInput placeholder="Enter One Time Password" name="otp" (keyup.enter)="verifyRegisterUser()">
                 </mat-form-field>
                 
                 <div *ngIf="validOtpStatus==true">
@@ -188,7 +187,7 @@
                 
                 <div class="row" *ngIf="otpStatusButton==false">
                     <div class="col-md-12">
-                        <button  mat-raised-button  style="width: 100%; background: #CB202D;height: 40px;color:white" (click)="VerifyRegisterUser()"> GO</button>
+                        <button  mat-raised-button  style="width: 100%; background: #CB202D;height: 40px;color:white" (click)="verifyRegisterUser()"> GO</button>
                     </div>
                 </div>
                 <div class="row" *ngIf="otpStatusButton==true">

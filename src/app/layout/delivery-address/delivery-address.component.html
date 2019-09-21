@@ -17,26 +17,31 @@
             <input matInput placeholder="Building Number/Plot Number"
             [(ngModel)]="deliveryBuldingNo"
             name="deliveryBuldingNo"
+            #Field1 (keyup.enter)="handleEnterEvent(Field2)"
             type="text">
         </mat-form-field>
         <mat-form-field class="example-full-width">
             <input matInput placeholder="Street Name"
                    name="deliveryStreetName"
+                   #Field2 (keyup.enter)="handleEnterEvent(Field3)"
             [(ngModel)]="deliveryStreetName">
         </mat-form-field>
         <mat-form-field class="example-full-width">
             <input matInput placeholder="Area Name"
                    name="deliveryAreaName"
+                   #Field3 (keyup.enter)="handleEnterEvent(Field4)"
             [(ngModel)]="deliveryAreaName">
         </mat-form-field>
         <mat-form-field class="example-full-width">
             <input matInput placeholder="Neighborhood"
                    name="deliveryNeighborhood"
+                   #Field4 (keyup.enter)="handleEnterEvent(Field5)"
             [(ngModel)]="deliveryNeighborhood">
         </mat-form-field>
         <mat-form-field class="example-full-width">
             <input matInput placeholder="Postal Code/Zip Code"
                    name="deliveryZipcode"
+                   #Field5 (keyup.enter)="addNewAddress()"
             [(ngModel)]="deliveryZipcode"
             type="text"
             maxlength="6">

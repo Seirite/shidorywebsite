@@ -75,13 +75,14 @@ getSession()
     //
     //    }
     public async saveDocumentToFireStoreNew(collection: AngularFirestoreCollection<any>, obj: any, prefix: string) {
-//        const timestamp = this.timestamp;
+        const CR_DT = this.timestamp;
         const timestamp = await this.getTimeUsingTimezone();
         return new Promise((resolve, reject) => {
             if (prefix.trim().length == 3) {
                 this.idGenrator(prefix).then(id => {
                     obj.key = id;
-                    obj.CR_DT = timestamp;
+                    obj.SAVE_DT = timestamp;
+                    obj.CR_DT = CR_DT;
                     collection.doc(id + "").set(Object.assign({}, obj))
                         .then(function () {
                             console.log("Document successfully written!");
@@ -96,7 +97,8 @@ getSession()
             }
             else {
                 obj.key = prefix;
-                obj.CR_DT = timestamp;
+                obj.SAVE_DT = timestamp;
+                obj.CR_DT = CR_DT;
                 collection.doc(prefix + "").set(Object.assign({}, obj))
                     .then(function () {
 

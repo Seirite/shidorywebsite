@@ -1,0 +1,94 @@
+<div *ngIf="!showOTPDialog">
+    <div class="row">
+        <div class="col-10">
+            <h2 style="font-size: large; font-weight: 900;">Phone Number</h2>
+        </div>
+        <div class="col-2" align="center">
+            <h6 style="font-size: x-large; font-weight: 100;"><i class="icofont icofont-close" (click)="dialogRef.close()"></i></h6>
+        </div>
+    </div>
+    <div *ngIf="errorMessage">
+        <p style="color:red">{{errorMessage}}</p>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <p>Hello <b>{{ userName || '' }},</b></p>
+            <p>Please Enter your Phone Number here</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <form class="example-form">
+
+                <mat-form-field appearance="outline" class="example-full-width">
+                    <span matPrefix>{{callingCode || ''}} &nbsp;</span>
+                    <input type="tel" matInput placeholder="Phone Number" name="mobileNumber" [(ngModel)]="mobileNumber" (keyup.enter)="verifyPhoneNumber()">
+                </mat-form-field>
+
+            </form>
+            
+        </div>
+    </div>
+    <div class="row" *ngIf="hideVerifyButton==false" (click)="verifyPhoneNumber()">
+        <div class="col-md-12">
+            <button mat-raised-button disabled="true" style="width: 100%; background: #28a745;height: 50px;color:white"> Verify Phone</button>
+        </div>
+    </div>
+    <div class="row" *ngIf="hideVerifyButton==true">
+        <div class="col-md-12">
+            <button  style="width:100%;color: white;background-color: green;height: 50px;" mat-raised-button><i  class="fa fa-circle-o-notch fa-spin"></i>&nbsp;Please wait</button>
+        </div>
+    </div>
+</div>
+<div *ngIf="showOTPDialog">
+    <div class="row">
+        <div class="col-10">
+            <h2 style="font-size: large; font-weight: 900;">Phone Number Verification</h2>
+        </div>
+        <div class="col-2" align="center">
+            <h6 style="font-size: x-large; font-weight: 100;"><i class="icofont icofont-close" (click)="dialogRef.close()"></i></h6>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <p>We have sent 6-digit verification code to <b>{{ mobileNumber || '' }}</b> via SMS. Please enter it below. </p>
+        </div>
+    </div>
+    <div *ngIf="errorMessageOTP">
+        <p style="color:red">{{errorMessageOTP}}</p>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <form class="example-form">
+
+                <mat-form-field appearance="outline" class="example-full-width">
+                    <input type="tel" matInput placeholder="Enter Verification Code" name="otp" [(ngModel)]="otp" (keyup.enter)="conformNumber()">
+                </mat-form-field>
+
+            </form>
+            
+        </div>
+    </div>
+    
+    <div class="row" *ngIf="counter">
+        <div class="col-12" align="center">
+            <p>{{counter || ''}}</p>
+        </div>
+    </div>
+    
+    <div class="row" *ngIf="counter==0" (click)="resendOTP()">
+        <div class="col-12" align="center">
+            <p>Resend Verification Code</p>
+        </div>
+    </div>
+    <div class="row" *ngIf="otpButtonStatus==false" (click)="conformNumber()">
+        <div class="col-md-12">
+            <button  mat-raised-button  style="width: 100%; background: #28a745;height: 40px;color:white">Conform</button>
+        </div>
+    </div>
+    <div class="row" *ngIf="otpButtonStatus==true">
+        <div class="col-md-12">
+            <button  style="width:100%;color: white;background-color: green;height: 50px;" mat-raised-button><i  class="fa fa-circle-o-notch fa-spin"></i>&nbsp;Please wait</button>
+        </div>
+    </div>
+</div>

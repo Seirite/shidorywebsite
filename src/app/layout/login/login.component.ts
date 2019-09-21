@@ -180,15 +180,20 @@ export class LoginComponent implements OnInit {
         this.registerForm = false
     }
     
-    Login() {
+    Login() 
+    {
         this.loginStatus = true;
     }
 
-    Loginuser() {
+    loginUser() 
+    {
         this.hideRegisterButton = true;
-        this.auth.checkEmail(this.userEmail).then((data) => {
-            if (data.length != 0) {
-                if (data[0] == "password") {
+        this.auth.checkEmail(this.userEmail).then((data) => 
+        {
+            if (data.length != 0) 
+            {
+                if (data[0] == "password") 
+                {
                     this.loginOtp = Math.floor(Math.random() * 899999 + 100000);
                     let url = `https://us-central1-shidory-c2c4c.cloudfunctions.net/emailMessage`
                     let httpOptions = {
@@ -206,40 +211,66 @@ export class LoginComponent implements OnInit {
                     };
                     return this.http.post(url, body, httpOptions)
                         .toPromise()
-                        .then(res => {
+                        .then(res => 
+                        {
                             this.verifyOtpStatus = true;
                         })
-                        .catch(err => {
+                        .catch(err => 
+                        {
                             this.hideRegisterButton = false;
                         })
                 }
 
-                else if (data[0] == "google.com") {
+                else if (data[0] == "google.com") 
+                {
                     this.hideRegisterButton = false;
                     this.error = true;
                     this.message = "You'r already login with google"
                 }
 
-                else if (data[0] == 'facebook.com') {
+                else if (data[0] == 'facebook.com') 
+                {
                     this.hideRegisterButton = false;
                     this.error = true;
                     this.message = "Your already login with facebook"
                 }
 
             }
-            else {
+            else 
+            {
                 this.hideRegisterButton = false;
                 this.error = true;
                 this.message = "User not found please register"
             }
+        }).catch(error =>
+        {
+            this.hideRegisterButton = false;
+            this.error = true;
+            this.message = error.message
         })
     }
+    
+    loginAfterCheckEmail()
+    {
+        var emailType = this.userEmail.includes("gmail.com");
+        if (!emailType)
+        {
+            this.error = true;
+            this.message = "Email Id must contain gmail.com"
+        }
+        else
+        {
+            this.loginUser();
+        }
+    }
 
-
-    VerifyLoginUser() {
+    verifyLoginUser() 
+    {
         this.otpStatusButton = true;
-        if (this.loginotpuser == this.loginOtp) {
-            this.auth.emailLogin(this.userEmail, "123456").then(async user => {
+        if (this.loginotpuser == this.loginOtp) 
+        {
+            this.auth.emailLogin(this.userEmail, "123456").then(async user => 
+            {
                 const data = {
                     uid: user.uid,
                     email: this.userEmail || null,
@@ -252,11 +283,13 @@ export class LoginComponent implements OnInit {
                 localStorage.setItem('isLoggedin', 'true');
                 this.dialogRef.close();
 
-            }).catch(error => {
+            }).catch(error => 
+            {
                 this.otpStatusButton = false;
             })
         }
-        else {
+        else 
+        {
             this.validOtpStatus = true;
             this.otpStatusButton = false;
             this.validError = "Invalid otp";
@@ -267,11 +300,13 @@ export class LoginComponent implements OnInit {
         this.signUpStatus = true;
     }
 
-    RegisterUser() {
-        //      this.verifySignUpOtpStatus = true;
+    registerUser() 
+    {
         this.hideRegisterButton = true;
-        this.auth.checkEmail(this.Registerform.emailId).then((data) => {
-            if (data.length == 0) {
+        this.auth.checkEmail(this.Registerform.emailId).then((data) => 
+        {
+            if (data.length == 0) 
+            {
                 this.RegisterOtp = Math.floor(Math.random() * 899999 + 100000);
                 let url = `https://us-central1-shidory-c2c4c.cloudfunctions.net/emailMessage`
                 let httpOptions = {
@@ -290,29 +325,56 @@ export class LoginComponent implements OnInit {
                 };
                 return this.http.post(url, body, httpOptions)
                     .toPromise()
-                    .then(res => {
+                    .then(res => 
+                    {
                         this.verifySignUpOtpStatus = true;
                     })
-                    .catch(err => {
+                    .catch(err => 
+                    {
                         this.hideRegisterButton = false;
                     })
             }
-            else {
+            else 
+            {
                 this.hideRegisterButton = false;
                 this.error = true;
                 this.message = "Email is already exist"
             }
-        }).catch(error => {
-
+        }).catch(error => 
+        {
+            this.hideRegisterButton = false;
+            this.error = true;
+            this.message = error.message
         })
 
     }
+    
+    registerAfterCheckEmail()
+    {
+        var emailType = this.Registerform.emailId.includes("gmail.com");
+        if (!emailType)
+        {
+            this.error = true;
+            this.message = "Email Id must contain gmail.com"
+        }
+        else
+        {
+            this.registerUser();
+        }
+    }
+    
+    handleEnterEvent(nextElement)
+    {
+        nextElement.focus();
+    }
 
-
-    VerifyRegisterUser() {
+    verifyRegisterUser() 
+    {
         this.otpStatusButton = true;
-        if (this.RegisterOtp == this.otp) {
-            this.auth.emailSignUp(this.Registerform.emailId, "123456").then(async user => {
+        if (this.RegisterOtp == this.otp) 
+        {
+            this.auth.emailSignUp(this.Registerform.emailId, "123456").then(async user => 
+            {
                 this.Registerform.uid = user.uid;
                 this.Registerform.key = user.uid;
                 this.Registerform.photoURL = 'assets/profile.png' || 'https://goo.gl/Fz9nrQ';
@@ -328,11 +390,13 @@ export class LoginComponent implements OnInit {
                 await this.provider.saveRestroUser(this.Registerform);
                 localStorage.setItem('isLoggedin', 'true');
                 this.dialogRef.close();
-            }).catch(error => {
+            }).catch(error => 
+            {
                 this.otpStatusButton = false;
             })
         }
-        else {
+        else 
+        {
             this.otpStatusButton = false;
             this.validOtpStatus = true;
             this.validError = "Invalid otp";
@@ -379,7 +443,6 @@ export class LoginComponent implements OnInit {
         let body = {
             "Info":
                 {
-
                     "to": this.Registerform.emailId,
                     "otp": this.RegisterOtp,
                     "name": this.Registerform.fullName

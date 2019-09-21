@@ -223,7 +223,7 @@ export class ProfileComponent implements OnInit {
     viewDetail(Obj)
     {
         let dialogBoxSettings = {
-            width : '60%',
+            width : '50%',
             height : '80%',
             disableClose: true,
             hasBackdrop: true,

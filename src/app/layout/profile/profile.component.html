@@ -211,7 +211,7 @@
                                                             <p class="confirmed"><i class="icofont icofont-check"></i>DELIVERD</p>
                                                         </div>
                                                         <div class="col" *ngIf="!order.DELIVERD">
-                                                            <p class="failed" *ngIf="!order.HAWKER_STATUS"><i class="icofont icofont-close" *ngIf="order.ORDER_STATUS=='PENDING'" (click)="cancleOrder(order)"></i><i class="icofont icofont-check" *ngIf="order.ORDER_STATUS=='ACCEPTED'"></i>{{order.ORDER_STATUS}}</p>
+                                                            <p class="failed" *ngIf="!order.HAWKER_STATUS"><i class="icofont icofont-close" *ngIf="order.ORDER_STATUS=='PENDING'"></i><i class="icofont icofont-check" *ngIf="order.ORDER_STATUS=='ACCEPTED'"></i>{{order.ORDER_STATUS}}</p>
                                                             <p class="failed" *ngIf="order.HAWKER_STATUS"><span *ngIf="order.HAWKER_STATUS!='PENDING'">{{order.HAWKER_STATUS}}</span><span *ngIf="order.HAWKER_STATUS=='PENDING'">{{order.ORDER_STATUS}}</span></p>
                                                         </div>
                                                         <div class="col text-right">
@@ -374,7 +374,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="item-footer">
-                                                    <p><strong>Order Date:</strong> {{order.CR_DT}}<strong>Order Total:</strong> {{order.RESTRO_USER_CART_CURRENCY}} {{order.RESTRO_USER_CART_TOTAL}}</p>
+                                                    <p><strong>Order Date:</strong> {{order.SAVE_DT}}<strong>Order Total:</strong> {{order.RESTRO_USER_CART_CURRENCY}} {{order.RESTRO_USER_CART_TOTAL}}</p>
                                                 </div>
                                             </div>
                                         </div>

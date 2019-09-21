@@ -10,6 +10,7 @@ import {AlertDialogComponent} from '../alert-dialog/alert-dialog.component';
 import {ADD_ORDER_MST} from '../../pojos/ADD_ORDER_MST';
 import {LoginComponent} from '../login/login.component';
 import {CustomisableDialogComponent} from '../customisable-dialog/customisable-dialog.component';
+import {MobileNoDialogComponent} from '../mobile-no-dialog/mobile-no-dialog.component';
 
 @Component({
     selector: 'app-shop',
@@ -17,6 +18,7 @@ import {CustomisableDialogComponent} from '../customisable-dialog/customisable-d
     styleUrls: ['./shop.component.scss']
 })
 export class ShopComponent implements OnInit {
+    checkoutStatus: boolean = false;
     maxRatingValue: number = 0;
     restroRatingValue: any = 0;
     component: any;
@@ -60,6 +62,7 @@ export class ShopComponent implements OnInit {
         this.selectRestaurantKey = localStorage.getItem("selectRestaurantKey");
         this.searchValue = localStorage.getItem("search");
         this.cartLength = parseInt(localStorage.getItem("cartLength"));
+        await this.getUserCartList();
         await this.getUserLocation();
         await this.getUserCurreancy();
         await this.getRestroData();
@@ -72,7 +75,6 @@ export class ShopComponent implements OnInit {
             this.getRestroWiseMenuItem(menuCategoryArray, map);
         }
         this.getLoginUserData();
-        this.getUserCartList();
     }
     
     async getRestroData()
@@ -85,15 +87,32 @@ export class ShopComponent implements OnInit {
             }
             else
             {
-                if (typeof restroObject.RESTRO_RATING_ONE == "undefined" || typeof restroObject.RESTRO_RATING_TWO == "undefined" || typeof restroObject.RESTRO_RATING_THREE == "undefined" || typeof restroObject.RESTRO_RATING_FOUR == "undefined" || typeof restroObject.RESTRO_RATING_FIVE == "undefined")
+                var restroRatingOne = 0;
+                var restroRatingTwo = 0;
+                var restroRatingThree = 0;
+                var restroRatingFour = 0;
+                var restroRatingFive = 0;
+                if (typeof restroObject.RESTRO_RATING_ONE != "undefined")
                 {
-                    restroObject.RESTRO_RATING_ONE = 0;
-                    restroObject.RESTRO_RATING_TWO = 0;
-                    restroObject.RESTRO_RATING_THREE = 0;
-                    restroObject.RESTRO_RATING_FOUR = 0;
-                    restroObject.RESTRO_RATING_FIVE = 0;
+                    restroRatingOne = restroObject.RESTRO_RATING_ONE;
                 }
-                this.maxRatingValue = Math.max(restroObject.RESTRO_RATING_ONE, restroObject.RESTRO_RATING_TWO, restroObject.RESTRO_RATING_THREE, restroObject.RESTRO_RATING_FOUR, restroObject.RESTRO_RATING_FIVE);
+                if (typeof restroObject.RESTRO_RATING_TWO != "undefined")
+                {
+                    restroRatingTwo = restroObject.RESTRO_RATING_TWO;
+                }
+                if (typeof restroObject.RESTRO_RATING_THREE != "undefined")
+                {
+                    restroRatingThree = restroObject.RESTRO_RATING_THREE;
+                }
+                if (typeof restroObject.RESTRO_RATING_FOUR != "undefined")
+                {
+                    restroRatingFour = restroObject.RESTRO_RATING_FOUR;
+                }
+                if (typeof restroObject.RESTRO_RATING_FIVE != "undefined")
+                {
+                    restroRatingFive = restroObject.RESTRO_RATING_FIVE;
+                }
+                this.maxRatingValue = Math.max(restroRatingOne, restroRatingTwo, restroRatingThree, restroRatingFour, restroRatingFive);
                 if (isNaN(this.maxRatingValue))
                 {
                     this.maxRatingValue = 0;
@@ -333,31 +352,76 @@ export class ShopComponent implements OnInit {
         }
     }
     
-    checkout()
+    getCheckoutStatus()
     {
-        if (this.restroStatus == "open")
+        var list = JSON.parse(localStorage.getItem("menuItemArray"));
+        this.cartMenuItemList = list;
+        if (list != null) 
         {
-            var date = new Date();
-            var order_id = localStorage.getItem("callingCode") + date.getTime();
-            this.entOrderMst.RESTAURENT_ID = this.selectRestaurantKey;
-            this.entOrderMst.ORDER_ID = order_id;
-            this.entOrderMst.PAYMENT_TYPE = "CARD";
-            this.entOrderMst.ORDER_STATUS = "PENDING";
-            this.entOrderMst.MENUCART = this.cartMenuItemList;
-            if (this.loginDone == null) 
+            list.forEach(data => 
             {
-                this.openLoginDialog();
+                if (this.selectRestaurantKey != data.RESTAURENT_ID) 
+                {
+                    this.checkoutStatus = true;
+                    this.openAlert();
+                }
+            })
+        }
+    }
+    
+    async checkout()
+    {
+        await this.getCheckoutStatus();
+        if (!this.checkoutStatus)
+        {
+            if (this.restroStatus == "open")
+            {
+                var date = new Date();
+                var order_id = localStorage.getItem("callingCode") + date.getTime();
+                this.entOrderMst.RESTAURENT_ID = this.selectRestaurantKey;
+                this.entOrderMst.ORDER_ID = order_id;
+                this.entOrderMst.PAYMENT_TYPE = "CARD";
+                this.entOrderMst.ORDER_STATUS = "PENDING";
+                this.entOrderMst.MENUCART = this.cartMenuItemList;
+                if (this.loginDone == null) 
+                {
+                    this.openLoginDialog();
+                }
+                else 
+                {
+                    if (this.loginDone) 
+                    {
+                        if (this.auth.getSession().uid) 
+                        {
+                            var restroUserObj: any = await this.provider.getRestroUserObj(this.auth.getSession().uid);
+                            if (restroUserObj) 
+                            {
+                                if (restroUserObj.phoneNumber != "null") 
+                                {
+                                    if (restroUserObj.phoneNumber) 
+                                    {
+                                        this.router.navigate(['/cart']);
+                                    }
+                                    else 
+                                    {
+                                        this.openMobileNoDialog();
+                                    }
+                                }
+                                else 
+                                {
+                                    this.openMobileNoDialog();
+                                }
+                            }
+                        }
+                    }
+                }
             }
             else 
             {
-                this.router.navigate(['/cart']);
+                var message = "Sorry, You cant give order to this restaurant becauser this restaurant is now closed.";
+                var action = " ";
+                this.openSnackBar(message, action);
             }
-        }
-        else
-        {
-            var message = "Sorry, You cant give order to this restaurant becauser this restaurant is now closed.";
-            var action = " ";
-            this.openSnackBar(message, action);
         }
     }
     
@@ -763,6 +827,26 @@ export class ShopComponent implements OnInit {
             if (result)
             {
                 this.addCart(result);
+            }
+        })
+    }
+    
+    openMobileNoDialog()
+    {
+        let dialogBoxSettings = {
+            width : '400px',
+            height : '350px',
+            disableClose: true,
+            hasBackdrop: true,
+            margin: '0 auto',
+        };
+        this.component = MobileNoDialogComponent;
+        const dialogRef = this.dialog.open(this.component, dialogBoxSettings);
+        dialogRef.afterClosed().subscribe(result =>
+        {
+            if (result)
+            {
+                this.router.navigate(['/cart']);
             }
         })
     }

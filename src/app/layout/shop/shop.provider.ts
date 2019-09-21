@@ -69,6 +69,11 @@ export class ShopProvider {
         ));
     }
     
+    getRestroUserObj(key)
+    {
+        return this.serviceFirestore.getDocumentObject(this.serviceFirestore.firestore.collection("RESTRO_USER"), key);
+    }
+    
     
    
 

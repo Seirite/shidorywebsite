@@ -57,6 +57,13 @@ export class ViewDetailProvider {
     {
         return this.serviceFirestore.getDocumentObject(this.serviceFirestore.firestore.collection("SHIDORY").doc("ORG1").collection("COUNTRY").doc(country).collection("STATES").doc(state).collection("CITIES").doc(city).collection("ZONE").doc(zoneKey).collection("HAWKER"), hawkerKey)
     }
+    
+    getHawkerLocation(country: string, state: string, city: string, zoneKey: string, hawkerKey: string)
+    {
+        return this.serviceFirestore.getListFromFireStore(this.serviceFirestore.firestore.collection("SHIDORY").doc("ORG1").collection("COUNTRY").doc(country).collection("STATES").doc(state).collection("CITIES").doc(city).collection("ZONE").doc(zoneKey).collection("HAWKER", ref => ref
+            .where("key", "==", hawkerKey)
+        ))
+    }
    
 
 }

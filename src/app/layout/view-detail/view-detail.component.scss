@@ -1,5 +1,5 @@
 agm-map {
-    height: 300px !important;
+    height: 250px !important;
     width: 100%;  /* This is really important*/
 }
 
@@ -8,14 +8,14 @@ mat-vertical-stepper{
 }
 
 .myimage {
-    width: 100px;
-    height: 100px;
+    width: 50px;
+    height: 50px;
     position: relative;
 }
 
 .restroName {
     font-size: 17px;
-    color: white;
+    color: black;
     font-weight: 500;
     text-overflow: ellipsis;
     overflow: hidden;
@@ -158,7 +158,6 @@ body {
 	margin-right:20px;
 }
 
-
 .tracking-progress-bar{
     margin: 10px 0;
 }
@@ -184,18 +183,18 @@ body {
     display: inline-block;
     margin: 0 -5px;
     height: 12px;
-    width: 150px;
+    width: 115px;
     z-index: 2;
 }
 
 .tracking-progress-bar__item__bar--active{
-    background: #c62828
+    background: #e54c2a
 }
 .tracking-progress-bar__item--first{
     margin-left: 0
 }
 .tracking-progress-bar__item--active{
-    background: #c62828;
+    background: #e54c2a;
     color: #fff;
 }
 

@@ -7,8 +7,9 @@ import {AngularMaterialModule} from '../../app-module/angular-matrial.module';
 import {AlertDialogModule} from '../alert-dialog/alert-dialog.module';
 import {LoginModule} from '../login/login.module';
 import {CustomisableDialogModule} from '../customisable-dialog/customisable-dialog.module';
+import {MobileNoDialogModule} from '../mobile-no-dialog/mobile-no-dialog.module';
 @NgModule({
-    imports: [CommonModule, ShopRoutingModule, AngularMaterialModule, AlertDialogModule, LoginModule, CustomisableDialogModule],
+    imports: [CommonModule, ShopRoutingModule, AngularMaterialModule, AlertDialogModule, LoginModule, CustomisableDialogModule, MobileNoDialogModule],
     declarations: [ShopComponent],
     providers: [ShopProvider],
 })

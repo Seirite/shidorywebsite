@@ -1,8 +1,8 @@
 <div class="row" style="margin-left: 5%; margin-right: 5%;">
-    <div align="start" class="col-3">
+    <div align="start" class="col-2">
         <i class="icofont icofont-social-google-map" style="color: #e54c2a; font-size: xx-large;"></i>
     </div>
-    <div align="center" class="col-6">
+    <div align="center" class="col-7">
         <h2 class="text-muted">
             <strong style="color: #F96302;">Track Your Order</strong>
         </h2>
@@ -11,44 +11,49 @@
         <i class="icofont icofont-close" (click)="dialogRef.close()"></i>
     </div>
 </div>
-<div class="mat-elevation-z1" style="background-color: #F96302; color: white; font-weight: bolder;">
+<div class="mat-elevation-z0" style="font-weight: 1000; font-size: 13px; color: #282c3f;">
     <div class="row" style="margin-left: 5%; margin-right: 5%;">
         <div align="start">
-            <p style="font-size: large; margin-top: 4%;">Order Id :</p>
+            <p>Order Id :</p>
         </div>
-        <div align="center" style="margin-left: 23%;">
-            <p class="restroName">{{trackOrderObject.ORDER_ID}}</p>
+        <div align="center" style="margin-left: 5%;">
+            <p>{{trackOrderObject.ORDER_ID}}</p>
+        </div>
+        <div align="end" style="margin-left: 35%;">
+            <p style="color: #e54c2a; font-weight: bold; font-size: medium;" align="center" *ngIf="userOrderStatus!='DELIVERD'">{{userOrderStatus || ''}}</p>
+            <p style="color: #e54c2a; font-weight: bold; font-size: medium;" align="center" *ngIf="userOrderStatus=='DELIVERD'">{{userOrderStatus || ''}}</p>
         </div>
     </div>
     <div class="row" style="margin-left: 5%; margin-right: 5%;">
         <div align="start">
-            <p style="font-size: large; margin-top: 2%;">Delivery To :</p>
+            <p>Delivery To :</p>
         </div>
-        <div align="start" style="margin-left: 5%; margin-top: 1%;">
+        <div align="start" style="margin-left: 5%;">
             <p>{{trackOrderObject.SELECT_ADDRESS}}</p>
         </div>
     </div>
     <div class="row" style="margin-left: 5%; margin-right: 5%;">
         <div align="start">
-            <p style="font-size: large; margin-top: 2%;">Cart Total Price :</p>
+            <p>To Pay :</p>
         </div>
-        <div align="center" style="margin-left: 5%; margin-top: 1%;">
-            <p>{{trackOrderObject.RESTRO_USER_CART_CURRENCY}} {{trackOrderObject.RESTRO_USER_CART_TOTAL}}</p>
+        <div align="center" style="margin-left: 5%;">
+            <p *ngIf="trackOrderObject.RESTRO_USER_CART_COUPON_DISCOUNT_NAME==0">{{trackOrderObject.RESTRO_USER_CART_CURRENCY}}{{trackOrderObject.RESTRO_USER_CART_TOTAL + trackOrderObject.RESTRO_USER_CART_CHARGES}}</p>
+            <p *ngIf="trackOrderObject.RESTRO_USER_CART_COUPON_DISCOUNT_NAME!=0">{{trackOrderObject.RESTRO_USER_CART_CURRENCY}}{{trackOrderObject.RESTRO_USER_CART_TOTAL - trackOrderObject.RESTRO_USER_CART_COUPON_DISCOUNT_AMOUNT + trackOrderObject.RESTRO_USER_CART_CHARGES}}</p>
         </div>
     </div>
     <div class="row" style="margin-left: 5%; margin-right: 5%;" *ngIf="trackOrderObject.RESTRO_USER_CART_COUPON_DISCOUNT_NAME">
         <div align="start">
-            <p style="font-size: large; margin-top: 2%;">After Apply Coupon :</p>
+            <p>After Apply Coupon :</p>
         </div>
-        <div align="center" style="margin-left: 5%; margin-top: 1%;">
+        <div align="center" style="margin-left: 5%;">
             <p>{{trackOrderObject.RESTRO_USER_CART_COUPON_DISCOUNT_NAME}} ({{trackOrderObject.RESTRO_USER_CART_DISCOUNT_TOTAL}})</p>
         </div>
     </div>
     <div class="row" style="margin-left: 5%; margin-right: 5%;" *ngIf="userOTP">
         <div align="start">
-            <p style="font-size: large; margin-top: 2%;">OTP :</p>
+            <p>OTP :</p>
         </div>
-        <div align="center" style="margin-left: 5%; margin-top: 1%;">
+        <div align="center" style="margin-left: 5%;">
             <p>{{userOTP}}</p>
         </div>
     </div>
@@ -56,114 +61,194 @@
 
 
 <div padding style="color: white;" *ngIf="deliveryStatusList?.length==1">
-        <div class="boleto__wrapper boleto__wrapper--tracking-progress-bar">
+    <div class="boleto__wrapper boleto__wrapper--tracking-progress-bar">
 
-            <div class="tracking-progress-bar">
-                <div class="tracking-progress-bar__item tracking-progress-bar__item--first tracking-progress-bar__item--active"><span><i class="icofont icofont-tick-mark"></i></span></div>
+        <div class="tracking-progress-bar">
+            <div class="tracking-progress-bar__item tracking-progress-bar__item--first tracking-progress-bar__item--active"><span><i class="icofont icofont-tick-mark"></i></span></div>
 
-                <span class="tracking-progress-bar__item__bar"></span>
-                <div class="tracking-progress-bar__item"><span><i class="icofont icofont-spoon-and-fork"></i></span></div>
+            <span class="tracking-progress-bar__item__bar"></span>
+            <div class="tracking-progress-bar__item"><span><i class="icofont icofont-spoon-and-fork"></i></span></div>
 
-                <span class="tracking-progress-bar__item__bar"></span>
-                <div class="tracking-progress-bar__item"><span><i class="icofont icofont-cart-alt"></i></span></div>
+            <span class="tracking-progress-bar__item__bar"></span>
+            <div class="tracking-progress-bar__item"><span><i class="icofont icofont-cart-alt"></i></span></div>
 
-                <span class="tracking-progress-bar__item__bar"></span>
-                <div class="tracking-progress-bar__item"><span><i class="icofont icofont-waiter-alt"></i></span></div>
+            <span class="tracking-progress-bar__item__bar"></span>
+            <div class="tracking-progress-bar__item"><span><i class="icofont icofont-waiter-alt"></i></span></div>
 
-                <span class="tracking-progress-bar__item__bar"></span>
-                <div class="tracking-progress-bar__item"><span><i class="icofont icofont-home"></i></span></div>
+            <span class="tracking-progress-bar__item__bar"></span>
+            <div class="tracking-progress-bar__item"><span><i class="icofont icofont-home"></i></span></div>
+        </div>
+
+    </div>
+</div>
+
+<div padding style="color: white;" *ngIf="deliveryStatusList?.length==2">
+    <div class="boleto__wrapper boleto__wrapper--tracking-progress-bar">
+
+        <div class="tracking-progress-bar">
+            <div class="tracking-progress-bar__item tracking-progress-bar__item--first tracking-progress-bar__item--active"><span><i class="icofont icofont-tick-mark"></i></span></div>
+
+            <span class="tracking-progress-bar__item__bar tracking-progress-bar__item__bar--active"></span>
+            <div class="tracking-progress-bar__item tracking-progress-bar__item__bar--active"><span><i class="icofont icofont-spoon-and-fork"></i></span></div>
+
+            <span class="tracking-progress-bar__item__bar"></span>
+            <div class="tracking-progress-bar__item"><span><i class="icofont icofont-cart-alt"></i></span></div>
+
+            <span class="tracking-progress-bar__item__bar"></span>
+            <div class="tracking-progress-bar__item"><span><i class="icofont icofont-waiter-alt"></i></span></div>
+
+            <span class="tracking-progress-bar__item__bar"></span>
+            <div class="tracking-progress-bar__item"><span><i class="icofont icofont-home"></i></span></div>
+        </div>
+
+    </div>
+</div>
+
+<div padding style="color: white;" *ngIf="deliveryStatusList?.length==3">
+    <div class="boleto__wrapper boleto__wrapper--tracking-progress-bar">
+
+        <div class="tracking-progress-bar">
+            <div class="tracking-progress-bar__item tracking-progress-bar__item--first tracking-progress-bar__item--active"><span><i class="icofont icofont-tick-mark"></i></span></div>
+
+            <span class="tracking-progress-bar__item__bar tracking-progress-bar__item__bar--active"></span>
+            <div class="tracking-progress-bar__item tracking-progress-bar__item__bar--active"><span><i class="icofont icofont-spoon-and-fork"></i></span></div>
+
+            <span class="tracking-progress-bar__item__bar tracking-progress-bar__item__bar--active"></span>
+            <div class="tracking-progress-bar__item tracking-progress-bar__item__bar--active"><span><i class="icofont icofont-cart-alt"></i></span></div>
+
+            <span class="tracking-progress-bar__item__bar"></span>
+            <div class="tracking-progress-bar__item"><span><i class="icofont icofont-waiter-alt"></i></span></div>
+
+            <span class="tracking-progress-bar__item__bar"></span>
+            <div class="tracking-progress-bar__item"><span><i class="icofont icofont-home"></i></span></div>
+        </div>
+
+    </div>
+</div>
+
+<div padding style="color: white;" *ngIf="deliveryStatusList?.length==4">
+    <div class="boleto__wrapper boleto__wrapper--tracking-progress-bar">
+
+        <div class="tracking-progress-bar">
+            <div class="tracking-progress-bar__item tracking-progress-bar__item--first tracking-progress-bar__item--active"><span><i class="icofont icofont-tick-mark"></i></span></div>
+
+            <span class="tracking-progress-bar__item__bar tracking-progress-bar__item__bar--active"></span>
+            <div class="tracking-progress-bar__item tracking-progress-bar__item__bar--active"><span><i class="icofont icofont-spoon-and-fork"></i></span></div>
+
+            <span class="tracking-progress-bar__item__bar tracking-progress-bar__item__bar--active"></span>
+            <div class="tracking-progress-bar__item tracking-progress-bar__item__bar--active"><span><i class="icofont icofont-cart-alt"></i></span></div>
+
+            <span class="tracking-progress-bar__item__bar tracking-progress-bar__item__bar--active"></span>
+            <div class="tracking-progress-bar__item tracking-progress-bar__item__bar--active"><span><i class="icofont icofont-waiter-alt"></i></span></div>
+
+            <span class="tracking-progress-bar__item__bar"></span>
+            <div class="tracking-progress-bar__item"><span><i class="icofont icofont-home"></i></span></div>
+        </div>
+
+    </div>
+</div>
+
+<div padding style="color: white;" *ngIf="deliveryStatusList?.length==5">
+    <div class="boleto__wrapper boleto__wrapper--tracking-progress-bar">
+
+        <div class="tracking-progress-bar">
+            <div class="tracking-progress-bar__item tracking-progress-bar__item--first tracking-progress-bar__item--active"><span><i class="icofont icofont-tick-mark"></i></span></div>
+
+            <span class="tracking-progress-bar__item__bar tracking-progress-bar__item__bar--active"></span>
+            <div class="tracking-progress-bar__item tracking-progress-bar__item__bar--active"><span><i class="icofont icofont-spoon-and-fork"></i></span></div>
+
+            <span class="tracking-progress-bar__item__bar tracking-progress-bar__item__bar--active"></span>
+            <div class="tracking-progress-bar__item tracking-progress-bar__item__bar--active"><span><i class="icofont icofont-cart-alt"></i></span></div>
+
+            <span class="tracking-progress-bar__item__bar tracking-progress-bar__item__bar--active"></span>
+            <div class="tracking-progress-bar__item tracking-progress-bar__item__bar--active"><span><i class="icofont icofont-waiter-alt"></i></span></div>
+
+            <span class="tracking-progress-bar__item__bar tracking-progress-bar__item__bar--active"></span>
+            <div class="tracking-progress-bar__item tracking-progress-bar__item__bar--active"><span><i class="icofont icofont-home"></i></span></div>
+        </div>
+
+    </div>
+</div>
+
+
+<div class="row" *ngIf="deliveryStatusList?.length!=4">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="mat-elevation-z1">
+            <div class="row">
+                <div class="col-md-3 col-sm-3 col-xs-3" align="center" style="margin-top: 5%; margin-bottom: 5%; margin-left: 5%;">
+                    <img src="{{restroImage || 'http://static1.squarespace.com/static/597a2f14b3db2bd7814e6774/t/598cadb715d5db4ff57e9216/1502391736040/sprig.300x300.bg.png?format=1500w'}}" class="myimage" />
+                </div>
+                <div class="col-md-9 col-sm-9 col-xs-9" style="margin-top: 5%; -ms-flex: 1; flex: 1;  position: relative; overflow: hidden; min-height: 50px;">
+                    <p class="restroName">{{restroName}}</p>
+                    <p style="font-size: 13px; color: #686b78; margin-top: -5%;">{{restroAreaName}}</p>
+                    <hr style="margin-top: 0rem;">
+                </div>
             </div>
+            <div style="margin-left: 5%;">
+                <div class="row" *ngFor="let cartItem of userMenuItem">
+                     <div class="col-12">
+                        <div class="row">
+                            <div class="col-1">
+                                <img src="assets/images/menu-type/non-vegetarian.png" *ngIf="cartItem.MENU_ITEM_CATEGORY=='NonVeg'" />
+                                <img src="assets/images/menu-type/vegetarian.png" *ngIf="cartItem.MENU_ITEM_CATEGORY=='Veg'" />
+                                <img src="assets/images/menu-type/egg-contain.png" *ngIf="cartItem.MENU_ITEM_CATEGORY=='Contains Egg'" />
+                            </div>
+                            <div class="col-3" align="start">
+                                <span style="font-weight: 1000; display: inline-block; width: 90%; white-space: nowrap; overflow: hidden !important; text-overflow: ellipsis; text-transform: capitalize;">{{cartItem.MENU_ITEM_NAME}}</span>
+                            </div>
+                            <div class="col-4" align="center">
+                                <span style="font-weight: 500;">{{cartItem.MENU_ITEM_CURRENCY}} {{cartItem.MENU_ITEM_PRICE}}</span>
+                                <span style="font-weight: 300;"> X </span>
+                                <span style="font-weight: 500;">{{cartItem.MENU_ITEM_QUANTITY}}</span>
+                            </div>
+                            <div class="col-4" align="center">
+                                <span *ngIf="!cartItem.MENU_ITEM_TOTAL" style="font-weight: 500;">{{cartItem.MENU_ITEM_CURRENCY}}{{cartItem.MENU_ITEM_PRICE}}</span>
+                                <span *ngIf="cartItem.MENU_ITEM_TOTAL" style="font-weight: 500;">{{cartItem.MENU_ITEM_CURRENCY}}{{cartItem.MENU_ITEM_TOTAL}}</span>
+                            </div>
+                            <br>
+                            <br>
+                        </div>
+                    </div>
+                </div>
+                <div style="margin-top: 17px; padding-bottom: 21px; border-bottom: 2px solid #282c3f;">
+                    <div style="font-weight: 1000; font-size: 13px; margin-bottom: 10px; color: #282c3f;">
+                        Bill Details
+                    </div>
+                    <div style="font-size: 13px; color: #686b78;display: -ms-flexbox; display: flex;-ms-flex-align: center;align-items: center;">
+                        Item Total
+                        <div style="margin-left: 68%;">
+                            <span align="right">{{totalPrice}}</span>
+                        </div>
+                    </div>
+                    <hr>
+                    <div style="font-size: 13px;color: #686b78; display: -ms-flexbox; display: flex; -ms-flex-align: center; align-items: center;">
+                        Delivery Fee
+                        <div style="margin-left: 65%;">
+                            <span align="right">{{deliveryFee}}</span>
+                        </div>
+                    </div>
+                    <hr *ngIf="trackOrderObject.RESTRO_USER_CART_COUPON_DISCOUNT_NAME">
+                    <div style="font-size: 13px;color: #73bb5c; display: -ms-flexbox; display: flex; -ms-flex-align: center; align-items: center;" *ngIf="trackOrderObject.RESTRO_USER_CART_COUPON_DISCOUNT_NAME">
+                        Apply Coupon
+                        <div style="margin-left: 65%;">
+                            <span align="right">{{coupanValue}}</span>
+                        </div>
+                    </div>
+                </div>
 
+                <div style="width: 100%; background: #fff; height: 60px; min-height: 60px;  display: -ms-flexbox;  display: flex;  -ms-flex-align: center;  align-items: center;  font-weight: 600; color: #282c3f; z-index: 1;">
+                    <div style="font-weight: 1000;">
+                        To Pay
+                    </div>
+                    <div style="margin-left: 70%;">
+                        <span align="right">{{userPaymentAmount}}</span>
+                    </div>
+                </div>
+
+            </div>
         </div>
     </div>
-    
-    <div padding style="color: white;" *ngIf="deliveryStatusList?.length==2">
-        <div class="boleto__wrapper boleto__wrapper--tracking-progress-bar">
-
-            <div class="tracking-progress-bar">
-                <div class="tracking-progress-bar__item tracking-progress-bar__item--first tracking-progress-bar__item--active"><span><i class="icofont icofont-tick-mark"></i></span></div>
-
-                <span class="tracking-progress-bar__item__bar tracking-progress-bar__item__bar--active"></span>
-                <div class="tracking-progress-bar__item tracking-progress-bar__item__bar--active"><span><i class="icofont icofont-spoon-and-fork"></i></span></div>
-
-                <span class="tracking-progress-bar__item__bar"></span>
-                <div class="tracking-progress-bar__item"><span><i class="icofont icofont-cart-alt"></i></span></div>
-
-                <span class="tracking-progress-bar__item__bar"></span>
-                <div class="tracking-progress-bar__item"><span><i class="icofont icofont-waiter-alt"></i></span></div>
-
-                <span class="tracking-progress-bar__item__bar"></span>
-                <div class="tracking-progress-bar__item"><span><i class="icofont icofont-home"></i></span></div>
-            </div>
-
-        </div>
-    </div>
-    
-    <div padding style="color: white;" *ngIf="deliveryStatusList?.length==3">
-        <div class="boleto__wrapper boleto__wrapper--tracking-progress-bar">
-
-            <div class="tracking-progress-bar">
-                <div class="tracking-progress-bar__item tracking-progress-bar__item--first tracking-progress-bar__item--active"><span><i class="icofont icofont-tick-mark"></i></span></div>
-
-                <span class="tracking-progress-bar__item__bar tracking-progress-bar__item__bar--active"></span>
-                <div class="tracking-progress-bar__item tracking-progress-bar__item__bar--active"><span><i class="icofont icofont-spoon-and-fork"></i></span></div>
-
-                <span class="tracking-progress-bar__item__bar tracking-progress-bar__item__bar--active"></span>
-                <div class="tracking-progress-bar__item tracking-progress-bar__item__bar--active"><span><i class="icofont icofont-cart-alt"></i></span></div>
-
-                <span class="tracking-progress-bar__item__bar"></span>
-                <div class="tracking-progress-bar__item"><span><i class="icofont icofont-waiter-alt"></i></span></div>
-
-                <span class="tracking-progress-bar__item__bar"></span>
-                <div class="tracking-progress-bar__item"><span><i class="icofont icofont-home"></i></span></div>
-            </div>
-
-        </div>
-    </div>
-    
-    <div padding style="color: white;" *ngIf="deliveryStatusList?.length==4">
-        <div class="boleto__wrapper boleto__wrapper--tracking-progress-bar">
-
-            <div class="tracking-progress-bar">
-                <div class="tracking-progress-bar__item tracking-progress-bar__item--first tracking-progress-bar__item--active"><span><i class="icofont icofont-tick-mark"></i></span></div>
-
-                <span class="tracking-progress-bar__item__bar tracking-progress-bar__item__bar--active"></span>
-                <div class="tracking-progress-bar__item tracking-progress-bar__item__bar--active"><span><i class="icofont icofont-spoon-and-fork"></i></span></div>
-
-                <span class="tracking-progress-bar__item__bar tracking-progress-bar__item__bar--active"></span>
-                <div class="tracking-progress-bar__item tracking-progress-bar__item__bar--active"><span><i class="icofont icofont-cart-alt"></i></span></div>
-
-                <span class="tracking-progress-bar__item__bar tracking-progress-bar__item__bar--active"></span>
-                <div class="tracking-progress-bar__item tracking-progress-bar__item__bar--active"><span><i class="icofont icofont-waiter-alt"></i></span></div>
-
-                <span class="tracking-progress-bar__item__bar"></span>
-                <div class="tracking-progress-bar__item"><span><i class="icofont icofont-home"></i></span></div>
-            </div>
-
-        </div>
-    </div>
-    
-    <div padding style="color: white;" *ngIf="deliveryStatusList?.length==5">
-        <div class="boleto__wrapper boleto__wrapper--tracking-progress-bar">
-
-            <div class="tracking-progress-bar">
-                <div class="tracking-progress-bar__item tracking-progress-bar__item--first tracking-progress-bar__item--active"><span><i class="icofont icofont-tick-mark"></i></span></div>
-
-                <span class="tracking-progress-bar__item__bar tracking-progress-bar__item__bar--active"></span>
-                <div class="tracking-progress-bar__item tracking-progress-bar__item__bar--active"><span><i class="icofont icofont-spoon-and-fork"></i></span></div>
-
-                <span class="tracking-progress-bar__item__bar tracking-progress-bar__item__bar--active"></span>
-                <div class="tracking-progress-bar__item tracking-progress-bar__item__bar--active"><span><i class="icofont icofont-cart-alt"></i></span></div>
-
-                <span class="tracking-progress-bar__item__bar tracking-progress-bar__item__bar--active"></span>
-                <div class="tracking-progress-bar__item tracking-progress-bar__item__bar--active"><span><i class="icofont icofont-waiter-alt"></i></span></div>
-
-                <span class="tracking-progress-bar__item__bar tracking-progress-bar__item__bar--active"></span>
-                <div class="tracking-progress-bar__item tracking-progress-bar__item__bar--active"><span><i class="icofont icofont-home"></i></span></div>
-            </div>
-
-        </div>
-    </div>
+</div>
 
 
 <!--<div class="md-stepper-horizontal orange" *ngFor="let orderStatus of deliveryStatusList">
@@ -182,6 +267,6 @@
       <div class="md-step-bar-right"></div>
     </div>
 </div>-->
-<agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom" *ngIf="showMap==true">
+<agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom" *ngIf="deliveryStatusList?.length==4">
     <agm-direction [origin]="origin" [destination]="destination" [visible]="show"></agm-direction>
 </agm-map>

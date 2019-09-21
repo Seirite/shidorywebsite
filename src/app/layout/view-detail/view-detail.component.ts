@@ -11,7 +11,14 @@ import {ADD_ORDER_MST} from '../../pojos/ADD_ORDER_MST';
     styleUrls: ['./view-detail.component.scss']
 })
 export class ViewDetailComponent implements OnInit {
-    couponName: string;
+    restroImage: any;
+    restroAreaName: any;
+    restroName: any;
+    deliveryFee: string;
+    userOrderStatus: string;
+    userPaymentAmount: string;
+    userMenuItem: any[];
+    couponName: number;
     discountAmount: string;
     totalPrice: string;
     selectAddress: any;
@@ -62,6 +69,9 @@ export class ViewDetailComponent implements OnInit {
             lat: restroData.RESTRO_LOCATION.geopoint.latitude,
             lng: restroData.RESTRO_LOCATION.geopoint.longitude
         }
+        this.restroName = restroData.RESTRO_NAME
+        this.restroAreaName = restroData.RESTRO_AREA_NAME
+        this.restroImage = restroData.RESTRO_IMAGE
         this.provider.getUserOrderList(this.countryName, this.stateName, this.cityName, restroData.RESTRO_LOCATION.geohash.substring(0, 5), this.data.ORDER_ID).subscribe(async (list: ADD_ORDER_MST[]) =>
         {
             if (list.length != 0)
@@ -69,7 +79,6 @@ export class ViewDetailComponent implements OnInit {
                 this.orderId = list[0].ORDER_ID;
                 this.selectAddress = list[0].SELECT_ADDRESS;
                 this.totalPrice = list[0].RESTRO_USER_CART_CURRENCY + " " + list[0].RESTRO_USER_CART_TOTAL;
-                this.discountAmount = list[0].RESTRO_USER_CART_CURRENCY + " " + list[0].RESTRO_USER_CART_DISCOUNT_TOTAL;
                 this.couponName = list[0].RESTRO_USER_CART_COUPON_DISCOUNT_NAME;
                 this.userOTP = list[0].RESTRO_USER_OTP;
                 this.deliveryStatusList = list[0].ORDER_STATUS_ARRAY.reverse();
@@ -77,22 +86,50 @@ export class ViewDetailComponent implements OnInit {
                     lat: list[0].SELECT_ADDRESS_GEOPOINT_LATITUDE,
                     lng: list[0].SELECT_ADDRESS_GEOPOINT_LONGITUDE
                 }
+                this.userMenuItem = list[0].MENUCART;
+                if (list[0].RESTRO_USER_CART_COUPON_DISCOUNT_NAME != 0) 
+                {
+                    var userPaymentAmount = list[0].RESTRO_USER_CART_TOTAL - list[0].RESTRO_USER_CART_COUPON_DISCOUNT_AMOUNT;
+                    var totalPrice = userPaymentAmount + list[0].RESTRO_USER_CART_CHARGES;
+                    this.userPaymentAmount = list[0].RESTRO_USER_CART_CURRENCY + " " + totalPrice;
+                }
+                else 
+                {
+                    var totalPrice = list[0].RESTRO_USER_CART_TOTAL + list[0].RESTRO_USER_CART_CHARGES;
+                    this.userPaymentAmount = list[0].RESTRO_USER_CART_CURRENCY + " " + totalPrice;
+                }
+                this.deliveryFee = list[0].RESTRO_USER_CART_CURRENCY + " " + list[0].RESTRO_USER_CART_CHARGES;
+                this.discountAmount = list[0].RESTRO_USER_CART_CURRENCY + " " + list[0].RESTRO_USER_CART_COUPON_DISCOUNT_AMOUNT;
+                if (list[0].DELIVERD == true) 
+                {
+                    this.userOrderStatus = "DELIVERD";
+                }
+                else 
+                {
+                    if (list[0].HAWKER_STATUS) 
+                    {
+                        this.userOrderStatus = list[0].HAWKER_STATUS;
+                    }
+                    else 
+                    {
+                        this.userOrderStatus = list[0].ORDER_STATUS;
+                    }
+                }
+                if (list[0].HAWKER_STATUS == "TAKEN" && list[0].DELIVERD == false) 
+                {
+                    this.provider.getHawkerLocation(this.countryName, this.stateName, this.cityName, restroData.RESTRO_LOCATION.geohash.substring(0, 5), list[0].HAWKER_KEY).subscribe((hawkerLocationObj: any) => 
+                    {
+                        this.origin = {
+                            lat: hawkerLocationObj[0].HAWKER_LAT,
+                            lng: hawkerLocationObj[0].HAWKER_LANG
+                        }
+                    })
+                }
             }
             else
             {
                 console.log("Order Delete");
             }
-//            this.deliveryStatusList.forEach(data =>
-//            {
-//                if (data.title == "Order pick up by hawker please track your order")
-//                {
-//                    this.showMap = true;
-//                }
-//                else
-//                {
-//                    this.showMap = false;
-//                }
-//            })
         })
     }
 }

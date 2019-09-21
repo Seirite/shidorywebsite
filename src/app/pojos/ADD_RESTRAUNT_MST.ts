@@ -37,6 +37,7 @@ export class ADD_RESTAURANT_MST
     RESTRO_ISLOGIN: boolean = false;
     DEFAUNT: boolean = false;
     CR_DT: Date;
+    SAVE_DT: Date;
     ORG_ID: any;
     ACCOUNT_NO: string;
     IFSC_CODE: string;

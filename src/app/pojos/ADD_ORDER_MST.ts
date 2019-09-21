@@ -18,9 +18,11 @@ export class ADD_ORDER_MST
     ORDER_ID: string;
     PAYMENT_TYPE: any;
     ORDER_STATUS: string;
+    HAWKER_STATUS: any;
     MENUCART: any[] = [];
     DEFAUNT: boolean;
     CR_DT: Date;
+    SAVE_DT: Date;
     ORG_ID: any;
     RESTRO_USER_ID: any;
     RESTRO_USER_CART_TOTAL: number;
@@ -34,6 +36,8 @@ export class ADD_ORDER_MST
     DELIVERD: boolean = false;
     ORDER_STATUS_ARRAY: any[] = [];
     RESTRO_USER_OTP: any;
+    CART_OVER_TOTAL: any;
+    HAWKER_KEY: any;
 }
 
 export class FIRE_ADD_ORDER_MST_REF

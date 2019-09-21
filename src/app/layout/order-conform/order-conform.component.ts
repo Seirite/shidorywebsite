@@ -131,7 +131,7 @@ export class OrderConformComponent implements OnInit {
     trackOrder()
     {
         let dialogBoxSettings = {
-            width : '60%',
+            width : '50%',
             height : '80%',
             disableClose: true,
             hasBackdrop: true,
