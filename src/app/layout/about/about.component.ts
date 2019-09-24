@@ -100,7 +100,7 @@ export class AboutComponent implements OnInit {
             })
         }).catch(error =>
         {
-            var message = "Please check your internet setting";
+            var message = "Please allow the location.";
             var action = "";
             this.openSnackBarAddress(message, action);
         })

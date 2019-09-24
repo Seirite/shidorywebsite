@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {MatSnackBar} from '@angular/material';
 
 @Component({
     selector: 'app-root',
@@ -6,11 +7,19 @@ import { Component, OnInit } from '@angular/core';
     styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-    constructor() {
+    constructor(private snackBar: MatSnackBar) {
     }
 
     ngOnInit() {
-        this.getPosition()
+        this.getPosition().then(location =>
+        {
+            console.log(location);
+        }).catch(error =>
+        {
+            var message = "Please allow the location.";
+            var action = "";
+            this.openSnackBarAddress(message, action);
+        })
     }
     
     getPosition(): Promise<any>
@@ -27,5 +36,12 @@ export class AppComponent implements OnInit {
             });
         });
 
+    }
+    
+    openSnackBarAddress(message: string, action: string) 
+    {
+        this.snackBar.open(message, action, {
+            duration: 5000
+        });
     }
 }

@@ -36,10 +36,25 @@ export class MobileNoDialogProvider {
         })
     }
     
-    calledOTPFunction()
+    checkWeatherMobileNoIsAlreadyLinkOrNot(phoneNumber: any)
     {
-        
+        return new Promise((resolve, reject) =>
+        {
+            this.serviceFirestore.getListFromFireStore(this.serviceFirestore.firestore.collection("RESTRO_USER", ref => ref
+                .where("phoneNumber", "==", phoneNumber)
+            )).subscribe((list: any[]) =>
+            {
+                if (list.length > 0)
+                {
+                    reject(list[0]);
+                }
+                if (list.length == 0)
+                {
+                    resolve("NDF");
+                }
+            })
+        })
     }
-   
+    
 
 }

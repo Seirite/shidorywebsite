@@ -268,14 +268,15 @@ export class ReservationComponent implements OnInit {
                 })
             }).catch(error =>
             {
-                console.log(error);
                 var message = "Check your Internet Connection";
                 var action = "";
                 this.openSnackBarAddress(message, action);
             })
         }).catch(error =>
         {
-            console.log(error);
+            var message = "Please allow the location.";
+            var action = "";
+            this.openSnackBarAddress(message, action);
         })
     }
 

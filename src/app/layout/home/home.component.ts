@@ -4,7 +4,7 @@ import {Observable, BehaviorSubject} from 'rxjs';
 import { map, switchMap} from 'rxjs/operators';
 import {Router, NavigationExtras} from '@angular/router';
 import {HomeProvider} from './home-provider';
-import {MatDialog, MatTableDataSource, MatPaginator} from '@angular/material';
+import {MatDialog, MatTableDataSource, MatPaginator, MatSnackBar} from '@angular/material';
 import {AuthService} from '../../utility/auth-service';
 import {GooglePlaceDirective} from 'ngx-google-places-autocomplete';
 import {Address} from 'ngx-google-places-autocomplete/objects/address';
@@ -64,7 +64,7 @@ export class HomeComponent implements OnInit {
     radius = new BehaviorSubject(0.5);
     points: Observable<any>;
     safeSrc: SafeResourceUrl
-    constructor(private provider: HomeProvider, private sanitizer: DomSanitizer, public router: Router, public auth: AuthService, public dialog: MatDialog) { 
+    constructor(private provider: HomeProvider, private sanitizer: DomSanitizer, public router: Router, public auth: AuthService, public dialog: MatDialog, private snackBar: MatSnackBar) { 
        this.safeSrc =  this.sanitizer.bypassSecurityTrustResourceUrl("https://youtu.be/95SNbn340TE");
     }
 
@@ -333,7 +333,21 @@ export class HomeComponent implements OnInit {
                 await this.getRestroUserTimezone(this.userLocation.lat, this.userLocation.lng);
                 await this.getRestrauantListUserPositionWise();
             }
+        }).catch(error =>
+        {
+            this.loader = false;
+            this.searchFail = true;
+            var message = "Please allow the location.";
+            var action = "";
+            this.openSnackBarAddress(message, action);
         })
+    }
+    
+    openSnackBarAddress(message: string, action: string) 
+    {
+        this.snackBar.open(message, action, {
+            duration: 5000
+        });
     }
     
     logOut()

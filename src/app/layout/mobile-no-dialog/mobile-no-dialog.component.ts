@@ -37,13 +37,7 @@ export class MobileNoDialogComponent implements OnInit {
         {
             if (this.mobileNumber.toString().length == 10)
             {
-                this.hideVerifyButton = true;
-                this.getOTPFromFunction();
-                setTimeout(() =>
-                {
-                    this.showOTPDialog = true;
-                    this.startCounter();
-                },1000)
+                this.checkWeatherMobileNoIsAlreadyLinkOrNot();
             }
             else
             {
@@ -118,7 +112,6 @@ export class MobileNoDialogComponent implements OnInit {
     getOTPFromFunction()
     {
         this.mobileNumberOTP = Math.floor(Math.random() * 899999 + 100000);
-        console.log(this.mobileNumberOTP);
         let url = `https://us-central1-shidory-c2c4c.cloudfunctions.net/sendMessage`
         let httpOptions = {
             headers: new HttpHeaders({
@@ -139,6 +132,26 @@ export class MobileNoDialogComponent implements OnInit {
         }).catch(error =>
         {
             console.log(error);
+        })
+    }
+    
+    checkWeatherMobileNoIsAlreadyLinkOrNot()
+    {
+        var phoneNumber = this.callingCode + this.mobileNumber;
+        this.provider.checkWeatherMobileNoIsAlreadyLinkOrNot(phoneNumber).then((mobileNoCheckStatus: any) =>
+        {
+            this.hideVerifyButton = true;
+            this.getOTPFromFunction();
+            setTimeout(() => 
+            {
+                this.showOTPDialog = true;
+                this.startCounter();
+            },1000)
+        }).catch(error =>
+        {
+            this.hideVerifyButton = false;
+            this.showOTPDialog = false;
+            this.errorMessage = "Already exists with " + error.displayName;
         })
     }
     
