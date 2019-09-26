@@ -115,22 +115,28 @@ export class AboutComponent implements OnInit {
     
     getCountryReport()
     {
-        this.provider.getCountryReport(this.countryName).subscribe(list =>
+        if (this.countryName)
         {
-            this.numberOfRestaurant = list[0].RESTRO_COUNT;
-            this.numberOfCity = list[0].CITY_COUNT;
-        })
+            this.provider.getCountryReport(this.countryName).subscribe(list =>
+            {
+                this.numberOfRestaurant = list[0].RESTRO_COUNT;
+                this.numberOfCity = list[0].CITY_COUNT;
+            })
+        }
     }
     
     getNumberOfOrder()
     {
-        this.provider.getNumberOfOrder(this.countryName).subscribe(list =>
+        if (this.countryName)
         {
-            list.forEach(data =>
+            this.provider.getNumberOfOrder(this.countryName).subscribe(list =>
             {
-                this.numberOfTotalOrders += data.ACCEPTED_ORDERS;
+                list.forEach(data => 
+                {
+                    this.numberOfTotalOrders += data.ACCEPTED_ORDERS;
+                })
             })
-        })
+        }
     }
     
     getNumberOfVisitors()
@@ -139,6 +145,23 @@ export class AboutComponent implements OnInit {
         {
             this.numberOfVisitors = list.length;
         })
+    }
+    
+    onRightClick($event)
+    {
+        return false;
+    }
+    
+    keyboardEvent($event)
+    {
+        if ($event.keyCode == 123) 
+        {
+            return false;
+        }
+        else if(($event.ctrlKey && $event.shiftKey && $event.keyCode == 73) || ($event.ctrlKey && $event.shiftKey && $event.keyCode == 74))
+        {
+            return false;
+        }
     }
     
 }

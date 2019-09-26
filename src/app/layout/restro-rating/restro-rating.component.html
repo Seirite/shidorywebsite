@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row" (contextmenu)="onRightClick($event)" (window:keydown)="keyboardEvent($event)">
     <div class="col-8" align="start">
         <h2 style="color: #7e808c; font-weight: 600; margin: 0 0 28px; font-size: 12px; text-transform: uppercase;">{{restroName}}</h2>
     </div>
@@ -6,7 +6,7 @@
         <i class="icofont icofont-close" (click)="dialogRef.close()"></i>
     </div>
 </div>
-<div class="row">
+<div class="row" (contextmenu)="onRightClick($event)" (window:keydown)="keyboardEvent($event)">
     <div class="col-4" align="center">
         <img src="{{restroImage || 'assets/images/loader.gif'}}" align="center" width="80%" height="40%" style="margin-top: 30%;" />
     </div>
@@ -16,7 +16,7 @@
     </div>
 </div>
 
-<div class="rating">
+<div class="rating" (contextmenu)="onRightClick($event)" (window:keydown)="keyboardEvent($event)">
     <input type="radio" value="5" />
     <label (click)='getRestroRating(5)'></label>
 

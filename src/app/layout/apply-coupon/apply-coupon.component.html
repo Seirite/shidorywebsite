@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row" (contextmenu)="onRightClick($event)" (window:keydown)="keyboardEvent($event)">
     <div class="col-8" align="start">
         <h2 style="color: #7e808c; font-weight: 600; margin: 0 0 28px; font-size: 12px; text-transform: uppercase;">AVAILABLE COUPONS</h2>
     </div>
@@ -6,24 +6,22 @@
         <i class="icofont icofont-close" (click)="dialogRef.close()"></i>
     </div>
 </div>
-<div style="overflow-y: auto; overflow-x: hidden; height: 90vh;">
-    <div align="center" *ngIf="showLoading">
-        <img src="assets/images/loader.gif" />
-    </div>
-    <div align="center" *ngIf="offersList?.length==0">
-        <img src="assets/images/NoRecordFound.png" />
-    </div>
-    <div class="col-sm-12" *ngFor="let offers of offersList">
-         <div class="mat-elevation-z1">
-            <div class="col-sm-9">
-                <div style="display: inline-block; height: 30px; width: 46px; border: 1px solid #d4d5d9; font-size: .9rem; font-weight: 600; line-height: 30px; position: relative; text-align: center; background-color: #f5dbb0; border-top-right-radius: 18%; border-bottom-right-radius: 18%; margin-top: 3%;"><img src="../../../assets/images/offers.png" alt=""/></div>
-                <div style="display: inline-block; height: 30px; width: 100px; border: 1px solid #d4d5d9; color: #c13036; font-size: .9rem; font-weight: 600; line-height: 30px; position: relative; text-align: center; background-color: #f5dbb0; border-top-left-radius: 14%; border-bottom-left-radius: 14%; margin-top: 3%;">{{offers.key}}</div>
-                <div style="color: #3e4152; font-size: 90%; font-weight: bolder; margin: 3%;">Get {{offers.OFFER_DESCRIPTION}}</div>
-                <div style="color: #686b78; font-size: 82%; margin-top: 9px; margin: 3%;">Use code <b>{{offers.key}}</b> & get {{offers.OFFER_DESCRIPTION}}</div>
-            </div>
-            <div class="col-sm-3">
-                <button mat-stroked-button color="warn" style="margin: 15px;" (click)="applyCoupun(offers)">Apply</button>
-            </div>
+<div align="center" *ngIf="showLoading" (contextmenu)="onRightClick($event)" (window:keydown)="keyboardEvent($event)">
+    <img src="assets/images/loader.gif" />
+</div>
+<div align="center" *ngIf="offersList?.length==0" (contextmenu)="onRightClick($event)" (window:keydown)="keyboardEvent($event)">
+    <img src="assets/images/NoRecordFound.png" />
+</div>
+<div class="col-sm-12" *ngFor="let offers of offersList" (contextmenu)="onRightClick($event)" (window:keydown)="keyboardEvent($event)">
+     <div class="mat-elevation-z1">
+        <div class="col-sm-9">
+            <div style="display: inline-block; height: 30px; width: 46px; border: 1px solid #d4d5d9; font-size: .9rem; font-weight: 600; line-height: 30px; position: relative; text-align: center; background-color: #f5dbb0; border-top-right-radius: 18%; border-bottom-right-radius: 18%; margin-top: 3%;"><img src="../../../assets/images/offers.png" alt=""/></div>
+            <div style="display: inline-block; height: 30px; width: 100px; border: 1px solid #d4d5d9; color: #c13036; font-size: .9rem; font-weight: 600; line-height: 30px; position: relative; text-align: center; background-color: #f5dbb0; border-top-left-radius: 14%; border-bottom-left-radius: 14%; margin-top: 3%;">{{offers.key}}</div>
+            <div style="color: #3e4152; font-size: 90%; font-weight: bolder; margin: 3%;">Get {{offers.OFFER_DESCRIPTION}}</div>
+            <div style="color: #686b78; font-size: 82%; margin-top: 9px; margin: 3%;">Use code <b>{{offers.key}}</b> & get {{offers.OFFER_DESCRIPTION}}</div>
+        </div>
+        <div class="col-sm-3">
+            <button mat-stroked-button color="warn" style="margin: 15px;" (click)="applyCoupun(offers)">Apply</button>
         </div>
     </div>
 </div>

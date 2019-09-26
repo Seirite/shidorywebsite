@@ -31,13 +31,16 @@ export class ShopProvider {
     
     getRestroWiseMenuList(key, country, state, city)
     {
-        return this.serviceFirestore.getListFromFireStore(this.serviceFirestore.firestore.collection("SHIDORY").doc("ORG1").collection("COUNTRY").doc(country).collection("STATES").doc(state).collection("CITIES").doc(city).collection("RESTAURANT_MST").doc(key).collection("RESTAURENT_MENU_ITEM_MST"));
+        return this.serviceFirestore.getListFromFireStore(this.serviceFirestore.firestore.collection("SHIDORY").doc("ORG1").collection("COUNTRY").doc(country).collection("STATES").doc(state).collection("CITIES").doc(city).collection("RESTAURANT_MST").doc(key).collection("RESTAURENT_MENU_ITEM_MST", ref => ref
+            .where("DEFUNCT", "==", false)
+        ));
     }
     
     getCategoryName(menuCategorykey, country)
     {
         return this.serviceFirestore.getListFromFireStore(this.serviceFirestore.firestore.collection("SHIDORY").doc("ORG1").collection("COUNTRY").doc(country).collection("MTYPE_MST", ref => ref
             .where("key", "==", menuCategorykey)
+            .where("DEFUNCT", "==", false)
         ));
     }
     
@@ -45,6 +48,7 @@ export class ShopProvider {
     {
         return this.serviceFirestore.getListFromFireStore(this.serviceFirestore.firestore.collection("SHIDORY").doc("ORG1").collection("COUNTRY").doc(country).collection("STATES").doc(state).collection("CITIES").doc(city).collection("RESTAURANT_MST").doc(key).collection("RESTAURENT_MENU_ITEM_MST", ref => ref
             .where("MENU_ITEM_TYPE", "==", menuCategorykey)
+            .where("DEFUNCT", "==", false)
         ));
     }
     
@@ -52,6 +56,7 @@ export class ShopProvider {
     {
         return this.serviceFirestore.getListFromFireStore(this.serviceFirestore.firestore.collection("SHIDORY").doc("ORG1").collection("COUNTRY").doc(country).collection("STATES").doc(state).collection("CITIES").doc(city).collection("RESTAURANT_MST").doc(key).collection("RESTAURENT_MENU_ITEM_MST", ref => ref
             .where("MENU_ITEM_CATEGORY", "==", menuCategorykey)
+            .where("DEFUNCT", "==", false)
         ));
     }
     
@@ -59,6 +64,7 @@ export class ShopProvider {
     {
         return this.serviceFirestore.getListFromFireStore(this.serviceFirestore.firestore.collection("SHIDORY").doc("ORG1").collection("COUNTRY").doc(country).collection("STATES").doc(state).collection("CITIES").doc(city).collection("RESTAURANT_MST").doc(key).collection("RESTAURENT_MENU_ITEM_MST", ref => ref
             .where("MENU_ITEM_KEY", "==", menuKey)
+            .where("DEFUNCT", "==", false)
         ));
     }
     

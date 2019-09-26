@@ -1,4 +1,4 @@
-<div *ngIf="!showOTPDialog">
+<div *ngIf="!showOTPDialog" (contextmenu)="onRightClick($event)" (window:keydown)="keyboardEvent($event)">
     <div class="row">
         <div class="col-10">
             <h2 style="font-size: large; font-weight: 900;">Phone Number</h2>
@@ -40,7 +40,7 @@
         </div>
     </div>
 </div>
-<div *ngIf="showOTPDialog">
+<div *ngIf="showOTPDialog" (contextmenu)="onRightClick($event)" (window:keydown)="keyboardEvent($event)">
     <div class="row">
         <div class="col-10">
             <h2 style="font-size: large; font-weight: 900;">Phone Number Verification</h2>

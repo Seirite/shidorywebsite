@@ -1,5 +1,5 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<div class="wrapper" *ngIf="loginStatus==false&&signUpStatus==false">
+<div class="wrapper" *ngIf="loginStatus==false&&signUpStatus==false" (contextmenu)="onRightClick($event)" (window:keydown)="keyboardEvent($event)">
     <div class="login">
         <div class="container">
             <h2 align="left" style="font-size: large;font-weight: 800;">Sign up or log in to Shidory <span style="float: right;cursor: pointer;cursor: hand"> <i class="icofont icofont-close" (click)="dialogRef.close()"></i></span></h2>
@@ -38,7 +38,7 @@
 </div>
 
 
-<div *ngIf="loginStatus==true">
+<div *ngIf="loginStatus==true" (contextmenu)="onRightClick($event)" (window:keydown)="keyboardEvent($event)">
   <div class="login">
         <div class="container">
             <h2 align="left" style="font-size: large;font-weight: 800;">Log in<span style="float: right;cursor: pointer;cursor: hand"> <i class="icofont icofont-close" (click)="dialogRef.close()"></i></span></h2>
@@ -120,7 +120,7 @@
     </div>  
 </div>
 
-<div *ngIf="signUpStatus==true">
+<div *ngIf="signUpStatus==true" (contextmenu)="onRightClick($event)" (window:keydown)="keyboardEvent($event)">
     <div class="login">
         <div class="container">
             <h2 align="left" style="font-size: large;font-weight: 800;">Sign up<span style="float: right;cursor: pointer;cursor: hand"> <i class="icofont icofont-close" (click)="dialogRef.close()"></i></span></h2>

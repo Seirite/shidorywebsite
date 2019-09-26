@@ -567,6 +567,22 @@ export class HomeComponent implements OnInit {
             this.getLoginUserData();
         })
     }
-
     
+    onRightClick($event)
+    {
+        return false;
+    }
+    
+    keyboardEvent($event)
+    {
+        if ($event.keyCode == 123) 
+        {
+            return false;
+        }
+        else if(($event.ctrlKey && $event.shiftKey && $event.keyCode == 73) || ($event.ctrlKey && $event.shiftKey && $event.keyCode == 74))
+        {
+            return false;
+        }
+    }
+
 }

@@ -1,4 +1,4 @@
-<div class="row" style="margin-left: 5%; margin-right: 5%;">
+<div class="row" style="margin-left: 5%; margin-right: 5%;" (contextmenu)="onRightClick($event)" (window:keydown)="keyboardEvent($event)">
     <div align="start" class="col-2">
         <i class="icofont icofont-social-google-map" style="color: #e54c2a; font-size: xx-large;"></i>
     </div>
@@ -11,7 +11,7 @@
         <i class="icofont icofont-close" (click)="dialogRef.close()"></i>
     </div>
 </div>
-<div class="mat-elevation-z0" style="font-weight: 1000; font-size: 13px; color: #282c3f;">
+<div class="mat-elevation-z0" style="font-weight: 1000; font-size: 13px; color: #282c3f;" (contextmenu)="onRightClick($event)" (window:keydown)="keyboardEvent($event)">
     <div class="row" style="margin-left: 5%; margin-right: 5%;">
         <div align="start">
             <p>Order Id :</p>
@@ -60,7 +60,7 @@
 </div>
 
 
-<div padding style="color: white;" *ngIf="deliveryStatusList?.length==1">
+<div padding style="color: white;" *ngIf="deliveryStatusList?.length==1" (contextmenu)="onRightClick($event)" (window:keydown)="keyboardEvent($event)">
     <div class="boleto__wrapper boleto__wrapper--tracking-progress-bar">
 
         <div class="tracking-progress-bar">
@@ -82,7 +82,7 @@
     </div>
 </div>
 
-<div padding style="color: white;" *ngIf="deliveryStatusList?.length==2">
+<div padding style="color: white;" *ngIf="deliveryStatusList?.length==2" (contextmenu)="onRightClick($event)" (window:keydown)="keyboardEvent($event)">
     <div class="boleto__wrapper boleto__wrapper--tracking-progress-bar">
 
         <div class="tracking-progress-bar">
@@ -104,7 +104,7 @@
     </div>
 </div>
 
-<div padding style="color: white;" *ngIf="deliveryStatusList?.length==3">
+<div padding style="color: white;" *ngIf="deliveryStatusList?.length==3" (contextmenu)="onRightClick($event)" (window:keydown)="keyboardEvent($event)">
     <div class="boleto__wrapper boleto__wrapper--tracking-progress-bar">
 
         <div class="tracking-progress-bar">
@@ -126,7 +126,7 @@
     </div>
 </div>
 
-<div padding style="color: white;" *ngIf="deliveryStatusList?.length==4">
+<div padding style="color: white;" *ngIf="deliveryStatusList?.length==4" (contextmenu)="onRightClick($event)" (window:keydown)="keyboardEvent($event)">
     <div class="boleto__wrapper boleto__wrapper--tracking-progress-bar">
 
         <div class="tracking-progress-bar">
@@ -148,7 +148,7 @@
     </div>
 </div>
 
-<div padding style="color: white;" *ngIf="deliveryStatusList?.length==5">
+<div padding style="color: white;" *ngIf="deliveryStatusList?.length==5" (contextmenu)="onRightClick($event)" (window:keydown)="keyboardEvent($event)">
     <div class="boleto__wrapper boleto__wrapper--tracking-progress-bar">
 
         <div class="tracking-progress-bar">
@@ -171,7 +171,7 @@
 </div>
 
 
-<div class="row" *ngIf="deliveryStatusList?.length!=4">
+<div class="row" *ngIf="deliveryStatusList?.length!=4" (contextmenu)="onRightClick($event)" (window:keydown)="keyboardEvent($event)">
     <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="mat-elevation-z1">
             <div class="row">
@@ -267,6 +267,8 @@
       <div class="md-step-bar-right"></div>
     </div>
 </div>-->
-<agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom" *ngIf="deliveryStatusList?.length==4">
-    <agm-direction [origin]="origin" [destination]="destination" [visible]="show"></agm-direction>
-</agm-map>
+<div (contextmenu)="onRightClick($event)" (window:keydown)="keyboardEvent($event)">
+    <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom" *ngIf="deliveryStatusList?.length==4">
+        <agm-direction [origin]="origin" [destination]="destination" [visible]="show"></agm-direction>
+    </agm-map>
+</div>

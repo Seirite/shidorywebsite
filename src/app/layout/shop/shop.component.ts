@@ -813,8 +813,8 @@ export class ShopComponent implements OnInit {
     openCustomisableDialog(Obj)
     {
         let dialogBoxSettings = {
-            width : '40%',
-            height : '55%',
+            width : '420px',
+            height : '400px',
             disableClose: false,
             hasBackdrop: true,
             margin: '0 auto',
@@ -849,6 +849,23 @@ export class ShopComponent implements OnInit {
                 this.router.navigate(['/cart']);
             }
         })
+    }
+    
+    onRightClick($event)
+    {
+        return false;
+    }
+    
+    keyboardEvent($event)
+    {
+        if ($event.keyCode == 123) 
+        {
+            return false;
+        }
+        else if(($event.ctrlKey && $event.shiftKey && $event.keyCode == 73) || ($event.ctrlKey && $event.shiftKey && $event.keyCode == 74))
+        {
+            return false;
+        }
     }
     
 }

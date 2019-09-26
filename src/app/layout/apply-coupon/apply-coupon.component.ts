@@ -49,16 +49,36 @@ export class ApplyCouponComponent implements OnInit {
     
     getOfferList()
     {
-        this.provider.getOffers(this.countryName, this.stateName, this.cityName).subscribe(list =>
+        if (this.countryName)
         {
-            this.offersList = list;
-            this.showLoading = false;
-        })
+            this.provider.getOffers(this.countryName, this.stateName, this.cityName).subscribe(list =>
+            {
+                this.offersList = list;
+                this.showLoading = false;
+            })
+        }
     }
     
     applyCoupun(Obj)
     {
         this.dialogRef.close(Obj);
+    }
+    
+    onRightClick($event)
+    {
+        return false;
+    }
+    
+    keyboardEvent($event)
+    {
+        if ($event.keyCode == 123) 
+        {
+            return false;
+        }
+        else if(($event.ctrlKey && $event.shiftKey && $event.keyCode == 73) || ($event.ctrlKey && $event.shiftKey && $event.keyCode == 74))
+        {
+            return false;
+        }
     }
     
 }

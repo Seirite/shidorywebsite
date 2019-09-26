@@ -133,67 +133,22 @@ export class TrackOrderComponent implements OnInit {
         })
     }
     
+    onRightClick($event)
+    {
+        return false;
+    }
     
-//    async trackOrder()
-//    {
-//        var session = await this.provider.auth.getSessionObj();
-//        this.provider.getUserOrderList(session.fireuser.uid, this.orderId).subscribe(async (list: ADD_ORDER_MST[]) =>
-//        {
-//            this.address = list[0].SELECT_ADDRESS
-//            this.userMenuItem = list[0].MENUCART;
-//            this.userPaymentType = list[0].PAYMENT_TYPE;
-//            this.orderDate = list[0].CR_DT.split(' ')[2];
-//            this.orderMonth = list[0].CR_DT.split(' ')[1];
-//            this.coupanName = list[0].RESTRO_USER_CART_COUPON_DISCOUNT_NAME;
-//            this.deliveryFee = list[0].RESTRO_USER_CART_CURRENCY + " " + list[0].RESTRO_USER_CART_CHARGES;
-//            this.coupanValue = list[0].RESTRO_USER_CART_CURRENCY + " " + list[0].RESTRO_USER_CART_COUPON_DISCOUNT_AMOUNT;
-//            this.totalPrice = list[0].RESTRO_USER_CART_CURRENCY + " " + list[0].RESTRO_USER_CART_TOTAL;
-//            if (list[0].RESTRO_USER_CART_COUPON_DISCOUNT_NAME != 0)
-//            {
-//                var userPaymentAmount = list[0].RESTRO_USER_CART_TOTAL - list[0].RESTRO_USER_CART_COUPON_DISCOUNT_AMOUNT;
-//                var totalPrice = userPaymentAmount + list[0].RESTRO_USER_CART_CHARGES;
-//                this.userPaymentAmount = list[0].RESTRO_USER_CART_CURRENCY + " " + totalPrice;
-//            }
-//            else
-//            {
-//                var totalPrice = list[0].RESTRO_USER_CART_TOTAL + list[0].RESTRO_USER_CART_CHARGES;
-//                this.userPaymentAmount = list[0].RESTRO_USER_CART_CURRENCY + " " + totalPrice;
-//            }
-//            var restroData: any = await this.provider.getRestaurantsData(localStorage.getItem("countryName"), localStorage.getItem("stateName"), localStorage.getItem("cityName"), list[0].RESTAURENT_ID);
-//            this.restroName = restroData.RESTRO_NAME
-//            this.restroAreaName = restroData.RESTRO_AREA_NAME
-//            await this.provider.getUserOrder(localStorage.getItem("countryName"), localStorage.getItem("stateName"), localStorage.getItem("cityName"), restroData.RESTRO_LOCATION.geohash.substring(0, 5), this.orderId).subscribe(async (list: ADD_ORDER_MST[]) =>
-//            {
-//                if (list.length != 0)
-//                {
-//                    this.deliveryStatusList = list[0].ORDER_STATUS_ARRAY.reverse();
-//                    this.userOTP = list[0].RESTRO_USER_OTP;
-//                    this.coupanTotal = list[0].RESTRO_USER_CART_DISCOUNT_TOTAL;
-//                    if (list[0].DELIVERD == true) 
-//                    {
-//                        this.userOrderStatus = "DELIVERD";
-//                    }
-//                    else 
-//                    {
-//                        if (list[0].HAWKER_STATUS) 
-//                        {
-//                            this.userOrderStatus = list[0].HAWKER_STATUS;
-//                        }
-//                        else 
-//                        {
-//                            this.userOrderStatus = list[0].ORDER_STATUS;
-//                        }
-//                    }
-//                    if (list[0].HAWKER_KEY) 
-//                    {
-//                        var hawkerObj: any = await this.provider.getHawkerObj(localStorage.getItem("countryName"), localStorage.getItem("stateName"), localStorage.getItem("cityName"), restroData.RESTRO_LOCATION.geohash.substring(0, 5), list[0].HAWKER_KEY);
-//                        this.hawkerName = hawkerObj.HAWKER_FIRST_NAME + " " + hawkerObj.HAWKER_LAST_NAME
-//                        this.hawkerImage = hawkerObj.HAWKER_DRIVING_LICENCE_IMG
-//                    }
-//                }
-//            })
-//        })
-//    }
+    keyboardEvent($event)
+    {
+        if ($event.keyCode == 123) 
+        {
+            return false;
+        }
+        else if(($event.ctrlKey && $event.shiftKey && $event.keyCode == 73) || ($event.ctrlKey && $event.shiftKey && $event.keyCode == 74))
+        {
+            return false;
+        }
+    }
     
     
 }
