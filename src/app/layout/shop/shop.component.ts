@@ -518,12 +518,24 @@ export class ShopComponent implements OnInit {
         })
     }
     
-    checkCart(Obj)
+    checkCartToSingleObject(Obj)
     {
         var list = JSON.parse(localStorage.getItem("menuItemArray"));
         for(let i = 0; i <list.length; i++)
         {
             if (list[i].MENU_ITEM_KEY == Obj.MENU_ITEM_KEY)
+            {
+                return true;
+            }
+        }
+    }
+    
+    checkCartToCustomizeObject(Obj)
+    {
+        var list = JSON.parse(localStorage.getItem("menuItemArray"));
+        for(let i = 0; i <list.length; i++)
+        {
+            if (list[i].MENU_ITEM_NAME == Obj.MENU_ITEM_NAME && list[i].MENU_ITEM_KEY == Obj.MENU_ITEM_KEY)
             {
                 return true;
             }
@@ -583,19 +595,27 @@ export class ShopComponent implements OnInit {
         }
         else
         {
-            var data = this.checkCart(Obj);
+            var data = this.checkCartToSingleObject(Obj);
             if (data)
             {
                 if (Obj.MENU_ITEM_HALF_PRICE != 0)
                 {
-                    this.cartMenuItemList = JSON.parse(localStorage.getItem("menuItemArray"));
-                    this.cartMenuItemList.push(arrayObj);
-                    localStorage.setItem("menuItemArray", JSON.stringify(this.cartMenuItemList))
-                    this.getUserCartList();
+                    var customizeData = this.checkCartToCustomizeObject(arrayObj);
+                    if (customizeData)
+                    {
+                        this.showUpdatedCustomizeItem(arrayObj);
+                    }
+                    else
+                    {
+                        this.cartMenuItemList = JSON.parse(localStorage.getItem("menuItemArray"));
+                        this.cartMenuItemList.push(arrayObj);
+                        localStorage.setItem("menuItemArray", JSON.stringify(this.cartMenuItemList))
+                        this.getUserCartList();
+                    }
                 }
                 else
                 {
-                    this.showUpdatedItem(Obj);
+                    this.showUpdatedSingleItem(Obj);
                 }
             }
             else
@@ -608,7 +628,7 @@ export class ShopComponent implements OnInit {
         }
     }
     
-    showUpdatedItem(newItem) 
+    showUpdatedSingleItem(newItem) 
     {
         let updateItem = this.cartMenuItemList.find(this.findIndexToUpdate, newItem.MENU_ITEM_KEY);
         var arrayObj = {
@@ -630,10 +650,38 @@ export class ShopComponent implements OnInit {
         this.cartMenuItemList[itemIndex] = arrayObj;
         this.calculateItemPrice();
     }
+    
+    showUpdatedCustomizeItem(newItem) 
+    {
+        let updateItem: any = this.cartMenuItemList.find(this.findIndexToUpdateCustomize, newItem.MENU_ITEM_NAME);
+        var arrayObj = {
+            MENU_ITEM_CATEGORY: updateItem.MENU_ITEM_CATEGORY.trim(),
+            MENU_ITEM_CURRENCY: updateItem.MENU_ITEM_CURRENCY,
+            MENU_ITEM_INGRADIENTS: updateItem.MENU_ITEM_INGRADIENTS,
+            MENU_ITEM_NAME: updateItem.MENU_ITEM_NAME,
+            MENU_ITEM_HALF_PRICE: updateItem.MENU_ITEM_HALF_PRICE,
+            MENU_ITEM_PRICE: updateItem.MENU_ITEM_PRICE,
+            MENU_ITEM_QUANTITY: updateItem.MENU_ITEM_QUANTITY + 1,
+            TODAY_SPECIAL: updateItem.TODAY_SPECIAL,
+            MENU_ITEM_TOTAL: updateItem.MENU_ITEM_TOTAL,
+            MENU_ITEM_IMAGE: updateItem.MENU_ITEM_IMAGE,
+            RESTAURENT_ID: updateItem.RESTAURENT_ID,
+            MENU_ITEM_KEY: updateItem.MENU_ITEM_KEY,
+            ORDER_STATUS: "PENDING",
+        }
+        let itemIndex = this.cartMenuItemList.findIndex(item => item.MENU_ITEM_NAME == newItem.MENU_ITEM_NAME);
+        this.cartMenuItemList[itemIndex] = arrayObj;
+        this.calculateItemPrice();
+    }
 
     findIndexToUpdate(newItem) 
     {
         return newItem.MENU_ITEM_KEY === this;
+    }
+    
+    findIndexToUpdateCustomize(newItem) 
+    {
+        return newItem.MENU_ITEM_NAME === this;
     }
     
     menuItemDetail(Obj)

@@ -10,6 +10,7 @@ import {Address} from 'ngx-google-places-autocomplete/objects/address';
     styleUrls: ['./customisable-dialog.component.scss']
 })
 export class CustomisableDialogComponent implements OnInit {
+    customizeType: string = "Full";
     menuItemTotalPrice: number;
     restroMenuItemObj: any;
     menuItemHalfPrice: number = 0;
@@ -85,14 +86,15 @@ export class CustomisableDialogComponent implements OnInit {
         }
     }
     
-    selectMainCustomize(customizetype)
+    selectMainCustomize(customizeType: string)
     {
-        if (customizetype == "Half")
+        this.customizeType = customizeType;
+        if (customizeType == "Half")
         {
             this.menuItemTotalPrice = this.menuItemHalfPrice;
             this.restroMenuItemObj.MENU_ITEM_PRICE = this.menuItemTotalPrice;
         }
-        if (customizetype == "Full")
+        if (customizeType == "Full")
         {
             this.menuItemTotalPrice = this.menuItemPrice;
         }
@@ -104,7 +106,7 @@ export class CustomisableDialogComponent implements OnInit {
             MENU_ITEM_CATEGORY: this.restroMenuItemObj.MENU_ITEM_CATEGORY.trim(),
             MENU_ITEM_CURRENCY: this.restroMenuItemObj.MENU_ITEM_CURRENCY,
             MENU_ITEM_INGRADIENTS: this.restroMenuItemObj.MENU_ITEM_INGRADIENTS,
-            MENU_ITEM_NAME: this.restroMenuItemObj.MENU_ITEM_NAME,
+            MENU_ITEM_NAME: this.restroMenuItemObj.MENU_ITEM_NAME + " " + this.customizeType,
             MENU_ITEM_HALF_PRICE: this.restroMenuItemObj.MENU_ITEM_HALF_PRICE,
             MENU_ITEM_PRICE: this.restroMenuItemObj.MENU_ITEM_PRICE,
             MENU_ITEM_QUANTITY: this.restroMenuItemObj.MENU_ITEM_QUANTITY,
