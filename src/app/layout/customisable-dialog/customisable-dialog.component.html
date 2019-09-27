@@ -7,12 +7,12 @@
                     <img src="assets/images/menu-type/vegetarian.png" *ngIf="menuItemCategory=='Veg'" />
                     <img src="assets/images/menu-type/egg-contain.png" *ngIf="menuItemCategory=='Contains Egg'" />
                 </div>
-                <div class="col-10" align="start">
-                    <h2 style="font-size: medium; font-weight: 700;">Customize "{{menuItemName}}"</h2>
+                <div class="col-9" align="start">
+                    <h6 style="font-size: medium; font-weight: 700;">Customize "{{menuItemName}}"</h6>
                     <p style="font-weight: 500;">{{userCurrency}}{{menuItemPrice}}</p>
                 </div>
-                <div class="col-1" align="center">
-                    <h2 style="font-size: x-large; font-weight: 100;"><i class="icofont icofont-close" (click)="dialogRef.close()"></i></h2>
+                <div class="col-2">
+                    <h6 style="font-size: x-large; font-weight: 100;"><i class="icofont icofont-close" (click)="dialogRef.close()"></i></h6>
                 </div>
             </div>
             <hr>

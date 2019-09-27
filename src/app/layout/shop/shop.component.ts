@@ -861,8 +861,8 @@ export class ShopComponent implements OnInit {
     openCustomisableDialog(Obj)
     {
         let dialogBoxSettings = {
-            width : '420px',
-            height : '400px',
+            width : '450px',
+            height : '340px',
             disableClose: false,
             hasBackdrop: true,
             margin: '0 auto',
