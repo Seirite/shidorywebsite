@@ -2,7 +2,6 @@ import { Component, OnInit, Inject } from '@angular/core';
 import {VerificationDialogProvider} from './verification-dialog.provider';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatSnackBar} from '@angular/material';
 import {DialogData} from '../cart/cart.component';
-import * as firebase from 'firebase';
 import {Router} from '@angular/router';
 
 @Component({

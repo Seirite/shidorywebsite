@@ -8,6 +8,7 @@
 import {Injectable} from '@angular/core';
 import {firestoreService} from '../../utility/firestoreService';
 import {FIRE_ADD_ORDER_MST_REF} from '../../pojos/ADD_ORDER_MST';
+import {FIRE_ADD_RESTAURANT_MST_REF} from '../../pojos/ADD_RESTRAUNT_MST';
 
 
 
@@ -49,6 +50,10 @@ export class OrderConformProvider {
             })
         })
     }
+    
+    checkUserAlreadySubmitFeedbackOrNot(restroUserKey, country, state, city, restroKey)
+    {
+        return this.serviceFirestore.getDocumentObject(this.serviceFirestore.firestore.collection("SHIDORY").doc("ORG1").collection("COUNTRY").doc(country).collection("STATES").doc(state).collection("CITIES").doc(city).collection(FIRE_ADD_RESTAURANT_MST_REF.RESTAURANT_MST).doc(restroKey).collection("RATINGS"), restroUserKey)
+    }
    
-
 }

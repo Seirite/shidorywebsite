@@ -379,9 +379,16 @@ export class CartComponent implements OnInit {
     
     onSelectAddress(Obj)
     {
+        if (Obj.buldingNo)
+        {
+            this.entOrderMst.SELECT_ADDRESS = Obj.buldingNo + ", " + Obj.address + ", " + Obj.neighborhood + ", " + Obj.selectAddress + ", " + Obj.zipcode;
+        }
+        else
+        {
+            this.entOrderMst.SELECT_ADDRESS = Obj.selectAddress;
+        }
         this.loadering = true;
         this.cartOverAllTotalPrice = this.cartTotalPrice;
-        this.entOrderMst.SELECT_ADDRESS = Obj.buldingNo + ", " + Obj.address + ", " + Obj.neighborhood + ", " + Obj.areaName + ", " + Obj.zipcode;
         this.entOrderMst.SELECT_ADDRESS_GEOHASH = Obj.geohash;
         var latlng = Geohash.decode(Obj.geohash);
         this.entOrderMst.SELECT_ADDRESS_GEOPOINT_LATITUDE = latlng.lat;

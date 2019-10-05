@@ -1,6 +1,6 @@
 .rating {
     float:left;
-    margin-left: 30%;
+    position: absolute;
 }
 
 .rating:not(:checked) > input {
@@ -12,11 +12,10 @@
 .rating:not(:checked) > label {
     float:right;
     width:1em;
-    padding:0.1em;
     overflow:hidden;
     white-space:nowrap;
     cursor:pointer;
-    font-size:200%;
+    font-size:115%;
     line-height:1.2;
     color:#ddd;
 }
@@ -41,21 +40,12 @@
     color: #ea0;
 }
 
-.header-border {
-    height: 50px;
-    width: 100%;
-    background-color: powderblue;
-    color: white;
-    top: 0px;
+img {
+    border-radius: 50%;
 }
 
-.input-box {
-    width: 100%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-    resize: none;
+.heading {
+    font: bold;
+    font-size: large;
+    font-weight: 900;
 }

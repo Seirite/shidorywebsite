@@ -366,7 +366,7 @@ a:focus{
     left: 0;
     right: 0;
     z-index: 99999;
-    background: #ffa41f;
+    background: #CB3F5B;
 }
 .loader h4 {
     position: relative;
@@ -2171,7 +2171,7 @@ footer .powered .social li a:hover i{
     border-color: #E5E5E5;
 }
 .sort .bootstrap-select .dropdown-menu li > a:hover {
-    color: #FFA41F;
+    color: #CB3F5B;
     background: transparent;
 }
 .bootstrap-select .dropdown-toggle:focus{
@@ -2290,7 +2290,7 @@ footer .powered .social li a:hover i{
     margin:0px 0 0px;
 }
 .shop .left-side .rating ul li i{
-    color:#FFA41F;
+    color:#CB3F5B;
 }
 .shop .left-side .rating ul li:nth-child(2) i:last-child,
 .shop .left-side .rating ul li:nth-child(3) i:nth-child(5), 
@@ -2345,7 +2345,7 @@ footer .powered .social li a:hover i{
 }
 .shop .product-thumb .caption .rating i{
     font-size:18px;
-    color:#FFA41F;
+    color:#CB3F5B;
 }
 .shop .product-thumb .caption .rating i:last-child{
     color:#b2b2b2;
@@ -2430,7 +2430,7 @@ footer .powered .social li a:hover i{
 }
 .shopdetail .rating i{
     font-size:18px;
-    color:#FFA41F;
+    color:#CB3F5B;
 }
 .shopdetail .rating i:last-child{
     color:#b1b1b1;
@@ -2723,7 +2723,7 @@ footer .powered .social li a:hover i{
 }
 .mycart #tab-cart td .rating i{
     font-size:14px;
-    color:#FFA41F;
+    color:#CB3F5B;
 }
 .mycart #tab-cart td .rating i:last-child{
     color:#b2b2b2;
@@ -2790,12 +2790,12 @@ footer .powered .social li a:hover i{
 }
 .mycart #tab-payment form .link li:hover, 
 .mycart #tab-payment form .link li.active{
-    border:3px solid #FFA41F;
+    border:3px solid #CB3F5B;
 }
 .mycart #tab-payment form .link li:hover::after,
 .mycart #tab-payment form .link li.active::after  {
     border-bottom: 7px transparent dashed;
-    border-top: 10px solid #FFA41F;
+    border-top: 10px solid #CB3F5B;
     border-right: 7px solid transparent;
     border-left: 7px solid transparent;
     position: absolute;

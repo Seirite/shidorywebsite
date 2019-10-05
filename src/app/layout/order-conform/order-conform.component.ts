@@ -98,7 +98,16 @@ export class OrderConformComponent implements OnInit {
                     else 
                     {
                         this.showTrackOrder = false;
-                        this.ratingRestro();
+                        this.provider.checkUserAlreadySubmitFeedbackOrNot(this.auth.getSession().uid, this.countryName, this.stateName, this.cityName, localStorage.getItem("restroKey")).then(data =>
+                        {
+                            if (!data)
+                            {
+                                this.ratingRestro();
+                            }
+                        }).catch(error =>
+                        {
+                            console.log(error);
+                        })
                     }
                 }
                 else 
@@ -161,7 +170,7 @@ export class OrderConformComponent implements OnInit {
     ratingRestro()
     {
         let dialogBoxSettings = {
-            height: '300px',
+            height: '330px',
             width: '500px',
             disableClose: true,
             hasBackdrop: true,

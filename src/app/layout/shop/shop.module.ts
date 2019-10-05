@@ -8,8 +8,9 @@ import {AlertDialogModule} from '../alert-dialog/alert-dialog.module';
 import {LoginModule} from '../login/login.module';
 import {CustomisableDialogModule} from '../customisable-dialog/customisable-dialog.module';
 import {MobileNoDialogModule} from '../mobile-no-dialog/mobile-no-dialog.module';
+import {RatingViewModule} from '../rating-view/rating-view.module';
 @NgModule({
-    imports: [CommonModule, ShopRoutingModule, AngularMaterialModule, AlertDialogModule, LoginModule, CustomisableDialogModule, MobileNoDialogModule],
+    imports: [CommonModule, ShopRoutingModule, AngularMaterialModule, AlertDialogModule, LoginModule, CustomisableDialogModule, MobileNoDialogModule, RatingViewModule],
     declarations: [ShopComponent],
     providers: [ShopProvider],
 })

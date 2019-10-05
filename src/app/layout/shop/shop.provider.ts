@@ -80,6 +80,11 @@ export class ShopProvider {
         return this.serviceFirestore.getDocumentObject(this.serviceFirestore.firestore.collection("RESTRO_USER"), key);
     }
     
+    getRestaurantRatingList(country, state, city, selectRestrauntKey)
+    {
+        return this.serviceFirestore.getListFromFireStore(this.serviceFirestore.firestore.collection("SHIDORY").doc("ORG1").collection("COUNTRY").doc(country).collection("STATES").doc(state).collection("CITIES").doc(city).collection("RESTAURANT_MST").doc(selectRestrauntKey).collection("RATINGS"))
+    }
+    
     
    
 

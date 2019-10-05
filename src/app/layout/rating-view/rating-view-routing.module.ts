@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import {ForgotPasswordComponent} from './forgot-password.component';
+import {RatingViewComponent} from './rating-view.component';
 
 const routes: Routes = [
     {
         path: '',
-        component: ForgotPasswordComponent
+        component: RatingViewComponent
     }
 ];
 
@@ -13,4 +13,4 @@ const routes: Routes = [
     imports: [RouterModule.forChild(routes)],
     exports: [RouterModule]
 })
-export class ForgotPasswordRoutingModule {}
+export class RatingViewRoutingModule {}

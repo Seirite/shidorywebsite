@@ -7,6 +7,7 @@
 
 import {Injectable} from '@angular/core';
 import {firestoreService} from '../../utility/firestoreService';
+import {FIRE_ADD_RESTAURANT_MST_REF} from '../../pojos/ADD_RESTRAUNT_MST';
 
 
 
@@ -46,6 +47,24 @@ export class RestroRatingProvider {
     {
         return this.serviceFirestore.firestore.collection("SHIDORY").doc("ORG1").collection("COUNTRY").doc(country).collection("STATES").doc(state).collection("CITIES").doc(city).collection("RESTAURANT_MST").doc(selectRestrauntKey).update(restroObj)
     }
+    
+    saveRestrauntRating(saveObj, country, state, city, restroKey)
+    {
+        return new Promise((resolve, reject) =>
+        {
+            this.serviceFirestore.saveDocumentToFireStoreNew(this.serviceFirestore.firestore.collection("SHIDORY").doc("ORG1").collection("COUNTRY").doc(country).collection("STATES").doc(state).collection("CITIES").doc(city).collection(FIRE_ADD_RESTAURANT_MST_REF.RESTAURANT_MST).doc(restroKey).collection("RATINGS"), saveObj, saveObj.RESTRO_USER_KEY).then(key =>
+            {
+                resolve(key);
+            }).catch(error =>
+            {
+                reject(error);
+            })
+        })
+    }
+    
+    getRestroUserData(restroUserKey)
+    {
+        return this.serviceFirestore.getDocumentObject(this.serviceFirestore.firestore.collection("RESTRO_USER"), restroUserKey)
+    }
    
-
 }

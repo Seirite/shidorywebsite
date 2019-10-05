@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {RestroRatingProvider} from './restro-rating.provider';
-import {MatDialogRef} from '@angular/material';
+import {MatDialogRef, MatSnackBar} from '@angular/material';
 import {Address} from 'ngx-google-places-autocomplete/objects/address';
 import {ADD_RESTAURANT_MST} from '../../pojos/ADD_RESTRAUNT_MST';
+import {AuthService} from '../../utility/auth-service';
 
 @Component({
     selector: 'app-restro-rating',
@@ -10,15 +11,18 @@ import {ADD_RESTAURANT_MST} from '../../pojos/ADD_RESTRAUNT_MST';
     styleUrls: ['./restro-rating.component.scss']
 })
 export class RestroRatingComponent implements OnInit {
+    restoUserName: string;
+    RESTRO_RATING: any;
     restroImage: string;
-    restroAreaName: string;
     restroName: string;
     cityName: string;
     stateName: string;
     countryName: string;
-    constructor(public provider: RestroRatingProvider, public dialogRef: MatDialogRef<RestroRatingComponent>) {}
+    userReview: string;
+    constructor(public provider: RestroRatingProvider, public dialogRef: MatDialogRef<RestroRatingComponent>, public auth: AuthService, private snackBar: MatSnackBar) {}
 
     async ngOnInit() {
+        this.restoUserName = this.auth.getSession().displayName.split("@")[0];
         await this.getUserLocation();
         await this.getRestroData();
     }
@@ -55,7 +59,6 @@ export class RestroRatingComponent implements OnInit {
             this.provider.getRestaurantsData(this.countryName, this.stateName, this.cityName, localStorage.getItem("restroKey")).then((restroObject: ADD_RESTAURANT_MST) =>
             {
                 this.restroName = restroObject.RESTRO_NAME;
-                this.restroAreaName = restroObject.RESTRO_AREA_NAME;
                 if (restroObject.RESTRO_IMAGE)
                 {
                     this.restroImage = restroObject.RESTRO_IMAGE;
@@ -69,6 +72,25 @@ export class RestroRatingComponent implements OnInit {
                 console.log(error);
             })
         }
+    }
+    
+    checkIfRestroUserWriteCommentOrNot()
+    {
+        if (this.userReview && this.RESTRO_RATING)
+        {
+            this.getRestroRating(this.RESTRO_RATING)
+        }
+        else
+        {
+            var message = "Write Your Commit";
+            var action = "";
+            this.openSnackBarAddress(message, action);
+        }
+    }
+    
+    setRestroRating($event)
+    {
+        this.RESTRO_RATING = $event;
     }
     
     getRestroRating($event)
@@ -132,7 +154,7 @@ export class RestroRatingComponent implements OnInit {
             }
             this.provider.saveRating(this.countryName, this.stateName, this.cityName, localStorage.getItem("restroKey"), restroObject).then(uid =>
             {
-                this.dialogRef.close();
+                this.saveRestroUserReview();
             }).catch(error =>
             {
                 this.dialogRef.close();
@@ -141,6 +163,51 @@ export class RestroRatingComponent implements OnInit {
         {
             console.log(error);
         })
+    }
+    
+    saveRestroUserReview()
+    {
+        this.provider.getRestroUserData(this.auth.getSession().uid).then((restroUserData: any) =>
+        {
+            var restroUserName
+            var restroUserPhoto = "assets/profile.png";
+            if (typeof restroUserData.displayName == "undefined")
+            {
+                restroUserName = restroUserData.fullName
+            }
+            else 
+            {
+                restroUserName = restroUserData.displayName
+            }
+            if (restroUserData.photoURL)
+            {
+                restroUserPhoto = restroUserData.photoURL
+            }
+            var saveObj = {
+                RESTRO_USER_KEY: this.auth.getSession().uid,
+                RATING_VALUE: this.RESTRO_RATING,
+                RESTRO_USER_NAME: restroUserName,
+                RESTRO_USER_PHOTO: restroUserPhoto,
+                RESTRO_USER_COMMIT: this.userReview
+            }
+            this.provider.saveRestrauntRating(saveObj, this.countryName, this.stateName, this.cityName, localStorage.getItem("restroKey")).then(uid =>
+            {
+                this.dialogRef.close();
+            }).catch(error => 
+            {
+                this.dialogRef.close();
+            })
+        }).catch(error =>
+        {
+            console.log(error);
+        })
+    }
+    
+    openSnackBarAddress(message: string, action: string) 
+    {
+        this.snackBar.open(message, action, {
+            duration: 5000
+        });
     }
     
     onRightClick($event)

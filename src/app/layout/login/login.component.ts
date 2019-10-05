@@ -5,7 +5,6 @@ import {LoginProvider} from './login.provider';
 import {FormGroup, FormBuilder, FormControl, Validators} from '@angular/forms';
 import {MatSnackBar, MatDialogRef, MatStepper} from '@angular/material';
 import {SiUtil} from '../../utility/SiUtil';
-import * as firebase from 'firebase';
 //import {Http, Headers, Response, URLSearchParams} from '@angular/http';
 import {HttpClient, HttpHeaders, HttpResponse, HttpParams} from '@angular/common/http';
 //import * as toPromise 'rxjs/add/operator/toPromise';

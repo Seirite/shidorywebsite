@@ -6,22 +6,8 @@
     <!-- Loader Start -->
     <div class="loader" *ngIf="loading===true">
         <div class="loader-inner">
-            <h4>Cooking in progress..</h4>
             <div id="cooking">
-                <div class="bubble"></div>
-                <div class="bubble"></div>
-                <div class="bubble"></div>
-                <div class="bubble"></div>
-                <div class="bubble"></div>
-                <div id="area">
-                    <div id="sides">
-                        <div id="pan"></div>
-                        <div id="handle"></div>
-                    </div>
-                    <div id="pancake">
-                        <div id="pastry"></div>
-                    </div>
-                </div>
+                <img src="../../../assets/images/main-loader.gif" alt=""/>
             </div>
         </div>
     </div>
@@ -129,7 +115,7 @@
                         <h2 align="left">{{restroName}}</h2>
                         <p style="color: #d4d5d9;">{{restroAreaName}}</p>
                         <div class="row">
-                            <div class="col-md-2 col-sm-2 col-xs-1" align="left" style="border-right: 1px solid white;">
+                            <div class="col-md-2 col-sm-2 col-xs-1" align="left" style="border-right: 1px solid white;" (click)="viewRatings()">
                                 <b><i class="icofont icofont-star"></i> {{restroRatingValue}}</b>
                                 <p style="color: #d4d5d9; font-size: x-small;">{{maxRatingValue}}+ Ratings</p>
                             </div>

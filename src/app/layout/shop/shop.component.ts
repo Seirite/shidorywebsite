@@ -11,6 +11,7 @@ import {ADD_ORDER_MST} from '../../pojos/ADD_ORDER_MST';
 import {LoginComponent} from '../login/login.component';
 import {CustomisableDialogComponent} from '../customisable-dialog/customisable-dialog.component';
 import {MobileNoDialogComponent} from '../mobile-no-dialog/mobile-no-dialog.component';
+import {RatingViewComponent} from '../rating-view/rating-view.component';
 
 @Component({
     selector: 'app-shop',
@@ -897,6 +898,28 @@ export class ShopComponent implements OnInit {
                 this.router.navigate(['/cart']);
             }
         })
+    }
+    
+    viewRatings()
+    {
+        if (this.countryName)
+        {
+            this.provider.getRestaurantRatingList(this.countryName, this.stateName, this.cityName, localStorage.getItem("selectRestaurantKey")).subscribe((list: any[]) =>
+            {
+                if (list.length != 0)
+                {
+                    let dialogBoxSettings = {
+                        width: '480px',
+                        height: '350px',
+                        disableClose: true,
+                        hasBackdrop: true,
+                        margin: '0 auto',
+                    };
+                    this.component = RatingViewComponent;
+                    this.dialog.open(this.component, dialogBoxSettings);
+                }
+            })
+        }
     }
     
     onRightClick($event)

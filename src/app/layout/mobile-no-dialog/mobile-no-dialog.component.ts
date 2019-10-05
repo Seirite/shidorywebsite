@@ -151,7 +151,7 @@ export class MobileNoDialogComponent implements OnInit {
         {
             this.hideVerifyButton = false;
             this.showOTPDialog = false;
-            this.errorMessage = "Already exists with " + error.displayName;
+            this.errorMessage = "Already exists with another user.";
         })
     }
     

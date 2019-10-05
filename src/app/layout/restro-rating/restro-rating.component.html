@@ -1,34 +1,48 @@
-<div class="row" (contextmenu)="onRightClick($event)" (window:keydown)="keyboardEvent($event)">
-    <div class="col-8" align="start">
-        <h2 style="color: #7e808c; font-weight: 600; margin: 0 0 28px; font-size: 12px; text-transform: uppercase;">{{restroName}}</h2>
+<div (contextmenu)="onRightClick($event)" (window:keydown)="keyboardEvent($event)">
+    <div class="row">
+        <div class="col-8">
+            <h6><strong>Review by {{ restoUserName || ''}}</strong></h6>
+        </div>
+        <div class="col-4" align='end'>
+            <i class="icofont icofont-close" (click)="dialogRef.close()"></i>
+        </div>
     </div>
-    <div class="col-4" align="end">
-        <i class="icofont icofont-close" (click)="dialogRef.close()"></i>
+    <br>
+    <div class="row">
+        <div class="col-4" align="center">
+            <img src="{{restroImage || 'assets/images/loader.gif'}}" align="center" width="100%" height="80%" />
+            <h6><strong>{{restroName}}</strong></h6>
+        </div>
+        <div class="col-8">
+            <textarea class="input-box" cols="50" rows="3" placeholder="Write a Review" [(ngModel)]="userReview"></textarea>
+        </div>
     </div>
-</div>
-<div class="row" (contextmenu)="onRightClick($event)" (window:keydown)="keyboardEvent($event)">
-    <div class="col-4" align="center">
-        <img src="{{restroImage || 'assets/images/loader.gif'}}" align="center" width="80%" height="40%" style="margin-top: 30%;" />
+    <div class="row">
+        <div class="col-12">
+            <div class="rating">
+                <input type="radio" value="5" [checked]="RESTRO_RATING===5" />
+                <label (click)='setRestroRating(5)'></label>
+
+                <input type="radio" value="4" [checked]="RESTRO_RATING===4" />
+                <label (click)='setRestroRating(4)'></label>
+
+                <input type="radio" value="3" [checked]="RESTRO_RATING===3" />
+                <label (click)='setRestroRating(3)'></label>
+
+                <input type="radio" value="2" [checked]="RESTRO_RATING===2" />
+                <label (click)='setRestroRating(2)'></label>
+
+                <input type="radio" value="1" [checked]="RESTRO_RATING===1" />
+                <label (click)='setRestroRating(1)'></label>
+            </div>
+            
+        </div>
     </div>
-    <div class="col-8">
-        <h2 style="margin-top: 10%">{{restroName}}</h2>
-        <p>{{restroAreaName}}</p>
+    <div class="row">
+        <div class="col-6" style="position: absolute; right: 0;">
+            <button mat-stroked-button (click)="dialogRef.close()">Rate me Later</button>
+            &nbsp;
+            <button mat-raised-button color="warn" (click)="checkIfRestroUserWriteCommentOrNot()">Submit</button>
+        </div>
     </div>
-</div>
-
-<div class="rating" (contextmenu)="onRightClick($event)" (window:keydown)="keyboardEvent($event)">
-    <input type="radio" value="5" />
-    <label (click)='getRestroRating(5)'></label>
-
-    <input type="radio" value="4" />
-    <label (click)='getRestroRating(4)'></label>
-
-    <input type="radio" value="3" />
-    <label (click)='getRestroRating(3)'></label>
-
-    <input type="radio" value="2" />
-    <label (click)='getRestroRating(2)'></label>
-
-    <input type="radio" value="1" />
-    <label (click)='getRestroRating(1)'></label>
 </div>
