@@ -170,7 +170,14 @@ export class ReservationComponent implements OnInit {
         this.lng = lng;
         this.provider.getFormatedAddress(lat, lng).then(async (address: any) =>
         {
-            this.entRestaurant.RESTRO_ADDRESS = address.results[0].formatted_address;
+            if (address.results[0].formatted_address.includes("Unnamed Road"))
+            {
+                this.entRestaurant.RESTRO_ADDRESS = address.results[0].formatted_address.split("Unnamed Road, ")[1];
+            }
+            else
+            {
+                this.entRestaurant.RESTRO_ADDRESS = address.results[0].formatted_address;
+            }
             address.results[0].address_components.forEach(data =>
             {
                 if(data.types[0] == "country")
@@ -200,26 +207,38 @@ export class ReservationComponent implements OnInit {
     
     getZoneAreaName()
     {
+        var zoneAreaName, zonePostalCode;
+        this.zoneAreaName = zoneAreaName;
+        this.zonePostalCode = zonePostalCode;
         var location = Geohash.decode(this.entRestaurant.RESTRO_LOCATION.geohash.substring(0, 5));
         this.provider.getFormatedAddress(location.lat, location.lon).then((address: any) =>
         {
             address.results.forEach((addressData: any) =>
             {
-                addressData.types.forEach(areaTypeData =>
+                addressData.address_components.forEach(addressArea =>
                 {
-                    if (areaTypeData == "neighborhood" || areaTypeData == "sublocality_level_1")
+                    addressArea.types.forEach(areaTypeData =>
                     {
-                        this.zoneAreaName = addressData.address_components[0].long_name;
-                    }
-                    if (areaTypeData == "postal_code")
-                    {
-                        this.zonePostalCode = addressData.address_components[0].long_name;
-                    }
+                        if (areaTypeData == "neighborhood" || areaTypeData == "sublocality_level_1") 
+                        {
+                            if (addressData.address_components[0].long_name)
+                            {
+                                this.zoneAreaName = addressData.address_components[0].long_name;
+                            }
+                            else
+                            {
+                                this.zoneAreaName = addressArea.long_name;
+                            }
+                        }
+                        if (areaTypeData == "postal_code") 
+                        {
+                            this.zonePostalCode = addressData.address_components[0].long_name;
+                        }
+                    })
                 })
             })
         }).catch(error =>
         {
-            console.log(error);
             var message = "Check your Internet Connection";
             var action = "";
             this.openSnackBarAddress(message, action);
@@ -241,7 +260,6 @@ export class ReservationComponent implements OnInit {
             this.lng = location.lng;
             this.provider.getFormatedAddress(location.lat, location.lng).then((address: any) =>
             {
-//                this.entRestaurant.RESTRO_ADDRESS = address.results[0].formatted_address
                 address.results[0].address_components.forEach(async data =>
                 {
                     if (data.types[0] === "country") 
@@ -312,6 +330,16 @@ export class ReservationComponent implements OnInit {
             this.util.toastError("Error", "Mobile Number Required");
             return "ERROR";
         }
+        if (typeof this.zoneAreaName == "undefined")
+        {
+            this.util.toastError("Error", "We are not provide service here");
+            return "ERROR";
+        }
+        if (typeof this.zonePostalCode == "undefined")
+        {
+            this.util.toastError("Error", "We are not provide service here");
+            return "ERROR";
+        }
     }
     
     addRestraunt(Obj)
@@ -320,20 +348,18 @@ export class ReservationComponent implements OnInit {
         var status= this.valiateForm();
         if(status!="ERROR")
         {
-            Obj.RESTRO_MOBILE_NO = this.entRestaurant.RESTRO_PHONE_CODE + this.RESTRO_MOBILE_NO
+            Obj.RESTRO_MOBILE_NO = this.entRestaurant.RESTRO_PHONE_CODE + this.RESTRO_MOBILE_NO;
+            this.entRestaurant.OPENING_TIME = "10:00";
+            this.entRestaurant.CLOSING_TIME = "20:00";
             this.auth.emailSignUp(this.entRestaurant.RESTRO_EMAIL_ID, this.entRestaurant.RESTRO_PASSWORD).then(async (data: any) => 
             {
                 this.entRestaurant.key = data.uid;
-                var saveCity = {
-                    key: this.entRestaurant.RESTRO_CITY_NAME.trim().toUpperCase()
-                }
                 var saveZone = {
                     key: this.entRestaurant.RESTRO_LOCATION.geohash.substring(0, 5),
                     geohash: this.entRestaurant.RESTRO_LOCATION.geohash.substring(0, 5),
                     zoneAreaName: this.zoneAreaName,
                     zonePostalCode: this.zonePostalCode
                 }
-                await this.provider.saveCity(saveCity, this.entRestaurant.RESTRO_COUNTRY_NAME, this.entRestaurant.RESTRO_STATE_NAME);
                 await this.provider.saveZone(saveZone, this.entRestaurant.RESTRO_COUNTRY_NAME, this.entRestaurant.RESTRO_STATE_NAME, this.entRestaurant.RESTRO_CITY_NAME);
                 await this.provider.saveRestraunt(this.entRestaurant, this.entRestaurant.RESTRO_COUNTRY_NAME, this.entRestaurant.RESTRO_STATE_NAME, this.entRestaurant.RESTRO_CITY_NAME).then(uid => 
                 {

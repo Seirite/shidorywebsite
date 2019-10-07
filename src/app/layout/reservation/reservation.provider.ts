@@ -37,20 +37,6 @@ export class ReservationProvider {
         })
     }
     
-    saveCity(saveObj, country, state)
-    {
-        return new Promise((resolve, reject) =>
-        {
-            this.serviceFirestore.saveDocumentToFireStoreNew(this.serviceFirestore.firestore.collection("SHIDORY").doc("ORG1").collection("COUNTRY").doc(country).collection("STATES").doc(state).collection("CITIES"), saveObj, saveObj.key).then(key =>
-            {
-                resolve(key);
-            }).catch(error =>
-            {
-                reject(error);
-            })
-        })
-    }
-    
     saveZone(saveObj, country, state, city)
     {
         return new Promise((resolve, reject) =>

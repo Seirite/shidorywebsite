@@ -123,16 +123,20 @@ export class CartComponent implements OnInit {
     
     getLoginUserData()
     {
-        this.loginDone = localStorage.getItem("isLoggedin");
-        if (this.loginDone != null)
+        var list = JSON.parse(localStorage.getItem("menuItemArray"));
+        if (list)
         {
-            this.loginUserName = this.auth.getSession().displayName;
-            this.loginUserImage = this.auth.getSession().photoURL;
-            this.loginUserEmail = this.auth.getSession().email;
-        }
-        if (this.loginDone == null) 
-        {
-            this.openLoginDialog();
+            this.loginDone = localStorage.getItem("isLoggedin");
+            if (this.loginDone != null) 
+            {
+                this.loginUserName = this.auth.getSession().displayName;
+                this.loginUserImage = this.auth.getSession().photoURL;
+                this.loginUserEmail = this.auth.getSession().email;
+            }
+            if (this.loginDone == null) 
+            {
+                this.openLoginDialog();
+            }
         }
     }
     

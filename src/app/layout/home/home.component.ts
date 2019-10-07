@@ -280,7 +280,14 @@ export class HomeComponent implements OnInit {
                             {
                                 this.cityName = list.address_components[0].long_name.trim().toUpperCase();
                             }
-                            this.currentAddress = address.results[0].formatted_address;
+                            if (address.results[0].formatted_address.includes("Unnamed Road"))
+                            {
+                                this.currentAddress = address.results[0].formatted_address.split("Unnamed Road, ")[1];
+                            }
+                            else 
+                            {
+                                this.currentAddress = address.results[0].formatted_address;
+                            }
                         })
                         var orderId = localStorage.getItem("selectOrderKey");
                         if (orderId) 
@@ -321,7 +328,14 @@ export class HomeComponent implements OnInit {
                             {
                                 this.cityName = list.address_components[0].long_name.trim().toUpperCase();
                             }
-                            this.currentAddress = address.results[0].formatted_address;
+                            if (address.results[0].formatted_address.includes("Unnamed Road"))
+                            {
+                                this.currentAddress = address.results[0].formatted_address.split("Unnamed Road, ")[1];
+                            }
+                            else 
+                            {
+                                this.currentAddress = address.results[0].formatted_address;
+                            }
                         })
                         var orderId = localStorage.getItem("selectOrderKey");
                         if (orderId) 

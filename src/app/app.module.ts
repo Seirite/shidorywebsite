@@ -42,7 +42,7 @@ var config = {
     imports: [
         AppRoutingModule,
         AngularFireModule.initializeApp(config),
-        AngularFirestoreModule,
+        AngularFirestoreModule.enablePersistence(),
         CommonModule,
         BrowserModule,
         BrowserAnimationsModule,
