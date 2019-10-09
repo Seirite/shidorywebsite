@@ -332,12 +332,12 @@ export class ReservationComponent implements OnInit {
         }
         if (typeof this.zoneAreaName == "undefined")
         {
-            this.util.toastError("Error", "We are not provide service here");
+            this.util.toastInfo("Sorry", "We are not provide service here");
             return "ERROR";
         }
         if (typeof this.zonePostalCode == "undefined")
         {
-            this.util.toastError("Error", "We are not provide service here");
+            this.util.toastInfo("Sorry", "We are not provide service here");
             return "ERROR";
         }
     }
