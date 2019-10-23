@@ -20,6 +20,7 @@ import {LoginComponent} from '../login/login.component';
     styleUrls: ['./reservation.component.scss']
 })
 export class ReservationComponent implements OnInit {
+    RESTRO_NAME: any;
     zonePostalCode: any;
     zoneAreaName: any;
     addRestroStatus: boolean = false;
@@ -348,32 +349,40 @@ export class ReservationComponent implements OnInit {
         var status= this.valiateForm();
         if(status!="ERROR")
         {
-            Obj.RESTRO_MOBILE_NO = this.entRestaurant.RESTRO_PHONE_CODE + this.RESTRO_MOBILE_NO;
+            this.entRestaurant.RESTRO_MOBILE_NO = this.entRestaurant.RESTRO_PHONE_CODE + this.RESTRO_MOBILE_NO;
             this.entRestaurant.OPENING_TIME = "10:00";
             this.entRestaurant.CLOSING_TIME = "20:00";
             this.auth.emailSignUp(this.entRestaurant.RESTRO_EMAIL_ID, this.entRestaurant.RESTRO_PASSWORD).then(async (data: any) => 
             {
-                this.entRestaurant.key = data.uid;
-                var saveZone = {
-                    key: this.entRestaurant.RESTRO_LOCATION.geohash.substring(0, 5),
-                    geohash: this.entRestaurant.RESTRO_LOCATION.geohash.substring(0, 5),
-                    zoneAreaName: this.zoneAreaName,
-                    zonePostalCode: this.zonePostalCode
+                if (data.code)
+                {
+                    this.addRestroStatus = false;
+                    this.util.toastError("Error", data.message);
                 }
-                await this.provider.saveZone(saveZone, this.entRestaurant.RESTRO_COUNTRY_NAME, this.entRestaurant.RESTRO_STATE_NAME, this.entRestaurant.RESTRO_CITY_NAME);
-                await this.provider.saveRestraunt(this.entRestaurant, this.entRestaurant.RESTRO_COUNTRY_NAME, this.entRestaurant.RESTRO_STATE_NAME, this.entRestaurant.RESTRO_CITY_NAME).then(uid => 
+                else
                 {
-                    this.addRestroStatus = false;
-                    this.router.navigate(['/thanku']);
-                }).catch(error => 
-                {
-                    this.addRestroStatus = false;
-                    this.util.toastError("Error", "Account already existed");
-                })
+                    this.entRestaurant.key = data.uid;
+                    var saveZone = {
+                        key: this.entRestaurant.RESTRO_LOCATION.geohash.substring(0, 5),
+                        geohash: this.entRestaurant.RESTRO_LOCATION.geohash.substring(0, 5),
+                        zoneAreaName: this.zoneAreaName,
+                        zonePostalCode: this.zonePostalCode
+                    }
+                    await this.provider.saveZone(saveZone, this.entRestaurant.RESTRO_COUNTRY_NAME, this.entRestaurant.RESTRO_STATE_NAME, this.entRestaurant.RESTRO_CITY_NAME);
+                    await this.provider.saveRestraunt(this.entRestaurant, this.entRestaurant.RESTRO_COUNTRY_NAME, this.entRestaurant.RESTRO_STATE_NAME, this.entRestaurant.RESTRO_CITY_NAME).then(uid => 
+                    {
+                        this.addRestroStatus = false;
+                        this.router.navigate(['/thanku']);
+                    }).catch(error => 
+                    {
+                        this.addRestroStatus = false;
+                        this.util.toastError("Error", error.message);
+                    })
+                }
             }).catch(error => 
             {
                 this.addRestroStatus = false;
-                this.util.toastError("Error", "Account already existed");
+                this.util.toastError("Error", error.message);
             })
         }
         else
@@ -455,6 +464,11 @@ export class ReservationComponent implements OnInit {
                 this.util.toastError("Error", "Already Exists");
             }
         })
+    }
+    
+    checkRestroName($event)
+    {
+        this.entRestaurant.RESTRO_NAME = $event.target.value.trim().toLowerCase();
     }
     
     getCountryReport()

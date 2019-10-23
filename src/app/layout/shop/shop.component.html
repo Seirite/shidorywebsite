@@ -43,8 +43,8 @@
                             </ng-template>
                             <li class="list-inline-item">
                                 <ul class="list-inline social">
-                                    <li class="list-inline-item"><a href="https://www.facebook.com/spheretheme/" target="_blank"><i class="icofont icofont-social-facebook"></i></a></li>
-                                    <li class="list-inline-item"><a href="https://twitter.com/spheretheme/" target="_blank"><i class="icofont icofont-social-twitter"></i></a></li>
+                                    <li class="list-inline-item"><a href="https://www.facebook.com/" target="_blank"><i class="icofont icofont-social-facebook"></i></a></li>
+                                    <li class="list-inline-item"><a href="https://twitter.com/" target="_blank"><i class="icofont icofont-social-twitter"></i></a></li>
                                     <!---->
                                     <li class="list-inline-item"><a href="https://www.instagram.com/" target="_blank"><i class="icofont icofont-social-instagram"></i></a></li>
                                     <!---->
@@ -112,7 +112,7 @@
                         <img src="{{restroImage || 'assets/images/loader.gif'}}" align="center" width="50%" height="80%;" style="margin-top: 2%"/>
                     </div>
                     <div class="col-md-6 col-sm-6 col-xs-6" align="left">
-                        <h2 align="left">{{restroName}}</h2>
+                        <h2 align="left" style="text-transform: capitalize;">{{restroName}}</h2>
                         <p style="color: #d4d5d9;">{{restroAreaName}}</p>
                         <div class="row">
                             <div class="col-md-2 col-sm-2 col-xs-1" align="left" style="border-right: 1px solid white;" (click)="viewRatings()">
@@ -179,7 +179,7 @@
                                 <form class="form-horizontal" method="post">
                                     <fieldset>
                                         <div class="form-group">
-                                            <input name="s" class="form-control" style="color: #000" placeholder="Search for dishes..." type="text" (keyup)="applyFilter($event.target.value)">
+                                            <input name="s" class="form-control" style="color: #000" placeholder="Search for dishes..." autocomplete="off" type="text" (keyup)="applyFilter($event.target.value)">
                                         </div>
                                         <button type="submit" value="submit" class="btn"><i class="icofont icofont-search"></i></button>
                                     </fieldset>
@@ -197,9 +197,9 @@
                                             <img src="{{menuItem.MENU_ITEM_IMAGE || 'assets/images/dishes/no-dish.jpg'}}" width="150" height="120" alt="image" />
                                         </div>
                                          <div class="col" style="text-transform: capitalize;">
-                                            <img src="assets/images/menu-type/non-vegetarian.png" *ngIf="menuItem.MENU_ITEM_CATEGORY=='NonVeg'" />
-                                            <img src="assets/images/menu-type/vegetarian.png" *ngIf="menuItem.MENU_ITEM_CATEGORY=='Veg'" />
-                                            <img src="assets/images/menu-type/egg-contain.png" *ngIf="menuItem.MENU_ITEM_CATEGORY=='Contains Egg'" />
+                                            <img src="assets/images/menu-type/non-vegetarian.png" *ngIf="menuItem.MENU_ITEM_CATEGORY.trim()=='NonVeg'" />
+                                            <img src="assets/images/menu-type/vegetarian.png" *ngIf="menuItem.MENU_ITEM_CATEGORY.trim()=='Veg'" />
+                                            <img src="assets/images/menu-type/egg-contain.png" *ngIf="menuItem.MENU_ITEM_CATEGORY.trim()=='Contains Egg'" />
                                             &nbsp;
                                             {{menuItem.MENU_ITEM_NAME}}
                                             <p style="text-overflow: ellipsis;  overflow: hidden; white-space: nowrap; font-size: 13px; color: #7e808c; text-transform: capitalize;">{{menuItem.MENU_ITEM_TYPE}}</p>
@@ -209,6 +209,10 @@
                                             <span style="color: #7e808c; font-size: 10px; float: left; margin-left: 38%; font-weight: 900;" *ngIf="menuItem.MENU_ITEM_HALF_PRICE">Customisable</span>
                                         </div>
                                     </div>
+                                </div>
+                                <div align="center" style="margin: 15%;" *ngIf="searchFail">
+                                    <h6 style="font-weight: 700"><br>Oh! There’s not much left</h6>
+                                    <p class="des">We can’t find anything related to your search. <br> Try a different search.</p>
                                 </div>
                             </div>
                         </div>
@@ -227,9 +231,9 @@
                         <div class="col-md-12">
                             <div class="row" *ngFor="let cartItem of cartMenuItemList">
                                  <div class="col-1" align="left">
-                                    <img src="assets/images/menu-type/non-vegetarian.png" *ngIf="cartItem.MENU_ITEM_CATEGORY=='NonVeg'" />
-                                    <img src="assets/images/menu-type/vegetarian.png" *ngIf="cartItem.MENU_ITEM_CATEGORY=='Veg'" />
-                                    <img src="assets/images/menu-type/egg-contain.png" *ngIf="cartItem.MENU_ITEM_CATEGORY=='Contains Egg'" />
+                                    <img src="assets/images/menu-type/non-vegetarian.png" *ngIf="cartItem.MENU_ITEM_CATEGORY.trim()=='NonVeg'" />
+                                    <img src="assets/images/menu-type/vegetarian.png" *ngIf="cartItem.MENU_ITEM_CATEGORY.trim()=='Veg'" />
+                                    <img src="assets/images/menu-type/egg-contain.png" *ngIf="cartItem.MENU_ITEM_CATEGORY.trim()=='Contains Egg'" />
                                 </div>
                                 <div class="col-3" align="start">
                                     <p text-wrap style="font-size: small;font-weight: unset; text-transform: capitalize;">{{cartItem.MENU_ITEM_NAME}}</p>
@@ -305,8 +309,8 @@
                     <div class="col-md-3 col-sm-6 text-right order-md-3">
                         <!--  Footer Social Start -->
                         <ul class="list-inline social">
-                            <li class="list-inline-item"><a href="https://www.facebook.com/spheretheme/" target="_blank"><i class="icofont icofont-social-facebook"></i></a></li>
-                            <li class="list-inline-item"><a href="https://twitter.com/spheretheme/" target="_blank"><i class="icofont icofont-social-twitter"></i></a></li>
+                            <li class="list-inline-item"><a href="https://www.facebook.com/" target="_blank"><i class="icofont icofont-social-facebook"></i></a></li>
+                            <li class="list-inline-item"><a href="https://twitter.com/" target="_blank"><i class="icofont icofont-social-twitter"></i></a></li>
                             <li class="list-inline-item"><a href="https://www.instagram.com/" target="_blank"><i class="icofont icofont-social-instagram"></i></a></li>
 <!--                            <li class="list-inline-item"><a href="https://www.youtube.com/" target="_blank"><i class="icofont icofont-social-youtube-play"></i></a></li>-->
                         </ul>

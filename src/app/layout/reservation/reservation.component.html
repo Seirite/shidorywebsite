@@ -43,8 +43,8 @@
                                     </ng-template>
                                     <li class="list-inline-item">
                                         <ul class="list-inline social">
-                                            <li class="list-inline-item"><a href="https://www.facebook.com/spheretheme/" target="_blank"><i class="icofont icofont-social-facebook"></i></a></li>
-                                            <li class="list-inline-item"><a href="https://twitter.com/spheretheme/" target="_blank"><i class="icofont icofont-social-twitter"></i></a></li>
+                                            <li class="list-inline-item"><a href="https://www.facebook.com/" target="_blank"><i class="icofont icofont-social-facebook"></i></a></li>
+                                            <li class="list-inline-item"><a href="https://twitter.com/" target="_blank"><i class="icofont icofont-social-twitter"></i></a></li>
                                             <li class="list-inline-item"><a href="https://www.instagram.com/" target="_blank"><i class="icofont icofont-social-instagram"></i></a></li>
 <!--                                            <li class="list-inline-item"><a href="https://www.youtube.com/" target="_blank"><i class="icofont icofont-social-youtube-play"></i></a></li>-->
                                         </ul>
@@ -139,7 +139,9 @@
                                         <mat-label>Restaurant name</mat-label>
                                         <input matInput  
                                                formControlName="NAME"
-                                               [(ngModel)]="entRestaurant.RESTRO_NAME" required/>
+                                               autocomplete="off"
+                                               (blur)="checkRestroName($event)"
+                                               [(ngModel)]="RESTRO_NAME" required/>
                                         <mat-error *ngIf="addRestroForm.get('NAME').invalid && addRestroForm.get('NAME').touched">{{validName()}}</mat-error>
                                     </mat-form-field>
                                     
@@ -147,6 +149,7 @@
                                         <mat-label>Owner name</mat-label>
                                         <input matInput  
                                                formControlName="RESTRO_OWNER_NAME"
+                                               autocomplete="off"
                                                [(ngModel)]="entRestaurant.RESTRO_OWNER_NAME" required/>
                                         <mat-error *ngIf="addRestroForm.get('RESTRO_OWNER_NAME').invalid && addRestroForm.get('RESTRO_OWNER_NAME').touched">{{validOwnerName()}}</mat-error>
                                     </mat-form-field>
@@ -155,6 +158,7 @@
                                         <mat-label>Email</mat-label>
                                         <input matInput 
                                                formControlName="EMAIL_ID" 
+                                               autocomplete="off"
                                                (blur)="checkRestroEmail($event)"
                                                [(ngModel)]="entRestaurant.RESTRO_EMAIL_ID" required/>
                                         <mat-error *ngIf="addRestroForm.get('EMAIL_ID').invalid && addRestroForm.get('EMAIL_ID').touched">{{validEmail()}}</mat-error>
@@ -164,6 +168,7 @@
                                         <mat-label>Password</mat-label>
                                         <input matInput  [type]="hide ? 'password' : 'text'"
                                                formControlName="PASSWORD" 
+                                               autocomplete="off"
                                                [(ngModel)]="entRestaurant.RESTRO_PASSWORD" required/>
                                         <i matSuffix class="fa fa-eye-slash" *ngIf="hide===true" (click)="hide = !hide"></i>
                                         <i matSuffix class="fa fa-eye" *ngIf="hide===false" (click)="hide = !hide"></i>
@@ -184,6 +189,7 @@
                                         <span matPrefix>{{entRestaurant.RESTRO_PHONE_CODE}}</span>
                                         <input type="tel" matInput placeholder="Mobile number" maxlength="10" 
                                                formControlName="MOBILE_NO"
+                                               autocomplete="off"
                                                [(ngModel)]="RESTRO_MOBILE_NO" required/>
                                         <mat-error *ngIf="addRestroForm.get('MOBILE_NO').invalid && addRestroForm.get('MOBILE_NO').touched">{{validMobile()}}</mat-error>
                                     </mat-form-field>
@@ -553,8 +559,8 @@
                             <div class="col-md-3 col-sm-6 text-right order-md-3">
                                 <!--  Footer Social Start -->
                                 <ul class="list-inline social">
-                                    <li class="list-inline-item"><a href="https://www.facebook.com/spheretheme/" target="_blank"><i class="icofont icofont-social-facebook"></i></a></li>
-                                    <li class="list-inline-item"><a href="https://twitter.com/spheretheme/" target="_blank"><i class="icofont icofont-social-twitter"></i></a></li>
+                                    <li class="list-inline-item"><a href="https://www.facebook.com/" target="_blank"><i class="icofont icofont-social-facebook"></i></a></li>
+                                    <li class="list-inline-item"><a href="https://twitter.com/" target="_blank"><i class="icofont icofont-social-twitter"></i></a></li>
                                     <li class="list-inline-item"><a href="https://www.instagram.com/" target="_blank"><i class="icofont icofont-social-instagram"></i></a></li>
 <!--                                    <li class="list-inline-item"><a href="https://www.youtube.com/" target="_blank"><i class="icofont icofont-social-youtube-play"></i></a></li>-->
                                 </ul>

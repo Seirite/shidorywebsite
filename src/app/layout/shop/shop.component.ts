@@ -19,6 +19,7 @@ import {RatingViewComponent} from '../rating-view/rating-view.component';
     styleUrls: ['./shop.component.scss']
 })
 export class ShopComponent implements OnInit {
+    searchFail: boolean = false;
     checkoutStatus: boolean = false;
     maxRatingValue: number = 0;
     restroRatingValue: any = 0;
@@ -701,6 +702,14 @@ export class ShopComponent implements OnInit {
     {
         this.dataSource.filter = filterValue.trim().toLowerCase();
         this.menuItemList = this.dataSource.filteredData;
+        if (this.menuItemList.length == 0)
+        {
+            this.searchFail = true;
+        }
+        else 
+        {
+            this.searchFail = false;
+        }
     }
     
     selectCategory(Obj)
@@ -909,8 +918,8 @@ export class ShopComponent implements OnInit {
                 if (list.length != 0)
                 {
                     let dialogBoxSettings = {
-                        width: '480px',
-                        height: '350px',
+                        width: '680px',
+                        height: '600px',
                         disableClose: true,
                         hasBackdrop: true,
                         margin: '0 auto',

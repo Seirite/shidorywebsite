@@ -5,96 +5,16 @@
             <span style="font-weight: 100; float: right;"><i class="icofont icofont-close" (click)="dialogRef.close()"></i></span>
         </div>
     </div>
-    <div class="row" *ngFor="let rating of ratingList">
+    <div class="row card-header card-body" *ngFor="let rating of ratingList" style="font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif,'Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol'; font-size: 13px;">
         <div class="col-2" align="center">
-            <img src="{{ rating.RESTRO_USER_PHOTO || '../../../assets/profile.png'}}" alt=""/>
+            <img src="{{ rating.RESTRO_USER_PHOTO || '../../../assets/profile.png'}}" alt="" width="80%" height="80%"/>
         </div>
         <div class="col-10">
             <h6><strong>{{rating.RESTRO_USER_NAME}}</strong></h6>
-            <div class="rating" *ngIf="rating.RATING_VALUE==5">
-                <input type="radio" value="5" checked />
-                <label></label>
-
-                <input type="radio" value="4" checked />
-                <label></label>
-
-                <input type="radio" value="3" checked />
-                <label></label>
-
-                <input type="radio" value="2" checked />
-                <label></label>
-
-                <input type="radio" value="1" checked />
-                <label></label>
-            </div>
-            <div class="rating" *ngIf="rating.RATING_VALUE==4">
-                <input type="radio" value="5" />
-                <label></label>
-
-                <input type="radio" value="4" checked />
-                <label></label>
-
-                <input type="radio" value="3" checked />
-                <label></label>
-
-                <input type="radio" value="2" checked />
-                <label></label>
-
-                <input type="radio" value="1" checked />
-                <label></label>
-            </div>
-            <div class="rating" *ngIf="rating.RATING_VALUE==3">
-                <input type="radio" value="5" />
-                <label></label>
-
-                <input type="radio" value="4" />
-                <label></label>
-
-                <input type="radio" value="3" checked />
-                <label></label>
-
-                <input type="radio" value="2" checked />
-                <label></label>
-
-                <input type="radio" value="1" checked />
-                <label></label>
-            </div>
-            <div class="rating" *ngIf="rating.RATING_VALUE==2">
-                <input type="radio" value="5" />
-                <label></label>
-
-                <input type="radio" value="4" />
-                <label></label>
-
-                <input type="radio" value="3" />
-                <label></label>
-
-                <input type="radio" value="2" checked />
-                <label></label>
-
-                <input type="radio" value="1" checked />
-                <label></label>
-            </div>
-            <div class="rating" *ngIf="rating.RATING_VALUE==1">
-                <input type="radio" value="5" />
-                <label></label>
-
-                <input type="radio" value="4" />
-                <label></label>
-
-                <input type="radio" value="3" />
-                <label></label>
-
-                <input type="radio" value="2" />
-                <label></label>
-
-                <input type="radio" value="1" checked />
-                <label></label>
-            </div>
-            <br>
             <div style="width: 100%; white-space: nowrap; overflow: hidden !important; text-overflow: ellipsis; text-transform: capitalize;">
-                <span>{{rating.RESTRO_USER_COMMIT}}</span>
+                <span style="font-weight: 800;">RATED</span>&nbsp;&nbsp;<span class="badge badge-success" style="font-size: 10px;"><i class="icofont icofont-star"></i>&nbsp;{{rating.RATING_VALUE}}</span>&nbsp;&nbsp;<span>{{rating.RESTRO_USER_COMMIT}}</span>
             </div>
         </div>
+        <br>
     </div>
 </div>

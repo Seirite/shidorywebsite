@@ -5,6 +5,7 @@ import {MenuProvider} from './menu.provider';
 import {MatDialog, MatSnackBar} from '@angular/material';
 import {LoginComponent} from '../login/login.component';
 import {HttpHeaders, HttpClient} from '@angular/common/http';
+import {SiUtil} from '../../utility/SiUtil';
 
 
 @Component({
@@ -26,7 +27,7 @@ export class MenuComponent implements OnInit {
     lng: number;
     zoom: number = 17;
     carrerModel: {mobileNo?: number, firstName?: string, middleName?: string, lastName?: string, emailId?: string, vehicalName?: string, vehicalNo?: number, licenceNo?: number, address?: string, education?: string, city?: string, state?: string, country?: string, pincode?: number, school?: string, college?: string, yfg?: string, uid?: string} = {};
-    constructor(public auth: AuthService, public router: Router, public provider: MenuProvider, public dialog: MatDialog,  private snackBar: MatSnackBar, private http:  HttpClient) {}
+    constructor(public auth: AuthService, private util:SiUtil, public router: Router, public provider: MenuProvider, public dialog: MatDialog,  private snackBar: MatSnackBar, private http:  HttpClient) {}
 
     ngOnInit() {
         this.cartLength = localStorage.getItem("cartLength");
@@ -107,10 +108,96 @@ export class MenuComponent implements OnInit {
         this.haveVehicle = $event.checked
     }
     
+    valiateForm()
+    {
+        if (typeof this.carrerModel.firstName == "undefined")
+        {
+            this.util.toastError("Error", "Name required.");
+            return "ERROR";
+        }
+        if (typeof this.carrerModel.lastName == "undefined")
+        {
+            this.util.toastError("Error", "Name required.");
+            return "ERROR";
+        }
+        if (typeof this.carrerModel.emailId == "undefined")
+        {
+            this.util.toastError("Error", "Email required.");
+            return "ERROR";
+        }
+        if (typeof this.carrerModel.address == "undefined")
+        {
+            this.util.toastError("Error", "Enter required feild.");
+            return "ERROR";
+        }
+        if (typeof this.carrerModel.city == "undefined")
+        {
+            this.util.toastError("Error", "Enter required feild.");
+            return "ERROR";
+        }
+        if (typeof this.carrerModel.state == "undefined")
+        {
+            this.util.toastError("Error", "Enter required feild.");
+            return "ERROR";
+        }
+        if (typeof this.carrerModel.country == "undefined")
+        {
+            this.util.toastError("Error", "Enter required feild.");
+            return "ERROR";
+        }
+        if (typeof this.carrerModel.mobileNo == "undefined")
+        {
+            this.util.toastError("Error", "Mobile Number Required");
+            return "ERROR";
+        }
+    }
+    
     saveCarrerFormInfo(Obj)
     {
-        this.loader = true;
-        let url = `https://us-central1-shidory-c2c4c.cloudfunctions.net/emailMessage`
+        var status = this.valiateForm();
+        if (status != "ERROR")
+        {
+            this.loader = true;
+            var message = "Contact No: " + this.carrerModel.mobileNo + "Address: " + this.carrerModel.address + ", " + this.carrerModel.city + ", " + this.carrerModel.state + ", " + this.carrerModel.country;
+            let url = `https://us-central1-shidory-c2c4c.cloudfunctions.net/sendCarrerMessage`
+            let httpOptions = {
+                headers: new HttpHeaders({
+                    'Content-Type': 'application/json',
+                })
+            };
+            let body = {
+                "Info":
+                    {
+                        "from": this.carrerModel.emailId,
+                        "name": this.carrerModel.firstName + this.carrerModel.lastName,
+                        "subject": "Apply For Job",
+                        "message": message,
+                    }
+            };
+            return this.http.post(url, body, httpOptions)
+                .toPromise()
+                .then(async res => {
+                    this.loader = false;
+                    await this.sendThankYouMail();
+                    this.router.navigate(['/home']);
+                })
+                .catch(err => {
+                    this.loader = false;
+                    this.router.navigate(['/error']);
+                })
+        }
+    }
+    
+    openSnackBar(message: string, action: string) 
+    {
+        this.snackBar.open(message, action, {
+            duration: 3000
+        });
+    }
+    
+    sendThankYouMail()
+    {
+        let url = `https://us-central1-shidory-c2c4c.cloudfunctions.net/thankuMessage`
         let httpOptions = {
             headers: new HttpHeaders({
                 'Content-Type': 'application/json',
@@ -119,27 +206,10 @@ export class MenuComponent implements OnInit {
         let body = {
             "Info":
                 {
-                    "from": Obj.emailId,
-                    "name": Obj.firstName,
+                    "name": this.carrerModel.firstName,
                 }
         };
         return this.http.post(url, body, httpOptions)
-            .toPromise()
-            .then(res => {
-                this.loader = false;
-                this.router.navigate(['/home']);
-            })
-            .catch(err => {
-                this.loader = false;
-                this.router.navigate(['/error']);
-            })
-    }
-    
-    openSnackBar(message: string, action: string) 
-    {
-        this.snackBar.open(message, action, {
-            duration: 3000
-        });
     }
     
     onRightClick($event)

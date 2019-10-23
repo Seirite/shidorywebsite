@@ -13,7 +13,6 @@ export class AppComponent implements OnInit {
     ngOnInit() {
         this.getPosition().then(location =>
         {
-            console.log("location get");
         }).catch(error =>
         {
             var message = "Please allow the location.";

@@ -44,8 +44,8 @@
                             </ng-template>
                             <li class="list-inline-item">
                                 <ul class="list-inline social">
-                                    <li class="list-inline-item"><a href="https://www.facebook.com/spheretheme/" target="_blank"><i class="icofont icofont-social-facebook"></i></a></li>
-                                    <li class="list-inline-item"><a href="https://twitter.com/spheretheme/" target="_blank"><i class="icofont icofont-social-twitter"></i></a></li>
+                                    <li class="list-inline-item"><a href="https://www.facebook.com/" target="_blank"><i class="icofont icofont-social-facebook"></i></a></li>
+                                    <li class="list-inline-item"><a href="https://twitter.com/" target="_blank"><i class="icofont icofont-social-twitter"></i></a></li>
                                     <!---->
                                     <li class="list-inline-item"><a href="https://www.instagram.com/" target="_blank"><i class="icofont icofont-social-instagram"></i></a></li>
                                     <!---->
@@ -129,7 +129,7 @@
                                 <div class="form-group">
                                     <input class="form-control" placeholder="Enter Your Location" type="text" ngx-google-places-autocomplete  #placesRef="ngx-places" (onAddressChange)="handleAddressChange($event,target)" value="{{currentAddress}}">
                                 </div>
-                                <button type="submit" value="submit" class="btn"><i class="icofont icofont-social-google-map"></i></button>
+                                <button type="submit" value="submit" class="btn" (click)="getUserPosition()"><i class="icofont icofont-social-google-map"></i></button>
                             </fieldset>
                         </form>
                     </div>
@@ -179,7 +179,7 @@
                                         <form class="form-horizontal" method="post">
                                             <fieldset>
                                                 <div class="form-group">
-                                                    <input name="s" class="form-control" style="color: #000" placeholder="Search For Restaurants" type="text" (keyup)="applyFilter($event.target.value)">
+                                                    <input name="s" class="form-control" style="color: #000" placeholder="Search For Restaurants" autocomplete="off" type="text" (keyup)="applyFilter($event.target.value)">
                                                 </div>
                                                 <button type="submit" value="submit" class="btn"><i class="icofont icofont-search"></i></button>
                                             </fieldset>
@@ -192,12 +192,11 @@
                                         <div>
                                             <img src="{{item.RESTRO_IMAGE || 'https://www.croatia-times.com/wp-content/uploads/2016/09/Aba.jpg'}}" alt="image" title="image" style="height: 150px;width: 90%" />
                                             <div class="caption">
-                                                <h4 style="padding: 1%;font-family: cursive;color:#e54c2a;cursor: pointer;cursor: hand">{{item.RESTRO_NAME.substring(0,30)}}</h4>
-                                                <p class="text" style="padding: 1%;margin-bottom: 1%;margin-top: -4;cursor: pointer;cursor: hand" class="text">{{item.OPENING_TIME}} - {{item.CLOSING_TIME}} &nbsp;&nbsp;<span style="color:green;cursor: pointer;cursor: hand;font-weight: bold;">Open</span></p>
+                                                <h4 style="padding: 1%;font-family: cursive;color:#e54c2a;cursor: pointer;cursor: hand; text-transform: capitalize;">{{item.RESTRO_NAME.substring(0,30)}}</h4>
+                                                <p class="text" style="padding: 1%;margin-bottom: 1%;margin-top: -4;cursor: pointer;cursor: hand; font-size: 14px;">{{item.OPENING_TIME}} - {{item.CLOSING_TIME}} &nbsp;&nbsp;<span style="color:green;cursor: pointer;cursor: hand;font-weight: bold;">Open</span>&nbsp;&nbsp;<span style="cursor: pointer;cursor: hand;">{{item.RESTRO_DELIVERY_TIME || "30"}} mins</span></p>
                                                 <p text-wrap class="des" style="padding: 1%;cursor: pointer;cursor: hand;margin-top: -3;">{{item.RESTRO_ADDRESS.substring(0,60)}}..</p>
                                             </div>
                                             <div class="middle1">
-                                                <!--<div class="text2">Order now</div>-->
                                                 <button (click)="selectRestaurant(item)" class="btn1 success">Order now</button>
                                             </div>
                                         </div>
@@ -206,8 +205,8 @@
                                         <div>
                                             <img src="{{item.RESTRO_IMAGE || 'https://www.croatia-times.com/wp-content/uploads/2016/09/Aba.jpg'}}" alt="image" title="image" style="height: 150px;width: 90%" />
                                             <div class="caption">
-                                                <h4 style="padding: 1%;font-family: cursive;color:#e54c2a">{{item.RESTRO_NAME.substring(0,30)}}</h4>
-                                                <p class="text" style="padding: 1%;margin-bottom: 1%;margin-top: -4" class="text">{{item.OPENING_TIME}} - {{item.CLOSING_TIME}} &nbsp;&nbsp;<span style="color: red;cursor: pointer;cursor: hand;font-weight: bold">Closed</span></p>
+                                                <h4 style="padding: 1%;font-family: cursive;color:#e54c2a; text-transform: capitalize;">{{item.RESTRO_NAME.substring(0,30)}}</h4>
+                                                <p class="text" style="padding: 1%;margin-bottom: 1%;margin-top: -4; font-size: 14px;">{{item.OPENING_TIME}} - {{item.CLOSING_TIME}} &nbsp;&nbsp;<span style="color: red;cursor: pointer;cursor: hand;font-weight: bold">Closed</span></p>
                                                 <p text-wrap class="des" style="padding: 1%;margin-top: -3;">{{item.RESTRO_ADDRESS.substring(0,60)}}..</p>
                                             </div>
                                             <div class="middle">
@@ -291,8 +290,8 @@
                     <div class="col-md-3 col-sm-6 text-right order-md-3">
                         <!--  Footer Social Start -->
                         <ul class="list-inline social">
-                            <li class="list-inline-item"><a href="https://www.facebook.com/spheretheme/" target="_blank"><i class="icofont icofont-social-facebook"></i></a></li>
-                            <li class="list-inline-item"><a href="https://twitter.com/spheretheme/" target="_blank"><i class="icofont icofont-social-twitter"></i></a></li>
+                            <li class="list-inline-item"><a href="https://www.facebook.com/" target="_blank"><i class="icofont icofont-social-facebook"></i></a></li>
+                            <li class="list-inline-item"><a href="https://twitter.com/" target="_blank"><i class="icofont icofont-social-twitter"></i></a></li>
                             <li class="list-inline-item"><a href="https://www.instagram.com/" target="_blank"><i class="icofont icofont-social-instagram"></i></a></li>
 <!--                            <li class="list-inline-item"><a href="https://www.youtube.com/" target="_blank"><i class="icofont icofont-social-youtube-play"></i></a></li>-->
                         </ul>
