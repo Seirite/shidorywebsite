@@ -420,7 +420,7 @@ export class ShopComponent implements OnInit {
             }
             else 
             {
-                var message = "Sorry, You cant give order to this restaurant becauser this restaurant is now closed.";
+                var message = "Sorry, You cant give order to this restaurant because this restaurant is now closed.";
                 var action = " ";
                 this.openSnackBar(message, action);
             }
