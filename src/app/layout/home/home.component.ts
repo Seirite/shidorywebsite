@@ -27,7 +27,7 @@ export class HomeComponent implements OnInit {
     showList: boolean = true;
     showCountryList: boolean = true;
     @ViewChild(MatPaginator) paginator: MatPaginator;
-    countryList: any;
+    countryList: any[] = [];
     cartLength: string;
     citiesWeServeList: any;
     cityName: any;
