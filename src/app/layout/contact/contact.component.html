@@ -198,27 +198,27 @@
                                 <mat-form-field appearance="outline" class="example-full-width">
                                     <span matSuffix><i class="icofont icofont-ui-user" style="margin-top: -36px;"></i></span>
                                     <mat-label>Name</mat-label>
-                                    <input matInput placeholder="Name" name="fullName" [(ngModel)]="contactModel.fullName">
+                                    <input matInput placeholder="Name" name="fullName" autocomplete="off" [(ngModel)]="contactModel.fullName">
                                 </mat-form-field>
                                 <mat-form-field appearance="outline" class="example-full-width">
                                     <span matSuffix><i class="icofont icofont-ui-message" style="margin-top: -36px;"></i></span>
                                     <mat-label>Email</mat-label>
-                                    <input matInput placeholder="Email" name="emailId" [(ngModel)]="contactModel.emailId">
+                                    <input matInput placeholder="Email" name="emailId" autocomplete="off" [(ngModel)]="contactModel.emailId">
                                 </mat-form-field>
                                 <mat-form-field appearance="outline" class="example-full-width">
                                     <span matSuffix><i class="icofont icofont-phone" style="margin-top: -36px;"></i></span>
                                     <mat-label>Mobile Number</mat-label>
-                                    <input matInput placeholder="Mobile Number" name="mobileNo" maxlength="10" [(ngModel)]="contactModel.mobileNo">
+                                    <input matInput placeholder="Mobile Number" name="mobileNo" autocomplete="off" maxlength="10" (keypress)="mobileKeyPress($event)" [(ngModel)]="contactModel.mobileNo">
                                 </mat-form-field>
                                 <mat-form-field appearance="outline" class="example-full-width">
                                     <span matSuffix><i class="icofont icofont-pencil-alt-5" style="margin-top: -36px;"></i></span>
                                     <mat-label>Reason for contacting</mat-label>
-                                    <input matInput placeholder="Reason for contacting" name="reason" [(ngModel)]="contactModel.reason">
+                                    <input matInput placeholder="Reason for contacting" name="reason" autocomplete="off" [(ngModel)]="contactModel.reason">
                                 </mat-form-field>
                                 <mat-form-field appearance="outline" class="example-full-width">
                                     <span matSuffix><i class="icofont icofont-pencil-alt-5" style="margin-top: -36px;"></i></span>
                                     <mat-label>Message</mat-label>
-                                    <textarea matInput placeholder="Message" name="message" [(ngModel)]="contactModel.message"></textarea>
+                                    <textarea matInput placeholder="Message" name="message" autocomplete="off" [(ngModel)]="contactModel.message"></textarea>
                                 </mat-form-field>
                             </form>
                             <br>

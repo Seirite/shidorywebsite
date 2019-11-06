@@ -24,4 +24,14 @@ agm-map {
     width: 30%;
 }
 
+@media screen and (max-width: 480px) { 
+    .example-full-width {
+        width: 100%;
+    }
+
+    .example-half-width {
+        width: 100%;
+    }
+}
+
 

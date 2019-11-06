@@ -171,6 +171,64 @@ export class HomeComponent implements OnInit {
                             }
                         }
                     }
+                    var restroRatingOne = 0;
+                    var restroRatingTwo = 0;
+                    var restroRatingThree = 0;
+                    var restroRatingFour = 0;
+                    var restroRatingFive = 0;
+                    var maxRatingValue = 0;
+                    if (typeof restroData.RESTRO_RATING_ONE != "undefined") 
+                    {
+                        restroRatingOne = restroData.RESTRO_RATING_ONE;
+                    }
+                    if (typeof restroData.RESTRO_RATING_TWO != "undefined") 
+                    {
+                        restroRatingTwo = restroData.RESTRO_RATING_TWO;
+                    }
+                    if (typeof restroData.RESTRO_RATING_THREE != "undefined") 
+                    {
+                        restroRatingThree = restroData.RESTRO_RATING_THREE;
+                    }
+                    if (typeof restroData.RESTRO_RATING_FOUR != "undefined") 
+                    {
+                        restroRatingFour = restroData.RESTRO_RATING_FOUR;
+                    }
+                    if (typeof restroData.RESTRO_RATING_FIVE != "undefined") 
+                    {
+                        restroRatingFive = restroData.RESTRO_RATING_FIVE;
+                    }
+                    maxRatingValue = Math.max(restroRatingOne, restroRatingTwo, restroRatingThree, restroRatingFour, restroRatingFive);
+                    if (isNaN(maxRatingValue)) 
+                    {
+                        maxRatingValue = 0;
+                    }
+                    if (maxRatingValue == 0)
+                    {
+                        restroData.restroRatingValue = 0;
+                    }
+                    else
+                    {
+                        if (maxRatingValue == restroData.RESTRO_RATING_ONE) 
+                        {
+                            restroData.restroRatingValue = 1;
+                        }
+                        if (maxRatingValue == restroData.RESTRO_RATING_TWO) 
+                        {
+                            restroData.restroRatingValue = 2;
+                        }
+                        if (maxRatingValue == restroData.RESTRO_RATING_THREE) 
+                        {
+                            restroData.restroRatingValue = 3;
+                        }
+                        if (maxRatingValue == restroData.RESTRO_RATING_FOUR) 
+                        {
+                            restroData.restroRatingValue = 4;
+                        }
+                        if (maxRatingValue == restroData.RESTRO_RATING_FIVE) 
+                        {
+                            restroData.restroRatingValue = 5;
+                        }
+                    }
                 })
                 this.menuItemList = list;
                 this.dataSource = new MatTableDataSource(this.menuItemList);

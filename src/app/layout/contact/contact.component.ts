@@ -118,12 +118,23 @@ export class ContactComponent implements OnInit {
                 .toPromise()
                 .then(res => {
                     this.loader = false;
+                    this.util.toastSuccess("Success", "Your Application Submitted");
                     this.router.navigate(['/home']);
                 })
                 .catch(err => {
                     this.loader = false;
                     this.router.navigate(['/error']);
                 })
+        }
+    }
+    
+    mobileKeyPress(event: any) 
+    {
+        const pattern = /[0-9\+\-\ ]/;
+        let inputChar = String.fromCharCode(event.charCode);
+        if (event.keyCode != 8 && !pattern.test(inputChar)) 
+        {
+            event.preventDefault();
         }
     }
     

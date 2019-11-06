@@ -119,25 +119,32 @@ export class ShopComponent implements OnInit {
                 {
                     this.maxRatingValue = 0;
                 }
-                if (this.maxRatingValue == restroObject.RESTRO_RATING_ONE )
+                if (this.maxRatingValue == 0)
                 {
-                    this.restroRatingValue = 1;
+                    this.restroRatingValue = 0;
                 }
-                if (this.maxRatingValue == restroObject.RESTRO_RATING_TWO )
+                else
                 {
-                    this.restroRatingValue = 2;
-                }
-                if (this.maxRatingValue == restroObject.RESTRO_RATING_THREE )
-                {
-                    this.restroRatingValue = 3;
-                }
-                if (this.maxRatingValue == restroObject.RESTRO_RATING_FOUR )
-                {
-                    this.restroRatingValue = 4;
-                }
-                if (this.maxRatingValue == restroObject.RESTRO_RATING_FIVE )
-                {
-                    this.restroRatingValue = 5;
+                    if (this.maxRatingValue == restroObject.RESTRO_RATING_ONE )
+                    {
+                        this.restroRatingValue = 1;
+                    }
+                    if (this.maxRatingValue == restroObject.RESTRO_RATING_TWO )
+                    {
+                        this.restroRatingValue = 2;
+                    }
+                    if (this.maxRatingValue == restroObject.RESTRO_RATING_THREE )
+                    {
+                        this.restroRatingValue = 3;
+                    }
+                    if (this.maxRatingValue == restroObject.RESTRO_RATING_FOUR )
+                    {
+                        this.restroRatingValue = 4;
+                    }
+                    if (this.maxRatingValue == restroObject.RESTRO_RATING_FIVE )
+                    {
+                        this.restroRatingValue = 5;
+                    }
                 }
                 this.restroName = restroObject.RESTRO_NAME;
                 this.restroAreaName = restroObject.RESTRO_AREA_NAME;

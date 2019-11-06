@@ -135,31 +135,31 @@
                                     <mat-form-field appearance="outline" class="example-half-width">
                                         <span matSuffix><i class="icofont icofont-ui-user" style="margin-top: -36px;"></i></span>
                                         <mat-label>First Name</mat-label>
-                                        <input matInput placeholder="First Name" name="firstName" [(ngModel)]="carrerModel.firstName">
+                                        <input matInput placeholder="First Name" name="firstName" autocomplete="off" [(ngModel)]="carrerModel.firstName">
                                     </mat-form-field>
                                     &nbsp;&nbsp;&nbsp;
                                     <mat-form-field appearance="outline" class="example-half-width">
                                         <span matSuffix><i class="icofont icofont-ui-user" style="margin-top: -36px;"></i></span>
                                         <mat-label>Middle Name</mat-label>
-                                        <input matInput placeholder="Middle Name" name="middleName" [(ngModel)]="carrerModel.middleName">
+                                        <input matInput placeholder="Middle Name" name="middleName" autocomplete="off"  [(ngModel)]="carrerModel.middleName">
                                     </mat-form-field>
                                     &nbsp;&nbsp;&nbsp;
                                     <mat-form-field appearance="outline" class="example-half-width">
                                         <span matSuffix><i class="icofont icofont-ui-user" style="margin-top: -36px;"></i></span>
                                         <mat-label>Last Name</mat-label>
-                                        <input matInput placeholder="Last Name" name="lastName" [(ngModel)]="carrerModel.lastName">
+                                        <input matInput placeholder="Last Name" name="lastName" autocomplete="off"  [(ngModel)]="carrerModel.lastName">
                                     </mat-form-field>
                                     <br>
                                     <mat-form-field appearance="outline" class="example-full-width">
                                         <span matSuffix><i class="icofont icofont-ui-message" style="margin-top: -36px;"></i></span>
                                         <mat-label>Email</mat-label>
-                                        <input matInput placeholder="Email" name="emailId" [(ngModel)]="carrerModel.emailId">
+                                        <input matInput placeholder="Email" name="emailId" autocomplete="off"  [(ngModel)]="carrerModel.emailId">
                                     </mat-form-field>
                                     &nbsp;&nbsp;&nbsp;
                                     <mat-form-field appearance="outline" class="example-full-width">
                                         <span matSuffix><i class="icofont icofont-phone" style="margin-top: -36px;"></i></span>
                                         <mat-label>Mobile Number</mat-label>
-                                        <input matInput placeholder="Mobile Number" name="mobileNo" maxlength="10" [(ngModel)]="carrerModel.mobileNo">
+                                        <input matInput placeholder="Mobile Number" name="mobileNo" autocomplete="off"  maxlength="10" (keypress)="mobileKeyPress($event)" [(ngModel)]="carrerModel.mobileNo">
                                     </mat-form-field>
                                     <br>
                                     <mat-checkbox (change)="selectVehical($event)">Do you have your own vehicle? </mat-checkbox>
@@ -167,73 +167,73 @@
                                     <mat-form-field appearance="outline" class="example-half-width" *ngIf="haveVehicle">
                                         <span matSuffix><i class="icofont icofont-pencil-alt-5" style="margin-top: -36px;"></i></span>
                                         <mat-label>Vehicle Name</mat-label>
-                                        <input matInput placeholder="Vehicle Name" name="vehicalName" [(ngModel)]="carrerModel.vehicalName">
+                                        <input matInput placeholder="Vehicle Name" name="vehicalName" autocomplete="off"  [(ngModel)]="carrerModel.vehicalName">
                                     </mat-form-field>
                                     &nbsp;&nbsp;&nbsp;
                                     <mat-form-field appearance="outline" class="example-half-width" *ngIf="haveVehicle">
                                         <span matSuffix><i class="icofont icofont-pencil-alt-5" style="margin-top: -36px;"></i></span>
                                         <mat-label>Vehicle Number</mat-label>
-                                        <input matInput placeholder="Vehicle Number" name="vehicalNo" [(ngModel)]="carrerModel.vehicalNo">
+                                        <input matInput placeholder="Vehicle Number" name="vehicalNo" autocomplete="off"  [(ngModel)]="carrerModel.vehicalNo">
                                     </mat-form-field>
                                     &nbsp;&nbsp;&nbsp;
                                     <mat-form-field appearance="outline" class="example-half-width" *ngIf="haveVehicle">
                                         <span matSuffix><i class="icofont icofont-pencil-alt-5" style="margin-top: -36px;"></i></span>
                                         <mat-label>Driving Licence Number</mat-label>
-                                        <input matInput placeholder="Driving Licence Number" name="licenceNo" [(ngModel)]="carrerModel.licenceNo">
+                                        <input matInput placeholder="Driving Licence Number" name="licenceNo" autocomplete="off"  [(ngModel)]="carrerModel.licenceNo">
                                     </mat-form-field>
                                     <br>
                                     <mat-form-field appearance="outline" class="example-half-width">
                                         <span matSuffix><i class="icofont icofont-pencil-alt-5" style="margin-top: -36px;"></i></span>
                                         <mat-label>Current Residential Address</mat-label>
-                                        <input matInput placeholder="Current Residential Address" name="address" [(ngModel)]="carrerModel.address">
+                                        <input matInput placeholder="Current Residential Address" name="address" autocomplete="off"  [(ngModel)]="carrerModel.address">
                                     </mat-form-field>
                                     &nbsp;&nbsp;&nbsp;
                                     <mat-form-field appearance="outline" class="example-half-width">
                                         <span matSuffix><i class="icofont icofont-pencil-alt-5" style="margin-top: -36px;"></i></span>
                                         <mat-label>City</mat-label>
-                                        <input matInput placeholder="City" name="city" [(ngModel)]="carrerModel.city">
+                                        <input matInput placeholder="City" name="city" autocomplete="off"  [(ngModel)]="carrerModel.city">
                                     </mat-form-field>
                                     &nbsp;&nbsp;&nbsp;
                                     <mat-form-field appearance="outline" class="example-half-width">
                                         <span matSuffix><i class="icofont icofont-pencil-alt-5" style="margin-top: -36px;"></i></span>
                                         <mat-label>State</mat-label>
-                                        <input matInput placeholder="State" name="state" [(ngModel)]="carrerModel.state">
+                                        <input matInput placeholder="State" name="state" autocomplete="off"  [(ngModel)]="carrerModel.state">
                                     </mat-form-field>
                                     &nbsp;&nbsp;&nbsp;
                                     <mat-form-field appearance="outline" class="example-half-width">
                                         <span matSuffix><i class="icofont icofont-pencil-alt-5" style="margin-top: -36px;"></i></span>
                                         <mat-label>Country</mat-label>
-                                        <input matInput placeholder="Country" name="country" [(ngModel)]="carrerModel.country">
+                                        <input matInput placeholder="Country" name="country" autocomplete="off"  [(ngModel)]="carrerModel.country">
                                     </mat-form-field>
                                     &nbsp;&nbsp;&nbsp;
                                     <mat-form-field appearance="outline" class="example-half-width">
                                         <span matSuffix><i class="icofont icofont-pencil-alt-5" style="margin-top: -36px;"></i></span>
                                         <mat-label>Pin Code</mat-label>
-                                        <input matInput placeholder="Pin Code" name="pincode" [(ngModel)]="carrerModel.pincode">
+                                        <input matInput placeholder="Pin Code" name="pincode" autocomplete="off"  [(ngModel)]="carrerModel.pincode">
                                     </mat-form-field>
                                     &nbsp;&nbsp;&nbsp;
                                     <mat-form-field appearance="outline" class="example-half-width">
                                         <span matSuffix><i class="icofont icofont-pencil-alt-5" style="margin-top: -36px;"></i></span>
                                         <mat-label>Education Detail</mat-label>
-                                        <input matInput placeholder="Education Detail" name="education" [(ngModel)]="carrerModel.education">
+                                        <input matInput placeholder="Education Detail" name="education" autocomplete="off"  [(ngModel)]="carrerModel.education">
                                     </mat-form-field>
                                     &nbsp;&nbsp;&nbsp;
                                     <mat-form-field appearance="outline" class="example-half-width">
                                         <span matSuffix><i class="icofont icofont-pencil-alt-5" style="margin-top: -36px;"></i></span>
                                         <mat-label>School</mat-label>
-                                        <input matInput placeholder="School" name="school" [(ngModel)]="carrerModel.school">
+                                        <input matInput placeholder="School" name="school" autocomplete="off"  [(ngModel)]="carrerModel.school">
                                     </mat-form-field>
                                     &nbsp;&nbsp;&nbsp;
                                     <mat-form-field appearance="outline" class="example-half-width">
                                         <span matSuffix><i class="icofont icofont-pencil-alt-5" style="margin-top: -36px;"></i></span>
                                         <mat-label>College</mat-label>
-                                        <input matInput placeholder="College" name="college" [(ngModel)]="carrerModel.college">
+                                        <input matInput placeholder="College" name="college" autocomplete="off"  [(ngModel)]="carrerModel.college">
                                     </mat-form-field>
                                     &nbsp;&nbsp;&nbsp;
                                     <mat-form-field appearance="outline" class="example-half-width">
                                         <span matSuffix><i class="icofont icofont-pencil-alt-5" style="margin-top: -36px;"></i></span>
                                         <mat-label>Year Of Graduate</mat-label>
-                                        <input matInput placeholder="Year Of Graduate" name="yfg" [(ngModel)]="carrerModel.yfg">
+                                        <input matInput placeholder="Year Of Graduate" name="yfg" autocomplete="off"  [(ngModel)]="carrerModel.yfg">
                                     </mat-form-field>
                                     &nbsp;&nbsp;&nbsp;
 <!--                                    <mat-form-field>

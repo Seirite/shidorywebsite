@@ -190,6 +190,7 @@
                                         <input type="tel" matInput placeholder="Mobile number" maxlength="10" 
                                                formControlName="MOBILE_NO"
                                                autocomplete="off"
+                                               (keypress)="mobileKeyPress($event)"
                                                [(ngModel)]="RESTRO_MOBILE_NO" required/>
                                         <mat-error *ngIf="addRestroForm.get('MOBILE_NO').invalid && addRestroForm.get('MOBILE_NO').touched">{{validMobile()}}</mat-error>
                                     </mat-form-field>

@@ -193,7 +193,7 @@
                                             <img src="{{item.RESTRO_IMAGE || 'https://www.croatia-times.com/wp-content/uploads/2016/09/Aba.jpg'}}" alt="image" title="image" style="height: 150px;width: 90%" />
                                             <div class="caption">
                                                 <h4 style="padding: 1%;font-family: cursive;color:#e54c2a;cursor: pointer;cursor: hand; text-transform: capitalize;">{{item.RESTRO_NAME.substring(0,30)}}</h4>
-                                                <p class="text" style="padding: 1%;margin-bottom: 1%;margin-top: -4;cursor: pointer;cursor: hand; font-size: 14px;">{{item.OPENING_TIME}} - {{item.CLOSING_TIME}} &nbsp;&nbsp;<span style="color:green;cursor: pointer;cursor: hand;font-weight: bold;">Open</span>&nbsp;&nbsp;<span style="cursor: pointer;cursor: hand;">{{item.RESTRO_DELIVERY_TIME || "30"}} mins</span></p>
+                                                <p class="text" style="padding: 1%;margin-bottom: 1%;margin-top: -4;cursor: pointer;cursor: hand; font-size: 14px;">{{item.OPENING_TIME}} - {{item.CLOSING_TIME}} &nbsp;&nbsp;<span style="color:green;cursor: pointer;cursor: hand;font-weight: bold;">Open</span>&nbsp;&nbsp;<span style="cursor: pointer;cursor: hand;">{{item.RESTRO_DELIVERY_TIME || "30"}} mins</span>&nbsp;&nbsp;<span class="ratingDisplay"><i class="icofont icofont-star"></i>&nbsp;{{item.restroRatingValue || "0"}}&nbsp;</span></p>
                                                 <p text-wrap class="des" style="padding: 1%;cursor: pointer;cursor: hand;margin-top: -3;">{{item.RESTRO_ADDRESS.substring(0,60)}}..</p>
                                             </div>
                                             <div class="middle1">
@@ -206,7 +206,7 @@
                                             <img src="{{item.RESTRO_IMAGE || 'https://www.croatia-times.com/wp-content/uploads/2016/09/Aba.jpg'}}" alt="image" title="image" style="height: 150px;width: 90%" />
                                             <div class="caption">
                                                 <h4 style="padding: 1%;font-family: cursive;color:#e54c2a; text-transform: capitalize;">{{item.RESTRO_NAME.substring(0,30)}}</h4>
-                                                <p class="text" style="padding: 1%;margin-bottom: 1%;margin-top: -4; font-size: 14px;">{{item.OPENING_TIME}} - {{item.CLOSING_TIME}} &nbsp;&nbsp;<span style="color: red;cursor: pointer;cursor: hand;font-weight: bold">Closed</span></p>
+                                                <p class="text" style="padding: 1%;margin-bottom: 1%;margin-top: -4; font-size: 14px;">{{item.OPENING_TIME}} - {{item.CLOSING_TIME}} &nbsp;&nbsp;<span style="color: red;cursor: pointer;cursor: hand;font-weight: bold">Closed</span>&nbsp;&nbsp;<span class="ratingDisplay"><i class="icofont icofont-star"></i>&nbsp;{{item.restroRatingValue || "0"}}&nbsp;</span></p>
                                                 <p text-wrap class="des" style="padding: 1%;margin-top: -3;">{{item.RESTRO_ADDRESS.substring(0,60)}}..</p>
                                             </div>
                                             <div class="middle">
