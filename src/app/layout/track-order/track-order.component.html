@@ -19,7 +19,7 @@
         <div align="center" style="margin-left: 5%;">
             <p>{{trackOrderObject.ORDER_ID}}</p>
         </div>
-        <div align="end" style="margin-left: 35%;">
+        <div align="end" style="margin: auto;">
             <p style="color: #e54c2a; font-weight: bold; font-size: medium;" align="center" *ngIf="userOrderStatus!='DELIVERD'">{{userOrderStatus || ''}}</p>
             <p style="color: #e54c2a; font-weight: bold; font-size: medium;" align="center" *ngIf="userOrderStatus=='DELIVERD'">{{userOrderStatus || ''}}</p>
         </div>
@@ -43,7 +43,7 @@
     </div>
     <div class="row" style="margin-left: 5%; margin-right: 5%;" *ngIf="trackOrderObject.RESTRO_USER_CART_COUPON_DISCOUNT_NAME">
         <div align="start">
-            <p>After Apply Coupon :</p>
+            <p>Apply Coupon :</p>
         </div>
         <div align="center" style="margin-left: 5%;">
             <p>{{trackOrderObject.RESTRO_USER_CART_COUPON_DISCOUNT_NAME}} ({{trackOrderObject.RESTRO_USER_CART_DISCOUNT_TOTAL}})</p>
@@ -180,6 +180,7 @@
                 </div>
                 <div class="col-md-9 col-sm-9 col-xs-9" style="margin-top: 5%; -ms-flex: 1; flex: 1;  position: relative; overflow: hidden; min-height: 50px;">
                     <p class="restroName">{{restroName}}</p>
+                    <br>
                     <p style="font-size: 13px; color: #686b78; margin-top: -5%;">{{restroAreaName}}</p>
                     <hr style="margin-top: 0rem;">
                 </div>
@@ -188,20 +189,20 @@
                 <div class="row" *ngFor="let cartItem of userMenuItem">
                      <div class="col-12">
                         <div class="row">
-                            <div class="col-1">
+                            <div class="col-2">
                                 <img src="assets/images/menu-type/non-vegetarian.png" *ngIf="cartItem.MENU_ITEM_CATEGORY=='NonVeg'" />
                                 <img src="assets/images/menu-type/vegetarian.png" *ngIf="cartItem.MENU_ITEM_CATEGORY=='Veg'" />
                                 <img src="assets/images/menu-type/egg-contain.png" *ngIf="cartItem.MENU_ITEM_CATEGORY=='Contains Egg'" />
                             </div>
-                            <div class="col-3" align="start">
+                            <div class="col-4" align="start">
                                 <span style="font-weight: 1000; display: inline-block; width: 90%; white-space: nowrap; overflow: hidden !important; text-overflow: ellipsis; text-transform: capitalize;">{{cartItem.MENU_ITEM_NAME}}</span>
                             </div>
-                            <div class="col-4" align="center">
+                            <div class="col-3" align="center">
                                 <span style="font-weight: 500;">{{cartItem.MENU_ITEM_CURRENCY}} {{cartItem.MENU_ITEM_PRICE}}</span>
                                 <span style="font-weight: 300;"> X </span>
                                 <span style="font-weight: 500;">{{cartItem.MENU_ITEM_QUANTITY}}</span>
                             </div>
-                            <div class="col-4" align="center">
+                            <div class="col-2" align="center">
                                 <span *ngIf="!cartItem.MENU_ITEM_TOTAL" style="font-weight: 500;">{{cartItem.MENU_ITEM_CURRENCY}}{{cartItem.MENU_ITEM_PRICE}}</span>
                                 <span *ngIf="cartItem.MENU_ITEM_TOTAL" style="font-weight: 500;">{{cartItem.MENU_ITEM_CURRENCY}}{{cartItem.MENU_ITEM_TOTAL}}</span>
                             </div>
@@ -216,21 +217,21 @@
                     </div>
                     <div style="font-size: 13px; color: #686b78;display: -ms-flexbox; display: flex;-ms-flex-align: center;align-items: center;">
                         Item Total
-                        <div style="margin-left: 68%;">
+                        <div class="totalPrice">
                             <span align="right">{{totalPrice}}</span>
                         </div>
                     </div>
                     <hr>
                     <div style="font-size: 13px;color: #686b78; display: -ms-flexbox; display: flex; -ms-flex-align: center; align-items: center;">
                         Delivery Fee
-                        <div style="margin-left: 65%;">
+                        <div class="deliveryFee">
                             <span align="right">{{deliveryFee}}</span>
                         </div>
                     </div>
                     <hr *ngIf="trackOrderObject.RESTRO_USER_CART_COUPON_DISCOUNT_NAME">
                     <div style="font-size: 13px;color: #73bb5c; display: -ms-flexbox; display: flex; -ms-flex-align: center; align-items: center;" *ngIf="trackOrderObject.RESTRO_USER_CART_COUPON_DISCOUNT_NAME">
                         Apply Coupon
-                        <div style="margin-left: 65%;">
+                        <div class="deliveryFee">
                             <span align="right">{{coupanValue}}</span>
                         </div>
                     </div>
@@ -240,7 +241,7 @@
                     <div style="font-weight: 1000;">
                         To Pay
                     </div>
-                    <div style="margin-left: 70%;">
+                    <div class="toPay">
                         <span align="right">{{userPaymentAmount}}</span>
                     </div>
                 </div>
@@ -251,22 +252,6 @@
 </div>
 
 
-<!--<div class="md-stepper-horizontal orange" *ngFor="let orderStatus of deliveryStatusList">
-    <div class="md-step active done">
-        <div class="md-step-circle"><span>1</span></div>
-        <div class="md-step-title">{{orderStatus.title}}</div>
-        <div class="md-step-optional" style="margin-top: 2px;">{{orderStatus.Date.toDate() | date:'medium'}}</div>
-        <div class="md-step-bar-left"></div>
-        <div class="md-step-bar-right"></div>
-    </div>
-    <div class="md-step active location" *ngIf="showMap==true">
-      <div class="md-step-circle"><span>2</span></div>
-      <div class="md-step-title">Delivered</div>
-      <div class="md-step-optional">{{trackOrderObject.SELECT_ADDRESS}}</div>
-      <div class="md-step-bar-left"></div>
-      <div class="md-step-bar-right"></div>
-    </div>
-</div>-->
 <div (contextmenu)="onRightClick($event)" (window:keydown)="keyboardEvent($event)">
     <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom" *ngIf="deliveryStatusList?.length==4">
         <agm-direction [origin]="origin" [destination]="destination" [visible]="show"></agm-direction>

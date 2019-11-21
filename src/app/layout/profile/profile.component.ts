@@ -10,6 +10,7 @@ import {ADD_ORDER_MST} from '../../pojos/ADD_ORDER_MST';
 import {Address} from 'ngx-google-places-autocomplete/objects/address';
 import {ConformationDialogComponent} from '../conformation-dialog/conformation-dialog.component';
 import {LoginComponent} from '../login/login.component';
+import {SiUtil} from '../../utility/SiUtil';
 
 @Component({
     selector: 'app-profile',
@@ -38,12 +39,11 @@ export class ProfileComponent implements OnInit {
     userEmail: any;
     userPhoto: any;
     userFName: any;
-    userLName: any;
     loginUserEmail: string;
     loginUserImage: string;
     loginUserName: string;
     loginDone: string;
-    constructor(public auth: AuthService, public router: Router, public provider: ProfileProvider, public dialog: MatDialog, private fb: FormBuilder, private snackBar: MatSnackBar, private bottomSheet: MatBottomSheet) {}
+    constructor(private util:SiUtil, public auth: AuthService, public router: Router, public provider: ProfileProvider, public dialog: MatDialog, private fb: FormBuilder, private snackBar: MatSnackBar, private bottomSheet: MatBottomSheet) {}
 
     async ngOnInit() {
         this.validateForm()
@@ -147,8 +147,7 @@ export class ProfileComponent implements OnInit {
                 this.provider.getFormatedAddress(location.lat, location.lng).then((address: any) =>
                 {
                     this.userFName = restroUserData.userFName;
-                    this.userLName = restroUserData.userLName;
-                    if (typeof this.userLName == "undefined" && typeof this.userFName == "undefined")
+                    if (typeof this.userFName == "undefined")
                     {
                         this.userFName = restroUserData.displayName;
                         if (typeof this.userFName == "undefined")
@@ -223,7 +222,7 @@ export class ProfileComponent implements OnInit {
     viewDetail(Obj)
     {
         let dialogBoxSettings = {
-            width : '50%',
+            width : '90%',
             height : '80%',
             disableClose: true,
             hasBackdrop: true,
@@ -231,11 +230,7 @@ export class ProfileComponent implements OnInit {
             data: {ORDER_ID: Obj.key, RESTAURENT_ID: Obj.RESTAURENT_ID}
         };
         this.component = ViewDetailComponent;
-        const dialogRef = this.dialog.open(this.component, dialogBoxSettings);
-        dialogRef.afterClosed().subscribe(result =>
-        {
-            console.log("dialog closed");
-        })
+        this.dialog.open(this.component, dialogBoxSettings);
     }
     
     updateRestroUserProfile()
@@ -246,11 +241,11 @@ export class ProfileComponent implements OnInit {
             restroUserObject.userNumber = this.userNumber;
             restroUserObject.userDOB = this.userDOB;
             restroUserObject.userFName = this.userFName;
-            restroUserObject.userLName = this.userLName;
             this.provider.updateOrderToRestaurant(restroUserObject);
             setTimeout(() =>
             {
                 this.loader = false;
+                this.util.toastSuccess("Success", "Profile Information Save Successfully");
             }, 2000)
         })
     }
@@ -311,6 +306,16 @@ export class ProfileComponent implements OnInit {
         {
             this.router.navigate(['/home']);
         })
+    }
+    
+    mobileKeyPress(event: any) 
+    {
+        const pattern = /[0-9\+\-\ ]/;
+        let inputChar = String.fromCharCode(event.charCode);
+        if (event.keyCode != 8 && !pattern.test(inputChar)) 
+        {
+            event.preventDefault();
+        }
     }
     
     onRightClick($event)

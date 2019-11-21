@@ -17,6 +17,7 @@ import {firestoreService} from './utility/firestoreService';
 import {AuthService} from './utility/auth-service';
 import {NotifyService} from './utility/NotifyService';
 import {ResourceBundle} from './utility/ResourceBundle';
+import {HttpModule} from '@angular/http';
 
 // AoT requires an exported function for factories
 export const createTranslateLoader = (http: HttpClient) => {
@@ -47,6 +48,7 @@ var config = {
         BrowserModule,
         BrowserAnimationsModule,
         HttpClientModule,
+        HttpModule,
         TranslateModule.forRoot({
             loader: {
                 provide: TranslateLoader,

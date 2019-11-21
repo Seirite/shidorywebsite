@@ -197,12 +197,12 @@
             <!-- Fun-Factor End -->
 
             <!-- Service Start  -->
-            <div class="service">
+            <div class="reservation" *ngIf="countryList?.length!=0">
                 <div class="container">
                     <div class="row ">
                         <!-- Title Content Start -->
-                        <div class="col-sm-12 col-xs-12 commontop text-center">
-                            <h4>Why Choose Us ?</h4>
+                        <div class="col-sm-12 commontop text-center">
+                            <h4>Countries</h4>
                             <div class="divider style-1 center">
                                 <span class="hr-simple left"></span>
                                 <i class="icofont icofont-ui-press hr-icon"></i>
@@ -210,8 +210,16 @@
                             </div>
                         </div>
                         <!-- Title Content End -->
-                        <div class="col-sm-12 col-xs-12 video">
-                            <img src="assets/images/about/about-bg.jpg" class="img-fluid" alt="image" title="image" />
+                        <div class="col-lg-12 col-sm-12">
+                            <div class="row">
+                                <div class="col-lg-3 col-sm-3 col-md-3" *ngFor="let country of countryList">
+                                     <div class="row" style="padding-left: 20px; padding-top: 10px;">
+                                         <img src="{{country.flag}}" width="25" style="height: 20px;">
+                                        &nbsp;&nbsp;
+                                        <p style="font-family: cursive; font-weight: 600;">{{country.key}}</p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

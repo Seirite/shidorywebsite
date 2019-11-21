@@ -159,7 +159,7 @@
                                     <mat-form-field appearance="outline" class="example-full-width">
                                         <span matSuffix><i class="icofont icofont-phone" style="margin-top: -36px;"></i></span>
                                         <mat-label>Mobile Number</mat-label>
-                                        <input matInput placeholder="Mobile Number" name="mobileNo" autocomplete="off"  maxlength="10" (keypress)="mobileKeyPress($event)" [(ngModel)]="carrerModel.mobileNo">
+                                        <input matInput placeholder="Mobile Number" type="tel" name="mobileNo" autocomplete="off"  maxlength="10" (keypress)="mobileKeyPress($event)" [(ngModel)]="carrerModel.mobileNo">
                                     </mat-form-field>
                                     <br>
                                     <mat-checkbox (change)="selectVehical($event)">Do you have your own vehicle? </mat-checkbox>

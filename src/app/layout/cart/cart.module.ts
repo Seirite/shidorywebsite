@@ -10,9 +10,10 @@ import {ApplyCouponModule} from '../apply-coupon/apply-coupon.module';
 import {LoginModule} from '../login/login.module';
 import {OtpDialogModule} from '../otp-dialog/otp-dialog.module';
 import {DeliveryAddressModule} from '../delivery-address/delivery-address.module';
+import {WindowRef} from '../Razorpay/windowRef.service';
 @NgModule({
     imports: [CommonModule, CartRoutingModule, AngularMaterialModule, GooglePlaceModule, AlertDialogModule, ApplyCouponModule, LoginModule, OtpDialogModule, DeliveryAddressModule],
     declarations: [CartComponent],
-    providers : [CartProvider],
+    providers : [CartProvider, WindowRef],
 })
 export class CartModule {}

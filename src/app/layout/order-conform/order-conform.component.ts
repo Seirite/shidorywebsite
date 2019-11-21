@@ -140,14 +140,14 @@ export class OrderConformComponent implements OnInit {
     trackOrder()
     {
         let dialogBoxSettings = {
-            width : '50%',
+            width : '90%',
             height : '80%',
             disableClose: true,
             hasBackdrop: true,
             margin: '0 auto',
         };
         this.component = TrackOrderComponent;
-        const dialogRef = this.dialog.open(this.component, dialogBoxSettings);
+        this.dialog.open(this.component, dialogBoxSettings);
     }
     
     openLoginDialog()

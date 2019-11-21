@@ -4,6 +4,7 @@ import {DialogData} from '../cart/cart.component';
 import {ViewDetailProvider} from './view-detail.provider';
 import {Address} from 'ngx-google-places-autocomplete/objects/address';
 import {ADD_ORDER_MST} from '../../pojos/ADD_ORDER_MST';
+import {AuthService} from '../../utility/auth-service';
 
 @Component({
     selector: 'app-view-detail',
@@ -30,7 +31,7 @@ export class ViewDetailComponent implements OnInit {
     cityName: string;
     stateName: string;
     countryName: string;
-    constructor(public dialogRef: MatDialogRef<ViewDetailComponent>, @Inject(MAT_DIALOG_DATA) public data: DialogData, public provider: ViewDetailProvider) {}
+    constructor(public dialogRef: MatDialogRef<ViewDetailComponent>, @Inject(MAT_DIALOG_DATA) public data: DialogData, public provider: ViewDetailProvider, public auth: AuthService,) {}
 
     async ngOnInit() {
         await this.getUserLocation();
@@ -128,7 +129,27 @@ export class ViewDetailComponent implements OnInit {
             }
             else
             {
-                console.log("Order Delete");
+                this.provider.getRestroUserOrderList(this.auth.getSession().uid, this.data.ORDER_ID).subscribe((list: ADD_ORDER_MST[]) =>
+                {
+                    this.userMenuItem = list[0].MENUCART;
+                    this.orderId = list[0].ORDER_ID;
+                    this.selectAddress = list[0].SELECT_ADDRESS;
+                    this.totalPrice = list[0].RESTRO_USER_CART_CURRENCY + " " + list[0].RESTRO_USER_CART_TOTAL;
+                    this.couponName = list[0].RESTRO_USER_CART_COUPON_DISCOUNT_NAME;
+                    this.deliveryFee = list[0].RESTRO_USER_CART_CURRENCY + " " + list[0].RESTRO_USER_CART_CHARGES;
+                    this.discountAmount = list[0].RESTRO_USER_CART_CURRENCY + " " + list[0].RESTRO_USER_CART_COUPON_DISCOUNT_AMOUNT;
+                    if (list[0].RESTRO_USER_CART_COUPON_DISCOUNT_NAME != 0) 
+                    {
+                        var userPaymentAmount = list[0].RESTRO_USER_CART_TOTAL - list[0].RESTRO_USER_CART_COUPON_DISCOUNT_AMOUNT;
+                        var totalPrice = userPaymentAmount + list[0].RESTRO_USER_CART_CHARGES;
+                        this.userPaymentAmount = list[0].RESTRO_USER_CART_CURRENCY + " " + totalPrice;
+                    }
+                    else 
+                    {
+                        var totalPrice = list[0].RESTRO_USER_CART_TOTAL + list[0].RESTRO_USER_CART_CHARGES;
+                        this.userPaymentAmount = list[0].RESTRO_USER_CART_CURRENCY + " " + totalPrice;
+                    }
+                })
             }
         })
     }

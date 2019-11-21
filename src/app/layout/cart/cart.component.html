@@ -221,7 +221,7 @@
                                             <div class="mat-elevation-z1">
                                                 <div class="row">
                                                     <div class="col-md-3 col-sm-3 col-xs-3" align="center" style="margin-top: 5%; margin-bottom: 5%; margin-left: 5%;">
-                                                        <img src="{{restroObj.RESTRO_IMAGE || 'http://static1.squarespace.com/static/597a2f14b3db2bd7814e6774/t/598cadb715d5db4ff57e9216/1502391736040/sprig.300x300.bg.png?format=1500w'}}" class="myimage" />
+                                                        <img src="{{restroObj.RESTRO_IMAGE || '../../../assets/images/shop/defaultRestroImage.png'}}" onerror="this.src='../../../assets/images/shop/defaultRestroImage.png';" class="myimage" />
                                                     </div>
                                                     <div class="col-md-9 col-sm-9 col-xs-9" style="margin-top: 5%; -ms-flex: 1; flex: 1;  position: relative; overflow: hidden; min-height: 50px;">
                                                         <p class="restroName">{{restroObj.RESTRO_NAME}}</p>
@@ -266,7 +266,7 @@
                                                         <div style="font-size: 13px; color: #cb202d ;display: -ms-flexbox; display: flex;-ms-flex-align: center;align-items: center;" *ngIf="wrongCoupan==true">
                                                             <span>Sorry, You cant use this coupun.</span>
                                                         </div>
-                                                        <div style="border: 1px dashed #a9abb2; color: #535665; font-size: 14px; display: -ms-flexbox; display: flex; -ms-flex-align: center; align-items: center; cursor: pointer; padding: 0 15px; margin: 10px 0 15px; font-weight: 500; height: 55px; width: 90%;" *ngIf="userAppliedCoupun">
+                                                        <div style="border: 1px dashed #a9abb2; color: #535665; font-size: 14px; display: -ms-flexbox; display: flex; -ms-flex-align: center; align-items: center; cursor: pointer; padding: 0 15px; margin: 10px 0 15px; font-weight: 500; width: 90%;" *ngIf="userAppliedCoupun">
                                                             <img src="../../../assets/images/offers.png" alt=""/>
                                                             &nbsp;
                                                             <div style="font-weight: 1000; font-size: 13px; color: #282c3f;">
@@ -390,62 +390,18 @@
                                             <li class="list-inline-item active" (click)="showCashCard()">
                                                 <a><img src="assets/images/shop/cash.png" alt="cash" title="cash" width="50" class="img-fluid"></a>
                                             </li>
-                                            <li class="list-inline-item" (click)="showVisaCard()">
-                                                <a><img src="assets/images/shop/visacard.png" alt="visa" title="visa" class="img-fluid"></a>
-                                            </li>
-                                            <li class="list-inline-item" (click)="showMasterCard()">
-                                                <a><img src="assets/images/shop/master.png" alt="master" title="master" class="img-fluid"></a>
-                                            </li>
-                                            <li class="list-inline-item" (click)="showPayCard()">
-                                                <a><img src="assets/images/shop/pay.png" alt="paypal" title="paypal" class="img-fluid"></a>
+                                            <li class="list-inline-item" (click)="showRazorpayCard()">
+                                                <a><img src="https://img.icons8.com/color/50/000000/card-in-use.png" alt="card" title="card" class="img-fluid"></a>
                                             </li>
                                         </ul>
                                     </div>
-                                    <div class="form-group " *ngIf="showVisaCardForm==true">
+                                    <div class="form-group " *ngIf="showRazorPayCardForm==true">
                                         <ul class="list-inline text-center link">
                                             <li class="list-inline-item" (click)="showCashCard()">
                                                 <a><img src="assets/images/shop/cash.png" alt="cash" title="cash" width="50" class="img-fluid"></a>
                                             </li>
-                                            <li class="list-inline-item active" (click)="showVisaCard()">
-                                                <a><img src="assets/images/shop/visacard.png" alt="visa" title="visa" class="img-fluid"></a>
-                                            </li>
-                                            <li class="list-inline-item" (click)="showMasterCard()">
-                                                <a><img src="assets/images/shop/master.png" alt="master" title="master" class="img-fluid"></a>
-                                            </li>
-                                            <li class="list-inline-item" (click)="showPayCard()">
-                                                <a><img src="assets/images/shop/pay.png" alt="paypal" title="paypal" class="img-fluid"></a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="form-group " *ngIf="showMasterCardForm==true">
-                                        <ul class="list-inline text-center link">
-                                            <li class="list-inline-item" (click)="showCashCard()">
-                                                <a><img src="assets/images/shop/cash.png" alt="cash" title="cash" width="50" class="img-fluid"></a>
-                                            </li>
-                                            <li class="list-inline-item" (click)="showVisaCard()">
-                                                <a><img src="assets/images/shop/visacard.png" alt="visa" title="visa" class="img-fluid"></a>
-                                            </li>
-                                            <li class="list-inline-item active" (click)="showMasterCard()">
-                                                <a><img src="assets/images/shop/master.png" alt="master" title="master" class="img-fluid"></a>
-                                            </li>
-                                            <li class="list-inline-item" (click)="showPayCard()">
-                                                <a><img src="assets/images/shop/pay.png" alt="paypal" title="paypal" class="img-fluid"></a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="form-group " *ngIf="showPayCardForm==true">
-                                        <ul class="list-inline text-center link">
-                                            <li class="list-inline-item" (click)="showCashCard()">
-                                                <a><img src="assets/images/shop/cash.png" alt="cash" title="cash" width="50" class="img-fluid"></a>
-                                            </li>
-                                            <li class="list-inline-item" (click)="showVisaCard()">
-                                                <a><img src="assets/images/shop/visacard.png" alt="visa" title="visa" class="img-fluid"></a>
-                                            </li>
-                                            <li class="list-inline-item" (click)="showMasterCard()">
-                                                <a><img src="assets/images/shop/master.png" alt="master" title="master" class="img-fluid"></a>
-                                            </li>
-                                            <li class="list-inline-item active" (click)="showPayCard()">
-                                                <a><img src="assets/images/shop/pay.png" alt="paypal" title="paypal" class="img-fluid"></a>
+                                            <li class="list-inline-item active" (click)="showRazorpayCard()">
+                                                <a><img src="../../../assets/images/shop/card.png" alt="card" title="card" class="img-fluid"></a>
                                             </li>
                                         </ul>
                                     </div>
@@ -453,7 +409,6 @@
                                         <div class="form-group row">	
                                             <div class="col-sm-12" align="center">
                                                 <img src="../../../assets/images/shop/cash1.png" alt=""/>
-                                                <br>
                                                 <div>
                                                     <h3 style="font: bold;">Cash On Delivery</h3>
                                                     <p>Please keep extra change </p>
@@ -464,37 +419,23 @@
                                         </div>	
                                     </div>
                                     
-                                    <div class="tab-pane show active" *ngIf="showVisaCardForm==true">
+                                    <div class="tab-pane show active" *ngIf="showRazorPayCardForm==true">
                                         <div class="form-group row">	
-                                            <div class="col-sm-12">
-                                                <h1 style="text-align: center; font-family: 'Great Vibes',cursive;">Coming Soon!</h1>
+                                            <div class="col-sm-12" align="center">
+                                                <img src="../../../assets/images/shop/card1.png" alt=""/>
+                                                <div>
+                                                    <h5 style="font: bold;">Card Payment</h5>
+                                                    <button mat-raised-button style="margin: auto; width: 30%; background: wheat; color: #e54c2a" (click)="callRazorpay()">Pay {{cartPriceCurrency}}{{cartOverAllTotalPrice}}</button>
+                                                </div>
+                                                <br>
                                             </div>
                                         </div>	
                                     </div>
-                                    
-                                    <div class="tab-pane show active" *ngIf="showMasterCardForm==true">
-                                        <div class="form-group row">	
-                                            <div class="col-sm-12">
-                                                <h1 style="text-align: center; font-family: 'Great Vibes',cursive;">Coming Soon!</h1>
-                                            </div>
-                                        </div>	
-                                    </div>
-                                    
-                                    <div class="tab-pane show active" *ngIf="showPayCardForm==true">
-                                        <div class="form-group row">	
-                                            <div class="col-sm-12">
-                                                <h1 style="text-align: center; font-family: 'Great Vibes',cursive;">Coming Soon!</h1>
-                                            </div>
-                                        </div>	
-                                    </div>
-<!--                                    <div align="center" *ngIf="loader" >
-                                        <img src="assets/images/loader.gif" style="width: 15%;" />
-                                    </div>-->
                                     
                                     <div class="form-group row" align="center">
                                         <div class="col-md-12 col-12 text-center">
                                             <div class="buttons nav nav-tabs">
-                                                <button mat-raised-button style="margin: auto; width: 70%; background: #e54c2a; color: white" [disabled]="loader" (click)="conformOrder()">Place Order <img src="../../../assets/images/loader.gif" width="50px" alt="" *ngIf="loader"/></button>
+                                                <button mat-raised-button style="margin: auto; width: 70%; background: #e54c2a; color: white" [disabled]="loader" (click)="conformPaymentMethod()">Place Order <img src="../../../assets/images/loader.gif" width="50px" alt="" *ngIf="loader"/></button>
                                             </div>
                                         </div>
                                     </div>

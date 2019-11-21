@@ -389,7 +389,7 @@ export class ShopComponent implements OnInit {
                 var order_id = localStorage.getItem("callingCode") + date.getTime();
                 this.entOrderMst.RESTAURENT_ID = this.selectRestaurantKey;
                 this.entOrderMst.ORDER_ID = order_id;
-                this.entOrderMst.PAYMENT_TYPE = "CARD";
+                this.entOrderMst.PAYMENT_TYPE = "COD";
                 this.entOrderMst.ORDER_STATUS = "PENDING";
                 this.entOrderMst.MENUCART = this.cartMenuItemList;
                 if (this.loginDone == null) 
@@ -594,12 +594,18 @@ export class ShopComponent implements OnInit {
                 this.cartMenuItemList.push(arrayObj);
                 localStorage.setItem("menuItemArray", JSON.stringify(this.cartMenuItemList))
                 this.getUserCartList();
+                var message = "Menu Item Added";
+                var action = "";
+                this.openSnackBar(message, action);
             }
             else
             {
                 this.cartMenuItemList.push(arrayObj);
                 localStorage.setItem("menuItemArray", JSON.stringify(this.cartMenuItemList))
                 this.getUserCartList();
+                var message = "Menu Item Added";
+                var action = "";
+                this.openSnackBar(message, action);
             }
         }
         else
@@ -620,6 +626,9 @@ export class ShopComponent implements OnInit {
                         this.cartMenuItemList.push(arrayObj);
                         localStorage.setItem("menuItemArray", JSON.stringify(this.cartMenuItemList))
                         this.getUserCartList();
+                        var message = "Menu Item Added";
+                        var action = "";
+                        this.openSnackBar(message, action);
                     }
                 }
                 else
@@ -633,6 +642,9 @@ export class ShopComponent implements OnInit {
                 this.cartMenuItemList.push(arrayObj);
                 localStorage.setItem("menuItemArray", JSON.stringify(this.cartMenuItemList))
                 this.getUserCartList();
+                var message = "Menu Item Added";
+                var action = "";
+                this.openSnackBar(message, action);
             }
         }
     }
@@ -658,6 +670,9 @@ export class ShopComponent implements OnInit {
         let itemIndex = this.cartMenuItemList.findIndex(item => item.MENU_ITEM_KEY == newItem.MENU_ITEM_KEY);
         this.cartMenuItemList[itemIndex] = arrayObj;
         this.calculateItemPrice();
+        var message = "Menu Item Update";
+        var action = "";
+        this.openSnackBar(message, action);
     }
     
     showUpdatedCustomizeItem(newItem) 
@@ -681,6 +696,9 @@ export class ShopComponent implements OnInit {
         let itemIndex = this.cartMenuItemList.findIndex(item => item.MENU_ITEM_NAME == newItem.MENU_ITEM_NAME);
         this.cartMenuItemList[itemIndex] = arrayObj;
         this.calculateItemPrice();
+        var message = "Menu Item Update";
+        var action = "";
+        this.openSnackBar(message, action);
     }
 
     findIndexToUpdate(newItem) 
@@ -763,7 +781,7 @@ export class ShopComponent implements OnInit {
                 {
                     menuCategoryArray.push({
                         id: data.MENU_ITEM_TYPE.trim(),
-                        name: list[0].key.trim()
+                        name: list[0].MENU_TYPE.trim()
                     });
                     for (const item of menuCategoryArray) 
                     {

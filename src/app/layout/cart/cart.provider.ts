@@ -8,6 +8,8 @@
 import {Injectable} from '@angular/core';
 import {firestoreService} from '../../utility/firestoreService';
 import {FIRE_ADD_ORDER_MST_REF, ADD_ORDER_MST} from '../../pojos/ADD_ORDER_MST';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {Http, RequestOptionsArgs} from '@angular/http';
 
 
 
@@ -15,7 +17,7 @@ import {FIRE_ADD_ORDER_MST_REF, ADD_ORDER_MST} from '../../pojos/ADD_ORDER_MST';
 
 export class CartProvider {
     
-    constructor(public serviceFirestore: firestoreService) {
+    constructor(public serviceFirestore: firestoreService, public httpService: HttpClient, private http: Http) {
     }
     
     getMenuItemList(key, country, state, city)
@@ -251,6 +253,36 @@ export class CartProvider {
                 })
             })
         })
+    }
+    
+    callPaytmServer()
+    {
+        return new Promise((resolve, reject) =>
+        {
+            let options: RequestOptionsArgs = {
+//            headers: new HttpHeaders({
+//                'Content-Type': 'text/html',
+//            })
+        };
+        
+         var params = {
+                value: "1589"
+            }
+        options.params = params;
+        let body = {
+            "Info":
+                {
+                    "url": "123",
+                }
+        };
+            this.http.post("http://localhost:8080", body, options).subscribe((data: any) =>
+        {
+//            console.log(JSON.stringify(data));
+            console.log(data);
+//            resolve(data._body);
+        })
+        })
+        
     }
     
 

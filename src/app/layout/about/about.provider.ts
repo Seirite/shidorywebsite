@@ -65,6 +65,11 @@ export class AboutProvider {
         return this.serviceFirestore.getListFromFireStore(this.serviceFirestore.firestore.collection("RESTRO_USER"));
     }
     
+    getCountiesList()
+    {
+        return this.serviceFirestore.getListFromFireStore(this.serviceFirestore.firestore.collection("SHIDORY").doc("ORG1").collection("COUNTRY"))
+    }
+    
    
 
 }

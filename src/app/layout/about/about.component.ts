@@ -11,6 +11,7 @@ import {AboutProvider} from './about.provider';
     styleUrls: ['./about.component.scss']
 })
 export class AboutComponent implements OnInit {
+    countryList: any[] = [];
     numberOfTotalOrders: number = 0;
     numberOfVisitors: number = 0;
     numberOfCity: number = 0;
@@ -30,6 +31,7 @@ export class AboutComponent implements OnInit {
         this.cartLength = localStorage.getItem("cartLength");
         this.getLoginUserData();
         this.getUserPosition();
+        this.getCountiesList();
     }
     
     getLoginUserData()
@@ -144,6 +146,14 @@ export class AboutComponent implements OnInit {
         this.provider.getNumberOfVisitors().subscribe(list =>
         {
             this.numberOfVisitors = list.length;
+        })
+    }
+    
+    getCountiesList()
+    {
+        this.provider.getCountiesList().subscribe((list: any[]) =>
+        {
+            this.countryList = list;
         })
     }
     

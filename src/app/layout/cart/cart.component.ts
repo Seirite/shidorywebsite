@@ -15,6 +15,8 @@ import {AlertDialogComponent} from '../alert-dialog/alert-dialog.component';
 import {ApplyCouponComponent} from '../apply-coupon/apply-coupon.component';
 import {LoginComponent} from '../login/login.component';
 import {OtpDialogComponent} from '../otp-dialog/otp-dialog.component';
+import {HttpHeaders, HttpClient} from '@angular/common/http';
+import {WindowRef} from '../Razorpay/windowRef.service';
 
 export interface DialogData {
   geohash: string;
@@ -34,6 +36,8 @@ export interface DialogData {
     styleUrls: ['./cart.component.scss']
 })
 export class CartComponent implements OnInit {
+    paymentDone: boolean = false;
+    showRazorPayCardForm: boolean = false;
     selectAddress: string;
     showCashCardForm: boolean = true;
     coupunDiscountName: any = 0;
@@ -67,9 +71,6 @@ export class CartComponent implements OnInit {
     loginDone: string;
     loginUserImage: string;
     loginUserName: string;
-    showMasterCardForm: boolean = false;
-    showPayCardForm: boolean = false;
-    showVisaCardForm: boolean = false;
     cartTotalPrice: any = 0;
     cartMenuItemList: any[] = [];
     loading: boolean = false;
@@ -78,7 +79,7 @@ export class CartComponent implements OnInit {
     types: [],
     componentRestrictions: { country: 'IN' }
     }
-    constructor(private util:SiUtil, public auth: AuthService, public router: Router, public provider: CartProvider, public dialog: MatDialog, private snackBar: MatSnackBar, private bottomSheet: MatBottomSheet) {}
+    constructor(private util:SiUtil, public auth: AuthService, public router: Router, public provider: CartProvider, public dialog: MatDialog, private snackBar: MatSnackBar, private bottomSheet: MatBottomSheet, private http:  HttpClient, private winRef: WindowRef) {}
 
     async ngOnInit() {
         this.entOrderMst = new ADD_ORDER_MST();
@@ -221,36 +222,47 @@ export class CartComponent implements OnInit {
         }
     }
     
-    showVisaCard()
+    showPayTm()
     {
         this.showCashCardForm = false;
-        this.showVisaCardForm = true;
-        this.showMasterCardForm = false;
-        this.showPayCardForm = false;
+        this.entOrderMst.PAYMENT_TYPE = "CARD";
+//        let url = `https://us-central1-shidory-c2c4c.cloudfunctions.net/PayTmTransaction`
+//        let httpOptions = {
+//            headers: new HttpHeaders({
+//                'Content-Type': 'application/json',
+//            })
+//        };
+//        let body = {
+//            "Info":
+//                {
+//                    "url": "/callback",
+//                }
+//        };
+//        return this.http.post(url, body, httpOptions)
+//            .toPromise()
+//            .then(res => 
+//            {
+//                console.log(res);
+//            })
+//            .catch(err => 
+//            {
+//                console.log(err);
+//            })
     }
     
     showCashCard()
     {
         this.showCashCardForm = true;
-        this.showVisaCardForm = false;
-        this.showMasterCardForm = false;
-        this.showPayCardForm = false;
+        this.showRazorPayCardForm = false;
+        this.entOrderMst.PAYMENT_TYPE = "COD";
     }
     
-    showMasterCard()
+    showRazorpayCard()
     {
         this.showCashCardForm = false;
-        this.showVisaCardForm = false;
-        this.showMasterCardForm = true;
-        this.showPayCardForm = false;
-    }
-    
-    showPayCard()
-    {
-        this.showCashCardForm = false;
-        this.showVisaCardForm = false;
-        this.showMasterCardForm = false;
-        this.showPayCardForm = true;
+        this.showRazorPayCardForm = true;
+        this.entOrderMst.PAYMENT_TYPE = "CARD";
+        this.callRazorpay();
     }
     
     countinueOrder()
@@ -352,7 +364,7 @@ export class CartComponent implements OnInit {
         var order_id = localStorage.getItem("callingCode") + date.getTime();
         this.entOrderMst.RESTAURENT_ID = this.selectRestaurantKey;
         this.entOrderMst.ORDER_ID = order_id;
-        this.entOrderMst.PAYMENT_TYPE = "CARD";
+        this.entOrderMst.PAYMENT_TYPE = "COD";
         this.entOrderMst.ORDER_STATUS = "PENDING";
         this.entOrderMst.MENUCART = this.cartMenuItemList;
     }
@@ -511,14 +523,14 @@ export class CartComponent implements OnInit {
         this.entOrderMst.RESTRO_USER_CART_CHARGES = this.dataCharges;
         this.entOrderMst.CURRENT_MONTH = date.getMonth();
         var restroUserData: any = await this.provider.getRestroUserData(this.entOrderMst.RESTRO_USER_ID);
-        if (typeof restroUserData.displayName == "undefined")
+        if (typeof restroUserData.displayName == "undefined") 
         {
             var order = {
                 title: "Order By " + restroUserData.fullName,
                 Date: new Date()
             }
         }
-        else
+        else 
         {
             var order = {
                 title: "Order By " + restroUserData.displayName,
@@ -533,7 +545,7 @@ export class CartComponent implements OnInit {
         this.entOrderMst.RESTRO_USER_CART_COUPON_DISCOUNT_NAME = this.coupunDiscountName;
         this.entOrderMst.CART_OVER_TOTAL = this.cartPriceCurrency + " " + this.cartOverAllTotalPrice;
         await this.provider.sendOrderToUserSide(this.entOrderMst, this.selectRestaurantKey);
-        this.provider.sendOrderToZone(this.entOrderMst, this.restroObj.RESTRO_LOCATION.geohash.substring(0, 5).trim(), this.countryName, this.stateName, this.cityName).then(async key =>
+        this.provider.sendOrderToZone(this.entOrderMst, this.restroObj.RESTRO_LOCATION.geohash.substring(0, 5).trim(), this.countryName, this.stateName, this.cityName).then(async key => 
         {
             this.loader = false;
             localStorage.removeItem("menuItemArray");
@@ -544,6 +556,25 @@ export class CartComponent implements OnInit {
             };
             await this.router.navigate(['/order-conform'], navigationExtras);
         })
+    }
+    
+    async conformPaymentMethod()
+    {
+        if (this.entOrderMst.PAYMENT_TYPE == "COD")
+        {
+            this.conformOrder();
+        }
+        else
+        {
+            if (this.paymentDone)
+            {
+                this.conformOrder();
+            }
+            else
+            {
+                this.util.toastInfo("Do Payment", "");
+            }
+        }
     }
     
     getUserLocation()
@@ -712,10 +743,53 @@ export class CartComponent implements OnInit {
         const dialogRef = this.dialog.open(this.component, dialogBoxSettings);
         dialogRef.afterClosed().subscribe(result =>
         {
-            console.log(result);
             this.showShopingInfo = false;
             this.showPaymentMethod = true;
         })
+    }
+    
+    callRazorpay()
+    {
+        if (this.auth.getSession() != null)
+        {
+            this.provider.getRestroUserData(this.auth.getSession().uid).then((data: any) =>
+            {
+                let options: any = {
+                    "key": "rzp_test_pjVKOOYNkFn3Bu",
+                    "amount": this.cartOverAllTotalPrice * 100,
+                    "name": "Shidory",
+                    "description": "E-marketplace pvt ltd",
+                    "image": "assets/images/logo/logo-icon.png",
+                    "modal": {
+                        "escape": false
+                    },
+                    "prefill": {
+                        "name": data.fullName,
+                        "contact": data.phoneNumber,
+                        "email": data.emailId,
+                    },
+                    "theme": {
+                        "color": "#e6816a"
+                    }
+                };
+                
+                options.handler = ((response) => 
+                {
+                    console.log(response);
+                    this.paymentDone = true;
+                });
+                options.modal.ondismiss = (() => 
+                {
+                    console.log("cancle");
+                });
+                
+                let rzp = new this.winRef.nativeWindow.Razorpay(options);
+                rzp.open();
+            }).catch(error => 
+            {
+            })
+        }
+        
     }
     
     onRightClick($event)

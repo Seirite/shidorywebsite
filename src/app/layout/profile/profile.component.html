@@ -152,12 +152,12 @@
                                             <span>History</span>
                                         </a>
                                     </li>
-                                    <li class="nav-item">
+<!--                                    <li class="nav-item">
                                         <a class="nav-link" data-toggle="tab" href="#cards" aria-expanded="true">
                                             <i class="icofont icofont-credit-card"></i>
                                             <span>My Card</span>
                                         </a>
-                                    </li>
+                                    </li>-->
 <!--                                    <li class="nav-item">
                                         <a class="nav-link" data-toggle="tab" href="#complaint" aria-expanded="true">
                                             <i class="icofont icofont-support-faq"></i>
@@ -176,11 +176,11 @@
                                         <div class="col-lg-6">
                                             <div class="brief-info">
                                                 <div class="media">
-                                                    <img class="mr-3" src="{{userPhoto || 'assets/images/loader.gif'}}" width="25%" height="25%" alt="steam">
+                                                    <img class="mr-3" src="{{userPhoto || 'assets/images/loader.gif'}}" onerror="this.src='../../../assets/profile.png';" width="25%" height="25%" alt="steam">
                                                     <div class="media-body">
-                                                        <h4>{{userFName}} {{userLName}}</h4>
+                                                        <h4>{{userFName}}</h4>
                                                         <p *ngIf="userEmail"><i class="icofont icofont-envelope"></i> {{userEmail}}</p>
-                                                        <p><i class="icofont icofont-phone"></i> {{userNumber}} </p>
+                                                        <p *ngIf="userNumber"><i class="icofont icofont-phone"></i> {{userNumber}} </p>
                                                         <p *ngIf="userCity"><i class="icofont icofont-location-pin"></i> {{userCity}}, {{userCountry}}</p>
                                                     </div>
                                                 </div>
@@ -268,21 +268,18 @@
                                                 <div class="user-info-body">
                                                     <form [formGroup]="addRestroUserForm">
                                                         <div class="form-row">
-                                                            <div class="form-group col-md-6">
-                                                                <input name="fname" required="" placeholder="First Name" class="form-control" type="text" formControlName="userFName" [(ngModel)]="userFName">
-                                                            </div>
-                                                            <div class="form-group col-md-6">
-                                                                <input name="lname" required="" placeholder="Last Name" class="form-control" type="text" formControlName="userLName" [(ngModel)]="userLName">
+                                                            <div class="form-group col-12">
+                                                                <input name="fname" required="" placeholder="Enter Your Name" class="form-control" type="text" formControlName="userFName" [(ngModel)]="userFName">
                                                             </div>
                                                         </div>
                                                         <div class="form-row">
                                                             <div class="form-group col-12">
-                                                                <input name="email" required="" placeholder="kapil@mywebsite.com" class="form-control" formControlName="userEmail" type="email" [(ngModel)]="userEmail">
+                                                                <input name="email" required="" placeholder="Email ID" class="form-control" formControlName="userEmail" type="email" [(ngModel)]="userEmail">
                                                             </div>
                                                         </div>
                                                         <div class="form-row">
                                                             <div class="form-group col-12">
-                                                                <input name="contact" required="" placeholder="Contact Number" class="form-control" formControlName="userNumber" type="number" [(ngModel)]="userNumber">
+                                                                <input name="contact" required="" placeholder="Contact Number" class="form-control" formControlName="userNumber" type="tel" maxlength="10" (keypress)="mobileKeyPress($event)" [(ngModel)]="userNumber">
                                                             </div>
                                                         </div>
                                                         <div class="form-row">
@@ -324,7 +321,7 @@
                                                         </div>-->
                                                         <div class="form-row">
                                                             <div class="form-group mb-0 pt-4 col-12 text-center">
-                                                                <button class="btn btn-theme btn-md" (click)="updateRestroUserProfile()" [disabled]="addRestroUserForm.invalid">SAVE CHANGES</button>
+                                                                <button class="btn btn-theme btn-md" (click)="updateRestroUserProfile()">SAVE CHANGES</button>
                                                             </div>
                                                         </div>
                                                     </form>
@@ -335,7 +332,7 @@
                                 </div>
                                 
                                 <div id="history" class="tab-pane fade">
-                                    <div style="float:left; width:1000px; overflow-y: auto; height: 500px;">
+                                    <div style="float:left; overflow-y: auto; height: 500px;">
                                         <div class="item-entry" *ngFor="let order of userOrderList">
                                              <span class="order-id">Order ID: {{order.ORDER_ID}}</span>
                                             <div class="item-content">

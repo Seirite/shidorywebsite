@@ -23,6 +23,13 @@ export class ViewDetailProvider {
         ));
     }
     
+    getRestroUserOrderList(userKey, orderKey)
+    {
+        return this.serviceFirestore.getListFromFireStore(this.serviceFirestore.firestore.collection("RESTRO_USER").doc(userKey).collection("ORDER_MST", ref => ref
+            .where("key", "==", orderKey)
+        ));
+    }
+    
     getRestaurantsData(country, state, city, selectRestrauntKey)
     {
         return new Promise((resolve, reject) =>
