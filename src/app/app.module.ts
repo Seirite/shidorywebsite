@@ -7,7 +7,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {AngularFireModule} from '@angular/fire';
-import {AngularFirestoreModule} from '@angular/fire/firestore';
+import {AngularFirestoreModule, FirestoreSettingsToken} from '@angular/fire/firestore';
 import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
 import {ToastrModule} from 'ngx-toastr';
 import {AngularFireAuth} from '@angular/fire/auth';
@@ -61,7 +61,7 @@ var config = {
 //        MatDialogModule
     ],
     declarations: [AppComponent],
-    providers: [firestoreService, AuthService, AngularFireAuth, NotifyService, ResourceBundle, SiUtil],
+    providers: [firestoreService, AuthService, AngularFireAuth, NotifyService, ResourceBundle, SiUtil, {provide: FirestoreSettingsToken, useValue:{}}],
     bootstrap: [AppComponent]
 })
 export class AppModule {}

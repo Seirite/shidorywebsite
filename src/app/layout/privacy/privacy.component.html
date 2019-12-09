@@ -1,0 +1,220 @@
+        <div class="wrapper" (contextmenu)="onRightClick($event)" (window:keydown)="keyboardEvent($event)">
+            <!--[if lt IE 8]>
+               <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+           <![endif]-->  
+
+            <!-- Loader Start -->
+            <div class="loader">
+                <div class="loader-inner">
+                    <div id="cooking">
+                        <img src="../../../assets/images/main-loader.gif" alt=""/>
+                    </div>
+                </div>
+            </div>
+            <!-- Loader End -->
+
+            <!--  Header Start  -->
+            <header style="background: #171a29; position: absolute; left: 0; right: 0; z-index: 2; top: 0;">
+                <!--Top Header Start -->
+                <div class="top" style="background: #171a29; right: 0;">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-sm-12 col-xs-12">
+                                <ul class="list-inline float-left icon">
+                                </ul>
+                                <!-- Header Social Start -->
+                                <ul class="list-inline float-right icon">
+                                    <li class="list-inline-item"><a href="cart"><i class="icofont icofont-cart-alt" style="font-size: larger"><span class="badge badge-info">{{cartLength}}</span></i>  Cart </a></li>
+                                    <li class="list-inline-item dropdown" *ngIf="loginDone=='true';else login">
+                                        <a class="dropdown-toggle" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="icofont icofont-ui-user"></i> {{loginUserName}}</a>
+                                        <ul class="dropdown-menu dropdown-menu-right drophover" aria-labelledby="dropdownMenuLink">
+                                            <li class="dropdown-item"><a href="profile">{{loginUserEmail}}</a></li>
+                                            <li class="dropdown-item"><a (click)="logOut()">Sign out</a></li>
+                                        </ul>
+                                    </li>
+                                    <ng-template #login>
+                                        <li class="list-inline-item dropdown">
+                                            <a class="dropdown-toggle" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="icofont icofont-ui-user"></i> My Account</a>
+                                            <ul class="dropdown-menu dropdown-menu-right drophover" aria-labelledby="dropdownMenuLink">
+                                                <li class="dropdown-item"><a (click)="openLoginDialog()">Login</a></li>
+                                            </ul>
+                                        </li>
+                                    </ng-template>
+                                    <li class="list-inline-item">
+                                        <ul class="list-inline social">
+                                            <li class="list-inline-item"><a href="https://www.facebook.com/" target="_blank"><i class="icofont icofont-social-facebook"></i></a></li>
+                                            <li class="list-inline-item"><a href="https://twitter.com/" target="_blank"><i class="icofont icofont-social-twitter"></i></a></li>
+                                            <li class="list-inline-item"><a href="https://www.instagram.com/" target="_blank"><i class="icofont icofont-social-instagram"></i></a></li>
+                                            <!--<li class="list-inline-item"><a href="https://www.youtube.com/" target="_blank"><i class="icofont icofont-social-youtube-play"></i></a></li>-->
+                                        </ul>
+                                    </li>
+                                </ul>
+                                <!-- Header Social End -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--Top Header End -->
+
+                <div class="container" style="background: #171a29; right: 0;">
+                    <div class="row">
+                        <div class="col-md-3 col-sm-6 col-xs-12">
+                            <!-- Logo Start  -->
+                            <div id="logo">
+                                <a href="home"><img id="logo_img" class="img-fluid" src="assets/images/logo/logo.png" alt="logo" title="logo" /></a>
+                            </div>
+                            <!-- Logo End  -->
+                        </div>
+
+                        <div class="col-md-7 col-sm-6 col-xs-12 paddleft">
+                            <!-- Main Menu Start  -->
+                            <div id="menu">	
+                                <nav class="navbar navbar-expand-md">
+                                    <div class="navbar-header">
+                                        <span class="menutext d-block d-md-none">Menu</span>
+                                        <button data-target=".navbar-ex1-collapse" data-toggle="collapse" class="btn btn-navbar navbar-toggler" type="button"><i class="icofont icofont-navigation-menu"></i></button>
+                                    </div>
+                                    <div class="collapse navbar-collapse navbar-ex1-collapse padd0">
+                                        <ul class="nav navbar-nav">
+                                            <li class="nav-item"><a href="home">HOME</a></li>
+                                            <li class="nav-item"><a href="about">about us</a></li>
+                                            <li class="nav-item"><a href="career">Career</a></li>
+                                            <li class="nav-item"><a href="contact">contact us</a></li>
+                                        </ul>
+                                    </div>
+                                </nav>
+                            </div>
+                            <!-- Main Menu End -->
+                        </div>
+                        <div class="col-md-2 col-sm-12 col-xs-12 button-top paddleft" id="menu">
+                            <nav class="navbar navbar-expand-md">
+                                <div class="collapse navbar-collapse navbar-ex1-collapse padd0">
+                                    <ul class="nav navbar-nav">
+                                    </ul>
+                                </div>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            <!-- Header End   -->
+
+            <!-- Breadcrumb Start -->
+            <div style="position:relative; min-height: 150px; margin-top: 8%; background: #171a29;">
+                <div style="position:absolute; bottom:20px; left:0; right:0; text-align:center; margin:0 auto; width:244px; background: rgba(0, 0, 0, 0.35); padding:15px 0;">
+                    <h2 style="font-family: 'Great Vibes',cursive; color:#fff; font-size:30px; font-weight:400; margin:0; text-transform:capitalize;">Privacy Policy</h2>
+                    <ul class="list-inline">
+                        <li class="list-inline-item"><a href="home" style="color: #FFF;"> </a></li>
+                        <li class="list-inline-item"><a style="color: #FFF;">Privacy Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Breadcrumb End -->
+
+            <!-- About Start -->
+            <div class="about">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-12 commontop text-center">
+                            <!--<img src="../../../assets/images/logo/logo-icon.png" alt="" width="100px"/>-->
+                            <h4>Shidory</h4>
+                            <div class="divider style-1 center">
+                                <span class="hr-simple left"></span>
+                                <i class="icofont icofont-ui-press hr-icon"></i>
+                                <span class="hr-simple right"></span>
+                            </div>
+                        </div>
+                        <!-- Title Content Start -->
+                        <div class="col-sm-12 col-md-12 col-xs-12 commontop text-left">
+                            <p class="des">Shidory <b>(Company)</b> takes privacy of our user as a serious business. Company takes best possible measures to maintain the privacy of our customers. The Shidory Platform may have links to the outside websites / Third Party Website. Company does shall not be hold responsible for the users actions on third party website which are on the company platform. Any and utmost information in any form provided by user to such links will be users responsibility and company or this policy will not govern those actions without any limit. This Policy shall only be applicable to information provided by user to Company and not to any of our partners or contractors under any circumstances. </p>
+                            <span style="font-size: large; font-weight: 900;">INFORMATION WE COLLECT FROM YOU</span>
+                            <p class="des">We will collect and process the following information about you:</p>
+                            <p class="des"><span style="font-size: large; font-weight: 900;"><b>• Information you give us - </b></span>This includes information submitted when you:</p>
+                            <p class="des">i. Create or update your Shidory account, which may include your name, email, phone number, login name and password, address, payment or banking information, date of birth and profile picture. </p>
+                            <p class="des">ii. In case you sign in to the Shidory app or web-portal using third-party sign-in services (Facebook or Gmail or any other social networking or similar site), you allow Company to pass through and receive your log-in information and other user data and other content, without limitation, which may help company to serve you best way possible. This may include your past reviews, order history, favorites, </p>
+                            <p class="des">iii. Use our Services, we may collect and store information about you to process your requests and automatically complete forms for future transactions, including (but not limited to) your phone number, address, email, Company do not collect billing information and credit or payment card information whereas our payment processing partner may collect that information for serving you better. </p>
+                            <p class="des">iv. When you call us for support to resolve concerns you may have; communicate on social media regarding our promotions and other groups. </p>
+                            <p class="des">v. If you sign up to as a supplier/vender or an independent delivery personnel, we may collect government identification documents, your physical address, and other required documents, call and SMS details.</p>
+                            
+                            <p class="des"><span style="font-size: large; font-weight: 900;"><b>• Analytical information collection - </b></span>with your every visit to our portal we will automatically collect and analyze the following to serve you better:</p>
+                            <p class="des">i. We will maintain a record of all form of communications which will happen between you and Company (communication via email, phone, through the Company Platform or otherwise). </p>
+                            <p class="des">ii. <b>Location:</b> Our application will collect your real time location, depending on the your selection of options. (Upon your approval we will collect through data such as GPS, IP address). </p>
+                            <p class="des">iii. <b>Usage and Preference Information:</b> Company collect information related to your search and browser history related to your purchase and interest using our cookies. </p>
+                            <p class="des">iv. <b>Transaction Information:</b> Company collect information related to your order details and buying habits related to your favorite food and other requirements. Company does not collect or store payment related information not limited to type of payment but also the credit or any other payment method. Our payment gateway partner may collect payment related information which Company has no authority over our partners action. </p>
+                            <p class="des">v. <b>Stored information and files:</b>  Company mobile application (Shidory app) may also access your camera, photo gallery and photo files stored on your mobile device. This may include, for example, photographs, audio and video clips, personal contacts and address book information. </p>
+                            <p class="des">vi. If you are a partner restaurant, supplier/vender or a delivery partner, we will, additionally, record your calls with us made from the device used to provide Services, related call details, SMS details location and address details.</p>
+                            
+                            <p class="des"><span style="font-size: large; font-weight: 900;"><b>• Information we receive from other sources -</b></span></p>
+                            <p class="des">i. Our third party partners may have Cookies in there add or services. Company does not store any sensitive information related to our customers. </p>
+                            <p class="des">ii. When you log in using social media or your Gmail or other account in such you consent company to collect the other information from your such account in relation with the policy.</p>
+                            <p class="des">iii. If you are partner restaurant, merchant or a delivery partner, we may, additionally, receive feedback and rating from other users.</p>
+                            
+                            <span style="font-size: large; font-weight: 900;">USES OF YOUR INFORMATION</span>
+                            <p class="des">We use the information we collect or you have voluntarily supplied for following purposes, including:</p>
+                            <p class="des">i. To provide, personalize service to you in accordance with our contract, maintain and improve our products and services, to enable deliveries and other services, enable features to personalize your Company account;</p>
+                            <p class="des">ii. To enhance the security of our Company Platform and for internal operations, including troubleshooting, data analysis, testing, research, statistical and survey purposes;</p>
+                            <p class="des">iii. To provide you with upcoming new events and other information about services we consider similar to those that you are already using, or have enquired about, or may interest you. If you are a registered user, we will contact you by electronic means (e-mail or SMS or telephone) with information about these services;</p>
+                            <p class="des">iv. To generate and review reports and data about, and to conduct research on, our user base and Service usage patterns;</p>
+                            <p class="des">v. To allow you to participate in interactive features of our Services, if any; or</p>
+                            <p class="des">vi. To measure or understand the effectiveness of advertising we serve to you and others, and to deliver relevant advertising to you.</p>
+                            <p class="des">vii. If you are a partner restaurant or merchant or delivery partner, to track the progress of delivery or status of the order placed by our customers.</p>
+                            
+                            <p class="des">We may combine the information that we receive from third parties with the information you give to us and information we collect about you for the purposes set out above.  Further, we may anonymize and/or de-identify information collected from you through the Services or via other means, including via the use of third-party web analytic tools. As a result, our use and disclosure of aggregated and/or de-identified information is not restricted by this Policy, and it may be used and disclosed to others without limitation.</p>
+                            <p class="des">We analyse the log files of our Company Platform that may contain Internet Protocol (IP) addresses, browser type and language, Internet service provider (ISP), referring, app crashes, page viewed and exit websites and applications, operating system, date/time stamp, and clickstream data. This helps us to administer the website, to learn about user behavior on the site, to improve our product and services, and to gather demographic information about our user base as a whole.</p>
+                            
+                            <span style="font-size: large; font-weight: 900;">DISCLOSURE AND DISTRIBUTION OF YOUR INFORMATION</span>
+                            <p class="des">We may share your information that we collect for following purposes:</p>
+                            <p class="des">• <b>With Service Providers:</b> We may share your information with our vendors, consultants, marketing partners, and other service providers or business partners, such as Payment processing companies, to support our business. </p>
+                            <p class="des">• <b>With Partner Restaurants/Supplier:</b> When you place an order through the Company Platform, your information is provided to us and to the restaurants/supplier with whom you may choose to order. Company will send electronic short messages regarding the order’s status.</p>
+                            <p class="des">• <b>With Other Users:</b> If you are a delivery partner, we may share your name, phone number and/or profile picture (if applicable), and tracking details with other users to provide them the Services.</p>
+                            <p class="des">• <b>For Crime Prevention:</b> Company could share voluntarily supplied information with governmental agencies or other partner assisting us, in the event we are:</p>
+                            <p class="des">• required under the applicable state or central laws or to respond to court orders and processes; or</p>
+                            <p class="des">• avoid any possibility of identity theft, fraud, abuse of Services and other illegal acts;</p>
+                            <p class="des">• Responding any intellectual property claims;</p>
+                            <p class="des">• <b>For Company Use:</b> We may share your submitted information with any present or future member of our “Group of companies” or partners for our internal business purposes. </p>
+                            <p class="des">• <b>With Social media networks:</b> If you are, we may advertise, our supplier/vender or restaurant partners and delivery partners for serving our customers better.  </p>
+                            
+                            <span style="font-size: large; font-weight: 900;">DATA SECURITY</span>
+                            <p class="des">Company takes upmost precaution and technical measure to secure and protect the information that was voluntarily submitted by customers or venders or delivery boys / girls. </p>
+                            <p class="des">All payment processing is performed by third party (<b>Razor pay</b>) which uses best available market security measures and protects the sensitive information that was used while processing the payment. Other third party payment gateways uses UPI methods which protects the information. We advised not to save your payment details (credit/debit card) details on any electronic platforms. It is User’s responsibility to keep Shidory provided login information confidential. We do not recommend you to share your account details with anyone.</p>
+                            <p class="des">Company will use best in place security protocols to safeguard your submitted information. Whereas be advised that the internet data transmission of information is not completely secure.</p>
+                            
+                            <span style="font-size: large; font-weight: 900;">OPT-OUT</span>
+                            <p class="des">Company send marketing emails and online messages to inform regarding our promotions or upcoming changes, when you sign up for an account, you are opting in to receive emails from Company. You can either opt out while creating company account or you can manage your settings later</p>
+                            
+                        </div>
+                        <!-- Title Content End -->
+                    </div>
+                </div>
+            </div>
+            <!-- About End -->
+
+            <!-- Footer Start -->
+            <footer>
+                <div class="footer-bottom">
+                    <div class="container">
+                        <div class="row powered">
+                            <!--  Copyright Start -->
+                            <div class="col-md-3 col-sm-6 order-md-1">
+                                <img src="assets/images/logo/logo-white.png" class="img-fluid" title="logo" alt="logo">
+                            </div>
+                            <div class="col-md-3 col-sm-6 text-right order-md-3">
+                                <!--  Footer Social Start -->
+                                <ul class="list-inline social">
+                                    <li class="list-inline-item"><a href="https://www.facebook.com/" target="_blank"><i class="icofont icofont-social-facebook"></i></a></li>
+                                    <li class="list-inline-item"><a href="https://twitter.com/" target="_blank"><i class="icofont icofont-social-twitter"></i></a></li>
+                                    <li class="list-inline-item"><a href="https://www.instagram.com/" target="_blank"><i class="icofont icofont-social-instagram"></i></a></li>
+                                    <!--<li class="list-inline-item"><a href="https://www.youtube.com/" target="_blank"><i class="icofont icofont-social-youtube-play"></i></a></li>-->
+                                </ul>
+                                <!--  Footer Social End -->
+                            </div>
+                            <div class="col-md-6 col-sm-12 text-center order-md-2">
+                            </div>
+                            <!--  Copyright End -->
+                        </div>
+                    </div>
+                </div>
+            </footer>
+            <!-- Footer End  -->
+
+        </div>

@@ -1,0 +1,227 @@
+        <div class="wrapper" (contextmenu)="onRightClick($event)" (window:keydown)="keyboardEvent($event)">
+            <!--[if lt IE 8]>
+               <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+           <![endif]-->  
+
+            <!-- Loader Start -->
+            <div class="loader">
+                <div class="loader-inner">
+                    <div id="cooking">
+                        <img src="../../../assets/images/main-loader.gif" alt=""/>
+                    </div>
+                </div>
+            </div>
+            <!-- Loader End -->
+
+            <!--  Header Start  -->
+            <header style="background: #171a29; position: absolute; left: 0; right: 0; z-index: 2; top: 0;">
+                <!--Top Header Start -->
+                <div class="top" style="background: #171a29; right: 0;">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-sm-12 col-xs-12">
+                                <ul class="list-inline float-left icon">
+                                </ul>
+                                <!-- Header Social Start -->
+                                <ul class="list-inline float-right icon">
+                                    <li class="list-inline-item"><a href="cart"><i class="icofont icofont-cart-alt" style="font-size: larger"><span class="badge badge-info">{{cartLength}}</span></i>  Cart </a></li>
+                                    <li class="list-inline-item dropdown" *ngIf="loginDone=='true';else login">
+                                        <a class="dropdown-toggle" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="icofont icofont-ui-user"></i> {{loginUserName}}</a>
+                                        <ul class="dropdown-menu dropdown-menu-right drophover" aria-labelledby="dropdownMenuLink">
+                                            <li class="dropdown-item"><a href="profile">{{loginUserEmail}}</a></li>
+                                            <li class="dropdown-item"><a (click)="logOut()">Sign out</a></li>
+                                        </ul>
+                                    </li>
+                                    <ng-template #login>
+                                        <li class="list-inline-item dropdown">
+                                            <a class="dropdown-toggle" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="icofont icofont-ui-user"></i> My Account</a>
+                                            <ul class="dropdown-menu dropdown-menu-right drophover" aria-labelledby="dropdownMenuLink">
+                                                <li class="dropdown-item"><a (click)="openLoginDialog()">Login</a></li>
+                                            </ul>
+                                        </li>
+                                    </ng-template>
+                                    <li class="list-inline-item">
+                                        <ul class="list-inline social">
+                                            <li class="list-inline-item"><a href="https://www.facebook.com/" target="_blank"><i class="icofont icofont-social-facebook"></i></a></li>
+                                            <li class="list-inline-item"><a href="https://twitter.com/" target="_blank"><i class="icofont icofont-social-twitter"></i></a></li>
+                                            <li class="list-inline-item"><a href="https://www.instagram.com/" target="_blank"><i class="icofont icofont-social-instagram"></i></a></li>
+                                            <!--<li class="list-inline-item"><a href="https://www.youtube.com/" target="_blank"><i class="icofont icofont-social-youtube-play"></i></a></li>-->
+                                        </ul>
+                                    </li>
+                                </ul>
+                                <!-- Header Social End -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--Top Header End -->
+
+                <div class="container" style="background: #171a29; right: 0;">
+                    <div class="row">
+                        <div class="col-md-3 col-sm-6 col-xs-12">
+                            <!-- Logo Start  -->
+                            <div id="logo">
+                                <a href="home"><img id="logo_img" class="img-fluid" src="assets/images/logo/logo.png" alt="logo" title="logo" /></a>
+                            </div>
+                            <!-- Logo End  -->
+                        </div>
+
+                        <div class="col-md-7 col-sm-6 col-xs-12 paddleft">
+                            <!-- Main Menu Start  -->
+                            <div id="menu">	
+                                <nav class="navbar navbar-expand-md">
+                                    <div class="navbar-header">
+                                        <span class="menutext d-block d-md-none">Menu</span>
+                                        <button data-target=".navbar-ex1-collapse" data-toggle="collapse" class="btn btn-navbar navbar-toggler" type="button"><i class="icofont icofont-navigation-menu"></i></button>
+                                    </div>
+                                    <div class="collapse navbar-collapse navbar-ex1-collapse padd0">
+                                        <ul class="nav navbar-nav">
+                                            <li class="nav-item"><a href="home">HOME</a></li>
+                                            <li class="nav-item"><a href="about">about us</a></li>
+                                            <li class="nav-item"><a href="career">Career</a></li>
+                                            <li class="nav-item"><a href="contact">contact us</a></li>
+                                        </ul>
+                                    </div>
+                                </nav>
+                            </div>
+                            <!-- Main Menu End -->
+                        </div>
+                        <div class="col-md-2 col-sm-12 col-xs-12 button-top paddleft" id="menu">
+                            <nav class="navbar navbar-expand-md">
+                                <div class="collapse navbar-collapse navbar-ex1-collapse padd0">
+                                    <ul class="nav navbar-nav">
+                                    </ul>
+                                </div>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            <!-- Header End   -->
+
+            <!-- Breadcrumb Start -->
+            <div style="position:relative; min-height: 150px; margin-top: 8%; background: #171a29;">
+                <div style="position:absolute; bottom:20px; left:0; right:0; text-align:center; margin:0 auto; width:244px; background: rgba(0, 0, 0, 0.35); padding:15px 0;">
+                    <h2 style="font-family: 'Great Vibes',cursive; color:#fff; font-size:30px; font-weight:400; margin:0; text-transform:capitalize;">Term Of Use</h2>
+                    <ul class="list-inline">
+                        <li class="list-inline-item"><a href="home" style="color: #FFF;"> </a></li>
+                        <li class="list-inline-item"><a style="color: #FFF;">Term Of Use</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Breadcrumb End -->
+
+            <!-- About Start -->
+            <div class="about">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-12 commontop text-center">
+                            <!--<img src="../../../assets/images/logo/logo-icon.png" alt="" width="100px"/>-->
+                            <h4>Shidory</h4>
+                            <div class="divider style-1 center">
+                                <span class="hr-simple left"></span>
+                                <i class="icofont icofont-ui-press hr-icon"></i>
+                                <span class="hr-simple right"></span>
+                            </div>
+                        </div>
+                        <!-- Title Content Start -->
+                        <div class="col-sm-12 col-md-12 col-xs-12 commontop text-left">
+                            <p class="des"><b>PLEASE READ THIS AGREEMENT CAREFULLY BEFORE USING THIS SERVICE.</b> I, AGREE – BY USING THIS WEBSITE OR BY DOWNLOADING <b>SHIDORY</b> APP (EITHER ANDROID OR IOS FORM – Android version “Marshmallow” or newer is required) ON THEIR PERSONAL OR CORPORATE PHONE OR ELECTRONIC EQUIPMENT THE USER IS AGREEING TO BE BOUND BY THIS AGREEMENT. USER IS AGREEING TO THIS AGREEMENT ON BEHALF OF OR FOR THE BENEFIT OF THEIR EMPLOYER, OR ANY OTHER PERSON, THEN USER REPRESENTS AND WARRANTS THAT THEY HAVE THE NECESSARY AUTHORITY TO AGREE TO THIS AGREEMENT ON THAT PERSON OR ENTITY’S BEHALF.</p>
+                            <p class="des">CANCEL – IF USER DOES NOT WANT TO AGREE TO THIS AGREEMENT PLEASE LEAVE THIS WEBSITE OR DELETE THE APP IMMEDIATELY.  </p>
+                            <h2>User Agreement</h2>
+                            <p class="des">This agreement is between Shidory E-Market place Pvt. Ltd. (Company), and an individual user and entity agreeing to these terms (User).</p>
+                            <p class="des"><span style="font-size: large; font-weight: 900;">1. ORDERING SERVICE – </span>This agreement provides User access to an online ordering Web-portal (software application), and service as further described at WWW.shidory.com (Service).</p>
+                            <p class="des"><span style="font-size: large; font-weight: 900;">2. USER RESPONSIBILITIES – </span>User (i) must not share its application credential with others to keep information secure and confidential; (ii) is solely responsible for User data and all activities in its account in the Service; (iii) must use assiduous efforts to prevent unauthorized access to its account, and notify Company of any such unauthorized access, (iv) must be over the legal age of the local jurisdiction (v) must not access services through a third party’s account without express consent of the account holder (vi) should not or participate in threatening, harassing, or intentionally harming any Company employees, contractors, or agents providing Company services; and (vii) may use the Service only in accordance with the Service’s user guide and applicable law.</p>
+                            <p class="des">User agrees to adhere with the above guidelines, and agrees not assist or permit any person in participating in any conduct that is fraudulent or does not comply with the user responsibilities.</p>
+                            <p class="des"><span style="font-size: large; font-weight: 900;">3. PRIVACY – </span>User’s use and services of Shidory web-portal and App are governed by Privacy Policy, policy is located at www.Shidory.com</p>
+                            <p class="des"><span style="font-size: large; font-weight: 900;">4. DISCLAIMER – </span>Company disclaims, and User willingly release Company with respect to all warranties, including, without limitation, the implied warranties of merchantability, title and fitness for a particular purpose or use. Company takes reasonable physical, technical and administrative measures to secure the Service, Shidory does not guarantee that the Service cannot be compromised. User understands that the Service may not be error free, and use may be interrupted.</p>
+                            <p class="des">Material and all other vender and partners related content on Shidory app, the websites are provided for the review only without any kind of warranties, without any limitations. To the fullest extent permissible by applicable law Company, and all affiliated companies, and its and their partners, joint ventures’, contractors and sub-contractors disclaim, with respect to the materials and all other content on the app and sites, all warranties, express or implied, including, but not limited to implied warranties of merchantability, fitness for a particular purpose or use and non-infringement. Company does not represent or warrant that the app or sites, the materials and/or the other content will be secure, uninterrupted and/or error-free, that defects will be corrected, and/or that the sites, the materials and/or other content on the sites are free from viruses or other harmful components.  Company take utmost care to provide best user experience in regards to all the services provided, Company does not warrant or make any representations regarding the results of the use of the sites. The materials and/or any other content on the app or sites are for the view only, Company does not claim any warrants in terms of their exactness, accurateness, reliability, timeliness, completeness, current status, or otherwise, including without limitation. Company disclaims any of the liabilities with food ordered online with respect to quality and/or timing of a delivery or other products delivered. User is entitle to entire financial responsibilities of all necessary servicing, repair, or correction relating to users use of the sites, the materials and/or other content on the sites. </p>
+                            <p class="des">5. Company does not claims any liability or responsibility for the quality or condition of food ordered from the vender as it leaves the care, custody and control of the restaurant. User releases Company from all claims, responsibility for warning of food allergens such a peanuts or any without limits, which responsibility lies with the restaurant and with user to read such warnings and reasonably make the judgment on foods being ordered. User agrees that its sole liability against the restaurant or preparer for the condition of the food. Consuming raw or undercooked meats, poultry, seafood, shellfish, or eggs may increase risk of foodborne illness, user is responsible for usage and ordering such food items, over which Company and the restaurant does not have control, user knowledge in this regard is considered as the acceptance of such risk and Company does not have any responsibility.</p>
+                            <p class="des">6. All orders confirmed and charges paid by user are final and non-refundable, unless otherwise determined by Company. All request for order cancellation will not be considered once placed by the user. Refund requests to be considered under certain conditions must be made within 24 hours of placing the order. No refund will be issued for not validating information user enter or for users failure to be reachable to confirm information or answer questions (for example, users phone not in coverage, user failed to answer phone, or door). Company will not charge user if restaurant cancels order or refuse to accept order. No refunds will be granted once the order is confirmed by restaurant. </p>
+                            <p class="des"><span style="font-size: large; font-weight: 900;">7. PAYMENT – </span>Company does not accept any cash on delivery orders, user will have to make payment for orders with Google Pay, UPI, BHIM App, a credit card or a debit card account. </p>
+                            <span style="font-size: large; font-weight: 900;">8. Company PROPERTY </span>
+                            <p class="des"><span style="font-size: large; font-weight: 900;">a. Reservation of Rights – </span>The App (defined below) and other technologies provided by Shidory part of the Service agreement for user are the proprietary property of Company and its licensors, and all right, interest in and to all items, including all associated intellectual property rights, will stay only with Company. User or any third party will not have any rights on the intellectual property which is made available for the one time use only. User or a third party by viewing its content on visiting the Companies App (for android or IOS), website or any circulated material by Company in the form of digital or hard copies, releases Company from any of the infringements without any limits.</p>
+                            <p class="des"><b>b. Restrictions – User or restaurant or third party shall not use Company’s name or material for any kind of use without legal permission from Company. Unauthorized use of Company’s credential in any form will be permissible to punishment to the fullest extent of law and user will be liable to pay $250,000 for the defamation of Company. </b></p>
+                            <p class="des"><b>c. App – </b>The Shidory app provided by Company as part of the Service agreement (App) licensed to User - non-exclusive and non-transferable basis, to use solely for the availing the Service provided by Company. Company reserves all right to terminate Agreement and license at any time in its sole discretion. The Sites and it’s content may not be reused or distributed in any way, and/or modified without Company’s permission.</p>
+                            <p class="des"><b>d. Aggregate Data – </b> User allows Company to may use non-identifiable User data for the research and enhancing the Service, statistical analysis, better technical support and other business purposes.</p>
+                            <p class="des"><b>e. Communications and Text Messages – </b> User by voluntarily providing phone number, email address and other contact information to Company user herby consent to receive OTP SMS, phone call, emails and other push notifications. All or if any kind of charges incurred by user in receiving SMS, OTP text, emails or any other communication from Company, user will be liable for those charges and not the Company. User providing wrongful information on someone else’s behalf with another person’s consent will be punishable under local law. Company will report such activities to the local law enforcement authorities. User indemnify Company from all the penalties or charges or any legal representation. User has right to request for not receiving any form of additional communication without company’s service or user’s order.</p>
+                            <span style="font-size: large; font-weight: 900;">9. TERM and TERMINATION</span>
+                            <p class="des"><b>a. Term – </b>Agreement between user and company continues until either party terminates this agreement, with or without applicable cause. User must uninstall and stop using the App, upon agreement termination.</p>
+                            <p class="des"><b>b. Suspension for Violations of Law or this Agreement – </b>Company may suspend or terminate and report any violation without any limit unearthed by company against user, restaurant or any third party contractor.</p>
+                            <span style="font-size: large; font-weight: 900;">10. LIABILITY LIMIT</span>
+                            <p class="des"><b>a. Exclusion of indirect Damages – </b>Company is not liable for any known or unknown indirect, incidental or consequential damages which may or may not arise because of agreement (examples, without limitation, Delayed order; data loss, unauthorized user account use by others, records or information; and profit loss). </p>
+                            <p class="des"><b>b. Total limit on Liability – </b>Company’s liability at any condition shall/will not exceed the amount paid by user for the order in question or disagreement. Contractor delivery personnel hold own accidental and liability insurance to secure any disputes in conjunction with incident, Company disclaims any liability whatsoever. </p>
+                            <p class="des"><b>11. INDEMNITY – </b>User shall indemnify company and hold harmless in any condition whatsoever if the third party claims the caused by user. User shall defend and pay all charges incurred by the company in any form. </p>
+                            <p class="des"><b>12. GOVERNING LAW AND FORUM – </b>This agreement is governed by the Indian Business practice and Indian Panel code.</p>
+                            <span style="font-size: large; font-weight: 900;">13. OTHER TERMS</span>
+                            <p class="des"><b>a. Feedback – </b>By voluntarily submitting feedback to Company in any form like ideas, suggestions or critical corrections regarding the Service, User agrees information submitted do not contain stolen or copied information from the search engine and does not violate any proprietary or confidential material and User grants permission to Company an unlimited, without any limits or restriction, royalty-free, without any liability and all paid license to use information for any business purpose.</p>
+                            <p class="des"><b>b. Entire Agreement and Changes – </b>This agreement stands as an legal agreement between the Company and other party in any form without limit and takes precedence over all other form of understanding whether agreed on written or verbal. Company will not be liable to any kind of representation or promises made by any of the commitments over this agreement. No modification of this agreement is accepted without consent from both parties on signed written acceptance, and no waiver is effective unless the party waiving the right signs a waiver in writing.</p>
+                            <p class="des"><b>c. No Assignment – </b>Agreement is between the two parties and neither can assign or transfer it to a third party without agreeing. Agreement would be transferable in case of sale, merger or acquisition of the Company. </p>
+                            <p class="des"><b>d. Independent Contractors – </b>The parties are independent contractors with respect to each other.</p>
+                            <p class="des"><b>Enforceability and Force Majeure – </b>If any term of this agreement is invalid or unenforceable, the other terms remain in effect. Except for the payment of monies, neither party is liable for events beyond its reasonable control, including, without limitation force majeure events.</p>
+                            <p class="des"><b>e. Money Damages Insufficient – </b>Any breach by a party of this agreement or violation of the other party’s intellectual property rights could cause irreparable injury or harm to the other party. The other party may seek a court order (injunction) to stop any breach or avoid any future breach.</p>
+                            <p class="des"><b>f. Survival of Terms and no CISG – </b>Any terms that by their nature survive termination of this agreement for a party to assert its rights and receive the protections of this agreement, will survive. The UN Convention on Contracts for the International Sale of Goods does not apply.</p>
+                            <p class="des"><b>g. Apple Minimum Terms – </b>The additional Apple Minimum Terms below are incorporated into this agreement for all purposes.</p>
+                            <p class="des"><b>h. Google Play Store End- User License Agreement – </b>The additional Google Play Store End- User License Agreement terms below are incorporated into this agreement for all purposes.</p>
+                            <p class="des"><b>i. Confidentiality, Legality, trade secrets & </b></p>
+                            <p class="des"><span style="font-size: large; font-weight: 900;">14. APPLE REQUIREMENTS – </span>IF USER DOWNLOADED THE SERVICES FROM THE APPLE ITUNES APP STORE, THE FOLLOWING TERMS ALSO APPLY.</p>
+                            <p class="des"><b>a. Acknowledgement – </b>User acknowledges that this agreement is between User and Company only and not with Apple. Company is solely responsible for the Services and the content not Apple.</p>
+                            <p class="des"><b>b. Scope of License – </b>This is not a license transfer and permitted use only for using the services on an iOS device that User legally possesses and as permitted by the Usage Rules in the Apple iTunes App Store Terms of Service.</p>
+                            <p class="des"><b>c. Maintenance and Support – </b>All services and maintenance are provided by Company and not by Apple. Apple is not responsible for providing any support or maintenance but the Company.</p>
+                            <p class="des"><b>d. Warranty – </b>All claims, losses, liabilities, damages, costs or expenses those may accrued while using the service because of any failure to fulfill any warranty Company will provide refund per applicable agreement and permitted by Law, Apple has no obligation of whatsoever.</p>
+                            <p class="des"><b>e. Intellectual Property Rights – </b>All intellectual property related to services belongs to Company and not the Apple. All intellectual rights and infringement claims if any should be directed towards Company.</p>
+                            <p class="des"><b>f. Legal Compliance – </b>User represents and warrants that (i) not located in a country that has been designated by the Indian Government as a “terrorist supporting” or not friendly country; and (ii) User is not listed on any  Government list of prohibited or restricted parties.</p>
+                            <p class="des"><b>g. Developer Contact Info – </b>Direct any questions, complaints or claims to:</p>
+                            <p class="des">Shidory E-Commerce Market Place Pvt Ltd., Ram Nagar, Chandur Rly, Maharashtra -444904.
+Email: info@shidory.com</p>
+                            <p class="des"><b>h. Third Party Terms of Agreement – </b>User should comply with all third party agreements which are within the service uses. No liability will be assumed by the Company or the Google for any service agreement between the third party and User.</p>
+                            <p class="des"><b>15. GOOGLE PLAY REQUIREMENTS – </b>IF USER DOWNLOADED THE SERVICES FROM THE GOOGLE PLAY STORE, THE FOLLOWING TERMS ALSO APPLY. </p>
+                            <p class="des"><b>d. Acknowledgement – </b>User acknowledges that this agreement is between User and Company only and not with Google. Company is solely responsible for the Services and the content not Google.</p>
+                            <p class="des"><b>e. Scope of License – </b>This is not a license transfer and permitted use only for using the services on an android device that User legally possesses and as permitted by the Usage Rules in the Google Play Store Terms of Service.</p>
+                            <p class="des"><b>f. Maintenance and Support – </b>All services and maintenance are provided by Company and not by Google. Google is not responsible for providing any support or maintenance but the Company.</p>
+                            <p class="des"><b>e. Warranty – </b>All claims, losses, liabilities, damages, costs or expenses those may accrued while using the service because of any failure to fulfill any warranty Company will provide refund per applicable agreement and permitted by Law, Google has no obligation of whatsoever.</p>
+                            <p class="des"><b>g. Intellectual Property Rights – </b>All intellectual property related to services belongs to Company and not the Google. All intellectual rights and infringement claims if any should be directed towards Company.</p>
+                            <p class="des"><b>h. Legal Compliance – </b>User represents and warrants that (i) not located in a country that has been designated by the Indian Government as a “terrorist supporting” or not friendly country; and (ii) User is not listed on any Government list of prohibited or restricted parties.</p>
+                            <p class="des"><b>i. Developer Contact Info – </b>Direct any questions, complaints or claims to:
+Shidory E-Commerce Market Place Pvt Ltd., Ram Nagar, Chandur Rly, Maharashtra -444904.
+Email: info@shidory.com</p>
+                            <p class="des"><b>j. Third Party Terms of Agreement – </b>User should comply with all third party agreements which are within the service uses. No liability will be assumed by the Company or the Google for any service agreement between the third party and User.</p>
+                            <span style="font-size: large; font-weight: 900;">16. Outside Links and websites</span>
+                            
+                            <p class="des">a. Company website could contain links to our partner or promotional outside third-party websites (<b>“Third-Party Websites”</b>) and advertisements (“Third-Party Advertisements”) Company is not responsible for makes no warranties, and user liberate company from any liability without any limits on Third Party Websites & Advertisements. Company does not recognize or promote any use or purchase by user using third party websites or advertisement. Use of all “Third-Party Websites & Advertisements” are at your own risk.</p>
+                        </div>
+                        <!-- Title Content End -->
+                    </div>
+                </div>
+            </div>
+            <!-- About End -->
+
+            <!-- Footer Start -->
+            <footer>
+                <div class="footer-bottom">
+                    <div class="container">
+                        <div class="row powered">
+                            <!--  Copyright Start -->
+                            <div class="col-md-3 col-sm-6 order-md-1">
+                                <img src="assets/images/logo/logo-white.png" class="img-fluid" title="logo" alt="logo">
+                            </div>
+                            <div class="col-md-3 col-sm-6 text-right order-md-3">
+                                <!--  Footer Social Start -->
+                                <ul class="list-inline social">
+                                    <li class="list-inline-item"><a href="https://www.facebook.com/" target="_blank"><i class="icofont icofont-social-facebook"></i></a></li>
+                                    <li class="list-inline-item"><a href="https://twitter.com/" target="_blank"><i class="icofont icofont-social-twitter"></i></a></li>
+                                    <li class="list-inline-item"><a href="https://www.instagram.com/" target="_blank"><i class="icofont icofont-social-instagram"></i></a></li>
+                                    <!--<li class="list-inline-item"><a href="https://www.youtube.com/" target="_blank"><i class="icofont icofont-social-youtube-play"></i></a></li>-->
+                                </ul>
+                                <!--  Footer Social End -->
+                            </div>
+                            <div class="col-md-6 col-sm-12 text-center order-md-2">
+                            </div>
+                            <!--  Copyright End -->
+                        </div>
+                    </div>
+                </div>
+            </footer>
+            <!-- Footer End  -->
+
+        </div>

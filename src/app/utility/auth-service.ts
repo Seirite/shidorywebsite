@@ -166,7 +166,7 @@ export class AuthService {
     const data: User = {
       uid: user.uid,
       email: user.email || null,
-        displayName: user.email || 'nameless user',
+        displayName: user.displayName || 'nameless user',
       photoURL: user.photoURL || 'https://goo.gl/Fz9nrQ',
       ORG_ID:"1",
       OPR_ID:"1"

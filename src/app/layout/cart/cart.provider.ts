@@ -111,7 +111,7 @@ export class CartProvider {
                                 {
                                     if (list[0].DISCOUNT_TYPE == "PERCENTAGE") 
                                     {
-                                        orderDiscountValue = billAmount - (billAmount * (list[0].DISCOUNT) / 100);
+                                        orderDiscountValue = billAmount * (list[0].DISCOUNT) / 100;
                                     }
                                     if (list[0].DISCOUNT_TYPE == "AMOUNT") 
                                     {
@@ -130,7 +130,7 @@ export class CartProvider {
                                 {
                                     if (list[0].DISCOUNT_TYPE == "PERCENTAGE") 
                                     {
-                                        orderDiscountValue = billAmount - (billAmount * (list[0].DISCOUNT) / 100);
+                                        orderDiscountValue = billAmount * (list[0].DISCOUNT) / 100;
                                     }
                                     if (list[0].DISCOUNT_TYPE == "AMOUNT") 
                                     {
@@ -160,7 +160,7 @@ export class CartProvider {
                                 {
                                     if (list[0].DISCOUNT_TYPE == "PERCENTAGE") 
                                     {
-                                        orderDiscountValue = billAmount - (billAmount * (list[0].DISCOUNT) / 100);
+                                        orderDiscountValue = billAmount * (list[0].DISCOUNT) / 100;
                                     }
                                     if (list[0].DISCOUNT_TYPE == "AMOUNT") 
                                     {
@@ -179,7 +179,7 @@ export class CartProvider {
                                 {
                                     if (list[0].DISCOUNT_TYPE == "PERCENTAGE") 
                                     {
-                                        orderDiscountValue = billAmount - (billAmount * (list[0].DISCOUNT) / 100);
+                                        orderDiscountValue = billAmount * (list[0].DISCOUNT) / 100;
                                     }
                                     if (list[0].DISCOUNT_TYPE == "AMOUNT") 
                                     {

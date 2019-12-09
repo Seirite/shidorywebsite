@@ -126,13 +126,7 @@ export class MobileNoDialogComponent implements OnInit {
                     "name": this.userName
                 }
         };
-        return this.http.post(url, body, httpOptions).toPromise().then(data =>
-        {
-            console.log(data);
-        }).catch(error =>
-        {
-            console.log(error);
-        })
+        return this.http.post(url, body, httpOptions).toPromise()
     }
     
     checkWeatherMobileNoIsAlreadyLinkOrNot()

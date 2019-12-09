@@ -22,6 +22,8 @@ const routes: Routes = [
             { path: 'viewDetail', loadChildren: './view-detail/view-detail.module#ViewDetailModule' },
             { path: 'order-conform', loadChildren: './order-conform/order-conform.module#OrderConformModule' },
             { path: 'profile', loadChildren: './profile/profile.module#ProfileModule' },
+            { path: 'tandc', loadChildren: './terms-and-condition/terms-and-condition.module#TermsAndConditionModule' },
+            { path: 'privacy', loadChildren: './privacy/privacy.module#PrivacyModule' },
         ]
     }
 ];    

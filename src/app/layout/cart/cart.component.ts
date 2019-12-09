@@ -139,6 +139,13 @@ export class CartComponent implements OnInit {
                 this.openLoginDialog();
             }
         }
+        else
+        {
+            this.loginDone = localStorage.getItem("isLoggedin");
+            this.loginUserName = this.auth.getSession().displayName;
+            this.loginUserImage = this.auth.getSession().photoURL;
+            this.loginUserEmail = this.auth.getSession().email;
+        }
     }
     
     checkForDeliveryAddress()
@@ -147,12 +154,16 @@ export class CartComponent implements OnInit {
         {
             this.provider.getRestroUserData(this.auth.getSession().uid).then((data: ADD_ORDER_MST) =>
             {
-                if (data.DELIVERY_ADDRESS.length !== 0) 
+                if (data.DELIVERY_ADDRESS)
                 {
-                    this.deliveryAddressArray = data.DELIVERY_ADDRESS;
+                    if (data.DELIVERY_ADDRESS.length !== 0) 
+                    {
+                        this.deliveryAddressArray = data.DELIVERY_ADDRESS;
+                    }
                 }
             }).catch(error => 
             {
+                console.log(error);
             })
         }
     }
