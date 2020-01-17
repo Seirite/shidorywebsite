@@ -781,7 +781,7 @@ export class ShopComponent implements OnInit {
                 {
                     menuCategoryArray.push({
                         id: data.MENU_ITEM_TYPE.trim(),
-                        name: list[0].MENU_TYPE.trim()
+                        name: list[0].MENU_TYPE.trim().toUpperCase()
                     });
                     for (const item of menuCategoryArray) 
                     {
@@ -790,7 +790,7 @@ export class ShopComponent implements OnInit {
                             map.set(item.id.trim(), true);
                             this.menuCategoryList.push({
                                 id: item.id.trim(),
-                                name: item.name
+                                name: item.name.trim().toUpperCase()
                             });
                             this.loading = false;
                         }

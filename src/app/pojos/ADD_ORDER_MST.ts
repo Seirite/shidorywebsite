@@ -38,6 +38,7 @@ export class ADD_ORDER_MST
     RESTRO_USER_OTP: any;
     CART_OVER_TOTAL: any;
     HAWKER_KEY: any;
+    HAWKER_TOTAL_AMOUNT: number;
 }
 
 export class FIRE_ADD_ORDER_MST_REF

@@ -425,6 +425,9 @@ export class CartComponent implements OnInit {
             console.log(restroData);
             var distance = GeohashDistance.inKm(Obj.geohash, restroData.RESTRO_LOCATION.geohash.substring(0,6));
             var countryData: any = await this.provider.getOrderDistance(this.countryName);
+            var totalDistanceAmount = (parseInt(distance) + 1) * countryData.OPR_ORD_PRICE;
+            var orderDeliveredAmount = countryData.OPR_ORD_DELIVERD_PRICE + countryData.OPR_ORD_TAKEN_PRICE;
+            this.entOrderMst.HAWKER_TOTAL_AMOUNT = orderDeliveredAmount + totalDistanceAmount;
             if (countryData.OPR_ORD_RANGE_DISTANCE)
             {
                 if (countryData.OPR_ORD_RANGE_DISTANCE >= distance)
