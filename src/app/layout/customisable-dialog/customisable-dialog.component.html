@@ -22,7 +22,7 @@
             <h2 style="font: bolder; font-size: x-large; font-weight: 900;">Quantity</h2>
             <div class="row">
                 <div class="col-12" align="start">
-                    <p style="font-weight: 500;">
+                    <p style="font-weight: 500;" *ngIf="menuItemPrice">
                         <span>
                             <img src="assets/images/menu-type/non-vegetarian.png" *ngIf="menuItemCategory=='NonVeg'" />
                             <img src="assets/images/menu-type/vegetarian.png" *ngIf="menuItemCategory=='Veg'" />
@@ -38,7 +38,7 @@
                         &nbsp;
                         <span>{{userCurrency}}{{menuItemPrice}}</span>
                     </p>
-                    <p style="font-weight: 500;">
+                    <p style="font-weight: 500;" *ngIf="menuItemHalfPrice">
                         <span>
                             <img src="assets/images/menu-type/non-vegetarian.png" *ngIf="menuItemCategory=='NonVeg'" />
                             <img src="assets/images/menu-type/vegetarian.png" *ngIf="menuItemCategory=='Veg'" />
@@ -53,6 +53,38 @@
                         </span>
                         &nbsp;
                         <span>{{userCurrency}}{{menuItemHalfPrice}}</span>
+                    </p>
+                    <p style="font-weight: 500;" *ngIf="menuItemKgPrice">
+                        <span>
+                            <img src="assets/images/menu-type/non-vegetarian.png" *ngIf="menuItemCategory=='NonVeg'" />
+                            <img src="assets/images/menu-type/vegetarian.png" *ngIf="menuItemCategory=='Veg'" />
+                            <img src="assets/images/menu-type/egg-contain.png" *ngIf="menuItemCategory=='Contains Egg'" />
+                        </span>
+                        &nbsp;
+                        <span>
+                            <label class="check" (click)="selectMainCustomize('Kg')">
+                                <input type="radio" name="mainCustomize" class="checkclass"/>
+                                Kg
+                            </label> 
+                        </span>
+                        &nbsp;
+                        <span>{{userCurrency}}{{menuItemKgPrice}}</span>
+                    </p>
+                    <p style="font-weight: 500;" *ngIf="menuItemPlatePrice">
+                        <span>
+                            <img src="assets/images/menu-type/non-vegetarian.png" *ngIf="menuItemCategory=='NonVeg'" />
+                            <img src="assets/images/menu-type/vegetarian.png" *ngIf="menuItemCategory=='Veg'" />
+                            <img src="assets/images/menu-type/egg-contain.png" *ngIf="menuItemCategory=='Contains Egg'" />
+                        </span>
+                        &nbsp;
+                        <span>
+                            <label class="check" (click)="selectMainCustomize('Plate')">
+                                <input type="radio" name="mainCustomize" class="checkclass"/>
+                                Plate
+                            </label> 
+                        </span>
+                        &nbsp;
+                        <span>{{userCurrency}}{{menuItemPlatePrice}}</span>
                     </p>
                 </div>
             </div>

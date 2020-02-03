@@ -31,7 +31,7 @@ export class AlertDialogComponent implements OnInit {
     
     onRightClick($event)
     {
-        return false;
+//        return false;
     }
     
     keyboardEvent($event)

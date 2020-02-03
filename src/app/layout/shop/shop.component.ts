@@ -19,6 +19,8 @@ import {RatingViewComponent} from '../rating-view/rating-view.component';
     styleUrls: ['./shop.component.scss']
 })
 export class ShopComponent implements OnInit {
+    selectMainCategoryObj: any;
+    selectCategoryObj: any;
     searchFail: boolean = false;
     checkoutStatus: boolean = false;
     maxRatingValue: number = 0;
@@ -394,7 +396,7 @@ export class ShopComponent implements OnInit {
                 this.entOrderMst.MENUCART = this.cartMenuItemList;
                 if (this.loginDone == null) 
                 {
-                    this.openLoginDialog();
+                    this.openLoginDialog('login');
                 }
                 else 
                 {
@@ -532,7 +534,7 @@ export class ShopComponent implements OnInit {
         var list = JSON.parse(localStorage.getItem("menuItemArray"));
         for(let i = 0; i <list.length; i++)
         {
-            if (list[i].MENU_ITEM_KEY == Obj.MENU_ITEM_KEY)
+            if (list[i].key == Obj.key)
             {
                 return true;
             }
@@ -544,7 +546,7 @@ export class ShopComponent implements OnInit {
         var list = JSON.parse(localStorage.getItem("menuItemArray"));
         for(let i = 0; i <list.length; i++)
         {
-            if (list[i].MENU_ITEM_NAME == Obj.MENU_ITEM_NAME && list[i].MENU_ITEM_KEY == Obj.MENU_ITEM_KEY)
+            if (list[i].MENU_ITEM_NAME == Obj.MENU_ITEM_NAME && list[i].key == Obj.key)
             {
                 return true;
             }
@@ -554,6 +556,14 @@ export class ShopComponent implements OnInit {
     addItemCart(Obj)
     {
         if (Obj.MENU_ITEM_HALF_PRICE)
+        {
+            this.openCustomisableDialog(Obj);
+        }
+        else if (Obj.MENU_ITEM_KG_PRICE)
+        {
+            this.openCustomisableDialog(Obj);
+        }
+        else if (Obj.MENU_ITEM_PLATE_PRICE)
         {
             this.openCustomisableDialog(Obj);
         }
@@ -569,6 +579,14 @@ export class ShopComponent implements OnInit {
         {
             Obj.MENU_ITEM_HALF_PRICE = 0;
         }
+        if (typeof Obj.MENU_ITEM_KG_PRICE == "undefined")
+        {
+            Obj.MENU_ITEM_KG_PRICE = 0;
+        }
+        if (typeof Obj.MENU_ITEM_PLATE_PRICE == "undefined")
+        {
+            Obj.MENU_ITEM_PLATE_PRICE = 0;
+        }
         Obj.MENU_ITEM_CURRENCY = this.userCurrency;
         var arrayObj = {
             MENU_ITEM_CATEGORY: Obj.MENU_ITEM_CATEGORY.trim(),
@@ -576,13 +594,15 @@ export class ShopComponent implements OnInit {
             MENU_ITEM_INGRADIENTS: Obj.MENU_ITEM_INGRADIENTS,
             MENU_ITEM_NAME: Obj.MENU_ITEM_NAME,
             MENU_ITEM_HALF_PRICE: Obj.MENU_ITEM_HALF_PRICE,
+            MENU_ITEM_KG_PRICE: Obj.MENU_ITEM_KG_PRICE,
+            MENU_ITEM_PLATE_PRICE: Obj.MENU_ITEM_PLATE_PRICE,
             MENU_ITEM_PRICE: Obj.MENU_ITEM_PRICE,
             MENU_ITEM_QUANTITY: Obj.MENU_ITEM_QUANTITY,
             TODAY_SPECIAL: Obj.TODAY_SPECIAL,
             MENU_ITEM_TOTAL: Obj.MENU_ITEM_TOTAL,
             MENU_ITEM_IMAGE: Obj.MENU_ITEM_IMAGE,
             RESTAURENT_ID: Obj.RESTAURENT_ID,
-            MENU_ITEM_KEY: Obj.MENU_ITEM_KEY,
+            key: Obj.key,
             ORDER_STATUS: "PENDING",
         }
         localStorage.setItem("restroKey", Obj.RESTAURENT_ID);
@@ -651,23 +671,25 @@ export class ShopComponent implements OnInit {
     
     showUpdatedSingleItem(newItem) 
     {
-        let updateItem = this.cartMenuItemList.find(this.findIndexToUpdate, newItem.MENU_ITEM_KEY);
+        let updateItem = this.cartMenuItemList.find(this.findIndexToUpdate, newItem.key);
         var arrayObj = {
             MENU_ITEM_CATEGORY: updateItem.MENU_ITEM_CATEGORY.trim(),
             MENU_ITEM_CURRENCY: updateItem.MENU_ITEM_CURRENCY,
             MENU_ITEM_INGRADIENTS: updateItem.MENU_ITEM_INGRADIENTS,
             MENU_ITEM_NAME: updateItem.MENU_ITEM_NAME,
             MENU_ITEM_HALF_PRICE: updateItem.MENU_ITEM_HALF_PRICE,
+            MENU_ITEM_KG_PRICE: updateItem.MENU_ITEM_KG_PRICE,
+            MENU_ITEM_PLATE_PRICE: updateItem.MENU_ITEM_PLATE_PRICE,
             MENU_ITEM_PRICE: updateItem.MENU_ITEM_PRICE,
             MENU_ITEM_QUANTITY: updateItem.MENU_ITEM_QUANTITY + 1,
             TODAY_SPECIAL: updateItem.TODAY_SPECIAL,
             MENU_ITEM_TOTAL: updateItem.MENU_ITEM_TOTAL,
             MENU_ITEM_IMAGE: updateItem.MENU_ITEM_IMAGE,
             RESTAURENT_ID: updateItem.RESTAURENT_ID,
-            MENU_ITEM_KEY: updateItem.MENU_ITEM_KEY,
+            key: updateItem.key,
             ORDER_STATUS: "PENDING",
         }
-        let itemIndex = this.cartMenuItemList.findIndex(item => item.MENU_ITEM_KEY == newItem.MENU_ITEM_KEY);
+        let itemIndex = this.cartMenuItemList.findIndex(item => item.key == newItem.key);
         this.cartMenuItemList[itemIndex] = arrayObj;
         this.calculateItemPrice();
         var message = "Menu Item Update";
@@ -690,7 +712,7 @@ export class ShopComponent implements OnInit {
             MENU_ITEM_TOTAL: updateItem.MENU_ITEM_TOTAL,
             MENU_ITEM_IMAGE: updateItem.MENU_ITEM_IMAGE,
             RESTAURENT_ID: updateItem.RESTAURENT_ID,
-            MENU_ITEM_KEY: updateItem.MENU_ITEM_KEY,
+            key: updateItem.key,
             ORDER_STATUS: "PENDING",
         }
         let itemIndex = this.cartMenuItemList.findIndex(item => item.MENU_ITEM_NAME == newItem.MENU_ITEM_NAME);
@@ -703,7 +725,7 @@ export class ShopComponent implements OnInit {
 
     findIndexToUpdate(newItem) 
     {
-        return newItem.MENU_ITEM_KEY === this;
+        return newItem.key === this;
     }
     
     findIndexToUpdateCustomize(newItem) 
@@ -739,29 +761,61 @@ export class ShopComponent implements OnInit {
     
     selectCategory(Obj)
     {
+        this.selectCategoryObj = Obj.name.trim();
         this.showRelated = false;
-        this.provider.getRestaurantWiseCategoryFilter(this.selectRestaurantKey, Obj.name.trim(), this.countryName, this.stateName, this.cityName).subscribe(list =>
+        if (this.selectMainCategoryObj)
         {
-            this.menuItemList = list;
-        })
+            this.provider.getRestaurantWiseCategoryFilterWithMainCategory(this.selectRestaurantKey, this.selectCategoryObj, this.countryName, this.stateName, this.cityName, this.selectMainCategoryObj).subscribe(list =>
+            {
+                this.menuItemList = list;
+            })
+        }
+        else
+        {
+            this.provider.getRestaurantWiseCategoryFilter(this.selectRestaurantKey, Obj.name.trim(), this.countryName, this.stateName, this.cityName).subscribe(list =>
+            {
+                this.menuItemList = list;
+            })
+        }
     }
     
     selectMainCategory(Obj)
     {
+        this.selectMainCategoryObj = Obj.trim();
         this.showRelated = false;
-        this.provider.getRestaurantWiseMainCategoryFilter(this.selectRestaurantKey, Obj.trim(), this.countryName, this.stateName, this.cityName).subscribe(list =>
+        if (this.selectCategoryObj)
         {
-            this.menuItemList = list;
-        })
+            this.provider.getRestaurantWiseCategoryFilterWithMainCategory(this.selectRestaurantKey, this.selectCategoryObj, this.countryName, this.stateName, this.cityName, this.selectMainCategoryObj).subscribe(list =>
+            {
+                this.menuItemList = list;
+            })
+        }
+        else
+        {
+            this.provider.getRestaurantWiseMainCategoryFilter(this.selectRestaurantKey, Obj.trim(), this.countryName, this.stateName, this.cityName).subscribe(list =>
+            {
+                this.menuItemList = list;
+            })
+        }
     }
     
     selectAll()
     {
         this.showRelated = false;
-        this.provider.getRestroWiseMenuList(this.selectRestaurantKey, this.countryName, this.stateName, this.cityName).subscribe(list =>
+        if (this.selectMainCategoryObj)
         {
-            this.menuItemList = list;
-        })
+            this.provider.getRestaurantWiseMainCategoryFilter(this.selectRestaurantKey, this.selectMainCategoryObj, this.countryName, this.stateName, this.cityName).subscribe(list =>
+            {
+                this.menuItemList = list;
+            })
+        }
+        else
+        {
+            this.provider.getRestroWiseMenuList(this.selectRestaurantKey, this.countryName, this.stateName, this.cityName).subscribe(list =>
+            {
+                this.menuItemList = list;
+            })
+        }
     }
     
     async getRestroWiseMenuItem(menuCategoryArray, map)
@@ -876,7 +930,7 @@ export class ShopComponent implements OnInit {
         });
     }
     
-    openLoginDialog()
+    openLoginDialog(loginUIStatus)
     {
         let dialogBoxSettings = {
             height: '400px',
@@ -884,6 +938,7 @@ export class ShopComponent implements OnInit {
             disableClose: true,
             hasBackdrop: true,
             margin: '0 auto',
+            data: {showLoginIterface: loginUIStatus}
         };
         this.component = LoginComponent;
         const dialogRef = this.dialog.open(this.component, dialogBoxSettings);
@@ -901,7 +956,7 @@ export class ShopComponent implements OnInit {
             disableClose: false,
             hasBackdrop: true,
             margin: '0 auto',
-            data: {menuKey: Obj.MENU_ITEM_KEY, restaurantKey: Obj.RESTAURENT_ID}
+            data: {menuKey: Obj.key, restaurantKey: Obj.RESTAURENT_ID}
         };
         this.component = CustomisableDialogComponent;
         const dialogRef = this.dialog.open(this.component, dialogBoxSettings);
@@ -958,7 +1013,7 @@ export class ShopComponent implements OnInit {
     
     onRightClick($event)
     {
-        return false;
+//        return false;
     }
     
     keyboardEvent($event)

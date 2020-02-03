@@ -14,6 +14,8 @@ export class CustomisableDialogComponent implements OnInit {
     menuItemTotalPrice: number;
     restroMenuItemObj: any;
     menuItemHalfPrice: number = 0;
+    menuItemKgPrice: number = 0;
+    menuItemPlatePrice: number = 0;
     userCurrency: any;
     menuItemPrice: number = 0;
     menuItemCategory: any;
@@ -74,7 +76,9 @@ export class CustomisableDialogComponent implements OnInit {
                 this.menuItemCategory = restroMenuItemObj.MENU_ITEM_CATEGORY
                 this.menuItemPrice = restroMenuItemObj.MENU_ITEM_PRICE;
                 this.menuItemTotalPrice = this.menuItemPrice;
-                this.menuItemHalfPrice = restroMenuItemObj.MENU_ITEM_HALF_PRICE
+                this.menuItemHalfPrice = restroMenuItemObj.MENU_ITEM_HALF_PRICE;
+                this.menuItemKgPrice = restroMenuItemObj.MENU_ITEM_KG_PRICE;
+                this.menuItemPlatePrice = restroMenuItemObj.MENU_ITEM_PLATE_PRICE;
             }).catch(error => 
             {
                 console.log(error);
@@ -92,6 +96,16 @@ export class CustomisableDialogComponent implements OnInit {
         if (customizeType == "Half")
         {
             this.menuItemTotalPrice = this.menuItemHalfPrice;
+            this.restroMenuItemObj.MENU_ITEM_PRICE = this.menuItemTotalPrice;
+        }
+        if (customizeType == "Kg")
+        {
+            this.menuItemTotalPrice = this.menuItemKgPrice;
+            this.restroMenuItemObj.MENU_ITEM_PRICE = this.menuItemTotalPrice;
+        }
+        if (customizeType == "Plate")
+        {
+            this.menuItemTotalPrice = this.menuItemPlatePrice;
             this.restroMenuItemObj.MENU_ITEM_PRICE = this.menuItemTotalPrice;
         }
         if (customizeType == "Full")
@@ -114,7 +128,7 @@ export class CustomisableDialogComponent implements OnInit {
             MENU_ITEM_TOTAL: this.restroMenuItemObj.MENU_ITEM_TOTAL,
             MENU_ITEM_IMAGE: this.restroMenuItemObj.MENU_ITEM_IMAGE,
             RESTAURENT_ID: this.restroMenuItemObj.RESTAURENT_ID,
-            MENU_ITEM_KEY: this.restroMenuItemObj.MENU_ITEM_KEY,
+            key: this.restroMenuItemObj.key,
             ORDER_STATUS: "PENDING",
         }
         this.dialogRef.close(arrayObj);
@@ -122,7 +136,7 @@ export class CustomisableDialogComponent implements OnInit {
     
     onRightClick($event)
     {
-        return false;
+//        return false;
     }
     
     keyboardEvent($event)

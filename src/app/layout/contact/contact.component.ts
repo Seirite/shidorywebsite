@@ -47,7 +47,7 @@ export class ContactComponent implements OnInit {
         this.router.navigate(['/home']);
     }
     
-    openLoginDialog()
+    openLoginDialog(loginUIStatus)
     {
         let dialogBoxSettings = {
             height: '400px',
@@ -55,6 +55,7 @@ export class ContactComponent implements OnInit {
             disableClose: true,
             hasBackdrop: true,
             margin: '0 auto',
+            data: {showLoginIterface: loginUIStatus}
         };
         this.component = LoginComponent;
         const dialogRef = this.dialog.open(this.component, dialogBoxSettings);
@@ -140,7 +141,7 @@ export class ContactComponent implements OnInit {
     
     onRightClick($event)
     {
-        return false;
+//        return false;
     }
     
     keyboardEvent($event)

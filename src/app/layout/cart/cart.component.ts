@@ -28,6 +28,7 @@ export interface DialogData {
   error : any;
   menuKey : any;
   restaurantKey : any;
+    showLoginIterface: string;
 }
 
 @Component({
@@ -136,7 +137,7 @@ export class CartComponent implements OnInit {
             }
             if (this.loginDone == null) 
             {
-                this.openLoginDialog();
+                this.openLoginDialog('login');
             }
         }
         else
@@ -727,7 +728,7 @@ export class CartComponent implements OnInit {
         }
     }
     
-    openLoginDialog()
+    openLoginDialog(loginUIStatus)
     {
         let dialogBoxSettings = {
             height: '400px',
@@ -735,6 +736,7 @@ export class CartComponent implements OnInit {
             disableClose: true,
             hasBackdrop: true,
             margin: '0 auto',
+            data: {showLoginIterface: loginUIStatus}
         };
         this.component = LoginComponent;
         const dialogRef = this.dialog.open(this.component, dialogBoxSettings);
@@ -808,7 +810,7 @@ export class CartComponent implements OnInit {
     
     onRightClick($event)
     {
-        return false;
+//        return false;
     }
     
     keyboardEvent($event)

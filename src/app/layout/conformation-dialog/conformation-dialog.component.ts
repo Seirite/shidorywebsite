@@ -24,7 +24,7 @@ export class ConformationDialogComponent implements OnInit {
     
     onRightClick($event)
     {
-        return false;
+//        return false;
     }
     
     keyboardEvent($event)

@@ -86,7 +86,7 @@ export class MenuComponent implements OnInit {
         })
     }
     
-    openLoginDialog()
+    openLoginDialog(loginUIStatus)
     {
         let dialogBoxSettings = {
             height: '400px',
@@ -94,6 +94,7 @@ export class MenuComponent implements OnInit {
             disableClose: true,
             hasBackdrop: true,
             margin: '0 auto',
+            data: {showLoginIterface: loginUIStatus}
         };
         this.component = LoginComponent;
         const dialogRef = this.dialog.open(this.component, dialogBoxSettings);
@@ -127,22 +128,22 @@ export class MenuComponent implements OnInit {
         }
         if (typeof this.carrerModel.address == "undefined")
         {
-            this.util.toastError("Error", "Enter required feild.");
+            this.util.toastError("Error", "Address required feild.");
             return "ERROR";
         }
         if (typeof this.carrerModel.city == "undefined")
         {
-            this.util.toastError("Error", "Enter required feild.");
+            this.util.toastError("Error", "City required feild.");
             return "ERROR";
         }
         if (typeof this.carrerModel.state == "undefined")
         {
-            this.util.toastError("Error", "Enter required feild.");
+            this.util.toastError("Error", "State required feild.");
             return "ERROR";
         }
         if (typeof this.carrerModel.country == "undefined")
         {
-            this.util.toastError("Error", "Enter required feild.");
+            this.util.toastError("Error", "Country required feild.");
             return "ERROR";
         }
         if (typeof this.carrerModel.mobileNo == "undefined")
@@ -225,7 +226,7 @@ export class MenuComponent implements OnInit {
     
     onRightClick($event)
     {
-        return false;
+//        return false;
     }
     
     keyboardEvent($event)

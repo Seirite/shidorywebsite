@@ -291,7 +291,7 @@ export class ProfileComponent implements OnInit {
         });
     }
     
-    openLoginDialog()
+    openLoginDialog(loginUIStatus)
     {
         let dialogBoxSettings = {
             height: '400px',
@@ -299,6 +299,7 @@ export class ProfileComponent implements OnInit {
             disableClose: true,
             hasBackdrop: true,
             margin: '0 auto',
+            data: {showLoginIterface: loginUIStatus}
         };
         this.component = LoginComponent;
         const dialogRef = this.dialog.open(this.component, dialogBoxSettings);
@@ -320,7 +321,7 @@ export class ProfileComponent implements OnInit {
     
     onRightClick($event)
     {
-        return false;
+//        return false;
     }
     
     keyboardEvent($event)

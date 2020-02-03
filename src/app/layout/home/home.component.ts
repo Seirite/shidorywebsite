@@ -513,7 +513,7 @@ export class HomeComponent implements OnInit {
                 {
                     console.log(data);
                     var RESTAURENT_ID = data['RESTAURENT_ID'];
-                    this.searchValue = data.MENU_ITEM_KEY;
+                    this.searchValue = data.key;
 //                    this.getMenuItemRestaurantWise(RESTAURENT_ID)
                 })
             }
@@ -620,7 +620,7 @@ export class HomeComponent implements OnInit {
         this.dialog.open(this.component, dialogBoxSettings);
     }
     
-    openLoginDialog()
+    openLoginDialog(loginUIStatus)
     {
         let dialogBoxSettings = {
             height: '400px',
@@ -628,6 +628,7 @@ export class HomeComponent implements OnInit {
             disableClose: true,
             hasBackdrop: true,
             margin: '0 auto',
+            data: {showLoginIterface: loginUIStatus}
         };
         this.component = LoginComponent;
         const dialogRef = this.dialog.open(this.component, dialogBoxSettings);
@@ -639,7 +640,7 @@ export class HomeComponent implements OnInit {
     
     onRightClick($event)
     {
-        return false;
+//        return false;
     }
     
     keyboardEvent($event)

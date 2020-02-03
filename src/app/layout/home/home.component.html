@@ -38,7 +38,8 @@
                                 <li class="list-inline-item dropdown">
                                     <a class="dropdown-toggle" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="icofont icofont-ui-user"></i> My Account</a>
                                     <ul class="dropdown-menu dropdown-menu-right drophover" aria-labelledby="dropdownMenuLink">
-                                        <li class="dropdown-item"><a (click)="openLoginDialog()">Login</a></li>
+                                        <li class="dropdown-item"><a (click)="openLoginDialog('login')">Login</a></li>
+                                        <li class="dropdown-item"><a (click)="openLoginDialog('signup')">Sign Up</a></li>
                                     </ul>
                                 </li>
                             </ng-template>
@@ -112,7 +113,7 @@
         <!-- Banner Detail Start  -->
         <div class="banner-detail">
             <div class="container">
-                <img src="assets/images/logo/logo-icon.png" alt="logo1" title="logo1" class="img-responsive" />
+                <img src="assets/images/logo/logo-icon.png" class="img-responsive" />
                 <div class="cd-headline clip">
                     <h4>LOVES <span class="cd-words-wrapper">
                             <b class="is-visible">HEALTHY</b>
@@ -170,7 +171,7 @@
                                                 <img src="assets/images/loader.gif" />
                                 </div>
                                 <div [hidden]="showList" align="center">
-                                    <img style="width: 35%;height: 107px" src="assets/images/logo/logo-icon.png" alt="logo1" title="logo1" class="img-responsive" /><br>
+                                    <img style="width: 35%;height: 107px" src="assets/images/logo/logo-icon.png" class="img-responsive" /><br>
                                     <h2 style="font-weight: 700">Wish we were<br>here!</h2><br>
                                     <p class="des">We don’t deliver here yet. Why don’t <br> you try a different location?</p>
                                 </div>
@@ -190,7 +191,7 @@
                                     <div  class="col-sm-4" *ngFor="let item of menuItemList">
                                       <div class="images" (click)="selectRestaurant(item)" *ngIf="item.restroStatus=='open'">
                                         <div>
-                                            <img src="{{item.RESTRO_IMAGE || 'https://www.croatia-times.com/wp-content/uploads/2016/09/Aba.jpg'}}" alt="image" title="image" style="height: 150px;width: 90%" />
+                                            <img src="{{item.RESTRO_IMAGE || 'https://www.croatia-times.com/wp-content/uploads/2016/09/Aba.jpg'}}" style="height: 150px;width: 90%" />
                                             <div class="caption">
                                                 <h4 style="padding: 1%;font-family: cursive;color:#e54c2a;cursor: pointer;cursor: hand; text-transform: capitalize;">{{item.RESTRO_NAME.substring(0,30)}}</h4>
                                                 <p class="text" style="padding: 1%;margin-bottom: 1%;margin-top: -4;cursor: pointer;cursor: hand; font-size: 14px;">{{item.OPENING_TIME}} - {{item.CLOSING_TIME}} &nbsp;&nbsp;<span style="color:green;cursor: pointer;cursor: hand;font-weight: bold;">Open</span>&nbsp;&nbsp;<span style="cursor: pointer;cursor: hand;">{{item.RESTRO_DELIVERY_TIME || "30"}} mins</span>&nbsp;&nbsp;<span class="ratingDisplay"><i class="icofont icofont-star"></i>&nbsp;{{item.restroRatingValue || "0"}}&nbsp;</span></p>
@@ -203,7 +204,7 @@
                                         </div>
                                       <div class="images1" (click)="selectRestaurant(item)" *ngIf="item.restroStatus=='closed'">
                                         <div>
-                                            <img src="{{item.RESTRO_IMAGE || 'https://www.croatia-times.com/wp-content/uploads/2016/09/Aba.jpg'}}" alt="image" title="image" style="height: 150px;width: 90%" />
+                                            <img src="{{item.RESTRO_IMAGE || 'https://www.croatia-times.com/wp-content/uploads/2016/09/Aba.jpg'}}" style="height: 150px;width: 90%" />
                                             <div class="caption">
                                                 <h4 style="padding: 1%;font-family: cursive;color:#e54c2a; text-transform: capitalize;">{{item.RESTRO_NAME.substring(0,30)}}</h4>
                                                 <p class="text" style="padding: 1%;margin-bottom: 1%;margin-top: -4; font-size: 14px;">{{item.OPENING_TIME}} - {{item.CLOSING_TIME}} &nbsp;&nbsp;<span style="color: red;cursor: pointer;cursor: hand;font-weight: bold">Closed</span>&nbsp;&nbsp;<span class="ratingDisplay"><i class="icofont icofont-star"></i>&nbsp;{{item.restroRatingValue || "0"}}&nbsp;</span></p>
@@ -218,7 +219,7 @@
                                     </div>
                                 </div>
                                 <div align="center" *ngIf="searchFail">
-                                    <img style="width: 35%;height: 107px" src="assets/images/logo/logo-icon.png" alt="logo1" title="logo1" class="img-responsive" /><br>
+                                    <img style="width: 35%;height: 107px" src="assets/images/logo/logo-icon.png" class="img-responsive" /><br>
                                     <h6 style="font-weight: 700"><br>Oh! There’s not much left</h6>
                                     <p class="des">We can’t find anything related to your search. <br> Try a different search.</p>
                                 </div>

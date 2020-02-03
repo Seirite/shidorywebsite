@@ -37,7 +37,8 @@
                                 <li class="list-inline-item dropdown">
                                     <a class="dropdown-toggle" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="icofont icofont-ui-user"></i> My Account</a>
                                     <ul class="dropdown-menu dropdown-menu-right drophover" aria-labelledby="dropdownMenuLink">
-                                        <li class="dropdown-item"><a (click)="openLoginDialog()">Login</a></li>
+                                        <li class="dropdown-item"><a (click)="openLoginDialog('login')">Login</a></li>
+                                        <li class="dropdown-item"><a (click)="openLoginDialog('signup')">Sign Up</a></li>
                                     </ul>
                                 </li>
                             </ng-template>
@@ -205,8 +206,8 @@
                                             <p style="text-overflow: ellipsis;  overflow: hidden; white-space: nowrap; font-size: 13px; color: #7e808c; text-transform: capitalize;">{{menuItem.MENU_ITEM_TYPE}}</p>
                                             <span style="color: #535665; font-size: 15px;">{{userCurrency}}{{menuItem.MENU_ITEM_PRICE}}</span>
                                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                            <button mat-stroked-button style="display: inline-block; height: 30px; width: 83px; border: 1px solid #d4d5d9; color: #e8854e; font-size: .9rem; font-weight: 600; line-height: 30px; position: relative; text-align: center; background-color: #fff;" (click)="addItemCart(menuItem)" *ngIf="restroStatus=='open'">ADD <span style="float: right; margin-right: -21%; margin-top: -12%;" *ngIf="menuItem.MENU_ITEM_HALF_PRICE">+</span> </button>
-                                            <span style="color: #7e808c; font-size: 10px; float: left; margin-left: 38%; font-weight: 900;" *ngIf="menuItem.MENU_ITEM_HALF_PRICE&&restroStatus=='open'">Customisable</span>
+                                            <button mat-stroked-button style="display: inline-block; height: 30px; width: 83px; border: 1px solid #d4d5d9; color: #e8854e; font-size: .9rem; font-weight: 600; line-height: 30px; position: relative; text-align: center; background-color: #fff;" (click)="addItemCart(menuItem)" *ngIf="restroStatus=='open'">ADD <span style="float: right; margin-right: -21%; margin-top: -12%;" *ngIf="menuItem.MENU_ITEM_HALF_PRICE||menuItem.MENU_ITEM_KG_PRICE||menuItem.MENU_ITEM_PLATE_PRICE">+</span> </button>
+                                            <span style="color: #7e808c; font-size: 10px; float: left; margin-left: 38%; font-weight: 900;" *ngIf="menuItem.MENU_ITEM_HALF_PRICE||menuItem.MENU_ITEM_KG_PRICE||menuItem.MENU_ITEM_PLATE_PRICE&&restroStatus=='open'">Customisable</span>
                                         </div>
                                     </div>
                                 </div>

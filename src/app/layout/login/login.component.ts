@@ -1,12 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import {Router} from '@angular/router';
 import {AuthService} from '../../utility/auth-service';
 import {LoginProvider} from './login.provider';
 import {FormGroup, FormBuilder, FormControl, Validators} from '@angular/forms';
-import {MatSnackBar, MatDialogRef, MatStepper} from '@angular/material';
+import {MatSnackBar, MatDialogRef, MatStepper, MAT_DIALOG_DATA} from '@angular/material';
 import {SiUtil} from '../../utility/SiUtil';
 //import {Http, Headers, Response, URLSearchParams} from '@angular/http';
 import {HttpClient, HttpHeaders, HttpResponse, HttpParams} from '@angular/common/http';
+import {DialogData} from '../cart/cart.component';
 //import * as toPromise 'rxjs/add/operator/toPromise';
 export class RegisterForm{
     fullName:string;
@@ -61,24 +62,27 @@ export class LoginComponent implements OnInit {
     hideRegisterButton:boolean=false;
     otpStatusButton : boolean = false;
     constructor(public router: Router, private util:SiUtil,private formBuilder: FormBuilder, private http:  HttpClient,
-                public auth: AuthService, public provider: LoginProvider, private fb: FormBuilder, private snackBar: MatSnackBar, public dialogRef: MatDialogRef<LoginComponent>) {
+                public auth: AuthService, public provider: LoginProvider, private fb: FormBuilder, private snackBar: MatSnackBar, public dialogRef: MatDialogRef<LoginComponent>, @Inject(MAT_DIALOG_DATA) public data: DialogData) {
         this.validateRegistrationForm();
         this.validateLoginForm();
         this.Registerform = new RegisterForm();
     }
 
     ngOnInit() {
-//        this.windowRef = window;
+        if (this.data.showLoginIterface == "signup")
+        {
+            this.signUpStatus = true;
+        }
         
-    this.firstFormGroup = this.formBuilder.group({
-      email: ['', Validators.required],
-    });
-    this.secondFormGroup = this.formBuilder.group({
-      email: ['', Validators.required],
-      name: ['', Validators.required],
-      
-    });
-        
+        this.firstFormGroup = this.formBuilder.group({
+            email: ['', Validators.required],
+        });
+        this.secondFormGroup = this.formBuilder.group({
+            email: ['', Validators.required],
+            name: ['', Validators.required],
+
+        });
+
         this.callingCode = localStorage.getItem("callingCode");
         this.provider.getCountryList().subscribe(list=>{
             this.countryList = list;
@@ -533,7 +537,7 @@ export class LoginComponent implements OnInit {
     
     onRightClick($event)
     {
-        return false;
+//        return false;
     }
     
     keyboardEvent($event)

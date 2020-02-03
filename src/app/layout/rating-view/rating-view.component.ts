@@ -58,7 +58,7 @@ export class RatingViewComponent implements OnInit {
     
     onRightClick($event)
     {
-        return false;
+//        return false;
     }
     
     keyboardEvent($event)
