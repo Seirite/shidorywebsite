@@ -4443,3 +4443,7 @@ footer .powered .social li a:hover i{
     }
 
 }
+
+a {
+    cursor: pointer;
+}

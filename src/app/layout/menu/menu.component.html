@@ -44,8 +44,8 @@
                                     </ng-template>
                                     <li class="list-inline-item">
                                         <ul class="list-inline social">
-                                            <li class="list-inline-item"><a href="https://www.facebook.com/" target="_blank"><i class="icofont icofont-social-facebook"></i></a></li>
-                                            <li class="list-inline-item"><a href="https://twitter.com/" target="_blank"><i class="icofont icofont-social-twitter"></i></a></li>
+                                            <li class="list-inline-item"><a href="https://m.facebook.com/pg/Shidory-174104929684181/about/" target="_blank"><i class="icofont icofont-social-facebook"></i></a></li>
+                                            <li class="list-inline-item"><a href="https://mobile.twitter.com/ShidoryPvtLtd" target="_blank"><i class="icofont icofont-social-twitter"></i></a></li>
                                             <!---->
                                             <li class="list-inline-item"><a href="https://www.instagram.com/" target="_blank"><i class="icofont icofont-social-instagram"></i></a></li>
                                             <!---->
@@ -151,13 +151,22 @@
                                         <input matInput placeholder="Last Name" name="lastName" autocomplete="off"  [(ngModel)]="carrerModel.lastName">
                                     </mat-form-field>
                                     <br>
-                                    <mat-form-field appearance="outline" class="example-full-width">
+                                    <mat-form-field appearance="outline" class="example-half-width">
+                                        <mat-label>Position For Apply</mat-label>
+                                        <mat-select [(value)]="carrerModel.position" name="position">
+                                            <mat-option *ngFor="let position of positionList" [value]="position.POSITION">
+                                                {{position.POSITION}}
+                                            </mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                    &nbsp;&nbsp;&nbsp;
+                                    <mat-form-field appearance="outline" class="example-half-width">
                                         <span matSuffix><i class="icofont icofont-ui-message" style="margin-top: -36px;"></i></span>
                                         <mat-label>Email</mat-label>
                                         <input matInput placeholder="Email" name="emailId" autocomplete="off"  [(ngModel)]="carrerModel.emailId">
                                     </mat-form-field>
                                     &nbsp;&nbsp;&nbsp;
-                                    <mat-form-field appearance="outline" class="example-full-width">
+                                    <mat-form-field appearance="outline" class="example-half-width">
                                         <span matSuffix><i class="icofont icofont-phone" style="margin-top: -36px;"></i></span>
                                         <mat-label>Mobile Number</mat-label>
                                         <input matInput placeholder="Mobile Number" type="tel" name="mobileNo" autocomplete="off"  maxlength="10" (keypress)="mobileKeyPress($event)" [(ngModel)]="carrerModel.mobileNo">
@@ -466,8 +475,8 @@
                             <div class="col-md-3 col-sm-6 text-right order-md-3">
                                 <!--  Footer Social Start -->
                                 <ul class="list-inline social">
-                                    <li class="list-inline-item"><a href="https://www.facebook.com/" target="_blank"><i class="icofont icofont-social-facebook"></i></a></li>
-                                    <li class="list-inline-item"><a href="https://twitter.com/" target="_blank"><i class="icofont icofont-social-twitter"></i></a></li>
+                                    <li class="list-inline-item"><a href="https://m.facebook.com/pg/Shidory-174104929684181/about/" target="_blank"><i class="icofont icofont-social-facebook"></i></a></li>
+                                    <li class="list-inline-item"><a href="https://mobile.twitter.com/ShidoryPvtLtd" target="_blank"><i class="icofont icofont-social-twitter"></i></a></li>
                                     <li class="list-inline-item"><a href="https://www.instagram.com/" target="_blank"><i class="icofont icofont-social-instagram"></i></a></li>
 <!--                                    <li class="list-inline-item"><a href="https://www.youtube.com/" target="_blank"><i class="icofont icofont-social-youtube-play"></i></a></li>-->
                                 </ul>

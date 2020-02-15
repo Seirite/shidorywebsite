@@ -45,8 +45,8 @@
                             </ng-template>
                             <li class="list-inline-item">
                                 <ul class="list-inline social">
-                                    <li class="list-inline-item"><a href="https://www.facebook.com/" target="_blank"><i class="icofont icofont-social-facebook"></i></a></li>
-                                    <li class="list-inline-item"><a href="https://twitter.com/" target="_blank"><i class="icofont icofont-social-twitter"></i></a></li>
+                                    <li class="list-inline-item"><a href="https://m.facebook.com/pg/Shidory-174104929684181/about/" target="_blank"><i class="icofont icofont-social-facebook"></i></a></li>
+                                    <li class="list-inline-item"><a href="https://mobile.twitter.com/ShidoryPvtLtd" target="_blank"><i class="icofont icofont-social-twitter"></i></a></li>
                                     <!---->
                                     <li class="list-inline-item"><a href="https://www.instagram.com/" target="_blank"><i class="icofont icofont-social-instagram"></i></a></li>
                                     <!---->
@@ -168,7 +168,7 @@
             <div class="container" >
             <div class="row">
                 <div class="col-md-12 col-sm-12 col-xs-12">
-                    <ul class="nav nav-tabs" *ngIf="showShopingInfo==true">
+<!--                    <ul class="nav nav-tabs" *ngIf="showShopingInfo==true">
                         <li class="nav-item"><a class="nav-link active" data-toggle="tab"><span>1</span>Cart info</a></li>
                         <li></li>
                         <li class="nav-item"><a class="nav-link" data-toggle="tab"><span>2</span>payment method</a></li>
@@ -177,8 +177,8 @@
                         <li class="nav-item"><a class="nav-link" data-toggle="tab"><span>1</span>Cart info</a></li>
                         <li></li>
                         <li class="nav-item"><a class="nav-link active" data-toggle="tab"><span>2</span>payment method</a></li>
-                    </ul>
-                    <div class="bor"></div>
+                    </ul>-->
+                    <!--<div class="bor"></div>-->
                     <div class="tab-content">
                         <div class="tab-pane active col-md-12 col-sm-12 col-xs-12" id="tab-info">
                             <div class='row'> 
@@ -362,8 +362,9 @@
                                     <div class="buttons float-left nav nav-tabs">
                                         <a href="shop" class="btn btn-theme btn-md btn-wide">Back Your Cart</a>
                                     </div>
-                                    <div class="buttons float-right nav nav-tabs" *ngIf="showCountinue==true">
-                                        <a href="#tab-payment" data-toggle="tab" class="btn btn-theme btn-md btn-wide" (click)="countinueToOrder()">Continue</a>
+                                    <div style="color: whitesmoke;" class="buttons float-right nav nav-tabs" *ngIf="showCountinue==true">
+                                        <a class="btn btn-theme btn-md btn-wide" (click)="countinueToOrder()">Pay {{cartPriceCurrency}}{{cartOverAllTotalPrice}}</a>
+<!--                                        <a href="#tab-payment" data-toggle="tab" class="btn btn-theme btn-md btn-wide" (click)="countinueToOrder()">Continue</a>-->
                                     </div>
                                 </div>
                                 <br>
@@ -669,8 +670,8 @@
                     <div class="col-md-3 col-sm-6 text-right order-md-3">
                         <!--  Footer Social Start -->
                         <ul class="list-inline social">
-                            <li class="list-inline-item"><a href="https://www.facebook.com/" target="_blank"><i class="icofont icofont-social-facebook"></i></a></li>
-                            <li class="list-inline-item"><a href="https://twitter.com/" target="_blank"><i class="icofont icofont-social-twitter"></i></a></li>
+                            <li class="list-inline-item"><a href="https://m.facebook.com/pg/Shidory-174104929684181/about/" target="_blank"><i class="icofont icofont-social-facebook"></i></a></li>
+                            <li class="list-inline-item"><a href="https://mobile.twitter.com/ShidoryPvtLtd" target="_blank"><i class="icofont icofont-social-twitter"></i></a></li>
                             <li class="list-inline-item"><a href="https://www.instagram.com/" target="_blank"><i class="icofont icofont-social-instagram"></i></a></li>
                             <!--<li class="list-inline-item"><a href="https://www.youtube.com/" target="_blank"><i class="icofont icofont-social-youtube-play"></i></a></li>-->
                         </ul>

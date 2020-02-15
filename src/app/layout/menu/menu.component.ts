@@ -14,6 +14,7 @@ import {SiUtil} from '../../utility/SiUtil';
     styleUrls: ['./menu.component.scss']
 })
 export class MenuComponent implements OnInit {
+    positionList: any[];
     haveVehicle: any;
     loader: boolean = false;
     userLocation: {lat: any; lng: any;};
@@ -26,13 +27,14 @@ export class MenuComponent implements OnInit {
     lat: number;
     lng: number;
     zoom: number = 17;
-    carrerModel: {mobileNo?: number, firstName?: string, middleName?: string, lastName?: string, emailId?: string, vehicalName?: string, vehicalNo?: number, licenceNo?: number, address?: string, education?: string, city?: string, state?: string, country?: string, pincode?: number, school?: string, college?: string, yfg?: string, uid?: string} = {};
+    carrerModel: {mobileNo?: number, firstName?: string, middleName?: string, lastName?: string, emailId?: string, vehicalName?: string, vehicalNo?: number, licenceNo?: number, address?: string, education?: string, city?: string, state?: string, country?: string, position?: string, pincode?: number, school?: string, college?: string, yfg?: string, uid?: string} = {};
     constructor(public auth: AuthService, private util:SiUtil, public router: Router, public provider: MenuProvider, public dialog: MatDialog,  private snackBar: MatSnackBar, private http:  HttpClient) {}
 
     ngOnInit() {
         this.cartLength = localStorage.getItem("cartLength");
         this.getLoginUserData();
         this.getUserPosition();
+        this.getPositionApplyList();
     }
     
     getLoginUserData()
@@ -151,6 +153,11 @@ export class MenuComponent implements OnInit {
             this.util.toastError("Error", "Mobile Number Required");
             return "ERROR";
         }
+        if (typeof this.carrerModel.position == "undefined")
+        {
+            this.util.toastError("Error", "Position Required");
+            return "ERROR";
+        }
     }
     
     saveCarrerFormInfo(Obj)
@@ -171,7 +178,7 @@ export class MenuComponent implements OnInit {
                     {
                         "from": this.carrerModel.emailId,
                         "name": this.carrerModel.firstName + this.carrerModel.lastName,
-                        "subject": "Apply For Job",
+                        "subject": "Apply For " + this.carrerModel.position,
                         "message": message,
                     }
             };
@@ -222,6 +229,14 @@ export class MenuComponent implements OnInit {
         {
             event.preventDefault();
         }
+    }
+    
+    getPositionApplyList()
+    {
+        this.provider.getPositionApplyList().subscribe((list: any[]) =>
+        {
+            this.positionList = list;
+        })
     }
     
     onRightClick($event)

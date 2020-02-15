@@ -38,5 +38,10 @@ export class MenuProvider {
     {
         return this.serviceFirestore.saveDocumentToFireStoreNew(this.serviceFirestore.firestore.collection("CARRER"), saveObj, "RMI")
     }
+    
+    getPositionApplyList()
+    {
+        return this.serviceFirestore.getListFromFireStore(this.serviceFirestore.firestore.collection("CARRER_POSITION"));
+    }
    
 }

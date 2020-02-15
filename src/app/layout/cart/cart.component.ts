@@ -389,10 +389,9 @@ export class CartComponent implements OnInit {
         }
         else
         {
-//            this.showShopingCart = false;
-            this.showShopingInfo = false;
-            this.showPaymentMethod = true;
-//            this.openOTPDialog();
+            this.callRazorpay();
+//            this.showShopingInfo = false;
+//            this.showPaymentMethod = true;
         }
         
     }
@@ -583,7 +582,7 @@ export class CartComponent implements OnInit {
         {
             if (this.paymentDone)
             {
-                this.conformOrder();
+//                this.conformOrder();
             }
             else
             {
@@ -771,7 +770,8 @@ export class CartComponent implements OnInit {
             this.provider.getRestroUserData(this.auth.getSession().uid).then((data: any) =>
             {
                 let options: any = {
-                    "key": "rzp_test_pjVKOOYNkFn3Bu",
+                    "key": "rzp_live_K8k4rXi5uuCIKi", //live key of reser pay
+//                    "key": "rzp_test_pjVKOOYNkFn3Bu", //demo key of reser pay
                     "amount": this.cartOverAllTotalPrice * 100,
                     "name": "Shidory",
                     "description": "E-marketplace pvt ltd",
@@ -793,6 +793,7 @@ export class CartComponent implements OnInit {
                 {
                     console.log(response);
                     this.paymentDone = true;
+                    this.conformOrder();
                 });
                 options.modal.ondismiss = (() => 
                 {

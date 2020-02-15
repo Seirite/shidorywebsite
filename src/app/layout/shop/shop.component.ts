@@ -55,7 +55,7 @@ export class ShopComponent implements OnInit {
     restroName: string;
     selectRestaurantKey: any;
     entOrderMst: ADD_ORDER_MST;
-    mainCategoryList: any[] = ["Veg ", "NonVeg "];
+    mainCategoryList: any[] = ["Veg ", "NonVeg ", "Contains Egg "];
     constructor(private util:SiUtil, public router: Router, public auth: AuthService, public provider: ShopProvider, private bottomSheet: MatBottomSheet, private snackBar: MatSnackBar, public dialog: MatDialog) {}
 
     async ngOnInit() {
