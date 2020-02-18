@@ -37,6 +37,7 @@ export interface DialogData {
     styleUrls: ['./cart.component.scss']
 })
 export class CartComponent implements OnInit {
+    otherCharges: number = 0;
     paymentDone: boolean = false;
     showRazorPayCardForm: boolean = false;
     selectAddress: string;
@@ -433,17 +434,51 @@ export class CartComponent implements OnInit {
                 if (countryData.OPR_ORD_RANGE_DISTANCE >= distance)
                 {
                     var rulesData: any = await this.provider.checkApplyRules(this.countryName, distance, this.cartTotalPrice);
+                    var taxAmount = 0;
+                    var packingAmount = 0;
+                    if(countryData.OPR_TAXS)
+                    {
+                        taxAmount = countryData.OPR_TAXS;
+                    }
+                    if(countryData.OPR_PACKING)
+                    {
+                        packingAmount = countryData.OPR_PACKING;
+                    }
                     if (rulesData == "NFD") 
                     {
                         this.dataCharges = 0;
-                        this.cartOverAllTotalPrice = this.cartTotalPrice + 0;
+                        var cartTotalAmount = this.cartTotalPrice + 0;
+                        var taxsCalculation = cartTotalAmount * (taxAmount / 100);
+                        var packingCalculation = this.cartTotalPrice * (packingAmount / 100);
+                        if (packingCalculation < 10)
+                        {
+                            packingCalculation = 10;
+                        }
+                        if (packingCalculation > 50)
+                        {
+                            packingCalculation = 50;
+                        }
+                        this.otherCharges = parseInt(taxsCalculation.toFixed()) + parseInt(packingCalculation.toFixed());
+                        this.cartOverAllTotalPrice = cartTotalAmount + this.otherCharges;
                         this.loadering = false;
                         this.showCountinue = true;
                     }
                     else 
                     {
                         this.dataCharges = rulesData.CHARGES;
-                        this.cartOverAllTotalPrice = this.cartTotalPrice + rulesData.CHARGES;
+                        var cartTotalAmount = this.cartTotalPrice + rulesData.CHARGES;
+                        var taxsCalculation = cartTotalAmount * (taxAmount / 100);
+                        var packingCalculation = this.cartTotalPrice * (packingAmount / 100);
+                        if (packingCalculation < 10)
+                        {
+                            packingCalculation = 10;
+                        }
+                        if (packingCalculation > 50)
+                        {
+                            packingCalculation = 50;
+                        }
+                        this.otherCharges = parseInt(taxsCalculation.toFixed()) + parseInt(packingCalculation.toFixed());
+                        this.cartOverAllTotalPrice = cartTotalAmount + this.otherCharges;
                         this.loadering = false;
                         this.showCountinue = true;
                     }
@@ -467,14 +502,38 @@ export class CartComponent implements OnInit {
                     if (rulesData == "NFD") 
                     {
                         this.dataCharges = 0;
-                        this.cartOverAllTotalPrice = this.cartTotalPrice + 0;
+                        var cartTotalAmount = this.cartTotalPrice + 0;
+                        var taxsCalculation = cartTotalAmount * (taxAmount / 100);
+                        var packingCalculation = this.cartTotalPrice * (packingAmount / 100);
+                        if (packingCalculation < 10)
+                        {
+                            packingCalculation = 10;
+                        }
+                        if (packingCalculation > 50)
+                        {
+                            packingCalculation = 50;
+                        }
+                        this.otherCharges = parseInt(taxsCalculation.toFixed()) + parseInt(packingCalculation.toFixed());
+                        this.cartOverAllTotalPrice = cartTotalAmount + this.otherCharges;
                         this.loadering = false;
                         this.showCountinue = true;
                     }
                     else 
                     {
                         this.dataCharges = rulesData.CHARGES;
-                        this.cartOverAllTotalPrice = this.cartTotalPrice + rulesData.CHARGES;
+                        var cartTotalAmount = this.cartTotalPrice + rulesData.CHARGES;
+                        var taxsCalculation = cartTotalAmount * (taxAmount / 100);
+                        var packingCalculation = this.cartTotalPrice * (packingAmount / 100);
+                        if (packingCalculation < 10)
+                        {
+                            packingCalculation = 10;
+                        }
+                        if (packingCalculation > 50)
+                        {
+                            packingCalculation = 50;
+                        }
+                        this.otherCharges = parseInt(taxsCalculation.toFixed()) + parseInt(packingCalculation.toFixed());
+                        this.cartOverAllTotalPrice = cartTotalAmount + this.otherCharges;
                         this.loadering = false;
                         this.showCountinue = true;
                     }
@@ -724,6 +783,10 @@ export class CartComponent implements OnInit {
         if (this.dataCharges)
         {
             this.cartOverAllTotalPrice = this.cartTotalPrice + this.dataCharges;
+        }
+        if (this.otherCharges)
+        {
+            this.cartOverAllTotalPrice = this.cartOverAllTotalPrice + this.otherCharges;
         }
     }
     
