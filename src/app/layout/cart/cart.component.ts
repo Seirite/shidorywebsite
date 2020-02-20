@@ -860,7 +860,7 @@ export class CartComponent implements OnInit {
                 });
                 options.modal.ondismiss = (() => 
                 {
-                    console.log("cancle");
+                    this.paymentDone = false;
                 });
                 
                 let rzp = new this.winRef.nativeWindow.Razorpay(options);

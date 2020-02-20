@@ -192,20 +192,20 @@
                                     </mat-form-field>
                                 </form>
                                 <br>
-                                <div class="col-sm-12 col-md-12 col-xs-12">
+                                <div class="col-sm-12 col-md-12 col-xs-12 col-12">
                                     <h6 *ngIf="deliveryAddressArray?.length!=0">Select Delivery Address</h6>
                                     <ul *ngFor="let address of deliveryAddressArray">
                                         <div class="row">
-                                            <div class="col-sm-1 col-md-1 col-xs-1">
+                                            <div class="col-sm-1 col-md-1 col-xs-1 col-1">
                                                 <a><i class="icofont icofont-social-google-map" style="color: #e54c2a; font-size: x-large;"></i></a>
                                             </div>
-                                            <div class="col-sm-8 col-md-8 col-xs-8">
+                                            <div class="col-sm-8 col-md-8 col-xs-8 col-8">
                                                 <p style="font-size: medium; text-transform: capitalize;"><span *ngIf="address.buldingNo">{{address.buldingNo || ''}},</span> <span *ngIf="address.address">{{address.address || ''}},</span> <span *ngIf="address.neighborhood">{{address.neighborhood || ''}},</span> <span *ngIf="address.selectAddress">{{address.selectAddress || ''}},</span> <span *ngIf="address.zipcode">{{address.zipcode || ''}}</span></p>
                                             </div>
-                                            <div class="col-sm-2 col-md-2 col-xs-2 buttons">
+                                            <div class="col-sm-2 col-md-2 col-xs-2 col-2 buttons">
                                                 <input type="radio" name="selectAddress" data-toggle="popover" title="Select delivery Address" class="form-control" style="color: #e54c2a; width: 1.5em; height: 1.5em;" (change)="onSelectAddress(address)">
                                             </div>
-                                            <div class="col-sm-1 col-md-1 col-xs-1">
+                                            <div class="col-sm-1 col-md-1 col-xs-1 col-1">
                                                 <a (click)="deleteAddressFromArray(address)"><i class="icofont icofont-close-line" style="color: #e54c2a;"></i></a>
                                             </div>
                                         </div>
@@ -233,22 +233,22 @@
                                                 <div style="margin-left: 5%;">
                                                     <div style="overflow-y: auto; overflow-x: hidden; height: 100px;">
                                                         <div class="row" *ngFor="let cartItem of cartMenuItemList">
-                                                             <div class="col-12">
+                                                             <div class="col-sm-12 col-md-12 col-xs-12 col-12">
                                                                 <div class="row">
-                                                                    <div class="col-1">
+                                                                    <div class="col-sm-1 col-md-1 col-xs-1 col-1">
                                                                         <img src="assets/images/menu-type/non-vegetarian.png" *ngIf="cartItem.MENU_ITEM_CATEGORY=='NonVeg'" />
                                                                         <img src="assets/images/menu-type/vegetarian.png" *ngIf="cartItem.MENU_ITEM_CATEGORY=='Veg'" />
                                                                         <img src="assets/images/menu-type/egg-contain.png" *ngIf="cartItem.MENU_ITEM_CATEGORY=='Contains Egg'" />
                                                                     </div>
-                                                                    <div class="col-3" align="start">
+                                                                    <div class="col-sm-3 col-md-3 col-xs-3 col-3" align="start">
                                                                         <span style="font-weight: 1000; display: inline-block; width: 90%; white-space: nowrap; overflow: hidden !important; text-overflow: ellipsis; text-transform: capitalize;">{{cartItem.MENU_ITEM_NAME}}</span>
                                                                     </div>
-                                                                    <div class="col-4" align="center">
+                                                                    <div class="col-sm-4 col-md-4 col-xs-4 col-4" align="center">
                                                                         <span style="font-weight: 500;">{{cartItem.MENU_ITEM_CURRENCY}} {{cartItem.MENU_ITEM_PRICE}}</span>
                                                                         <span style="font-weight: 300;"> X </span>
                                                                         <span style="font-weight: 500;">{{cartItem.MENU_ITEM_QUANTITY}}</span>
                                                                     </div>
-                                                                    <div class="col-4" align="center">
+                                                                    <div class="col-sm-4 col-md-4 col-xs-4 col-4" align="center">
                                                                         <span *ngIf="!cartItem.MENU_ITEM_TOTAL" style="font-weight: 500;">{{cartItem.MENU_ITEM_CURRENCY}}{{cartItem.MENU_ITEM_PRICE}}</span>
                                                                         <span *ngIf="cartItem.MENU_ITEM_TOTAL" style="font-weight: 500;">{{cartItem.MENU_ITEM_CURRENCY}}{{cartItem.MENU_ITEM_TOTAL}}</span>
                                                                     </div>
@@ -369,7 +369,7 @@
                                     <div class="buttons float-left nav nav-tabs">
                                         <a href="shop" class="btn btn-theme btn-md btn-wide">Back Your Cart</a>
                                     </div>
-                                    <div style="color: whitesmoke;" class="buttons float-right nav nav-tabs" *ngIf="showCountinue==true">
+                                    <div style="color: whitesmoke;" class="buttons float-right nav nav-tabs" *ngIf="showCountinue==true&&!paymentDone">
                                         <a class="btn btn-theme btn-md btn-wide" (click)="countinueToOrder()">Pay {{cartPriceCurrency}}{{cartOverAllTotalPrice}}</a>
 <!--                                        <a href="#tab-payment" data-toggle="tab" class="btn btn-theme btn-md btn-wide" (click)="countinueToOrder()">Continue</a>-->
                                     </div>
