@@ -345,7 +345,7 @@
                                                         <div class="col-md-6 col-sm-6">
                                                             <h4>{{item.MENU_ITEM_NAME}}</h4>
                                                             <!--<p class="des">Cursus / Dictum / Risus</p>-->
-                                                            <p class="des">{{item.MENU_ITEM_INGRADIENTS}}</p>
+                                                            <!--<p class="des">{{item.MENU_ITEM_INGRADIENTS}}</p>-->
                                                         </div>
                                                         <div class="col-md-4 col-sm-3 text-right" *ngIf="order.DELIVERD">
                                                             <p class="confirmed"><i class="icofont icofont-check"></i>DELIVERD</p>
@@ -358,7 +358,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="item-footer">
-                                                    <p><strong>Order Date:</strong> {{order.SAVE_DT}}<strong>Order Total:</strong> {{order.RESTRO_USER_CART_CURRENCY}} {{order.RESTRO_USER_CART_TOTAL}}</p>
+                                                    <p><strong>Order Date:</strong> {{order.SAVE_DT}}<strong>Order Total:</strong> {{order.RESTRO_USER_CART_CURRENCY}} {{order.RESTRO_USER_CART_TOTAL}} &nbsp; <span style="font-weight: 900;" *ngIf="order.RESTRO_NAME">{{order.RESTRO_NAME | titlecase }}</span></p>
                                                 </div>
                                             </div>
                                         </div>

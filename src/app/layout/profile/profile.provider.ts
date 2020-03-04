@@ -54,6 +54,7 @@ export class ProfileProvider {
                                         restroUserOrderData.HAWKER_STATUS = restroUserOrder[0].HAWKER_STATUS;
                                     }
                                     restroUserOrderData.DELIVERD = restroUserOrder[0].DELIVERD;
+                                    restroUserOrderData.RESTRO_NAME = restroData[0].RESTRO_NAME;
                                 }
                             })
                         }
