@@ -365,11 +365,11 @@
                             <!--</div>-->
                         </div>
                                 <br>
-                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                <div class="col-md-12 col-sm-12 col-xs-12" style="color: black;">
                                     <div class="buttons float-left nav nav-tabs">
-                                        <a href="shop" class="btn btn-theme btn-md btn-wide">Back Your Cart</a>
+                                        <a href="shop" class="btn btn-theme btn-md btn-wide" style="color: black;">Back Your Cart</a>
                                     </div>
-                                    <div style="color: whitesmoke;" class="buttons float-right nav nav-tabs" *ngIf="showCountinue==true&&!paymentDone">
+                                    <div class="buttons float-right nav nav-tabs" *ngIf="showCountinue==true&&!paymentDone">
                                         <a class="btn btn-theme btn-md btn-wide" (click)="countinueToOrder()">Pay {{cartPriceCurrency}}{{cartOverAllTotalPrice}}</a>
 <!--                                        <a href="#tab-payment" data-toggle="tab" class="btn btn-theme btn-md btn-wide" (click)="countinueToOrder()">Continue</a>-->
                                     </div>

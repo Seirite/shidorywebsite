@@ -358,7 +358,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="item-footer">
-                                                    <p><strong>Order Date:</strong> {{order.SAVE_DT}}<strong>Order Total:</strong> {{order.RESTRO_USER_CART_CURRENCY}} {{order.RESTRO_USER_CART_TOTAL}} &nbsp; <span style="font-weight: 900;" *ngIf="order.RESTRO_NAME">{{order.RESTRO_NAME | titlecase }}</span></p>
+                                                    <p><strong>Order Date:</strong> {{order.SAVE_DT}}<strong>Order Total:</strong> {{order.RESTRO_USER_CART_CURRENCY}} {{order.RESTRO_USER_CART_TOTAL}} &nbsp; <span style="font-weight: 900;" *ngIf="order.RESTRO_NAME"><strong>Order From:</strong> {{order.RESTRO_NAME | titlecase }}</span></p>
                                                 </div>
                                             </div>
                                         </div>

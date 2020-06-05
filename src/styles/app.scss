@@ -11,3 +11,14 @@
         display: none !important;
     }
 }
+
+.dotted-text {
+    white-space: nowrap; 
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+}
+
+.dotted-text:hover {
+    overflow: visible;
+}

@@ -33,6 +33,7 @@ export class ADD_ORDER_MST
     CURRENT_MONTH: number;
     RESTRO_USER_CART_CHARGES: number;
     RESTRO_USER_CART_CURRENCY: any;
+    EXTRACHARGES: number;
     DELIVERD: boolean = false;
     ORDER_STATUS_ARRAY: any[] = [];
     RESTRO_USER_OTP: any;

@@ -37,8 +37,8 @@
             <p>To Pay :</p>
         </div>
         <div align="center" style="margin-left: 5%;">
-            <p *ngIf="trackOrderObject.RESTRO_USER_CART_COUPON_DISCOUNT_NAME==0">{{trackOrderObject.RESTRO_USER_CART_CURRENCY}}{{trackOrderObject.RESTRO_USER_CART_TOTAL + trackOrderObject.RESTRO_USER_CART_CHARGES}}</p>
-            <p *ngIf="trackOrderObject.RESTRO_USER_CART_COUPON_DISCOUNT_NAME!=0">{{trackOrderObject.RESTRO_USER_CART_CURRENCY}}{{trackOrderObject.RESTRO_USER_CART_TOTAL - trackOrderObject.RESTRO_USER_CART_COUPON_DISCOUNT_AMOUNT + trackOrderObject.RESTRO_USER_CART_CHARGES}}</p>
+            <p *ngIf="trackOrderObject.RESTRO_USER_CART_COUPON_DISCOUNT_NAME==0">{{trackOrderObject.RESTRO_USER_CART_CURRENCY}}{{trackOrderObject.RESTRO_USER_CART_TOTAL + trackOrderObject.RESTRO_USER_CART_CHARGES + trackOrderObject.EXTRACHARGES}}</p>
+            <p *ngIf="trackOrderObject.RESTRO_USER_CART_COUPON_DISCOUNT_NAME!=0">{{trackOrderObject.RESTRO_USER_CART_CURRENCY}}{{trackOrderObject.RESTRO_USER_CART_TOTAL - trackOrderObject.RESTRO_USER_CART_COUPON_DISCOUNT_AMOUNT + trackOrderObject.RESTRO_USER_CART_CHARGES + trackOrderObject.EXTRACHARGES}}</p>
         </div>
     </div>
     <div class="row" style="margin-left: 5%; margin-right: 5%;" *ngIf="trackOrderObject.RESTRO_USER_CART_COUPON_DISCOUNT_NAME">
@@ -226,6 +226,13 @@
                         Delivery Fee
                         <div class="deliveryFee">
                             <span align="right">{{deliveryFee}}</span>
+                        </div>
+                    </div>
+                    <hr>
+                    <div style="font-size: 13px;color: #686b78; display: -ms-flexbox; display: flex; -ms-flex-align: center; align-items: center;">
+                        Other Changes
+                        <div class="deliveryFee">
+                            <span align="right">{{otherCharges}}</span>
                         </div>
                     </div>
                     <hr *ngIf="trackOrderObject.RESTRO_USER_CART_COUPON_DISCOUNT_NAME">

@@ -617,6 +617,7 @@ export class CartComponent implements OnInit {
         this.entOrderMst.RESTRO_USER_CART_COUPON_DISCOUNT_TYPE = this.coupunDiscountType;
         this.entOrderMst.RESTRO_USER_CART_COUPON_DISCOUNT_NAME = this.coupunDiscountName;
         this.entOrderMst.CART_OVER_TOTAL = this.cartPriceCurrency + " " + this.cartOverAllTotalPrice;
+        this.entOrderMst.EXTRACHARGES = this.otherCharges;
         await this.provider.sendOrderToUserSide(this.entOrderMst, this.selectRestaurantKey);
         this.provider.sendOrderToZone(this.entOrderMst, this.restroObj.RESTRO_LOCATION.geohash.substring(0, 5).trim(), this.countryName, this.stateName, this.cityName).then(async key => 
         {

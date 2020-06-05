@@ -35,6 +35,7 @@ export class TrackOrderComponent implements OnInit {
     show: boolean = true;
     showMap: boolean = false;
     trackOrderObject: ADD_ORDER_MST;
+    otherCharges: string;
     
     constructor(public provider: TrackOrderProvider, public dialogRef: MatDialogRef<TrackOrderComponent>) {}
 
@@ -83,6 +84,7 @@ export class TrackOrderComponent implements OnInit {
         this.restroImage = restroData.RESTRO_IMAGE
         this.provider.getUserOrderList(this.countryName, this.stateName, this.cityName, restroData.RESTRO_LOCATION.geohash.substring(0,5), this.selectOrderKey).subscribe(async (list: ADD_ORDER_MST[]) =>
         {
+            console.log(list[0]);
             this.trackOrderObject = list[0];
             this.userMenuItem = list[0].MENUCART;
             this.userOTP = list[0].RESTRO_USER_OTP;
@@ -91,15 +93,16 @@ export class TrackOrderComponent implements OnInit {
                 lat: list[0].SELECT_ADDRESS_GEOPOINT_LATITUDE,
                 lng: list[0].SELECT_ADDRESS_GEOPOINT_LONGITUDE
             }
+            this.otherCharges = list[0].RESTRO_USER_CART_CURRENCY + " " + list[0].EXTRACHARGES;
             if (list[0].RESTRO_USER_CART_COUPON_DISCOUNT_NAME != 0)
             {
                 var userPaymentAmount = list[0].RESTRO_USER_CART_TOTAL - list[0].RESTRO_USER_CART_COUPON_DISCOUNT_AMOUNT;
-                var totalPrice = userPaymentAmount + list[0].RESTRO_USER_CART_CHARGES;
+                var totalPrice = userPaymentAmount + list[0].RESTRO_USER_CART_CHARGES + list[0].EXTRACHARGES;
                 this.userPaymentAmount = list[0].RESTRO_USER_CART_CURRENCY + " " + totalPrice;
             }
             else
             {
-                var totalPrice = list[0].RESTRO_USER_CART_TOTAL + list[0].RESTRO_USER_CART_CHARGES;
+                var totalPrice = list[0].RESTRO_USER_CART_TOTAL + list[0].RESTRO_USER_CART_CHARGES + list[0].EXTRACHARGES;
                 this.userPaymentAmount = list[0].RESTRO_USER_CART_CURRENCY + " " + totalPrice;
             }
             this.deliveryFee = list[0].RESTRO_USER_CART_CURRENCY + " " + list[0].RESTRO_USER_CART_CHARGES;
