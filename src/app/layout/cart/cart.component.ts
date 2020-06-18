@@ -837,6 +837,7 @@ export class CartComponent implements OnInit {
                     "key": "rzp_live_K8k4rXi5uuCIKi", //live key of reser pay
 //                    "key": "rzp_test_pjVKOOYNkFn3Bu", //demo key of reser pay
                     "amount": this.cartOverAllTotalPrice * 100,
+                    "payment_capture": '1',
                     "name": "Shidory",
                     "description": "E-marketplace pvt ltd",
                     "image": "assets/images/logo/logo-icon.png",
