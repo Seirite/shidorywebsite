@@ -37,8 +37,7 @@
             <p>To Pay :</p>
         </div>
         <div align="center" style="margin-left: 5%;">
-            <p *ngIf="trackOrderObject.RESTRO_USER_CART_COUPON_DISCOUNT_NAME==0">{{trackOrderObject.RESTRO_USER_CART_CURRENCY}}{{trackOrderObject.RESTRO_USER_CART_TOTAL + trackOrderObject.RESTRO_USER_CART_CHARGES + trackOrderObject.EXTRACHARGES}}</p>
-            <p *ngIf="trackOrderObject.RESTRO_USER_CART_COUPON_DISCOUNT_NAME!=0">{{trackOrderObject.RESTRO_USER_CART_CURRENCY}}{{trackOrderObject.RESTRO_USER_CART_TOTAL - trackOrderObject.RESTRO_USER_CART_COUPON_DISCOUNT_AMOUNT + trackOrderObject.RESTRO_USER_CART_CHARGES + trackOrderObject.EXTRACHARGES}}</p>
+            <p>{{userPaymentAmount}}</p>
         </div>
     </div>
     <div class="row" style="margin-left: 5%; margin-right: 5%;" *ngIf="trackOrderObject.RESTRO_USER_CART_COUPON_DISCOUNT_NAME">
@@ -46,7 +45,7 @@
             <p>Apply Coupon :</p>
         </div>
         <div align="center" style="margin-left: 5%;">
-            <p>{{trackOrderObject.RESTRO_USER_CART_COUPON_DISCOUNT_NAME}} ({{trackOrderObject.RESTRO_USER_CART_DISCOUNT_TOTAL}})</p>
+            <p>{{trackOrderObject.RESTRO_USER_CART_COUPON_DISCOUNT_NAME}} ({{trackOrderObject.RESTRO_USER_CART_COUPON_DISCOUNT_AMOUNT}})</p>
         </div>
     </div>
     <div class="row" style="margin-left: 5%; margin-right: 5%;" *ngIf="userOTP">

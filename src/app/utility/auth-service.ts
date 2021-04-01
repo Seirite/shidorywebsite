@@ -1,13 +1,15 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { auth } from 'firebase';
+//import { auth } from 'firebase';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 import {NotifyService} from './NotifyService';
 
 import { Observable, of } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
+import * as auth from 'firebase'
+import firebase = require('firebase');
 
 interface User {
   uid: string;
@@ -45,22 +47,22 @@ export class AuthService {
 
   ////// OAuth Methods /////
   googleLogin() {
-    const provider = new auth.GoogleAuthProvider();
+      const provider = new firebase.auth.GoogleAuthProvider();
     return this.oAuthLogin(provider);
   }
 
   githubLogin() {
-    const provider = new auth.GithubAuthProvider();
+      const provider = new firebase.auth.GithubAuthProvider();
     return this.oAuthLogin(provider);
   }
 
   facebookLogin() {
-    const provider = new auth.FacebookAuthProvider();
+      const provider = new firebase.auth.FacebookAuthProvider();
     return this.oAuthLogin(provider);
   }
 
   twitterLogin() {
-    const provider = new auth.TwitterAuthProvider();
+      const provider = new firebase.auth.TwitterAuthProvider();
     return this.oAuthLogin(provider);
   }
 
@@ -136,7 +138,7 @@ export class AuthService {
 
   // Sends email allowing user to reset password
   resetPassword(email: string) {
-    const fbAuth = auth();
+      const fbAuth = firebase.auth();
 
     return fbAuth
       .sendPasswordResetEmail(email)

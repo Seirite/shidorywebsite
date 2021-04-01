@@ -157,7 +157,7 @@ getSession()
             try {
                 collection.doc(key).snapshotChanges()
                     .forEach(actions => {
-                        console.log(actions.payload.ref.path);
+//                        console.log(actions.payload.ref.path);
                         console.log(actions.payload.exists);
 
                         const data = actions.payload.data() as any;

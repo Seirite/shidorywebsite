@@ -56,7 +56,7 @@ export class CartComponent implements OnInit {
     userGeohash: any;
     component: any;
     dataCharges: number = 0;
-    @ViewChild("placesRef") placesRef : GooglePlaceDirective;
+    @ViewChild("placesRef", {static: true}) placesRef : GooglePlaceDirective;
     userLocation: {lat: number; lng: number;};
     loader: boolean = false;
     cityName: any;
@@ -613,7 +613,7 @@ export class CartComponent implements OnInit {
         array.push(order);
         this.entOrderMst.ORDER_STATUS_ARRAY = array;
         this.entOrderMst.RESTRO_USER_CART_DISCOUNT_TOTAL = this.cartOverAllTotalPrice;
-        this.entOrderMst.RESTRO_USER_CART_COUPON_DISCOUNT_AMOUNT = this.coupunDiscountAmount;
+        this.entOrderMst.RESTRO_USER_CART_COUPON_DISCOUNT_AMOUNT = this.cartDiscountPrice;
         this.entOrderMst.RESTRO_USER_CART_COUPON_DISCOUNT_TYPE = this.coupunDiscountType;
         this.entOrderMst.RESTRO_USER_CART_COUPON_DISCOUNT_NAME = this.coupunDiscountName;
         this.entOrderMst.CART_OVER_TOTAL = this.cartPriceCurrency + " " + this.cartOverAllTotalPrice;
@@ -779,6 +779,9 @@ export class CartComponent implements OnInit {
     
     async cancleApplyCoupun()
     {
+        this.coupunDiscountAmount = 0;
+        this.coupunDiscountType = 0;
+        this.coupunDiscountName = 0;
         this.userAppliedCoupun = 0;
         await this.calculateItemPrice();
         if (this.dataCharges)

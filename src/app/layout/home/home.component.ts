@@ -26,7 +26,7 @@ export class HomeComponent implements OnInit {
     showTrackOrder: boolean;
     showList: boolean = true;
     showCountryList: boolean = true;
-    @ViewChild(MatPaginator) paginator: MatPaginator;
+    @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
     countryList: any[] = [];
     cartLength: string;
     citiesWeServeList: any;
@@ -36,7 +36,7 @@ export class HomeComponent implements OnInit {
     currentAddress: any;
     loader: boolean = false;
     userLocation: {lat: number; lng: number;};
-    @ViewChild("placesRef") placesRef : GooglePlaceDirective;
+    @ViewChild("placesRef", {static: true}) placesRef : GooglePlaceDirective;
     geo = geofirex.init(firebase);
     loginUserEmail: any;
     loginUserImage: any;
@@ -119,9 +119,13 @@ export class HomeComponent implements OnInit {
             const radius = 5;
             const field = "RESTRO_LOCATION";
             this.points = this.radius.pipe(
-                switchMap(r => 
+                switchMap(() => 
                 {
-                    return this.geo.collection("SHIDORY/" + "ORG1/" + "COUNTRY/" + this.countryName + "/" + "STATES/" + this.stateName + "/" + "CITIES/" + this.cityName + "/" + "RESTAURANT_MST", ref => ref.where("RESTRO_ISLOGIN", "==", true).where("DEFAUNT", "==", false)).within(center, radius, field)
+                    let query = this.geo.app.firestore()
+                    .collection("SHIDORY/" + "ORG1/" + "COUNTRY/" + this.countryName + "/" + "STATES/" + this.stateName + "/" + "CITIES/" + this.cityName + "/" + "RESTAURANT_MST")
+                        .where("RESTRO_ISLOGIN", "==", true).where("DEFAUNT", "==", false)
+                    let geoQuery = this.geo.query(query);
+                    return geoQuery.within(center, radius, field).pipe()
                 })
             );
             await this.points.forEach(async list => 
@@ -464,7 +468,8 @@ export class HomeComponent implements OnInit {
         this.points = this.radius.pipe(
             switchMap(r => 
             {
-                return this.geo.collection("SHIDORY" + "ORG1" + "COUNTRY" + this.countryName + "STATES" + this.stateName + "CITIES" + this.cityName + "RESTAURANT_MST", ref => ref.where("RESTRO_ISLOGIN", "==", true)).within(center, radius, field)
+                return this.geo.app.firestore().collection("SHIDORY/" + "ORG1/" + "COUNTRY/" + this.countryName + "/" + "STATES/" + this.stateName + "/" + "CITIES/" + this.cityName + "/" + "RESTAURANT_MST"), (ref: any) => ref.where("RESTRO_ISLOGIN", "==", true).where("DEFAUNT", "==", false).within(center, radius, field)
+//                return this.geo.collection("SHIDORY" + "ORG1" + "COUNTRY" + this.countryName + "STATES" + this.stateName + "CITIES" + this.cityName + "RESTAURANT_MST", (ref: any) => ref.where("RESTRO_ISLOGIN", "==", true)).within(center, radius, field)
             })
         );
         this.points.forEach(list =>

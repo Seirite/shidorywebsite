@@ -94,17 +94,17 @@ export class TrackOrderComponent implements OnInit {
                 lng: list[0].SELECT_ADDRESS_GEOPOINT_LONGITUDE
             }
             this.otherCharges = list[0].RESTRO_USER_CART_CURRENCY + " " + list[0].EXTRACHARGES;
-            if (list[0].RESTRO_USER_CART_COUPON_DISCOUNT_NAME != 0)
-            {
-                var userPaymentAmount = list[0].RESTRO_USER_CART_TOTAL - list[0].RESTRO_USER_CART_COUPON_DISCOUNT_AMOUNT;
-                var totalPrice = userPaymentAmount + list[0].RESTRO_USER_CART_CHARGES + list[0].EXTRACHARGES;
-                this.userPaymentAmount = list[0].RESTRO_USER_CART_CURRENCY + " " + totalPrice;
-            }
-            else
-            {
-                var totalPrice = list[0].RESTRO_USER_CART_TOTAL + list[0].RESTRO_USER_CART_CHARGES + list[0].EXTRACHARGES;
-                this.userPaymentAmount = list[0].RESTRO_USER_CART_CURRENCY + " " + totalPrice;
-            }
+//            if (list[0].RESTRO_USER_CART_COUPON_DISCOUNT_NAME != 0)
+//            {
+//                var userPaymentAmount = list[0].RESTRO_USER_CART_TOTAL - list[0].RESTRO_USER_CART_COUPON_DISCOUNT_AMOUNT;
+//                var totalPrice = userPaymentAmount + list[0].RESTRO_USER_CART_CHARGES + list[0].EXTRACHARGES;
+//                this.userPaymentAmount = list[0].RESTRO_USER_CART_CURRENCY + " " + totalPrice;
+//            }
+//            else
+//            {
+//                var totalPrice = list[0].RESTRO_USER_CART_TOTAL + list[0].RESTRO_USER_CART_CHARGES + list[0].EXTRACHARGES;
+//            }
+            this.userPaymentAmount = list[0].CART_OVER_TOTAL;
             this.deliveryFee = list[0].RESTRO_USER_CART_CURRENCY + " " + list[0].RESTRO_USER_CART_CHARGES;
             this.coupanValue = list[0].RESTRO_USER_CART_CURRENCY + " " + list[0].RESTRO_USER_CART_COUPON_DISCOUNT_AMOUNT;
             this.totalPrice = list[0].RESTRO_USER_CART_CURRENCY + " " + list[0].RESTRO_USER_CART_TOTAL;

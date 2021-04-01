@@ -12,7 +12,7 @@ import {TranslateService} from '@ngx-translate/core';
 import {HttpClient, HttpErrorResponse} from '@angular/common/http';
 import * as firebase from 'firebase/app';
 import {Upload} from '../pojos/Upload';
-import {UploadTask} from '@firebase/storage-types';
+//import {UploadTask} from '@firebase/storage-types';
 import * as dash from "lodash";
 
 @Injectable()
@@ -149,23 +149,23 @@ export class SiUtil {
         let storageRef = firebase.storage().ref();
         let uploadTask = storageRef.child(`${uploadUrl}/${upload.file.name}`).put(upload.file);
 
-        uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED,
-            (snapshot: UploadTask) => {
-                // upload in progress
-               
-                upload.progress = (uploadTask.snapshot.bytesTransferred / uploadTask.snapshot.totalBytes) * 100
-                console.log(upload.progress);
-            },
-            (error) => {
-                // upload failed
-                console.log(error)
-            },
-            () => {
-                // upload success
-                upload.url = uploadTask.snapshot.downloadURL
-                upload.name = upload.file.name
-            }
-        );
+//        uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED,
+//            (snapshot: UploadTask) => {
+//                // upload in progress
+//               
+//                upload.progress = (uploadTask.snapshot.bytesTransferred / uploadTask.snapshot.totalBytes) * 100
+//                console.log(upload.progress);
+//            },
+//            (error) => {
+//                // upload failed
+//                console.log(error)
+//            },
+//            () => {
+//                // upload success
+//                upload.url = uploadTask.snapshot.downloadURL
+//                upload.name = upload.file.name
+//            }
+//        );
     }
 
 }

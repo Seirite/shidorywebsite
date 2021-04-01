@@ -35,7 +35,7 @@ export class ShopComponent implements OnInit {
     cartTotalPrice: number = 0;
     cartMenuItemList: any[] = new Array();
     cartLength: number;
-    @ViewChild(MatPaginator) paginator: MatPaginator;
+    @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
     userCurrency: any;
     cityName: string;
     stateName: string;
